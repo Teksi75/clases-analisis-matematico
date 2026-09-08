@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>5to año Programación · Clase 1 · Primeros pasos</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #1d2433;
+      --muted: #5c667a;
+      --line: #d9deea;
+      --accent: #2457a6;
+      --accent-soft: #e9f0ff;
+      --ok-soft: #edf8f0;
+      --warn-soft: #fff6df;
+      --danger-soft: #fff0ef;
+      --radius: 16px;
+      --shadow: 0 14px 35px rgba(25, 38, 70, 0.10);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #eef3ff 0%, var(--bg) 45%, #f9fafc 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    main { max-width: 940px; margin: 0 auto; padding: 32px 18px 56px; }
+
+    header,
+    section,
+    .screen-note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    header { padding: 30px; margin-bottom: 18px; border-top: 7px solid var(--accent); }
+    section, .screen-note { padding: 24px; margin: 18px 0; }
+
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); color: var(--accent); }
+    h3 { font-size: 1.1rem; margin-top: 18px; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 8px 0 0 1.3rem; padding: 0; }
+    li { margin: 6px 0; }
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.95em; }
+
+    .kicker {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.83rem;
+      margin-bottom: 8px;
+    }
+
+    .lead { font-size: 1.15rem; color: #283246; max-width: 74ch; }
+    .muted { color: var(--muted); }
+    .screen-note { background: #fefefe; font-size: 0.95rem; }
+
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+    .card, .callout {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+    }
+    .callout { background: var(--accent-soft); border-color: #c7d7fb; }
+    .callout.ok { background: var(--ok-soft); border-color: #b7dfc1; }
+    .callout.warn { background: var(--warn-soft); border-color: #f1d48a; }
+    .callout.danger { background: var(--danger-soft); border-color: #f2c0bb; }
+
+    .command-list { list-style: none; margin-left: 0; }
+    .command-list li { padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fafbff; }
+    .checklist { list-style: none; margin-left: 0; }
+    .checklist li::before { content: "□ "; font-weight: 800; color: var(--accent); }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(70px, 1fr));
+      gap: 6px;
+      max-width: 360px;
+      margin: 12px 0;
+    }
+    .cell {
+      min-height: 54px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #fbfcff;
+      font-size: 0.92rem;
+    }
+    .cell.start { border-color: #2457a6; background: #e9f0ff; font-weight: 700; }
+    .cell.end { border-color: #287a3e; background: #edf8f0; font-weight: 700; }
+
+    .trace { counter-reset: step; list-style: none; margin-left: 0; }
+    .trace li { border-left: 4px solid var(--accent); padding: 8px 0 8px 12px; background: #fbfcff; }
+    .trace li::before { counter-increment: step; content: counter(step) ". "; font-weight: 800; color: var(--accent); }
+    .solution { border-left: 5px solid #287a3e; background: var(--ok-soft); }
+    .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+    @media (max-width: 620px) {
+      main { padding: 18px 12px 36px; }
+      header, section, .screen-note { padding: 18px; border-radius: 12px; }
+      .mini-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cell { min-height: 48px; padding: 6px; }
+    }
+
+    @page { size: A4; margin: 14mm; }
+
+    @media print {
+      :root { --ink: #111827; --line: #cfd5df; }
+      body { background: #fff; font-size: 10.5pt; }
+      main { max-width: none; padding: 0; }
+      header, section { box-shadow: none; border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; margin: 0 0 9mm; padding: 0 0 6mm; }
+      header { border-top: 4pt solid var(--accent); padding-top: 5mm; }
+      .screen-note { display: none; }
+      h1 { font-size: 24pt; }
+      h2 { font-size: 15.5pt; margin-top: 2mm; }
+      h3 { font-size: 12pt; }
+      .mini-grid { max-width: 300px; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="screen-note" role="note">
+      <strong>Nota para editar:</strong> este apunte es un HTML standalone. Podés abrir
+      <code>clases/clase-01.html</code> en un navegador para verlo, editarlo con cualquier editor de texto
+      e imprimirlo desde el navegador. No usa JavaScript ni necesita conexión.
+    </div>
+
+    <header>
+      <p class="kicker">5to año · Programación · Clase inicial</p>
+      <h1>Clase 1: cómo piensa una computadora cuando programamos</h1>
+      <p class="lead">
+        En esta primera clase no necesitás saber Java, NetBeans ni objetos. Vamos a empezar por la base:
+        qué es un programa, qué es una instrucción, qué es un algoritmo y cómo detectar errores mirando los pasos.
+      </p>
+    </header>
+
+    <section class="avoid-break">
+      <h2>Objetivo de la clase</h2>
+      <div class="callout ok">
+        Al terminar, vas a poder escribir y revisar un algoritmo corto usando instrucciones definidas.
+        La meta concreta es que puedas predecir la posición final de un recorrido, encontrar un error en una secuencia
+        y corregirlo explicando qué cambiaste.
+      </div>
+    </section>
+
+    <section>
+      <h2>1. Tres ideas antes de tocar código</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Programa</h3>
+          <p>Es una lista de instrucciones escrita para que una computadora realice una tarea.</p>
+          <p><strong>Límite:</strong> la computadora no adivina la intención. Ejecuta lo que está definido.</p>
+        </div>
+        <div class="card">
+          <h3>Instrucción</h3>
+          <p>Es una orden precisa dentro de un programa.</p>
+          <p><strong>Ejemplo:</strong> “avanzar una casilla” es precisa si todos sabemos desde dónde y hacia dónde mira quien avanza.</p>
+        </div>
+        <div class="card">
+          <h3>Algoritmo</h3>
+          <p>Es una secuencia ordenada de instrucciones para resolver un problema.</p>
+          <p><strong>Clave:</strong> si cambio el orden, puede cambiar el resultado.</p>
+        </div>
+      </div>
+      <div class="callout warn">
+        En la vida diaria usamos frases ambiguas como “andá para allá” o “prepará algo rico”. Sirven entre personas porque interpretamos contexto.
+        En programación necesitamos instrucciones más cerradas: qué acción, desde qué estado y con qué resultado esperado.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Nuestro lenguaje de hoy: robot en una grilla</h2>
+      <p>Vamos a usar un robot imaginario solo como modelo de trabajo. No significa que todos los programas controlen robots físicos: lo usamos porque permite ver claramente posición, orientación y errores.</p>
+      <ul class="command-list" aria-label="Comandos permitidos">
+        <li><code>avanzar</code>: el robot avanza exactamente una casilla hacia donde está mirando.</li>
+        <li><code>girar derecha</code>: el robot gira 90 grados a la derecha, sin cambiar de casilla.</li>
+      </ul>
+      <p class="muted">No hay diagonales, no hay “más o menos”, no hay atajos. Si falta una instrucción, el robot no la inventa.</p>
+    </section>
+
+    <section>
+      <h2>3. Ejemplo guiado: llegar al punto B</h2>
+      <p>La grilla usa coordenadas <code>(columna, fila)</code>. La columna crece hacia la derecha y la fila crece hacia arriba.</p>
+      <div class="mini-grid" role="img" aria-label="Grilla de 3 por 3. Inicio en 1 coma 1 mirando al norte. Fin en 3 coma 2.">
+        <div class="cell">(1,3)</div><div class="cell">(2,3)</div><div class="cell">(3,3)</div>
+        <div class="cell">(1,2)</div><div class="cell">(2,2)</div><div class="cell end">B (3,2)</div>
+        <div class="cell start">A (1,1) ↑</div><div class="cell">(2,1)</div><div class="cell">(3,1)</div>
+      </div>
+      <p><strong>Estado inicial:</strong> posición <code>(1,1)</code>, mirando al norte <code>↑</code>.</p>
+      <p><strong>Estado final buscado:</strong> posición <code>(3,2)</code>, mirando al este <code>→</code>.</p>
+
+      <h3>Algoritmo</h3>
+      <ol class="trace">
+        <li><code>avanzar</code></li>
+        <li><code>girar derecha</code></li>
+        <li><code>avanzar</code></li>
+        <li><code>avanzar</code></li>
+      </ol>
+
+      <h3>Traza de ejecución</h3>
+      <ol class="trace">
+        <li>Inicio: <code>(1,1)</code>, mirando <code>↑</code>.</li>
+        <li><code>avanzar</code>: queda en <code>(1,2)</code>, sigue mirando <code>↑</code>.</li>
+        <li><code>girar derecha</code>: queda en <code>(1,2)</code>, ahora mira <code>→</code>.</li>
+        <li><code>avanzar</code>: queda en <code>(2,2)</code>, mira <code>→</code>.</li>
+        <li><code>avanzar</code>: queda en <code>(3,2)</code>, mira <code>→</code>.</li>
+      </ol>
+      <div class="callout ok">
+        El algoritmo funciona porque termina exactamente en <code>(3,2)</code> mirando al este <code>→</code>, que era el estado final pedido.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Actividad guiada: completá antes de mirar la solución</h2>
+      <p><strong>Ejercicio 1.</strong> Misma grilla. Estado inicial: <code>(1,1)</code>, mirando al norte <code>↑</code>. Estado final buscado: <code>(2,3)</code>, mirando al este <code>→</code>.</p>
+      <p>Completá una secuencia usando solo <code>avanzar</code> y <code>girar derecha</code>.</p>
+      <ol class="trace" aria-label="Espacios para completar ejercicio 1">
+        <li>________________________</li>
+        <li>________________________</li>
+        <li>________________________</li>
+        <li>________________________</li>
+      </ol>
+      <div class="callout warn">
+        Pista gradual: primero necesitás subir hasta la fila 3. Recién después conviene mirar hacia el este.
+      </div>
+
+      <div class="callout solution avoid-break">
+        <h3>Solución del Ejercicio 1</h3>
+        <ol class="trace">
+          <li><code>avanzar</code> → <code>(1,2)</code>, mira <code>↑</code>.</li>
+          <li><code>avanzar</code> → <code>(1,3)</code>, mira <code>↑</code>.</li>
+          <li><code>girar derecha</code> → <code>(1,3)</code>, mira <code>→</code>.</li>
+          <li><code>avanzar</code> → <code>(2,3)</code>, mira <code>→</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Diagnóstico de errores: revisar no es fracasar</h2>
+      <p><strong>Ejercicio 2.</strong> Alguien propuso este algoritmo para llegar desde <code>(1,1)</code> mirando <code>↑</code> hasta <code>(3,2)</code> mirando <code>→</code>:</p>
+      <ol class="trace">
+        <li><code>girar derecha</code></li>
+        <li><code>avanzar</code></li>
+        <li><code>avanzar</code></li>
+        <li><code>avanzar</code></li>
+      </ol>
+      <p>Hacé la traza y respondé: ¿funciona? Si no funciona, ¿qué instrucción cambiarías o moverías?</p>
+
+      <div class="callout solution avoid-break">
+        <h3>Solución del Ejercicio 2</h3>
+        <ol class="trace">
+          <li>Inicio: <code>(1,1)</code>, mira <code>↑</code>.</li>
+          <li><code>girar derecha</code>: queda en <code>(1,1)</code>, mira <code>→</code>.</li>
+          <li><code>avanzar</code>: queda en <code>(2,1)</code>, mira <code>→</code>.</li>
+          <li><code>avanzar</code>: queda en <code>(3,1)</code>, mira <code>→</code>.</li>
+          <li><code>avanzar</code>: intentaría ir a <code>(4,1)</code>, fuera de la grilla de 3 por 3.</li>
+        </ol>
+        <p><strong>No funciona.</strong> Error principal: giró antes de subir una fila. Una corrección válida es:</p>
+        <ol class="trace">
+          <li><code>avanzar</code></li>
+          <li><code>girar derecha</code></li>
+          <li><code>avanzar</code></li>
+          <li><code>avanzar</code></li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Transferencia: probá con un objetivo nuevo</h2>
+      <p><strong>Ejercicio 3.</strong> Estado inicial: <code>(2,1)</code>, mirando al norte <code>↑</code>. Estado final buscado: <code>(3,3)</code>, mirando al este <code>→</code>.</p>
+      <p>Escribí el algoritmo y una traza corta. Después compará con otra persona: si las dos soluciones llegan al mismo estado final, pueden ser correctas aunque no estén escritas igual.</p>
+
+      <div class="callout solution avoid-break">
+        <h3>Una solución posible del Ejercicio 3</h3>
+        <ol class="trace">
+          <li><code>avanzar</code> → <code>(2,2)</code>, mira <code>↑</code>.</li>
+          <li><code>avanzar</code> → <code>(2,3)</code>, mira <code>↑</code>.</li>
+          <li><code>girar derecha</code> → <code>(2,3)</code>, mira <code>→</code>.</li>
+          <li><code>avanzar</code> → <code>(3,3)</code>, mira <code>→</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <h2>Preguntas de salida</h2>
+      <ul class="checklist">
+        <li>¿Qué diferencia hay entre una instrucción y un algoritmo?</li>
+        <li>¿Por qué una computadora no puede resolver una orden ambigua como “andá para allá”?</li>
+        <li>En el Ejercicio 2, ¿en qué paso aparece el error y cómo lo detectaste?</li>
+        <li>¿Qué revisarías primero si un algoritmo no llega al estado final pedido?</li>
+      </ul>
+      <p class="muted">Próximas clases: cuando esta base esté firme, vamos a pasar de algoritmos en lenguaje natural a escribir instrucciones en Java y a usar NetBeans. Objetos y POO vienen después.</p>
+    </section>
+  </main>
+</body>
+</html>

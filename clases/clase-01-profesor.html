@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía docente · 5to año Programación · Clase 1 · Primeros pasos</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --paper: #ffffff;
+      --ink: #182033;
+      --muted: #5d6678;
+      --line: #d8deea;
+      --accent: #2457a6;
+      --accent-soft: #eaf1ff;
+      --ok-soft: #edf8f0;
+      --warn-soft: #fff6df;
+      --danger-soft: #fff0ef;
+      --radius: 16px;
+      --shadow: 0 14px 35px rgba(25, 38, 70, 0.10);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #eef3ff 0%, var(--bg) 45%, #f9fafc 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    main { max-width: 980px; margin: 0 auto; padding: 32px 18px 56px; }
+
+    header,
+    section,
+    .screen-note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    header { padding: 30px; margin-bottom: 18px; border-top: 7px solid var(--accent); }
+    section, .screen-note { padding: 24px; margin: 18px 0; }
+
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); color: var(--accent); }
+    h3 { font-size: 1.08rem; margin-top: 18px; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 8px 0 0 1.3rem; padding: 0; }
+    li { margin: 6px 0; }
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.95em; }
+
+    .kicker {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.83rem;
+      margin-bottom: 8px;
+    }
+
+    .lead { font-size: 1.12rem; color: #283246; max-width: 76ch; }
+    .muted { color: var(--muted); }
+    .screen-note { background: #fefefe; font-size: 0.95rem; }
+
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+    .card, .callout {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+    }
+    .callout { background: var(--accent-soft); border-color: #c7d7fb; }
+    .callout.ok { background: var(--ok-soft); border-color: #b7dfc1; }
+    .callout.warn { background: var(--warn-soft); border-color: #f1d48a; }
+    .callout.danger { background: var(--danger-soft); border-color: #f2c0bb; }
+
+    .table-scroll {
+      max-width: 100%;
+      margin-top: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-scroll:focus { outline: 3px solid rgba(36, 87, 166, 0.35); outline-offset: 3px; }
+    table { width: 100%; border-collapse: collapse; overflow-wrap: normal; word-break: normal; }
+    .table-scroll.wide-4 table { min-width: 44rem; }
+    .table-scroll.wide-3 table { min-width: 38rem; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: var(--accent-soft); color: #163b72; }
+    .compact td, .compact th { padding: 8px 10px; }
+
+    .command-list { list-style: none; margin-left: 0; }
+    .command-list li { padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fafbff; }
+    .trace { counter-reset: step; list-style: none; margin-left: 0; }
+    .trace li { border-left: 4px solid var(--accent); padding: 8px 0 8px 12px; background: #fbfcff; }
+    .trace li::before { counter-increment: step; content: counter(step) ". "; font-weight: 800; color: var(--accent); }
+    .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+    @media (max-width: 620px) {
+      main { padding: 18px 12px 36px; }
+      header, section, .screen-note { padding: 18px; border-radius: 12px; }
+      table { font-size: 0.94rem; }
+    }
+
+    @page { size: A4; margin: 14mm; }
+
+    @media print {
+      :root { --ink: #111827; --line: #cfd5df; }
+      body { background: #fff; font-size: 10.5pt; }
+      main { max-width: none; padding: 0; }
+      header, section { box-shadow: none; border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; margin: 0 0 9mm; padding: 0 0 6mm; }
+      header { border-top: 4pt solid var(--accent); padding-top: 5mm; }
+      .screen-note { display: none; }
+      .table-scroll { overflow: visible; }
+      .table-scroll table { min-width: 0; }
+      h1 { font-size: 24pt; }
+      h2 { font-size: 15.5pt; margin-top: 2mm; }
+      h3 { font-size: 12pt; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="screen-note" role="note">
+      <strong>Nota para editar:</strong> esta guía docente es un HTML standalone y editable.
+      Abrí <code>clases/clase-01-profesor.html</code> en el navegador para usarla, editarla o imprimirla.
+      No usa JavaScript, no necesita conexión y no se generó PDF.
+    </div>
+
+    <header>
+      <p class="kicker">5to año · Programación · Guía docente</p>
+      <h1>Clase 1: instrucciones, algoritmos y errores</h1>
+      <p class="lead">
+        Guía para una primera clase real de 60 minutos con estudiantes que usan la computadora, pero no programaron antes.
+        Acompaña el apunte <code>clases/clase-01.html</code> y deja Java, NetBeans y objetos para cuando dominen instrucciones y trazas.
+      </p>
+    </header>
+
+    <section class="avoid-break">
+      <h2>Resultado esperado</h2>
+      <div class="callout ok">
+        Al cierre, cada estudiante debería poder distinguir programa, instrucción y algoritmo; ejecutar mentalmente una secuencia corta;
+        detectar un error comparando estado esperado contra estado obtenido; y corregir una instrucción o su orden con justificación.
+      </div>
+      <p class="muted">No evaluar sintaxis Java, variables, ciclos, condiciones, clases ni objetos en esta clase.</p>
+    </section>
+
+    <section>
+      <h2>Preparación y diagnóstico inicial</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Material</h3>
+          <ul>
+            <li>Apunte estudiantil impreso o abierto en pantalla.</li>
+            <li>Pizarrón para dibujar una grilla de 3 por 3.</li>
+            <li>Marcador o resaltador para posición y orientación.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Diagnóstico sin conceptos previos</h3>
+          <p>Pedí: “Escribí tres pasos para que otra persona encuentre una botella en el aula”.</p>
+          <p><strong>Buscá:</strong> si usan referencias ambiguas como “allá”, “eso”, “cerca”. No corrijas todavía: usalo para mostrar por qué programar exige precisión.</p>
+        </div>
+        <div class="card">
+          <h3>Sin tecnología</h3>
+          <p>Si no hay computadoras, la clase funciona igual con papel, pizarrón y lectura de pasos. Es mejor una buena traza manual que abrir NetBeans sin base conceptual.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Plan contiguo de 60 minutos</h2>
+      <div class="table-scroll wide-4" role="region" aria-label="Tabla desplazable: plan contiguo de 60 minutos" tabindex="0">
+        <table class="compact" aria-label="Plan de 60 minutos">
+          <thead>
+            <tr>
+              <th>Tiempo</th>
+              <th>Foco</th>
+              <th>Acción docente</th>
+              <th>Evidencia de avance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>0-5</strong></td>
+              <td>Encuadre</td>
+              <td>Decí que hoy no se programa en Java: se aprende a pensar instrucciones. Presentá el objetivo medible.</td>
+              <td>Entienden que la meta es escribir, ejecutar y revisar pasos.</td>
+            </tr>
+            <tr>
+              <td><strong>5-12</strong></td>
+              <td>Diagnóstico cotidiano</td>
+              <td>Usá la consigna de la botella. Marcá ambigüedades: “allá” depende del observador; “cerca” no define distancia.</td>
+              <td>Nombran al menos una instrucción ambigua y una forma de hacerla más precisa.</td>
+            </tr>
+            <tr>
+              <td><strong>12-20</strong></td>
+              <td>Conceptos base</td>
+              <td>Definí programa, instrucción y algoritmo con ejemplos breves. Aclaración: la computadora ejecuta instrucciones definidas, no intenciones.</td>
+              <td>Diferencian una orden suelta de una secuencia ordenada.</td>
+            </tr>
+            <tr>
+              <td><strong>20-30</strong></td>
+              <td>Modelo de grilla</td>
+              <td>Presentá coordenadas, orientación y comandos permitidos: <code>avanzar</code> y <code>girar derecha</code>. No agregues comandos no disponibles.</td>
+              <td>Predicen qué cambia con cada comando: posición o dirección.</td>
+            </tr>
+            <tr>
+              <td><strong>30-40</strong></td>
+              <td>Ejemplo guiado</td>
+              <td>Resolvé el recorrido a <code>(3,2)</code> mirando <code>→</code>. Hacé la traza paso a paso en voz alta.</td>
+              <td>Siguen la traza y justifican por qué el estado final coincide.</td>
+            </tr>
+            <tr>
+              <td><strong>40-48</strong></td>
+              <td>Ejercicio 1</td>
+              <td>Dales intento individual, luego pista gradual. Recién después mostrás la solución.</td>
+              <td>La mayoría llega a <code>(2,3)</code> mirando <code>→</code> o identifica dónde se desvió.</td>
+            </tr>
+            <tr>
+              <td><strong>48-55</strong></td>
+              <td>Ejercicio 2</td>
+              <td>Trabajá error como revisión normal: ejecutar, comparar, corregir. No lo presentes como “adivinar el error”.</td>
+              <td>Detectan que el algoritmo sale de la grilla e indican que giró demasiado temprano.</td>
+            </tr>
+            <tr>
+              <td><strong>55-58</strong></td>
+              <td>Ejercicio 3</td>
+              <td>Transferencia rápida: si falta tiempo, pedir solo primeras dos instrucciones y estado parcial.</td>
+              <td>Aplican la misma técnica a un inicio distinto.</td>
+            </tr>
+            <tr>
+              <td><strong>58-60</strong></td>
+              <td>Cierre</td>
+              <td>Hacé preguntas de salida y decidí la próxima clase según evidencia, no por calendario.</td>
+              <td>Respuestas permiten clasificar dominio: firme, parcial o insuficiente.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Guion didáctico y respuestas esperables</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Programa</h3>
+          <p><strong>Decí:</strong> “Un programa es una lista de instrucciones para que la computadora haga una tarea”.</p>
+          <p><strong>Respuesta novel:</strong> “Es una app”.</p>
+          <p><strong>Retomá:</strong> “Una app contiene programas; hoy nos importa la lista de instrucciones que la hace funcionar”.</p>
+        </div>
+        <div class="card">
+          <h3>Instrucción</h3>
+          <p><strong>Decí:</strong> “Una instrucción es una orden precisa que se puede ejecutar”.</p>
+          <p><strong>Respuesta novel:</strong> “Andá para allá”.</p>
+          <p><strong>Retomá:</strong> “¿Dónde es allá? Cambiémoslo por coordenadas o pasos medibles”.</p>
+        </div>
+        <div class="card">
+          <h3>Algoritmo</h3>
+          <p><strong>Decí:</strong> “Un algoritmo es una secuencia ordenada de instrucciones”.</p>
+          <p><strong>Respuesta novel:</strong> “Es cualquier lista”.</p>
+          <p><strong>Retomá:</strong> “Debe apuntar a resolver un problema y el orden importa”.</p>
+        </div>
+      </div>
+      <div class="callout warn">
+        Cuidá las analogías: sirven si marcás el límite. El robot de grilla es una representación para aprender precisión; no digas que programar “siempre es mover robots”.
+      </div>
+    </section>
+
+    <section>
+      <h2>Comandos exactos para toda la clase</h2>
+      <ul class="command-list" aria-label="Comandos permitidos en la clase">
+        <li><code>avanzar</code>: mueve una casilla hacia donde mira. Cambia la posición, no cambia la orientación.</li>
+        <li><code>girar derecha</code>: gira 90 grados a la derecha. Cambia la orientación, no cambia la posición.</li>
+      </ul>
+      <p class="muted">No aceptar “subir”, “ir a B”, “girar izquierda”, “avanzar dos” ni diagonales en las respuestas de esta clase. Si aparecen, traducirlas juntos a comandos permitidos.</p>
+    </section>
+
+    <section>
+      <h2>Clave del ejemplo guiado</h2>
+      <p><strong>Inicio:</strong> <code>(1,1)</code>, mira <code>↑</code>. <strong>Final:</strong> <code>(3,2)</code>, mira <code>→</code>.</p>
+      <ol class="trace">
+        <li><code>avanzar</code> → <code>(1,2)</code>, mira <code>↑</code>.</li>
+        <li><code>girar derecha</code> → <code>(1,2)</code>, mira <code>→</code>.</li>
+        <li><code>avanzar</code> → <code>(2,2)</code>, mira <code>→</code>.</li>
+        <li><code>avanzar</code> → <code>(3,2)</code>, mira <code>→</code>.</li>
+      </ol>
+      <p><strong>Chequeo:</strong> coincide posición y orientación. Si solo coincide la posición, todavía no cumple el estado final completo.</p>
+    </section>
+
+    <section>
+      <h2>Claves de ejercicios del apunte</h2>
+      <div class="table-scroll wide-3" role="region" aria-label="Tabla desplazable: claves de ejercicios" tabindex="0">
+        <table aria-label="Claves de ejercicios">
+          <thead>
+            <tr>
+              <th>Ejercicio</th>
+              <th>Respuesta correcta</th>
+              <th>Observación docente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ejercicio 1</strong></td>
+              <td><code>avanzar</code>, <code>avanzar</code>, <code>girar derecha</code>, <code>avanzar</code>. Termina en <code>(2,3)</code>, mira <code>→</code>.</td>
+              <td>Si giran después del primer avance, llegan a otra fila. Pedí traza, no corrección por intuición.</td>
+            </tr>
+            <tr>
+              <td><strong>Ejercicio 2</strong></td>
+              <td>No funciona: termina intentando salir hacia <code>(4,1)</code>. Corrección válida: <code>avanzar</code>, <code>girar derecha</code>, <code>avanzar</code>, <code>avanzar</code>.</td>
+              <td>El error está en el orden: girar al principio cambia el recorrido completo.</td>
+            </tr>
+            <tr>
+              <td><strong>Ejercicio 3</strong></td>
+              <td>Una solución: <code>avanzar</code>, <code>avanzar</code>, <code>girar derecha</code>, <code>avanzar</code>. Termina en <code>(3,3)</code>, mira <code>→</code>.</td>
+              <td>Aceptá soluciones equivalentes solo si respetan comandos y estado final.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Andamiaje durante los ejercicios</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Primer apoyo</h3>
+          <p>Preguntá: “¿Qué estado tengo ahora: posición y orientación?”. Evita dar la próxima instrucción.</p>
+        </div>
+        <div class="card">
+          <h3>Segundo apoyo</h3>
+          <p>Marcá con el dedo o marcador dónde queda el robot después de una instrucción. Pedí que narren el cambio.</p>
+        </div>
+        <div class="card">
+          <h3>Tercer apoyo</h3>
+          <p>Ofrecé dos opciones cerradas: “¿Ahora conviene cambiar posición con <code>avanzar</code> o dirección con <code>girar derecha</code>?”.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Rutas según ritmo</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Si van más lento</h3>
+          <ul>
+            <li>Hacé solo ejemplo guiado, Ejercicio 1 y preguntas de salida.</li>
+            <li>Reducí Ejercicio 3 a: “escribí las primeras dos instrucciones y el estado parcial”.</li>
+            <li>Trabajá con tarjetas físicas de comandos.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Si van más rápido</h3>
+          <ul>
+            <li>Pedir otra solución para el Ejercicio 3 y comparar cantidad de pasos.</li>
+            <li>Preguntar qué comando faltaría para acortar recorridos, sin incorporarlo todavía.</li>
+            <li>Inventar un estado inicial y final nuevo dentro de la misma grilla.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Sin computadoras</h3>
+          <ul>
+            <li>Un estudiante hace de robot y otro lee instrucciones.</li>
+            <li>La clase observa si la instrucción es ejecutable o ambigua.</li>
+            <li>Registrar traza en el pizarrón como evidencia.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Preguntas de salida: respuestas esperadas</h2>
+      <div class="table-scroll" role="region" aria-label="Tabla desplazable: preguntas de salida y respuestas esperadas" tabindex="0">
+        <table class="compact" aria-label="Preguntas de salida y respuestas esperadas">
+          <thead>
+            <tr>
+              <th>Pregunta</th>
+              <th>Respuesta aceptable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>¿Qué diferencia hay entre una instrucción y un algoritmo?</td>
+              <td>Una instrucción es una orden precisa; un algoritmo es una secuencia ordenada de instrucciones para resolver una tarea.</td>
+            </tr>
+            <tr>
+              <td>¿Por qué una computadora no puede resolver una orden ambigua como “andá para allá”?</td>
+              <td>Porque no interpreta intención ni contexto como una persona; necesita instrucciones definidas.</td>
+            </tr>
+            <tr>
+              <td>En el Ejercicio 2, ¿en qué paso aparece el error y cómo lo detectaste?</td>
+              <td>El problema aparece desde el primer paso: girar derecha antes de avanzar cambia el camino. Se detecta haciendo la traza y comparando con el estado final.</td>
+            </tr>
+            <tr>
+              <td>¿Qué revisarías primero si un algoritmo no llega al estado final pedido?</td>
+              <td>Revisaría paso a paso la posición y orientación después de cada instrucción, y compararía el resultado con el estado final pedido.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <h2>Criterio para la próxima clase</h2>
+      <div class="callout ok">
+        Avanzá a instrucciones en Java o NetBeans solo si la mayoría puede trazar secuencias cortas y explicar un error sin que se lo marques. Si no, dedicá la próxima clase a más algoritmos con comandos limitados y recién después pasá a código.
+      </div>
+      <p class="muted">Objetos, clases Java y POO quedan para más adelante: introducirlos ahora mezclaría demasiadas ideas nuevas en una primera hora.</p>
+    </section>
+  </main>
+</body>
+</html>
