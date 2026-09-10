@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía docente · Etapa 1 · Diagnóstico y plan Java inicial</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --paper: #ffffff;
+      --ink: #182033;
+      --muted: #5d6678;
+      --line: #d8deea;
+      --accent: #2457a6;
+      --accent-2: #287a3e;
+      --accent-soft: #eaf1ff;
+      --ok-soft: #edf8f0;
+      --warn-soft: #fff6df;
+      --danger-soft: #fff0ef;
+      --code-bg: #0d1117;
+      --code-text: #e6edf3;
+      --radius: 16px;
+      --shadow: 0 14px 35px rgba(25, 38, 70, 0.10);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #eef3ff 0%, var(--bg) 45%, #f9fafc 100%);
+      color: var(--ink);
+      line-height: 1.56;
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 32px 18px 56px; }
+    header, section, .screen-note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header { padding: 30px; margin-bottom: 18px; border-top: 7px solid var(--accent); }
+    section, .screen-note { padding: 24px; margin: 18px 0; }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); color: var(--accent); }
+    h3 { font-size: 1.08rem; margin-top: 18px; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 8px 0 0 1.25rem; padding: 0; }
+    li { margin: 6px 0; }
+    a { color: var(--accent); }
+    code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    code { font-size: 0.94em; }
+    pre {
+      margin: 10px 0 0;
+      padding: 14px;
+      border-radius: 12px;
+      overflow-x: auto;
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-size: 0.91rem;
+      line-height: 1.45;
+    }
+    .kicker { color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.83rem; margin-bottom: 8px; }
+    .lead { font-size: 1.12rem; color: #283246; max-width: 76ch; }
+    .muted { color: var(--muted); }
+    .screen-note { background: #fefefe; font-size: 0.95rem; }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+    .card, .callout, .finding, details {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+    }
+    .callout { background: var(--accent-soft); border-color: #c7d7fb; }
+    .callout.ok { background: var(--ok-soft); border-color: #b7dfc1; }
+    .callout.warn { background: var(--warn-soft); border-color: #f1d48a; }
+    .callout.danger { background: var(--danger-soft); border-color: #f2c0bb; }
+    .finding { border-left: 5px solid var(--accent); margin: 14px 0; }
+    .finding.high { border-left-color: #b45309; }
+    .finding.core { border-left-color: var(--accent-2); }
+    .tag { display: inline-block; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 0.8rem; }
+    .certainty { font-weight: 800; color: #8a5200; }
+    .trace { list-style: none; margin-left: 0; }
+    .trace li { border-left: 4px solid var(--accent); padding: 8px 0 8px 12px; background: #fbfcff; }
+    .checklist { columns: 2 18rem; }
+    .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+    details { margin-top: 12px; }
+    summary { cursor: pointer; font-weight: 800; color: var(--accent); }
+    .mini-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+    .mini-table th, .mini-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+    .mini-table th { background: var(--accent-soft); color: #163b72; }
+    .trace-cards { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: 10px; }
+    .trace-card { border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; padding: 12px; background: #fbfcff; }
+    .trace-card h4 { margin: 0 0 8px; color: var(--accent); }
+    @media (max-width: 620px) {
+      main { padding: 18px 12px 36px; }
+      header, section, .screen-note { padding: 18px; border-radius: 12px; }
+      pre { font-size: 0.82rem; }
+      .checklist { columns: 1; }
+    }
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      :root { --ink: #111827; --line: #cfd5df; }
+      body { background: #fff; font-size: 10.5pt; }
+      main { max-width: none; padding: 0; }
+      header, section { box-shadow: none; border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; margin: 0 0 9mm; padding: 0 0 6mm; }
+      header { border-top: 4pt solid var(--accent); padding-top: 5mm; }
+      .screen-note { display: none; }
+      pre { white-space: pre-wrap; background: #f7f7f7; color: #111; border: 1px solid #777; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="screen-note" role="note">
+    <strong>Nota para editar:</strong> esta guía docente es un HTML standalone y offline. No usa JavaScript, no necesita servidor, no instala paquetes y no genera PDF.
+  </div>
+
+  <header>
+    <p class="kicker">5to año · Programación · Etapa 1 docente</p>
+    <h1>Diagnóstico de ejercicios manuscritos y plan progresivo para empezar Java</h1>
+    <p class="lead">Guía para que el profesor prepare una clase inicial a partir de dos fotos del trabajo de Mercedes. La meta no es “corregir todo”, sino decidir qué enseñar primero cuando docente y estudiante están empezando Java desde cero.</p>
+  </header>
+
+  <section class="avoid-break" id="alcance">
+    <h2>Alcance de esta etapa</h2>
+    <div class="callout ok">
+      <p><strong>Incluye:</strong> diagnóstico cuidadoso de los ejercicios fotografiados, conceptos previos a enseñar, microejemplos propuestos, trazas manuales, escenarios límite y un plan ajustable de 60 minutos.</p>
+      <p><strong>No incluye:</strong> adaptación del apunte estudiantil <code>clases/clase-02-java-adivinar-numero.html</code>, PDF, ejecución de Java, instalación de paquetes, investigación externa ni cambios de servidor.</p>
+    </div>
+    <p>Las fotos muestran fragmentos aislados, no necesariamente programas completos. La ausencia de <code>import</code>, <code>class</code>, <code>main</code>, inicializaciones o cierres no se diagnostica como error salvo que aparezca contradicha dentro del fragmento visible.</p>
+    <p><strong>Supuesto de trabajo:</strong> en esta etapa la entrada se considera un número entero válido cada vez. Textos, entradas vacías o decimales requieren validación posterior y quedan fuera del alcance inicial.</p>
+  </section>
+
+  <section id="evidencia">
+    <h2>Evidencia leída de las fotos</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Foto TP1-1, parte superior</h3>
+        <p>Se ven las consignas: tres números para mayor/menor; juego de adivinar un número aleatorio entre 1 y 100 con 10 intentos y pistas; matriz de 5 filas y cantidad de columnas pedida al usuario, con números aleatorios entre 0 y 10.</p>
+      </div>
+      <div class="card">
+        <h3>Foto TP1-1, parte inferior</h3>
+        <p>Se ve una resolución del ejercicio 1: lectura de tres números, condiciones independientes para mínimos, y al costado derecho condiciones para máximos.</p>
+      </div>
+      <div class="card">
+        <h3>Foto TP1-2</h3>
+        <p>Se ve una resolución del ejercicio 2: creación de <code>Random</code>, número a adivinar, contador, lectura por teclado, <code>while</code>, comparaciones y mensaje final.</p>
+      </div>
+    </div>
+    <div class="callout warn">
+      <p><strong>Cuidado de lectura:</strong> algunas palabras manuscritas son inciertas. Las abreviaturas como <code>Sout</code> pueden ser atajo de aula o plantilla de IDE; no prueban falta de competencia. Donde la foto no permite certeza, esta guía lo marca como “lectura probable” o “incierto”.</p>
+    </div>
+  </section>
+
+  <section id="fortalezas">
+    <h2>Fortalezas evidenciadas por el trabajo</h2>
+    <ul>
+      <li>En el ejercicio 1 se observan declaraciones de tres variables numéricas, lecturas por teclado y comparaciones entre los tres valores.</li>
+      <li>En el ejercicio 1 también se observan salidas por pantalla para comunicar mínimo y máximo.</li>
+      <li>En el ejercicio 2 se observan una variable para el número secreto, un contador de intentos, lectura de número del usuario y mensajes de pista.</li>
+      <li>La estructura visible “pedir dato → comparar → informar” aparece en ambos ejercicios con resolución fotografiada.</li>
+      <li>El material ofrece buenos puntos de enseñanza: asociación de <code>else</code>, contador, rango aleatorio, condición de corte, nombres válidos y casos de igualdad.</li>
+    </ul>
+  </section>
+
+  <section id="preparacion">
+    <h2>Preparación del profesor principiante</h2>
+    <p>Antes de mirar código, conviene separar conceptos. Si el profesor también aprende Java, esta secuencia reduce carga:</p>
+    <ol>
+      <li><strong>Dato y variable:</strong> un nombre guarda un valor, por ejemplo <code>int n1 = 7;</code>.</li>
+      <li><strong>Tipo <code>int</code>:</strong> sirve para números enteros; no guarda texto ni decimales.</li>
+      <li><strong>Asignación vs igualdad:</strong> <code>=</code> guarda; <code>==</code> pregunta si dos valores son iguales.</li>
+      <li><strong>Boolean:</strong> una variable <code>boolean</code> guarda solo <code>true</code> o <code>false</code>. Sirve para recordar estados como <code>adivino</code>.</li>
+      <li><strong>Negación:</strong> <code>!adivino</code> se lee “no adivinó todavía”. Si <code>adivino</code> es <code>false</code>, entonces <code>!adivino</code> es <code>true</code>.</li>
+      <li><strong>Y lógico:</strong> <code>&amp;&amp;</code> exige que dos condiciones sean verdaderas al mismo tiempo, por ejemplo “quedan intentos y no adivinó”.</li>
+      <li><strong>Salida y texto:</strong> <code>System.out.println(...)</code> muestra algo en pantalla. Dentro, <code>"texto" + variable</code> une texto con valores para armar un mensaje.</li>
+      <li><strong>Entrada:</strong> <code>Scanner teclado = new Scanner(System.in);</code> construye con <code>new</code> un lector llamado <code>teclado</code>; <code>teclado.nextInt()</code> llama un método para leer un entero.</li>
+      <li><strong>Azar:</strong> <code>new Random()</code> construye el generador; <code>nextInt(100) + 1</code> da valores de 1 a 100.</li>
+      <li><strong>Comparaciones:</strong> <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code> y <code>==</code> producen verdadero o falso.</li>
+      <li><strong>Bloques:</strong> las llaves <code>{ }</code> dicen qué instrucciones pertenecen a un <code>if</code>, <code>else</code> o <code>while</code>.</li>
+    </ol>
+  </section>
+
+  <section id="diagnostico">
+    <h2>Diagnóstico priorizado</h2>
+
+    <article class="finding core">
+      <h3>1. Asociar el <code>else</code> al <code>if</code> correcto</h3>
+      <p><span class="tag">Ejercicio 1</span> <strong>Ubicación:</strong> TP1-1, bloque derecho inferior. <span class="certainty">Certeza alta.</span></p>
+      <p><strong>Fragmento fiel resumido:</strong> se ven dos <code>if</code> para máximo; el <code>else</code> queda pegado solo al segundo <code>if</code>.</p>
+      <pre><code>if (nro1 &gt; nro2 &amp;&amp; nro1 &gt; nro3) { ... nro1 ... }
+if (nro2 &gt; nro1 &amp;&amp; nro2 &gt; nro3) { ... nro2 ... }
+else { ... nro3 ... }</code></pre>
+      <p><strong>Interpretación:</strong> Mercedes parece pensar en tres alternativas, pero Java no agrupa los dos <code>if</code> como una sola decisión. El <code>else</code> pertenece al <code>if</code> inmediatamente anterior.</p>
+      <p><strong>Consecuencia:</strong> si <code>nro1</code> es el mayor, puede imprimirse también que <code>nro3</code> es el mayor, porque el segundo <code>if</code> es falso y dispara su <code>else</code>.</p>
+      <p><strong>Microejemplo propuesto, no transcripción:</strong></p>
+      <pre><code>if (nro1 &gt;= nro2 &amp;&amp; nro1 &gt;= nro3) {
+    System.out.println("Mayor: " + nro1);
+} else if (nro2 &gt;= nro1 &amp;&amp; nro2 &gt;= nro3) {
+    System.out.println("Mayor: " + nro2);
+} else {
+    System.out.println("Mayor: " + nro3);
+}</code></pre>
+      <p><strong>Explicación simple:</strong> <code>else if</code> arma una cadena: Java prueba una condición; si es falsa, prueba la siguiente; si ninguna se cumple, ejecuta el <code>else</code>. Cuando una condición se cumple, ejecuta su bloque y omite las demás alternativas de esa cadena.</p>
+      <p><strong>Probemos con valores concretos:</strong> supongamos que el usuario ingresa primero 5, después otro 5 y por último 2. Son valores elegidos para este ejemplo, no números tomados de las fotos. Quedan guardados así:</p>
+      <pre><code>nro1 = 5;
+nro2 = 5;
+nro3 = 2;</code></pre>
+      <p>En Java, la primera condición del microejemplo es:</p>
+      <pre><code>if (nro1 &gt;= nro2 &amp;&amp; nro1 &gt;= nro3)</code></pre>
+      <p><strong>Equivale a preguntar:</strong></p>
+      <ul>
+        <li>¿5 es mayor <strong>o igual</strong> que 5? <strong>Sí</strong>, porque son iguales.</li>
+        <li>¿5 es mayor <strong>o igual</strong> que 2? <strong>Sí</strong>, porque 5 es mayor.</li>
+        <li><code>&amp;&amp;</code> significa “y”: exige que <strong>ambas</strong> comparaciones sean verdaderas. En este caso, las dos lo son.</li>
+      </ul>
+      <p>Por eso se ejecuta el bloque del primer <code>if</code>:</p>
+      <pre><code>System.out.println("Mayor: " + nro1);</code></pre>
+      <p>Esta instrucción muestra <code>Mayor: 5</code>, porque <code>nro1</code> contiene 5. El <code>+</code> une el texto con el valor para formar el mensaje. No se ejecutan el <code>else if</code> ni el <code>else</code> de esta cadena.</p>
+      <p><strong>¿Por qué usamos <code>&gt;=</code> y no solo <code>&gt;</code>?</strong> Porque buscamos el valor máximo, aunque aparezca más de una vez. 5 no es mayor que otro 5, pero sí es mayor <em>o igual</em>. Los dos primeros números empatan y el máximo sigue siendo 5.</p>
+      <p><strong>Pregunta guía:</strong> “¿A cuál <code>if</code> se pega este <code>else</code> si no escribimos <code>else if</code>?” <strong>Respuesta esperada:</strong> “Al <code>if</code> anterior más cercano”.</p>
+    </article>
+
+    <article class="finding core">
+      <h3>2. Resolver máximo y mínimo sin ordenar</h3>
+      <p><span class="tag">Ejercicio 1</span> <strong>Ubicación:</strong> TP1-1, bloque inferior izquierdo y derecho. <span class="certainty">Certeza alta para la estrategia de comparaciones; igualdad no cubierta en forma visible.</span></p>
+      <p><strong>Fragmento fiel resumido:</strong> aparecen comparaciones estrictas como <code>nro1 &lt; nro2 &amp;&amp; nro1 &lt; nro3</code> y análogas.</p>
+      <p><strong>Interpretación:</strong> la idea de comparar está bien encaminada, pero las comparaciones estrictas dejan casos sin decidir cuando dos números son iguales.</p>
+      <p><strong>Consecuencia:</strong> cuando dos números empatan como máximos o mínimos, exigir que uno sea estrictamente mayor o menor que todos los demás puede dejar ese empate sin resolver.</p>
+      <p><strong>Puente con el punto anterior:</strong> la sección 1 enseña una cadena <code>else if</code> para elegir una alternativa; acá usamos otra estrategia: iniciar <code>minimo</code> y <code>maximo</code>, y actualizarlos al revisar cada dato.</p>
+      <p><strong>Un ejemplo nuevo, paso a paso:</strong> supongamos que el usuario ingresa <strong>7, 3 y 9</strong>, en ese orden. Para concentrarnos en las comparaciones, representamos esos datos con asignaciones directas, sin repetir aquí la lectura por teclado:</p>
+      <pre><code>int nro1 = 7;
+int nro2 = 3;
+int nro3 = 9;</code></pre>
+      <p>Para aplicar esa estrategia, el microejemplo agrega estas dos líneas justo después de declarar los tres números:</p>
+      <pre><code>int minimo = nro1;
+    int maximo = nro1;</code></pre>
+      <p><strong>¿Qué significa la primera línea?</strong> No asignamos <code>int</code> a <code>nro1</code>. La línea se lee así:</p>
+          <ul>
+            <li><code>int</code>: la nueva variable guardará un número entero.</li>
+            <li><code>minimo</code>: es el nombre de la nueva variable.</li>
+            <li><code>= nro1</code>: copiá en ella el valor que ya tiene <code>nro1</code>, que en este ejemplo es 7.</li>
+          </ul>
+          <p>En lenguaje cotidiano: <strong>“Creá una variable llamada minimo y empezá guardando el primer número ingresado”</strong>. La segunda línea hace lo mismo con otra variable, llamada <code>maximo</code>.</p>
+          <p><strong>¿Por qué ambas empiezan en 7?</strong> Porque primero tomamos solamente el primer dato como referencia. Entre los números revisados hasta ese momento —solo el 7— es tanto el menor como el mayor. Al revisar los otros datos, actualizamos estas referencias si corresponde.</p>
+          <p><strong>Con esas cinco declaraciones listas, revisamos los otros datos:</strong></p>
+          <pre><code>if (nro2 &lt; minimo) minimo = nro2;
+    if (nro3 &lt; minimo) minimo = nro3;
+    
+    if (nro2 &gt; maximo) maximo = nro2;
+    if (nro3 &gt; maximo) maximo = nro3;</code></pre>
+      <p><strong>El código equivale a preguntar, en este orden:</strong></p>
+      <ol>
+        <li><code>nro2 &lt; minimo</code>: ¿3 es menor que 7? <strong>Sí:</strong> <code>minimo = nro2;</code> guarda 3 en <code>minimo</code>.</li>
+        <li><code>nro3 &lt; minimo</code>: ¿9 es menor que 3? <strong>No:</strong> <code>minimo</code> sigue valiendo 3.</li>
+        <li><code>nro2 &gt; maximo</code>: ¿3 es mayor que 7? <strong>No:</strong> <code>maximo</code> sigue valiendo 7.</li>
+        <li><code>nro3 &gt; maximo</code>: ¿9 es mayor que 7? <strong>Sí:</strong> <code>maximo = nro3;</code> guarda 9 en <code>maximo</code>.</li>
+      </ol>
+      <p><strong>Resultado:</strong> mínimo 3 y máximo 9. No ordenamos los datos: conservamos el menor y el mayor encontrados. Si otro dato fuera igual al mínimo o al máximo guardado, no haría falta reemplazarlo: el valor ya sería correcto.</p>
+      <p><strong>Copiar no es vincular:</strong> estas variables de tipo <code>int</code> guardan copias de los valores. Cambiar <code>minimo</code> o <code>maximo</code> no cambia <code>nro1</code>, que sigue valiendo 7; <code>nro2</code> y <code>nro3</code> siguen valiendo 3 y 9.</p>
+      <p><strong>Pregunta guía:</strong> “Si <code>maximo</code> vale 7 y miro un 9, ¿qué debería pasar?” <strong>Respuesta esperada:</strong> “Actualizar <code>maximo</code> a 9”.</p>
+    </article>
+
+    <article class="finding high">
+      <h3>3. Nombres válidos y uso consistente de identificadores</h3>
+      <p><span class="tag">Ejercicio 2</span> <strong>Ubicación:</strong> TP1-2, primeras líneas y condición del <code>while</code>. <span class="certainty">Lectura alta para nombres informales con <code>n°</code> y espacios; lectura probable para diferencias de mayúsculas/minúsculas.</span></p>
+      <p><strong>Fragmento fiel resumido:</strong> aparecen nombres de cuaderno como <code>n° de intentos</code>, <code>n° usuario</code> y formas parecidas a <code>Intentos</code>. También se lee parecido a <code>Random r = new Random();</code> y luego <code>random.nextInt(100)</code>.</p>
+      <p><strong>Interpretación:</strong> en una explicación manuscrita esos nombres pueden ser atajos comprensibles. En código Java literal, los identificadores no llevan espacios ni símbolo <code>°</code>, y Java distingue mayúsculas de minúsculas: <code>intentos</code> e <code>Intentos</code> serían nombres distintos. Las palabras clave también van en minúscula: <code>while</code>, <code>if</code>, <code>else</code>.</p>
+      <p><strong>Consecuencia:</strong> si se crea una variable con un nombre, después debe usarse exactamente el mismo. Si se crea <code>r</code>, se usa <code>r</code>; si se crea <code>intentos</code>, no se mezcla con <code>n° de Intentos</code>.</p>
+      <p><strong>Nombres válidos propuestos:</strong> <code>intentos</code>, <code>numeroUsuario</code>, <code>secreto</code>, <code>adivino</code>, <code>r</code>.</p>
+      <pre><code>Random r = new Random();
+int secreto = r.nextInt(100) + 1;
+int intentos = 0;
+int numeroUsuario = teclado.nextInt();</code></pre>
+      <p><strong>Explicación simple:</strong> el cuaderno puede decir “n° de intentos” para entender la idea; el programa ejecutable necesita un nombre sin espacios y repetirlo igual cada vez.</p>
+      <p><strong>Pregunta guía:</strong> “¿Qué nombre exacto elegimos para el contador y cómo lo repetimos?” <strong>Respuesta esperada:</strong> “<code>intentos</code>, siempre escrito igual”.</p>
+    </article>
+
+    <article class="finding high">
+      <h3>4. Rango correcto para el número secreto</h3>
+      <p><span class="tag">Ejercicio 2</span> <strong>Ubicación:</strong> TP1-2, generación del número. <span class="certainty">Lectura incierta sobre el <code>+ 1</code>; sí se ve intención de usar <code>nextInt(100)</code>.</span></p>
+      <p><strong>Interpretación:</strong> la consigna pide del 1 al 100. En Java, <code>nextInt(100)</code> solo genera de 0 a 99; por eso se suma 1.</p>
+      <p><strong>Microejemplo propuesto, usando el generador <code>r</code> creado en el ejemplo anterior:</strong></p>
+      <pre><code>int secreto = r.nextInt(100) + 1; // 1..100</code></pre>
+      <p><strong>Explicación simple:</strong> primero Java sortea 0..99. Al sumar 1, esos valores pasan a 1..100.</p>
+      <p><strong>Pregunta guía:</strong> “Si <code>nextInt(100)</code> puede dar 0, ¿qué pasa cuando sumo 1?” <strong>Respuesta esperada:</strong> “El menor resultado pasa a ser 1”.</p>
+    </article>
+
+    <article class="finding core">
+      <h3>5. Evitar el punto y coma después del <code>while</code></h3>
+      <p><span class="tag">Ejercicio 2</span> <strong>Ubicación:</strong> TP1-2, línea del <code>while</code>. <span class="certainty">Lectura probable: parece haber un <code>;</code> después de la condición.</span></p>
+      <p><strong>Fragmento fiel resumido:</strong> la línea se parece a <code>while (n° de intentos &lt; 10); {</code>.</p>
+      <p><strong>Interpretación:</strong> si ese punto y coma está realmente ahí, Java interpreta que el <code>while</code> tiene cuerpo vacío; el bloque con llaves queda separado. Esta es una hipótesis de lectura sobre el signo visible, no una afirmación absoluta sobre el programa completo.</p>
+      <p><strong>Consecuencia de esa hipótesis:</strong> el ciclo no repetiría las instrucciones esperadas como cuerpo del <code>while</code>; el problema es distinto del mensaje final o del contador.</p>
+      <p><strong>Microejemplo propuesto:</strong></p>
+      <pre><code>while (intentos &lt; 10 &amp;&amp; !adivino) {
+    // instrucciones que se repiten
+}</code></pre>
+      <p><strong>Explicación simple:</strong> después de <code>while (...)</code> van llaves, no punto y coma, cuando queremos repetir varias instrucciones.</p>
+      <p><strong>Pregunta guía:</strong> “¿Qué parte exacta queremos que se repita?” <strong>Respuesta esperada:</strong> “Pedir número, contar intento, comparar y mostrar pista”.</p>
+    </article>
+
+    <article class="finding core">
+      <h3>6. Política de conteo, salida del ciclo y final sin falsa derrota</h3>
+      <p><span class="tag">Ejercicio 2</span> <strong>Ubicación:</strong> TP1-2, rama ganadora, incrementos y mensaje final. <span class="certainty">Certeza media: se ve una rama de acierto; no se ve una marca clara de salida del ciclo ni una variable booleana de corte.</span></p>
+      <p><strong>Interpretación:</strong> conviene definir una política simple: cada intento entero válido cuenta una vez, incluido el intento ganador. Además, cuando se acierta, el ciclo debe dejar de pedir números. El chequeo final fotografiado se parece a <code>&gt; 10</code>; bajo un ciclo normal <code>intentos &lt; 10</code> con incrementos de a uno, ese valor no se alcanza al salir por límite, por eso conviene evaluar <code>!adivino</code> al terminar.</p>
+      <p><strong>Brecha visible de requisito:</strong> en la rama ganadora se ve un mensaje tipo “Adivinó”, pero no se ve una actualización como <code>adivino = true</code> ni un <code>break</code>. No afirmamos que no exista fuera de la foto; solo que no aparece en el fragmento fotografiado.</p>
+      <p><strong>Consecuencia:</strong> si el contador solo aumenta en errores, un acierto no queda contado. Si el ciclo no mira <code>!adivino</code>, puede seguir pidiendo después de acertar.</p>
+      <p><strong>Microejemplo propuesto:</strong></p>
+      <pre><code>while (intentos &lt; 10 &amp;&amp; !adivino) {
+    int numeroUsuario = teclado.nextInt();
+    intentos = intentos + 1;
+
+    if (numeroUsuario == secreto) {
+        adivino = true;
+        System.out.println("Correcto. Intentos usados: " + intentos);
+    } else if (numeroUsuario &lt; secreto) {
+        System.out.println("El secreto es mayor. Quedan " + (10 - intentos));
+    } else {
+        System.out.println("El secreto es menor. Quedan " + (10 - intentos));
+    }
+}</code></pre>
+      <p><strong>El contador en palabras:</strong> <code>intentos = intentos + 1;</code> equivale a decir: “Tomá la cantidad de intentos que llevabas, sumale uno y guardá el resultado en la misma variable”. Contamos después de leer la respuesta; luego comprobamos si acertó.</p>
+      <p><strong>La repetición en palabras:</strong> <code>while (intentos &lt; 10 &amp;&amp; !adivino)</code> significa: “Mientras queden intentos y todavía no haya acertado, repetí el bloque”. <code>adivino = true</code> registra el acierto; así, la próxima comprobación impide otra vuelta.</p>
+      <p><strong>Pregunta guía:</strong> “Si acierta en el décimo intento, ¿debe decir ‘sin intentos’?” <strong>Respuesta esperada:</strong> “No, porque ganó aunque haya usado el último”.</p>
+    </article>
+
+    <article class="finding high">
+      <h3>7. Pista desde la perspectiva correcta y restantes visibles</h3>
+      <p><span class="tag">Ejercicio 2</span> <strong>Ubicación:</strong> TP1-2, ramas de comparación. <span class="certainty">Certeza alta sobre la intención de mensajes mayor/menor; certeza alta de que no se ve salida con cantidad restante en las ramas fotografiadas.</span></p>
+      <p><strong>Interpretación:</strong> la consigna pide responder si el número a adivinar es mayor o menor que el introducido, además de informar los intentos que quedan. La frase debe hablar del secreto, no del intento aislado.</p>
+      <p><strong>Brecha visible de requisito:</strong> en las ramas de “mayor” y “menor” no se ve un mensaje que calcule <code>10 - intentos</code>. No afirmamos que no exista en otra hoja; solo que no aparece fotografiado.</p>
+      <p><strong>Microejemplo propuesto:</strong></p>
+      <pre><code>if (numeroUsuario &lt; secreto) {
+    System.out.println("El número secreto es mayor. Quedan " + (10 - intentos));
+} else if (numeroUsuario &gt; secreto) {
+    System.out.println("El número secreto es menor. Quedan " + (10 - intentos));
+}</code></pre>
+      <p><strong>Pregunta guía:</strong> “Si Mercedes dice 30 y el secreto es 42, ¿qué pista ayuda y cuántos intentos quedan tras contar ese ingreso?” <strong>Respuesta esperada:</strong> “El secreto es mayor; si era el primer intento, quedan 9”.</p>
+    </article>
+
+    <article class="finding">
+      <h3>8. Ejercicio de matrices: diferir, no descartar</h3>
+      <p><span class="tag">Ejercicio 3</span> <strong>Ubicación:</strong> TP1-1, consigna; no hay solución fotografiada. <span class="certainty">Certeza alta sobre la consigna visible, sin evidencia de resolución.</span></p>
+      <p><strong>Interpretación:</strong> la matriz requiere arreglos bidimensionales, ciclos anidados, dimensiones y azar. Es más complejo que máximo/mínimo y adivinar número.</p>
+      <p><strong>Decisión docente:</strong> dejarlo para una etapa posterior, después de dominar variables, entrada, <code>if</code>, <code>while</code>, contador y <code>Random</code>.</p>
+      <p><strong>Pregunta guía futura:</strong> “¿Qué cambia si tengo 5 filas y muchas columnas?” <strong>Respuesta esperada:</strong> “Necesito repetir por filas y por columnas”.</p>
+    </article>
+  </section>
+
+  <section id="trazas">
+    <h2>Trazas manuales y escenarios límite</h2>
+    <p>Usá estas trazas antes de mostrar un programa completo. Fijan el comportamiento esperado.</p>
+
+    <h3>Traza trabajada: secreto fijo 42, entradas 30 y 42</h3>
+    <div class="trace-cards" aria-label="Traza paso a paso con secreto 42">
+      <div class="trace-card"><h4>Estado inicial</h4><p><code>secreto = 42</code>, <code>intentos = 0</code>, <code>adivino = false</code>. La condición <code>intentos &lt; 10 &amp;&amp; !adivino</code> da verdadera.</p></div>
+      <div class="trace-card"><h4>Primera lectura</h4><p>Mercedes ingresa <code>30</code>. Antes de contar: <code>intentos = 0</code>. Después de <code>intentos = intentos + 1</code>: <code>intentos = 1</code>.</p></div>
+      <div class="trace-card"><h4>Primera comparación</h4><p><code>30 == 42</code> es falso. <code>30 &lt; 42</code> es verdadero, entonces la pista es “el secreto es mayor”. Quedan <code>10 - 1 = 9</code>. <code>adivino</code> sigue en <code>false</code>.</p></div>
+      <div class="trace-card"><h4>Segunda vuelta</h4><p>La condición vuelve a dar verdadera: <code>1 &lt; 10</code> y <code>!adivino</code> es verdadero. Mercedes ingresa <code>42</code>; luego el contador pasa a <code>2</code>.</p></div>
+      <div class="trace-card"><h4>Acierto y salida</h4><p><code>42 == 42</code> es verdadero. Se ejecuta <code>adivino = true</code>. Quedarían <code>10 - 2 = 8</code> intentos sin usar, pero ya no se piden más números porque la próxima condición usa <code>!adivino</code>, que ahora es falso.</p></div>
+    </div>
+
+    <h3>Escenarios límite con secreto fijo 42</h3>
+    <ol class="trace">
+      <li><strong>Primer éxito:</strong> intento 1, ingresa 42 → cuenta 1, acierta, termina con mensaje de éxito.</li>
+      <li><strong>Intento bajo:</strong> intento 1, ingresa 30 → cuenta 1, no acierta, pista: “el secreto es mayor”, quedan 9.</li>
+      <li><strong>Intento alto:</strong> intento 2, ingresa 60 → cuenta 2, no acierta, pista: “el secreto es menor”, quedan 8.</li>
+      <li><strong>Décimo éxito:</strong> llega al intento 10, ingresa 42 → cuenta 10, acierta, no debe mostrar derrota.</li>
+      <li><strong>Diez fallos:</strong> después del intento 10 incorrecto quedan 0; se muestra derrota y no hay undécimo pedido.</li>
+    </ol>
+
+    <h3>Máximo y mínimo de tres números</h3>
+    <ul>
+      <li><strong>Mayor primero:</strong> <code>9, 4, 2</code> → máximo 9, mínimo 2.</li>
+      <li><strong>Mayor segundo:</strong> <code>4, 9, 2</code> → máximo 9, mínimo 2.</li>
+      <li><strong>Mayor tercero:</strong> <code>4, 2, 9</code> → máximo 9, mínimo 2.</li>
+      <li><strong>Igualdad:</strong> <code>5, 5, 2</code> → máximo 5, mínimo 2; <code>3, 3, 3</code> → máximo 3, mínimo 3.</li>
+    </ul>
+  </section>
+
+  <section id="plan">
+    <h2>Plan progresivo sugerido: núcleo ajustable de 60 minutos</h2>
+    <p>La duración es una propuesta, no una obligación. Si los básicos no salen, se frena y se consolida.</p>
+    <div class="grid">
+      <div class="card"><h3>0-5 · Encuadre</h3><p>Meta medible: explicar una variable, leer un <code>if</code>, trazar tres intentos y corregir un contador.</p></div>
+      <div class="card"><h3>5-12 · Conceptos antes de código</h3><p>Variable, <code>int</code>, asignación, comparación y bloque. Preguntar: “¿qué guarda este nombre?”.</p></div>
+      <div class="card"><h3>12-25 · Puente ejercicio 1</h3><p>Resolver máximo/mínimo con actualización de <code>minimo</code> y <code>maximo</code>. Incluir igualdad.</p></div>
+      <div class="card"><h3>25-45 · Núcleo ejercicio 2</h3><p>Random 1..100, lectura con Scanner, <code>while</code> sin punto y coma, contador y pistas.</p></div>
+      <div class="card"><h3>45-53 · Trazas límite</h3><p>Secreto 42: éxito temprano, pistas, décimo éxito, diez fallos sin undécimo pedido.</p></div>
+      <div class="card"><h3>53-60 · Cierre</h3><p>Mini actividad: completar una traza con intentos y mensajes; decidir si se puede pasar al apunte estudiantil.</p></div>
+    </div>
+
+    <h3>Bloqueos comunes y apoyos</h3>
+    <ul>
+      <li><strong>Si confunden <code>=</code> y <code>==</code>:</strong> volver a frases: “guardar” versus “preguntar”.</li>
+      <li><strong>Si no ven qué se repite:</strong> encerrar con un dedo las llaves del <code>while</code>.</li>
+      <li><strong>Si el contador queda raro:</strong> hacer una tabla corta con intento, número ingresado, acierto, intentos usados y restantes.</li>
+      <li><strong>Si preguntan por matrices:</strong> reconocer que es parte del TP, pero diferir hasta saber ciclos y arreglos.</li>
+    </ul>
+
+    <h3>Checkpoints de avance</h3>
+    <ul>
+      <li>Mercedes puede decir qué valor guarda una variable en una línea dada.</li>
+      <li>Puede anticipar qué rama del <code>if</code> se ejecuta con secreto 42 e ingreso 30.</li>
+      <li>Puede explicar por qué <code>while (...);</code> no contiene el bloque que parece contener.</li>
+      <li>Puede calcular intentos restantes después de cada ingreso válido.</li>
+    </ul>
+  </section>
+
+  <section id="referencia">
+    <h2>Referencia docente opcional</h2>
+    <p>No hace falta mostrar esto al inicio. Está para que el profesor tenga una forma completa y coherente si necesita contrastar microejemplos.</p>
+    <div class="callout warn">
+      <p><strong>Recordatorio:</strong> esta referencia mantiene el supuesto de etapa: entradas enteras válidas. El programa es propuesto para lectura docente; no se afirma que haya sido compilado ni ejecutado.</p>
+    </div>
+    <details>
+      <summary>Ver programa propuesto de adivinar número</summary>
+      <pre><code>import java.util.Random;
+import java.util.Scanner;
+
+public class AdivinarNumero {
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        Random r = new Random();
+
+        int secreto = r.nextInt(100) + 1;
+        int intentos = 0;
+        boolean adivino = false;
+
+        while (intentos &lt; 10 &amp;&amp; !adivino) {
+            System.out.println("Ingresá un número:");
+            int numeroUsuario = teclado.nextInt();
+            intentos = intentos + 1;
+
+            if (numeroUsuario == secreto) {
+                adivino = true;
+                System.out.println("Correcto. Lo adivinaste en " + intentos + " intentos.");
+            } else if (numeroUsuario &lt; secreto) {
+                System.out.println("El número secreto es mayor. Te quedan " + (10 - intentos) + " intentos.");
+            } else {
+                System.out.println("El número secreto es menor. Te quedan " + (10 - intentos) + " intentos.");
+            }
+        }
+
+        if (!adivino) {
+            System.out.println("Sin intentos. El número era " + secreto + ".");
+        }
+
+        teclado.close();
+    }
+}</code></pre>
+    </details>
+    <details>
+      <summary>Ver propuesta de máximo/mínimo</summary>
+      <pre><code>int minimo = nro1;
+int maximo = nro1;
+
+if (nro2 &lt; minimo) minimo = nro2;
+if (nro3 &lt; minimo) minimo = nro3;
+
+if (nro2 &gt; maximo) maximo = nro2;
+if (nro3 &gt; maximo) maximo = nro3;
+
+System.out.println("Mínimo: " + minimo);
+System.out.println("Máximo: " + maximo);</code></pre>
+    </details>
+  </section>
+
+  <section id="glosario">
+    <h2>Glosario mínimo para el profesor</h2>
+    <ul class="checklist">
+      <li><strong>Variable:</strong> nombre que guarda un valor.</li>
+      <li><strong><code>int</code>:</strong> tipo para enteros.</li>
+      <li><strong><code>=</code>:</strong> asigna un valor.</li>
+      <li><strong><code>==</code>:</strong> compara igualdad.</li>
+      <li><strong><code>boolean</code>:</strong> tipo que solo guarda <code>true</code> o <code>false</code>.</li>
+      <li><strong><code>!adivino</code>:</strong> se lee “no adivinó”; niega el valor booleano.</li>
+      <li><strong><code>&amp;&amp;</code>:</strong> “y lógico”; las dos condiciones deben cumplirse.</li>
+      <li><strong><code>System.out.println</code>:</strong> método que muestra texto o valores en pantalla.</li>
+      <li><strong><code>"texto" + variable</code>:</strong> une texto con el valor de una variable para armar un mensaje.</li>
+      <li><strong><code>Scanner</code>:</strong> herramienta para leer entrada.</li>
+      <li><strong><code>new</code>:</strong> construye un objeto para poder usar sus métodos.</li>
+      <li><strong>Método:</strong> acción que se llama con paréntesis, por ejemplo <code>nextInt()</code>.</li>
+      <li><strong><code>Random</code>:</strong> herramienta para generar azar.</li>
+      <li><strong><code>if/else</code>:</strong> decisión entre caminos.</li>
+      <li><strong><code>while</code>:</strong> repetición mientras una condición sea verdadera.</li>
+      <li><strong>Contador:</strong> variable que se actualiza para medir cantidad de pasos.</li>
+    </ul>
+  </section>
+
+  <section id="checklist">
+    <h2>Checklist docente antes de pasar a etapa 2</h2>
+    <ul>
+      <li>¿Mercedes puede explicar el comportamiento esperado sin mirar código?</li>
+      <li>¿Puede trazar intentos con secreto fijo y calcular restantes?</li>
+      <li>¿Puede decir por qué el décimo acierto no es derrota?</li>
+      <li>¿Puede resolver máximo/mínimo con igualdad sin depender de ordenar?</li>
+      <li>¿El profesor distingue fragmento fotografiado de programa completo?</li>
+    </ul>
+  </section>
+
+  <section id="handoff">
+    <h2>Handoff para etapa 2: qué comparar después</h2>
+    <p>En una etapa posterior, recién ahí conviene revisar el apunte estudiantil existente <code>clases/clase-02-java-adivinar-numero.html</code>. Mantendría su estructura pedagógica progresiva: primero consigna en lenguaje simple, luego fundamentos mínimos, después fragmentos, lectura por bloques, flujo y programa completo al final.</p>
+    <p>Lo que habría que comparar/adaptar más adelante: política explícita de conteo, uso de <code>Random</code> en vez de <code>Math.random()</code> si se quiere alinearlo con la foto, pistas con intentos restantes, escenario de décimo acierto y advertencia sobre <code>while (...);</code>. Esta guía no modifica ese archivo.</p>
+  </section>
+</main>
+</body>
+</html>
