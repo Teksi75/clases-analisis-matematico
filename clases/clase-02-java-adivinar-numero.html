@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>5to año Programación · Clase 2 · Java con AdivinarNumero</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #1d2433;
+      --muted: #5c667a;
+      --line: #d9deea;
+      --accent: #2457a6;
+      --accent-2: #287a3e;
+      --accent-soft: #e9f0ff;
+      --ok-soft: #edf8f0;
+      --warn-soft: #fff6df;
+      --danger-soft: #fff0ef;
+      --code-bg: #0d1117;
+      --code-line: #30363d;
+      --code-text: #e6edf3;
+      --radius: 16px;
+      --shadow: 0 14px 35px rgba(25, 38, 70, 0.10);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #eef3ff 0%, var(--bg) 45%, #f9fafc 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 32px 18px 56px; }
+    header, section, .screen-note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header { padding: 30px; margin-bottom: 18px; border-top: 7px solid var(--accent); }
+    section, .screen-note { padding: 24px; margin: 18px 0; }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); color: var(--accent); }
+    h3 { font-size: 1.08rem; margin-top: 18px; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 8px 0 0 1.3rem; padding: 0; }
+    li { margin: 6px 0; }
+    code, pre, .code-window { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    code { font-size: 0.94em; }
+    .kicker { color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.83rem; margin-bottom: 8px; }
+    .lead { font-size: 1.13rem; color: #283246; max-width: 76ch; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr)); }
+    .card, .callout, .block, .flow-step {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+    }
+    .callout { background: var(--accent-soft); border-color: #c7d7fb; }
+    .callout.ok { background: var(--ok-soft); border-color: #b7dfc1; }
+    .callout.warn { background: var(--warn-soft); border-color: #f1d48a; }
+    .callout.danger { background: var(--danger-soft); border-color: #f2c0bb; }
+    .concept-list { counter-reset: concepto; list-style: none; margin-left: 0; }
+    .concept-list li { counter-increment: concepto; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fbfcff; }
+    .concept-list li::before { content: counter(concepto) ". "; color: var(--accent); font-weight: 900; }
+    .block { margin: 12px 0; border-left: 5px solid var(--accent); }
+    .block.once { border-left-color: var(--accent-2); }
+    .block.repeat { border-left-color: #b66a00; }
+    .vars { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .vars th, .vars td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+    .vars th { background: #f1f5ff; color: #21345c; }
+    .flow { display: grid; gap: 10px; }
+    .flow-step { position: relative; padding-left: 18px; }
+    .flow-step strong { color: var(--accent); }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 0.8rem; }
+    .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+    details { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: #fbfcff; margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 800; color: var(--accent); }
+
+    .code-window {
+      margin: 12px 0 0;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border: 1px solid var(--code-line);
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .code-window ol {
+      list-style: decimal-leading-zero;
+      margin: 0;
+      padding: 14px 0 14px 3.8rem;
+      min-width: max-content;
+      counter-reset: none;
+    }
+    .code-window li {
+      margin: 0;
+      padding: 0 18px 0 12px;
+      border-left: 1px solid var(--code-line);
+      white-space: pre;
+      line-height: 1.48;
+      font-size: 0.91rem;
+    }
+    .code-window li::marker { color: #7d8590; }
+    .code-window code { color: var(--code-text); font-size: inherit; }
+    .kw { color: #ff7b72; font-weight: 650; }
+    .type { color: #ffa657; }
+    .str { color: #a5d6ff; }
+    .com { color: #8b949e; font-style: italic; }
+    .num { color: #79c0ff; }
+    .method { color: #d2a8ff; }
+    .op { color: #ffdf5d; }
+
+    @media (max-width: 620px) {
+      main { padding: 18px 12px 36px; }
+      header, section, .screen-note { padding: 18px; border-radius: 12px; }
+      .code-window li { font-size: 0.82rem; }
+    }
+    @page { size: A4; margin: 14mm; }
+    @media print {
+      :root { --ink: #111827; --line: #cfd5df; }
+      body { background: #fff; font-size: 10.5pt; }
+      main { max-width: none; padding: 0; }
+      header, section { box-shadow: none; border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; margin: 0 0 8mm; padding: 0 0 6mm; }
+      header { border-top: 4pt solid var(--accent); padding-top: 5mm; }
+      .screen-note { display: none; }
+      h1 { font-size: 24pt; }
+      h2 { font-size: 15.5pt; margin-top: 2mm; }
+      h3 { font-size: 12pt; }
+      .code-window { border: 1px solid #777; background: #f7f7f7; color: #111; }
+      .code-window li { border-left-color: #bbb; white-space: pre-wrap; }
+      .kw, .type, .str, .com, .num, .method, .op { color: inherit; font-weight: inherit; font-style: inherit; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="screen-note" role="note">
+    <strong>Para Mercedes:</strong> este material se puede leer en pantalla o imprimir. Avanzá en orden: primero el comportamiento del juego, después las piezas de Java y recién al final el programa completo.
+  </div>
+
+  <header>
+    <p class="kicker">5to año · Programación · Clase 2</p>
+    <h1>Java paso a paso: juego de adivinar un número</h1>
+    <p class="lead">Vamos a construir un programa que elige un número secreto del 1 al 100, permite hasta 10 intentos y da pistas. No hace falta memorizar Java de golpe: primero entendemos cada concepto y después lo usamos.</p>
+  </header>
+
+  <section class="avoid-break">
+    <h2>1. Qué tiene que hacer el programa</h2>
+    <p>La consigna del ejercicio se puede escribir así, en lenguaje común:</p>
+    <div class="callout">
+      <p><strong>Objetivo:</strong> crear una aplicación que genere un número entero aleatorio entre 1 y 100. La persona ingresa números para adivinarlo. Después de cada intento incorrecto, el programa indica si el número secreto es mayor o menor que el ingresado y cuántos intentos quedan. Hay como máximo 10 intentos.</p>
+    </div>
+    <p>Entonces el programa necesita cuatro acciones centrales: preparar datos, pedir un número, comparar y repetir solo mientras corresponda.</p>
+    <ul>
+      <li>Si acierta, muestra éxito y termina.</li>
+      <li>Si falla, muestra una pista y los intentos restantes.</li>
+      <li>Si usa los 10 intentos sin acertar, muestra derrota y no pide un intento número 11.</li>
+    </ul>
+    <div class="callout warn">
+      <p><strong>Supuesto para esta clase:</strong> cada entrada será un número entero. Si alguien escribe texto, deja vacío o pone un decimal, eso se resuelve con validación de entrada más adelante; no lo implementamos hoy.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Nombres que vamos a usar</h2>
+    <p>Elegimos nombres claros y los repetimos siempre igual. En Java no conviene escribir nombres con espacios ni símbolos como “n°”.</p>
+    <table class="vars">
+      <thead><tr><th>Nombre</th><th>Qué representa</th><th>Ejemplo cotidiano</th></tr></thead>
+      <tbody>
+        <tr><td><code>secreto</code></td><td>El número que el programa sortea y que hay que adivinar.</td><td>La respuesta guardada en una tarjeta tapada.</td></tr>
+        <tr><td><code>numeroUsuario</code></td><td>El número que la persona escribe en un intento.</td><td>La apuesta de esa ronda.</td></tr>
+        <tr><td><code>intentos</code></td><td>Cuántos números enteros ya fueron ingresados.</td><td>Marcas hechas en una lista: una marca por intento.</td></tr>
+        <tr><td><code>adivino</code></td><td>Si ya hubo acierto o no.</td><td>Una luz que empieza apagada y se enciende al acertar.</td></tr>
+        <tr><td><code>r</code></td><td>El generador de azar.</td><td>Una bolsa que sortea números.</td></tr>
+        <tr><td><code>teclado</code></td><td>La herramienta para leer lo que se escribe.</td><td>Un canal de entrada desde la consola.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Fundamentos mínimos antes del código largo</h2>
+    <ol class="concept-list">
+      <li><strong><code>int</code>:</strong> tipo de dato para números enteros, como <code>1</code>, <code>42</code> o <code>100</code>. No representa texto ni decimales.</li>
+      <li><strong>Declarar:</strong> crear una variable con tipo y nombre. <code>int intentos;</code> significa “voy a tener una variable entera llamada intentos”.</li>
+      <li><strong>Asignar:</strong> guardar un valor con <code>=</code>. <code>intentos = 0;</code> significa “guardá 0 en intentos”. También se puede declarar y asignar en una misma línea: <code>int intentos = 0;</code>.</li>
+      <li><strong>Comparar igualdad:</strong> preguntar con <code>==</code>. <code>numeroUsuario == secreto</code> no guarda nada: pregunta si ambos valores son iguales.</li>
+      <li><strong><code>boolean</code>:</strong> tipo de dato que solo puede valer <code>true</code> o <code>false</code>. Nos sirve para recordar si ya se adivinó.</li>
+      <li><strong><code>!</code>:</strong> niega un booleano. Si <code>adivino</code> vale <code>false</code>, entonces <code>!adivino</code> vale <code>true</code>: “no adivinó todavía”.</li>
+      <li><strong><code>&amp;&amp;</code>:</strong> significa “y”. Para que <code>intentos &lt; 10 &amp;&amp; !adivino</code> sea verdadero, tienen que cumplirse las dos partes.</li>
+      <li><strong>Condiciones:</strong> expresiones que responden verdadero o falso, por ejemplo <code>intentos &lt; 10</code> o <code>numeroUsuario &gt; secreto</code>.</li>
+      <li><strong>Llaves <code>{ }</code>:</strong> agrupan instrucciones. Todo lo que está dentro de las llaves de un <code>while</code> se repite; todo lo que está dentro de las llaves de un <code>if</code> pertenece a esa decisión.</li>
+      <li><strong><code>System.out.println(...)</code>:</strong> muestra un mensaje en pantalla y baja a la línea siguiente. Algunos entornos permiten escribir <code>sout</code> como abreviatura para completarlo automáticamente; es solo un atajo opcional.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>4. Construimos el programa de a poco</h2>
+    <p>Los siguientes fragmentos son <strong>parciales</strong>: sirven para entender una pieza. No todos compilan solos porque algunos dependen de líneas que veremos después.</p>
+
+    <article class="block once">
+      <h3>Fragmento 1 · Salida por pantalla</h3>
+      <p>Primero mostramos la consigna. El texto va entre comillas porque es texto literal.</p>
+      <div class="code-window" role="region" aria-label="Fragmento parcial salida por pantalla"><ol>
+        <li><code>System.out.<span class="method">println</span>(<span class="str">"Adiviná el número secreto entre 1 y 100."</span>);</code></li>
+      </ol></div>
+      <p>En lenguaje cotidiano: “mostrá esta frase en la consola”.</p>
+    </article>
+
+    <article class="block once">
+      <h3>Fragmento 2 · Herramientas: <code>Scanner</code>, <code>Random</code>, <code>new</code> e <code>import</code></h3>
+      <p>Java trae muchas herramientas, pero algunas hay que pedirlas con <code>import</code>. Para este juego usamos dos:</p>
+      <ul>
+        <li><code>Scanner</code>: lee datos que entran por teclado.</li>
+        <li><code>Random</code>: genera números al azar.</li>
+      </ul>
+      <div class="code-window" role="region" aria-label="Fragmento parcial imports y herramientas"><ol>
+        <li><code><span class="kw">import</span> java.util.Random;</code></li>
+        <li><code><span class="kw">import</span> java.util.Scanner;</code></li>
+        <li><code></code></li>
+        <li><code>Scanner teclado <span class="op">=</span> <span class="kw">new</span> <span class="method">Scanner</span>(System.in);</code></li>
+        <li><code>Random r <span class="op">=</span> <span class="kw">new</span> <span class="method">Random</span>();</code></li>
+      </ol></div>
+      <p><code>new</code> construye una herramienta concreta para poder usarla. En palabras: “creá un lector llamado <code>teclado</code>” y “creá un generador de azar llamado <code>r</code>”.</p>
+    </article>
+
+    <article class="block once">
+      <h3>Fragmento 3 · Número secreto del 1 al 100</h3>
+      <p>La consigna pide un entero desde 1 hasta 100, incluyendo los extremos.</p>
+      <div class="code-window" role="region" aria-label="Fragmento parcial numero secreto"><ol>
+        <li><code><span class="type">int</span> secreto <span class="op">=</span> r.<span class="method">nextInt</span>(<span class="num">100</span>) <span class="op">+</span> <span class="num">1</span>;</code></li>
+      </ol></div>
+      <p><code>r.nextInt(100)</code> puede dar 100 valores posibles: desde <code>0</code> hasta <code>99</code>. Al sumar <code>1</code>, el menor pasa de <code>0</code> a <code>1</code> y el mayor pasa de <code>99</code> a <code>100</code>.</p>
+      <div class="callout ok">
+        <p><strong>Puente:</strong> si el sorteo interno da <code>0</code>, el secreto queda <code>1</code>. Si da <code>99</code>, el secreto queda <code>100</code>. Por eso la línea cumple “del 1 al 100”.</p>
+      </div>
+    </article>
+
+    <article class="block once">
+      <h3>Fragmento 4 · Estado inicial del juego</h3>
+      <p>Antes de empezar, no hubo intentos y todavía no se acertó.</p>
+      <div class="code-window" role="region" aria-label="Fragmento parcial estado inicial"><ol>
+        <li><code><span class="type">int</span> intentos <span class="op">=</span> <span class="num">0</span>;</code></li>
+        <li><code><span class="type">boolean</span> adivino <span class="op">=</span> <span class="kw">false</span>;</code></li>
+      </ol></div>
+      <p>Mercedes, leé la segunda línea como una oración: “la variable <code>adivino</code> empieza en falso”. Va a cambiar a <code>true</code> solo cuando el número ingresado sea igual al secreto.</p>
+    </article>
+
+    <article class="block repeat">
+      <h3>Fragmento 5 · Repetir sin pasarse de 10 intentos</h3>
+      <p>El <code>while</code> repite mientras la condición sea verdadera.</p>
+      <div class="code-window" role="region" aria-label="Fragmento parcial while"><ol>
+        <li><code><span class="kw">while</span> (intentos <span class="op">&lt;</span> <span class="num">10</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>adivino) {</code></li>
+        <li><code>    <span class="com">// acá adentro van las instrucciones de cada intento</span></code></li>
+        <li><code>}</code></li>
+      </ol></div>
+      <p>En lenguaje cotidiano: “mientras se hayan usado menos de 10 intentos y todavía no haya acierto, seguí jugando”. Cuando <code>intentos</code> llega a 10, <code>intentos &lt; 10</code> es falso; por eso no aparece un intento 11.</p>
+    </article>
+
+    <article class="block repeat">
+      <h3>Fragmento 6 · Leer un intento y contarlo una sola vez</h3>
+      <p>Cada número entero ingresado cuenta como un intento, incluso si es el número ganador.</p>
+      <div class="code-window" role="region" aria-label="Fragmento parcial lectura y contador"><ol>
+        <li><code>System.out.<span class="method">println</span>(<span class="str">"Ingresá un número:"</span>);</code></li>
+        <li><code><span class="type">int</span> numeroUsuario <span class="op">=</span> teclado.<span class="method">nextInt</span>();</code></li>
+        <li><code>intentos <span class="op">=</span> intentos <span class="op">+</span> <span class="num">1</span>;</code></li>
+      </ol></div>
+      <p><code>teclado.nextInt()</code> espera que la persona escriba un entero y lo guarda en <code>numeroUsuario</code>. Después <code>intentos = intentos + 1</code> toma el valor anterior, le suma uno y lo vuelve a guardar en la misma variable.</p>
+    </article>
+
+    <article class="block repeat">
+      <h3>Fragmento 7 · Comparar y responder</h3>
+      <p>Después de contar el intento, el programa decide entre tres caminos: acertó, el secreto es mayor, o el secreto es menor.</p>
+      <div class="code-window" role="region" aria-label="Fragmento parcial comparacion"><ol>
+        <li><code><span class="kw">if</span> (numeroUsuario <span class="op">==</span> secreto) {</code></li>
+        <li><code>    adivino <span class="op">=</span> <span class="kw">true</span>;</code></li>
+        <li><code>    System.out.<span class="method">println</span>(<span class="str">"¡Correcto! Lo adivinaste en "</span> <span class="op">+</span> intentos <span class="op">+</span> <span class="str">" intentos."</span>);</code></li>
+        <li><code>} <span class="kw">else if</span> (numeroUsuario <span class="op">&lt;</span> secreto) {</code></li>
+        <li><code>    System.out.<span class="method">println</span>(<span class="str">"El número secreto es mayor. Te quedan "</span> <span class="op">+</span> (<span class="num">10</span> <span class="op">-</span> intentos) <span class="op">+</span> <span class="str">" intentos."</span>);</code></li>
+        <li><code>} <span class="kw">else</span> {</code></li>
+        <li><code>    System.out.<span class="method">println</span>(<span class="str">"El número secreto es menor. Te quedan "</span> <span class="op">+</span> (<span class="num">10</span> <span class="op">-</span> intentos) <span class="op">+</span> <span class="str">" intentos."</span>);</code></li>
+        <li><code>}</code></li>
+      </ol></div>
+      <p>La pista habla del <strong>secreto</strong>. Si ingresás <code>30</code> y el secreto es <code>42</code>, la pista útil es “el número secreto es mayor”.</p>
+      <p>El signo <code>+</code> une texto con valores para armar el mensaje. <code>(10 - intentos)</code> calcula cuántos intentos quedan: si ya usaste 1, quedan 9.</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>5. Cómo fluye una vuelta completa</h2>
+    <div class="flow">
+      <div class="flow-step"><strong>1. Revisar condición:</strong> ¿<code>intentos &lt; 10</code> y <code>!adivino</code>?</div>
+      <div class="flow-step"><strong>2. Pedir:</strong> si la condición es verdadera, el programa solicita un número.</div>
+      <div class="flow-step"><strong>3. Leer:</strong> <code>teclado.nextInt()</code> toma el entero ingresado y lo guarda en <code>numeroUsuario</code>.</div>
+      <div class="flow-step"><strong>4. Contar:</strong> <code>intentos = intentos + 1</code> cuenta exactamente ese intento.</div>
+      <div class="flow-step"><strong>5. Comparar:</strong> pregunta si <code>numeroUsuario == secreto</code>, si es menor o si es mayor.</div>
+      <div class="flow-step"><strong>6. Responder:</strong> muestra éxito o una pista con intentos restantes.</div>
+      <div class="flow-step"><strong>7. Volver o terminar:</strong> vuelve al <code>while</code>. Si acertó o ya llegó a 10 intentos, no vuelve a pedir.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>6. Traza trabajada con secreto fijo 42</h2>
+    <div class="callout warn">
+      <p><strong>Importante:</strong> usamos <code>42</code> solo para practicar la lectura. En el programa real, <code>secreto</code> sale de <code>r.nextInt(100) + 1</code>, así que cambia en cada ejecución.</p>
+    </div>
+    <table class="vars">
+      <thead><tr><th>Paso</th><th>Valor</th><th>Qué pasa</th></tr></thead>
+      <tbody>
+        <tr><td>Inicio</td><td><code>secreto = 42</code>, <code>intentos = 0</code>, <code>adivino = false</code></td><td>La condición del <code>while</code> da verdadera: hay menos de 10 intentos y todavía no se adivinó.</td></tr>
+        <tr><td>Intento 1</td><td><code>numeroUsuario = 30</code></td><td>Se cuenta: <code>intentos = 1</code>. Como <code>30 &lt; 42</code>, imprime “El número secreto es mayor. Te quedan 9 intentos.”</td></tr>
+        <tr><td>Intento 2</td><td><code>numeroUsuario = 42</code></td><td>Se cuenta: <code>intentos = 2</code>. Como <code>42 == 42</code>, cambia <code>adivino = true</code> e imprime éxito.</td></tr>
+        <tr><td>Salida</td><td><code>adivino = true</code></td><td>La próxima condición del <code>while</code> falla porque <code>!adivino</code> es falso. No se piden más números.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>7. Casos límite que conviene revisar</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Acierta en el primer intento</h3>
+        <p>Cuenta 1, muestra éxito y termina. No necesita mostrar intentos restantes porque ya ganó.</p>
+      </div>
+      <div class="card">
+        <h3>Acierta en el décimo intento</h3>
+        <p>Cuenta 10, muestra éxito y termina. No debe mostrar derrota: usó el último intento, pero lo usó bien.</p>
+      </div>
+      <div class="card">
+        <h3>Falla el décimo intento</h3>
+        <p>Cuenta 10, muestra una pista con 0 intentos restantes, sale del <code>while</code> y después muestra derrota.</p>
+      </div>
+      <div class="card">
+        <h3>No hay intento 11</h3>
+        <p>Cuando <code>intentos</code> vale 10, la condición <code>intentos &lt; 10</code> es falsa. Por eso el ciclo no vuelve a pedir.</p>
+      </div>
+    </div>
+    <div class="callout ok">
+      <p><strong>Regla de oro:</strong> el mensaje final de derrota se escribe como <code>if (!adivino)</code>. Así solo aparece si terminó sin acierto.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. Actividades breves para practicar sola</h2>
+    <article class="block once">
+      <h3>Actividad A · Leer el rango del azar</h3>
+      <p>Completá mentalmente:</p>
+      <ul>
+        <li>Si <code>r.nextInt(100)</code> da <code>0</code>, entonces <code>r.nextInt(100) + 1</code> da ____.</li>
+        <li>Si <code>r.nextInt(100)</code> da <code>99</code>, entonces <code>r.nextInt(100) + 1</code> da ____.</li>
+      </ul>
+      <details><summary>Ver autocorrección</summary><p>Da <code>1</code> y <code>100</code>. Por eso el rango final es 1..100.</p></details>
+    </article>
+
+    <article class="block once">
+      <h3>Actividad B · Trazar intentos</h3>
+      <p>Usá secreto fijo <code>42</code> solo para practicar. Entradas: <code>70</code>, <code>50</code>, <code>42</code>. Anotá después de cada entrada: intentos usados, pista o éxito, y si <code>adivino</code> vale <code>true</code> o <code>false</code>.</p>
+      <details><summary>Ver autocorrección</summary><p>70: intento 1, secreto menor, <code>adivino = false</code>. 50: intento 2, secreto menor, <code>adivino = false</code>. 42: intento 3, éxito, <code>adivino = true</code>.</p></details>
+    </article>
+
+    <article class="block once">
+      <h3>Actividad C · Décimo intento</h3>
+      <p>Si ya se hicieron 9 intentos incorrectos y en el décimo se ingresa el secreto correcto, ¿se muestra derrota?</p>
+      <details><summary>Ver autocorrección</summary><p>No. El intento 10 cuenta, pero como acierta se guarda <code>adivino = true</code>. El final <code>if (!adivino)</code> no se ejecuta.</p></details>
+    </article>
+  </section>
+
+  <section>
+    <h2>9. Lectura por bloques del programa completo</h2>
+    <p>Antes de mirar el código entero, ubicá estas partes:</p>
+    <div class="grid">
+      <div class="card"><h3>Imports</h3><p>Permiten usar <code>Random</code> y <code>Scanner</code>.</p></div>
+      <div class="card"><h3>Clase y main</h3><p><code>public class AdivinarNumero</code> contiene el programa. En el punto 10 vas a ver la línea <code>public static void main(String[] args)</code>: es una fórmula fija de arranque que necesita java y ahí empieza la ejecución.</p></div>
+      <div class="card"><h3>Preparación</h3><p>Crea <code>teclado</code>, <code>r</code>, <code>secreto</code>, <code>intentos</code> y <code>adivino</code>.</p></div>
+      <div class="card"><h3>Ciclo</h3><p>El <code>while</code> controla que no haya más de 10 intentos y que se corte al acertar.</p></div>
+      <div class="card"><h3>Decisión</h3><p>El <code>if / else if / else</code> responde éxito, secreto mayor o secreto menor.</p></div>
+      <div class="card"><h3>Final</h3><p><code>if (!adivino)</code> muestra derrota solo cuando realmente no se acertó.</p></div>
+    </div>
+  </section>
+
+  <section class="avoid-break">
+    <h2>10. Programa completo de referencia</h2>
+    <div class="callout danger">
+      <p><strong>Recién ahora miralo entero.</strong> Este es el programa unido. Las líneas de <code>import</code>, <code>class</code> y <code>main</code> son la estructura externa necesaria para que Java sepa dónde está el código ejecutable.</p>
+    </div>
+    <div class="code-window" role="region" aria-label="Programa completo AdivinarNumero"><ol>
+      <li><code><span class="kw">import</span> java.util.Random;</code></li>
+      <li><code><span class="kw">import</span> java.util.Scanner;</code></li>
+      <li><code></code></li>
+      <li><code><span class="kw">public class</span> AdivinarNumero {</code></li>
+      <li><code>    <span class="kw">public static void</span> <span class="method">main</span>(String[] args) {</code></li>
+      <li><code>        Scanner teclado <span class="op">=</span> <span class="kw">new</span> <span class="method">Scanner</span>(System.in);</code></li>
+      <li><code>        Random r <span class="op">=</span> <span class="kw">new</span> <span class="method">Random</span>();</code></li>
+      <li><code></code></li>
+      <li><code>        <span class="type">int</span> secreto <span class="op">=</span> r.<span class="method">nextInt</span>(<span class="num">100</span>) <span class="op">+</span> <span class="num">1</span>;</code></li>
+      <li><code>        <span class="type">int</span> intentos <span class="op">=</span> <span class="num">0</span>;</code></li>
+      <li><code>        <span class="type">boolean</span> adivino <span class="op">=</span> <span class="kw">false</span>;</code></li>
+      <li><code></code></li>
+      <li><code>        System.out.<span class="method">println</span>(<span class="str">"Adiviná el número secreto entre 1 y 100."</span>);</code></li>
+      <li><code></code></li>
+      <li><code>        <span class="kw">while</span> (intentos <span class="op">&lt;</span> <span class="num">10</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>adivino) {</code></li>
+      <li><code>            System.out.<span class="method">println</span>(<span class="str">"Ingresá un número:"</span>);</code></li>
+      <li><code>            <span class="type">int</span> numeroUsuario <span class="op">=</span> teclado.<span class="method">nextInt</span>();</code></li>
+      <li><code>            intentos <span class="op">=</span> intentos <span class="op">+</span> <span class="num">1</span>;</code></li>
+      <li><code></code></li>
+      <li><code>            <span class="kw">if</span> (numeroUsuario <span class="op">==</span> secreto) {</code></li>
+      <li><code>                adivino <span class="op">=</span> <span class="kw">true</span>;</code></li>
+      <li><code>                System.out.<span class="method">println</span>(<span class="str">"¡Correcto! Lo adivinaste en "</span> <span class="op">+</span> intentos <span class="op">+</span> <span class="str">" intentos."</span>);</code></li>
+      <li><code>            } <span class="kw">else if</span> (numeroUsuario <span class="op">&lt;</span> secreto) {</code></li>
+      <li><code>                System.out.<span class="method">println</span>(<span class="str">"El número secreto es mayor. Te quedan "</span> <span class="op">+</span> (<span class="num">10</span> <span class="op">-</span> intentos) <span class="op">+</span> <span class="str">" intentos."</span>);</code></li>
+      <li><code>            } <span class="kw">else</span> {</code></li>
+      <li><code>                System.out.<span class="method">println</span>(<span class="str">"El número secreto es menor. Te quedan "</span> <span class="op">+</span> (<span class="num">10</span> <span class="op">-</span> intentos) <span class="op">+</span> <span class="str">" intentos."</span>);</code></li>
+      <li><code>            }</code></li>
+      <li><code>        }</code></li>
+      <li><code></code></li>
+      <li><code>        <span class="kw">if</span> (<span class="op">!</span>adivino) {</code></li>
+      <li><code>            System.out.<span class="method">println</span>(<span class="str">"Sin intentos. El número era "</span> <span class="op">+</span> secreto <span class="op">+</span> <span class="str">"."</span>);</code></li>
+      <li><code>        }</code></li>
+      <li><code></code></li>
+      <li><code>        teclado.<span class="method">close</span>();</code></li>
+      <li><code>    }</code></li>
+      <li><code>}</code></li>
+    </ol></div>
+    <p>La última línea antes de cerrar, <code>teclado.close();</code>, significa: “cerrá el lector”. Se hace una sola vez, al terminar de pedir números.</p>
+  </section>
+
+  <section>
+    <h2>11. Checklist final de comprensión</h2>
+    <ul class="concept-list">
+      <li>Puedo explicar qué guarda <code>secreto</code>, <code>numeroUsuario</code>, <code>intentos</code>, <code>adivino</code>, <code>r</code> y <code>teclado</code>.</li>
+      <li>Puedo decir por qué <code>r.nextInt(100) + 1</code> produce de 1 a 100.</li>
+      <li>Puedo diferenciar <code>=</code> para guardar de <code>==</code> para comparar.</li>
+      <li>Puedo leer <code>while (intentos &lt; 10 &amp;&amp; !adivino)</code> como una frase.</li>
+      <li>Puedo explicar por qué el intento ganador también se cuenta.</li>
+      <li>Puedo justificar por qué el décimo acierto gana y el décimo fallo pierde.</li>
+      <li>Puedo encontrar dónde el programa evita pedir un intento número 11.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
