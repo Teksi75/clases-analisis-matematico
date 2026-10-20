@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pruebas diagnósticas de Matemática por tema · Matemática</title>
+  <link rel="stylesheet" href="diagnosticos.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="header-content">
+      <p class="eyebrow">Matemática · Diagnósticos por tema</p>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="01-funciones.html">Funciones</a>
+        <a href="02-limites-continuidad.html">Límites</a>
+        <a href="03-derivadas.html">Derivadas</a>
+        <a href="04-integrales.html">Integrales</a>
+        <a href="guia-docente.html">Guía docente</a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido" tabindex="-1">
+    <p class="reading-note">Lectura sin conexión · Para imprimir o guardar como PDF, usá la opción Imprimir de tu navegador.</p>
+<h1 id="pruebas-diagnósticas-de-matemática-por-tema">Pruebas diagnósticas de Matemática por tema</h1>
+<p>Cuatro pruebas independientes para identificar conocimientos y dificultades antes de preparar las clases. Se limitan a los temas de los PDF importados: no incluyen Programación, computación ni electrónica. Las consignas son adaptaciones docentes con referencias explícitas, no evaluaciones oficiales del material original.</p>
+<h2 id="versión-html">Versión HTML</h2>
+<p>Abrí <a href="index.html">index.html</a> en el navegador: incluye navegación por tema, tipografía ampliada, tablas adaptables y estilos de impresión A4. Funciona sin internet ni servidor. Las respuestas permanecen en una página docente separada; no están ocultas dentro de las pruebas.</p>
+<p>Para imprimir o guardar una prueba como PDF, abrí su página y usá <strong>Imprimir</strong> en el navegador. Elegí la hoja del estudiante, no la guía docente. Las pruebas no son formularios: las respuestas se escriben en papel o en una hoja aparte.</p>
+<p>Los Markdown siguen siendo las fuentes editables. El HTML conserva el contenido: no agrega una escala de ponderación distinta a la guía existente. La propuesta de ponderación conversada todavía no se incorporó como criterio aprobado.</p>
+<h2 id="hojas-para-estudiantes">Hojas para estudiantes</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Prueba</th>
+<th>Contenidos</th>
+<th>Tiempo orientativo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="01-funciones.html">1 · Funciones</a></td>
+<td>Variables, evaluación, raíces, vértice, gráfica y dominio contextual.</td>
+<td>25–35 min</td>
+</tr>
+<tr>
+<td><a href="02-limites-continuidad.html">2 · Límites y continuidad</a></td>
+<td>Laterales, factorización, continuidad, huecos y asíntotas.</td>
+<td>30–40 min</td>
+</tr>
+<tr>
+<td><a href="03-derivadas.html">3 · Derivadas</a></td>
+<td>Polinomios, producto, cociente, trigonometría, composición y signo.</td>
+<td>30–40 min</td>
+</tr>
+<tr>
+<td><a href="04-integrales.html">4 · Integrales</a></td>
+<td>Primitivas, comprobación, factores internos e integral definida como área.</td>
+<td>30–40 min</td>
+</tr>
+</tbody>
+</table>
+<p>Cada hoja contiene cinco ejercicios y es autosuficiente: no hace falta entregar los PDF para resolverla. Los tiempos son sugerencias de aplicación, no requisitos del curso. Podés imprimir cada hoja por separado desde tu visor Markdown; las respuestas están únicamente en la <a href="guia-docente.html">guía docente</a>.</p>
+<h2 id="cómo-aplicarlas">Cómo aplicarlas</h2>
+<ol type="1">
+<li>Administrar cada prueba antes de abordar su bloque, no las cuatro seguidas como un examen único. Si se necesita un panorama inicial de todo el curso, repartirlas entre encuentros y registrar qué temas aún no fueron enseñados.</li>
+<li>Explicar que no se busca aprobar o desaprobar. Pedir procedimientos y permitir la respuesta «No lo vi» para no confundir ausencia de enseñanza con dificultad.</li>
+<li>En el primer intento, no dar pistas ni tablas de fórmulas; en Funciones se permite calculadora para aproximaciones. Si luego se brinda ayuda, anotar cuál fue y separar esa evidencia del intento autónomo.</li>
+<li>Registrar por ejercicio interpretación, procedimiento y justificación. Usar la guía para decidir qué recuperar, sin reducir el diagnóstico a una nota total.</li>
+</ol>
+<h2 id="límites-del-instrumento">Límites del instrumento</h2>
+<p>Es una selección breve, no una evaluación exhaustiva de cada variante del práctico. No incluye técnicas nuevas como integración por partes o sustitución general, ecuaciones diferenciales, programación ni física de circuitos. EVA2 no se usa como consigna porque su situación de descarga pertenece a un contexto informático. En Integrales se recupera una función de TP4 como objeto puramente matemático, sin ese contexto.</p>
+<p>La secuencia general del proyecto está en <a href="../../planificacion/secuencia.md">planificacion/secuencia.md</a>. Estos diagnósticos no modifican ni eliminan otros materiales del repositorio; las clases de Programación quedan fuera de este trabajo.</p>
+<h2 id="regenerar-el-html">Regenerar el HTML</h2>
+<p>Solo para editar el material: se requieren Python 3 y Pandoc, ya disponibles en el entorno donde se generó esta versión. Para leer o imprimir los HTML no se necesita ninguna de estas herramientas. Después de modificar un Markdown, ejecutá desde la raíz del proyecto:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-</span> <span class="op">&lt;&lt;&#39;PY&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">from pathlib import Path</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">import re</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">import subprocess</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">folder = Path(&#39;evaluaciones/diagnosticos&#39;)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">sources = sorted(folder.glob(&#39;*.md&#39;))</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">names = {p.name: (&#39;index.html&#39; if p.name == &#39;README.md&#39; else p.stem + &#39;.html&#39;)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">         for p in sources}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">for source in sources:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">    title = source.read_text().splitlines()[0].removeprefix(&#39;# &#39;)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">    result = subprocess.run(</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">        [&#39;pandoc&#39;, str(source), &#39;--from=markdown&#39;, &#39;--to=html5&#39;, &#39;--standalone&#39;,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">         &#39;--template=&#39; + str(folder / &#39;plantilla.html&#39;),</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">         &#39;--metadata&#39;, &#39;pagetitle=&#39; + title,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">         &#39;--metadata&#39;, &#39;markdownsource=&#39; + source.name, &#39;--wrap=none&#39;],</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">        check=True, text=True, capture_output=True)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">    html = re.sub(r&#39;href=&quot;([^&quot;#]+\.md)&quot;&#39;,</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">                  lambda m: &#39;href=&quot;&#39; + names.get(m[1], m[1]) + &#39;&quot;&#39;, result.stdout)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">    (folder / names[source.name]).write_text(html)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">print(&#39;HTML actualizado: &#39; + str(len(sources)) + &#39; páginas.&#39;)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">PY</span></span></code></pre></div>
+<p>La plantilla es <code>plantilla.html</code> y los estilos son <code>diagnosticos.css</code>. No editar solamente los HTML generados: esos cambios se perderían al regenerar. Los enlaces al material fuera de esta colección conservan su formato original, por ejemplo los PDF y la planificación Markdown.</p>
+  </main>
+  <footer class="site-footer">
+    <p>Material de Matemática. Las pruebas y la guía docente son documentos separados.</p>
+    <p>Versión editable: <a href="./README.md">README.md</a>. <a href="index.html">Volver al índice</a>.</p>
+  </footer>
+</body>
+</html>

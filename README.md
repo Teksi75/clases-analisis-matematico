@@ -6,7 +6,7 @@ Base de conocimiento y planificación inicial para preparar clases a partir de c
 
 1. Consultar el [índice de conocimiento](conocimiento/README.md) para ubicar temas y ejercicios.
 2. Recorrer la [secuencia de clases propuesta](planificacion/secuencia.md).
-3. Aplicar las [pruebas diagnósticas por tema](evaluaciones/diagnosticos/README.md), exclusivamente de Matemática, para ajustar el punto de partida.
+3. Abrir los [diagnósticos en HTML](evaluaciones/diagnosticos/index.html) para leerlos e imprimirlos en el navegador. Las [fuentes editables en Markdown](evaluaciones/diagnosticos/README.md) se conservan. Las pruebas son exclusivamente de Matemática y permiten ajustar el punto de partida.
 4. Usar la [primera clase: funciones y modelos](clases/analisis/clase-01.md) según los resultados del diagnóstico.
 
 ## Estructura
