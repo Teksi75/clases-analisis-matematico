@@ -1,46 +1,52 @@
 # Diagnóstico 4 · Primitivas e integral definida
 
-Nombre y apellido: ____________________  Fecha: __________
+Nombre y apellido: ______________________________
+
+Fecha: ______________
+
+Instancia: ☐ Diagnóstico inicial  ☐ Revisión posterior
+
+Completá estos datos en tu hoja de respuestas para comparar tu avance.
 
 **Propósito:** conocer cómo encontrás primitivas, las comprobás y distinguís una integral indefinida de una definida. Mostrá los pasos. Si no viste un contenido, escribí «No lo vi».
 
-Tiempo orientativo: 30–40 minutos, ajustable. Sin software ni tabla de integrales en el primer intento. Se trabaja con argumentos trigonométricos en radianes y exclusivamente con contenido matemático.
+Tiempo orientativo: 30–40 minutos, ajustable. Sin software ni tabla de integrales en el primer intento. Se trabaja con argumentos trigonométricos en radianes.
 
 ### I1 · Primitiva y comprobación
 
-Hallá la familia de primitivas de `f(x)=3x²−2x`. Escribí el resultado con notación de integral y comprobalo derivando. ¿Por qué aparece una constante `C`?
+Hallá la familia de primitivas de $f(x)=3x^2-2x$. Escribí el resultado con notación de integral y comprobalo derivando. ¿Por qué aparece una constante $C$?
 
 ### I2 · Suma y potencia negativa
 
 Calculá:
 
-a. `∫(eˣ+x²) dx`.
+a. $\int (e^x+x^2)\,\mathrm{d}x$.
 
-b. `∫(1/x³) dx`. Indicá en qué intervalos del dominio tiene sentido tu respuesta.
+b. $\int \frac{1}{x^3}\,\mathrm{d}x$. Indicá en qué intervalos del dominio tiene sentido tu respuesta.
 
 ### I3 · Trigonométricas
 
 Calculá:
 
-a. `∫(sen(x)−cos(x)) dx`.
+a. $\int (\operatorname{sen}(x)-\cos(x))\,\mathrm{d}x$.
 
-b. `∫3sen(4x) dx`.
+b. $\int 3\operatorname{sen}(4x)\,\mathrm{d}x$.
 
 Comprobá la respuesta del inciso b derivando. Explicá cómo tuviste en cuenta el factor 4 del argumento.
 
 ### I4 · Exponencial con argumento lineal
 
-Calculá `∫e^(6x) dx` y comprobá el resultado por derivación.
+Calculá $\int e^{6x}\,\mathrm{d}x$ y comprobá el resultado por derivación.
 
 ### I5 · Integral definida y área
 
-Sea `r(x)=4+2x`, para `0≤x≤5`.
+Sea $r(x)=4+2x$, para $0\le x\le 5$.
 
-a. Calculá `∫₀³ r(x) dx`, mostrando una primitiva y la evaluación en los extremos.
+a. Calculá $\int_0^3 r(x)\,\mathrm{d}x$, mostrando una primitiva y la evaluación en los extremos.
 
 b. Explicá qué región del plano representa el resultado y por qué en este intervalo coincide con un área positiva.
 
-c. ¿Por qué el resultado de esta integral definida es un número y no una familia con `+C`?
+c. ¿Por qué el resultado de esta integral definida es un número y no una familia con $+C$?
 
 ## Cómo te resultó
 
@@ -52,4 +58,4 @@ I1: __________  I2: __________  I3: __________  I4: __________  I5: __________
 
 ---
 
-Fuentes: [TP4 Integrales](../../material/pdf/tp4%20integrales.pdf), p. 1, ej. 1.1–1.4 y 2.1–2.2; pp. 1–2, ej. 4. Para I5 se conserva la función y el intervalo originales, retirando el contexto informático y planteando únicamente la integral y su lectura geométrica. Las preguntas de comprobación son adaptación docente, no copia literal.
+Material de referencia de **ETec · 5.º año · Matemática**: [tp4 integrales.pdf](../../material/pdf/tp4%20integrales.pdf), p. 1, ej. 1.1–1.4 y 2.1–2.2; pp. 1–2, ej. 4. Actividades adaptadas sobre primitivas y área; en I5 se conserva la función y el intervalo del práctico.

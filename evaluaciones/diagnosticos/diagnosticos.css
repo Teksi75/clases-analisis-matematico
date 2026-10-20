@@ -66,6 +66,14 @@ code {
   border-radius: 0.2rem;
   white-space: normal;
 }
+math {
+  font-family: "STIX Two Math", "Cambria Math", math;
+  font-size: 1.08em;
+  math-style: normal;
+}
+math[display="block"] { margin: 1.1rem 0; padding: 0.4rem 0; }
+p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; }
+td math { font-size: 1.06em; }
 pre { overflow-x: auto; padding: 1rem; background: #f0f4f7; }
 pre code { white-space: pre; padding: 0; }
 table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.9rem; }
@@ -100,4 +108,6 @@ hr { margin: 2rem 0; border: 0; border-top: 1px solid var(--line); }
   thead { display: table-header-group; }
   a { color: inherit; }
   code { background: none; padding: 0; }
+  math { break-inside: avoid; }
+  math[display="block"] { margin: 0.7rem 0; }
 }

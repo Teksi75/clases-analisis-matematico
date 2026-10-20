@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>$pagetitle$ · Matemática</title>
+  <title>$pagetitle$ · ETec · 5.º año</title>
   <link rel="stylesheet" href="diagnosticos.css">
 </head>
 <body>
@@ -17,17 +17,23 @@
         <a href="02-limites-continuidad.html">Límites</a>
         <a href="03-derivadas.html">Derivadas</a>
         <a href="04-integrales.html">Integrales</a>
-        <a href="guia-docente.html">Guía docente</a>
+$if(teacher)$
+        <a href="guia-docente.html" aria-current="page">Guía docente</a>
+$endif$
       </nav>
     </div>
   </header>
   <main id="contenido" tabindex="-1">
-    <p class="reading-note">Lectura sin conexión · Para imprimir o guardar como PDF, usá la opción Imprimir de tu navegador.</p>
+    <p class="eyebrow">ETec · 5.º año · Matemática</p>
 $body$
   </main>
   <footer class="site-footer">
-    <p>Material de Matemática. Las pruebas y la guía docente son documentos separados.</p>
-    <p>Versión editable: <a href="./$markdownsource$">$markdownsource$</a>. <a href="index.html">Volver al índice</a>.</p>
+$if(teacher)$
+    <p>Uso docente · Compartir con el estudiante solamente las hojas de actividades.</p>
+$else$
+    <p>Cada intento te ayuda a reconocer lo que aprendiste y lo que podés seguir practicando.</p>
+$endif$
+    <p><a href="index.html">Volver a los temas</a></p>
   </footer>
 </body>
 </html>
