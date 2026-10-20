@@ -1,0 +1,98 @@
+                    TRABAJO PRÁCTICO N°4 - v1.0
+                    Integral
+                    Matemática
+                    5to AÑO - Prof. Damián Pedraza
+
+
+
+                                      Primitivas o antiderivadas
+
+Ejercicio 1. Encontrar las primitivas o antiderivadas de las siguientes funciones. Luego escribir el resultado
+utilizando la notación de integral vista en clase.
+
+  1. 𝑓 (𝑥) = 3𝑥 2 − 2𝑥                                        4. 𝑗 (𝑥) = 𝑠𝑒𝑛(𝑥) − 𝑐𝑜𝑠(𝑥)
+
+  2. 𝑔(𝑥) = 𝑒 𝑥 + 𝑥 2                                         5. 𝑤(𝑥) = 𝑥 −1/2
+              1
+  3. ℎ(𝑥) =                                                   6. 𝑘 (𝑥) = 3𝑥 2 + 𝑠𝑒𝑛(5𝑥)
+              𝑥3
+
+
+
+                            Primitivas o antiderivadas más desafiantes
+
+Ejercicio 2. Encontrar las primitivas o antiderivadas de las siguientes funciones. Luego escribir el resultado
+utilizando la notación de integral vista en clase.
+
+  1. 𝑓 (𝑥) = 3 𝑠𝑒𝑛(4𝑥)                                        4. 𝑗 (𝑥) = 𝑠𝑒𝑛(2𝑥) − 𝑐𝑜𝑠(4𝑥)
+
+  2. 𝑔(𝑥) = 𝑒 6 𝑥                                             5. 𝑤(𝑥) = 𝑒 − 𝑥
+           √
+  3. ℎ(𝑥) = 𝑥                                                 6. 𝑘 (𝑥) = 𝑥 2 + 𝑠𝑒𝑛(𝑥)
+
+
+
+
+                                Situaciones Reales para Informáticos
+
+Ejercicio 3. Velocidad de descarga.
+Una conexión de internet por cable de red tiene una velocidad de descarga modelada por:
+
+                                              𝑉 (𝑡) = 50(1 − 𝑒 −0,3𝑡 )
+
+La unidad es [MB/s] donde 𝑡 es el tiempo en segundos desde que inicia la descarga.
+
+  1. Calcular el tamaño de un archivo que se descargó si la descarga duró exactamente 7 segundos.
+
+  2. Calcular el tamaño de un archivo que se descargó si la descarga duró exactamente 1 minuto.
+
+  3. Determinar cuánto tiempo se demorará en descargar un archivo que pesa 550 MB.
+
+
+Ejercicio 4. Transferencia de datos en la red
+La velocidad de transmisión de datos (en MB por segundo) de un servidor está modelada por la función
+
+                                          𝑣(𝑡) = 4 + 2𝑡   para 0 ≤ 𝑡 ≤ 5,
+
+donde 𝑡 se mide en segundos.
+
+  1. ¿Qué velocidad tiene el servidor en tiempo cero (𝑡 = 0 segundos)?
+
+
+
+                                                          1
+5to AÑO - Prof. Damián Pedraza                                                              Matemática
+
+   2. Durante los primeros 5 segundos, ¿la velocidad aumenta o disminuye?
+
+   3. ¿Cuántos MB de datos se transmiten en total entre los 0 y 3 segundos?
+
+
+ Ejercicio 5. Consumo de energía en un procesador Durante los primeros 8 segundos de procesamiento,
+ la potencia instantánea consumida por un microprocesador (en W) se modela mediante
+                                                                      𝜋 
+                                               𝑃(𝑡) = 50 + 10 cos        𝑡
+                                                                       4
+ donde 𝑡 se mide en segundos.
+
+   1. Graficar en Geogebra la potencia instantánea. ¿Es constante?
+
+   2. ¿Cuánta energía es consumida por el procesador durante los primeros 8 segundos de funcionamiento?
+
+ Dato: (La energía se mide en Joules: 1 J = 1 Watt · segundo).
+
+ Ejercicio 6. Carga de información en una memoria La velocidad de escritura de datos en una memoria
+ RAM (en kB por segundo) se aproxima por
+
+                                        𝑟 (𝑡) = 200𝑒 −0,2𝑡       para 0 ≤ 𝑡 ≤ 10.
+
+   1. Determinar cuantos Bytes manipula la RAM en los primeros 4 segundos de operación.
+
+   2. Determinar cuánto tiempo requere la RAM para gestionar un proceso que requiere una manipulación
+      de 130 kB de datos.
+
+
+
+
+                                                             2
+

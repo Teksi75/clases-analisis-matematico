@@ -1,0 +1,212 @@
+                    TRABAJO PRÁCTICO N°2 - v1.0
+                    Límite
+                    Matemática
+                    5to AÑO - Prof. Damián Pedraza
+
+
+
+                               Límites laterales y existencia del límite
+
+Ejercicio 1. Para las funciones mostradas determine lo siguiente:
+
+  1. lı́m 𝑓 (𝑥)                 7. lı́m 𝑓 (𝑥)                   13. lı́m− ℎ(𝑥)            19. 𝑓 (2)
+     𝑥→0                             𝑥→2                             𝑥→1
+
+  2. lı́m− 𝑓 (𝑥)                8. lı́m 𝑓 (𝑥)                   14. lı́m+ ℎ(𝑥)            20. 𝑓 (0)
+     𝑥→2                             𝑥→− 8                           𝑥→1
+
+  3. lı́m+ 𝑓 (𝑥)                9. lı́m 𝑔(𝑥)                    15. lı́m ℎ(𝑥)             21. 𝑔(3)
+     𝑥→2                             𝑥→3                             𝑥→1
+
+  4. lı́m 𝑓 (𝑥)                10.    lı́m ℎ(𝑥)                 16. lı́m− ℎ(𝑥)            22. ℎ(−3)
+     𝑥→2                             𝑥→− 3 −                         𝑥→4
+
+  5. lı́m 𝑔(𝑥)                 11.    lı́m ℎ(𝑥)                 17. lı́m+ ℎ(𝑥)            23. ℎ(1)
+     𝑥→0                             𝑥→− 3+                          𝑥→4
+
+  6. lı́m ℎ(𝑥)                 12. lı́m ℎ(𝑥)                    18. lı́m ℎ(𝑥)             24. ℎ(4)
+     𝑥→0                             𝑥→− 3                           𝑥→4
+
+
+¿Qué condición debe cumplirse para que una función sea contínua en un punto de interés?
+¿Qué debe suceder con los límites laterales para afirmar que el límite existe?
+
+ Dato curioso: este ejercicio fue parte del integrador del año pasado. Nada, solo digo.
+
+
+
+
+Ejercicio 2. Dada la siguiente función:
+
+                                                         
+                                                         
+                                                         
+                                                          𝑥 + 2, si 𝑥 < 1
+                                                         
+                                                         
+                                                  𝑓 (𝑥) = 3,      si 𝑥 = 1
+                                                         
+                                                         
+                                                         𝑥2,
+                                                         
+                                                                  si 𝑥 > 1
+                                                         
+  1. Calcular lı́m− 𝑓 (𝑥)                                        4. ¿Es continua 𝑓 en 𝑥 = 1? ¿Por qué?
+                   𝑥→1
+
+  2. Calcular lı́m+ 𝑓 (𝑥)
+                   𝑥→1                                           5. Graficar en GeoGebra y ver si tiene sentido lo
+  3. ¿Existe lı́m 𝑓 (𝑥)? ¿Por qué?                                  que respondiste hasta el momento.
+                  𝑥→1
+
+
+
+
+                                                            1
+5to AÑO - Prof. Damián Pedraza                                                                        Matemática
+
+
+
+                                     Cálculo analítico de límites
+
+ Ejercicio 3. Calcular los siguientes límites. Indicar el proceso de simplificación necesario para encontrar el
+ resultado y bajo qué condiciones se está trabajando en cada caso.
+
+          𝑥2 − 4                                                   𝑥2 − 9
+   1. lı́m                                                  4. lı́m
+      𝑥→2 𝑥 − 2                                                𝑥→3 𝑥 − 3
+
+            𝑥 2 + 3𝑥 + 2                                             𝑥 2 + 4𝑥 + 4
+   2. lı́m                                                  5. lı́m
+      𝑥→− 1     𝑥+1                                            𝑥→− 2     𝑥+2
+          𝑥3 − 1                                                   𝑥2 − 𝑥
+   3. lı́m                                                  6. lı́m
+      𝑥→1 𝑥 − 1                                                𝑥→0   𝑥
+
+
+
+                                          Cálculo de asíntotas
+
+ Ejercicio 4. Utilizando límites laterales determinar las ecuaciones de las asíntotas verticales de las siguien-
+ tes funciones racionales:
+
+                 1                                                         𝑥2 − 4
+   1. 𝑓 (𝑥) =                                               4. 𝑓 (𝑥) =
+                𝑥−2                                                      𝑥2 − 𝑥 − 6
+                 𝑥+1                                                      𝑥2 + 𝑥 + 1
+   2. 𝑓 (𝑥) =                                               5. 𝑓 (𝑥) =
+                𝑥2 − 1                                                   𝑥 2 − 4𝑥 + 3
+                   𝑥2                                                      1
+   3. 𝑓 (𝑥) =                                               6. 𝑓 (𝑥) =
+                𝑥(𝑥 − 3)                                                 𝑥2 − 9
+
+ ¿Qué debe cumplir una función racional para que tenga asíntotas verticales?
+
+
+ Ejercicio 5. Utilizando límites en el infinito determinar las asíntotas horizontales (si existen) de las siguien-
+ tes funciones racionales:
+
+                2𝑥 2 + 3                                    4. 𝑓 (𝑥) =
+                                                                           𝑥
+   1. 𝑓 (𝑥) =                                                            𝑥2 + 1
+                𝑥2 + 1
+                3𝑥 − 1                                                   𝑥2 + 1
+   2. 𝑓 (𝑥) =                                               5. 𝑓 (𝑥) =
+                 𝑥+2                                                     𝑥3 + 2
+                  4𝑥 3 + 1                                                5𝑥 2 − 𝑥
+   3. 𝑓 (𝑥) =                                               6. 𝑓 (𝑥) =
+                2𝑥 3 − 5𝑥 + 1                                            3𝑥 2 + 𝑥 + 1
+
+ Graficar en GeoGebra para verificar si están en lo correcto. ¿Cómo debe ser una función racional para que
+ tenga asíntota horizontal?
+
+
+
+
+                                                        2
+Matemática                                                                      5to AÑO - Prof. Damián Pedraza
+
+
+
+                     Estudio de la continuidad de una función en un punto
+
+ Ejercicio 6. Utilizando límites y todo lo visto hasta el momento, determinar si las siguientes funciones son
+ contínuas en los puntos indicados.
+
+               𝑥 2 − 1, 𝑥 < 1
+                                                                      
+             
+                                                                      𝑥 + 2, 𝑥 ≤ 0
+                                                                      
+                                                                      
+                                                           4. 𝑓 (𝑥) =                  en 𝑥 = 0
+             
+             
+             
+             
+   1. 𝑓 (𝑥) = 0,        𝑥=1       en 𝑥 = 1                            𝑥2,
+                                                                              𝑥>0
+             
+                                                                     
+              𝑥 − 1, 𝑥 > 1
+             
+             
+                                                                      𝑥2 − 9
+               𝑥2 − 1
+                                                                     
+                                                                     
+                                                                             , 𝑥≠3
+                                                           5. 𝑓 (𝑥) = 𝑥 − 3            en 𝑥 = 3
+             
+             
+             
+                     , 𝑥≠1
+   2. 𝑓 (𝑥) = 𝑥 − 1               en 𝑥 = 1                            6,
+                                                                     
+                                                                                𝑥=3
+              2,
+             
+                        𝑥=1
+                                                                     
+             
+                √                                                       𝑥−2
+                                                                              , 𝑥≠2
+              
+               𝑥 + 4,
+              
+                        𝑥 ≥ −4                                       
+                                                                       2
+                                                                      
+   3. 𝑓 (𝑥) =                      en 𝑥 = −4               6. 𝑓 (𝑥) =   𝑥  −4           en 𝑥 = 2
+               −1,
+                        𝑥 < −4                                        −1,
+                                                                               𝑥=2
+                                                                     
+
+ Graficar en GeoGebra para verificar si están en lo correcto.
+
+
+ Desafío Grupal 1. En una ruta de Argentina en un peaje se muestra el cartel que está más abajo.
+
+   1. Hacer un gráfico de la tarifa para un conductor que circula en auto en sentido a capital, en función del
+      tiempo medido en horas. Tener en cuenta la hora pico: en ese periodo, la tarifa es un 20 % más elevada.
+
+   2. Analizar las discontinuidades de esta función y su significado para alguien que utiliza la esa ruta.
+
+   3. Indicar qué cálculo matemático representa la tarifa que el usuario que se traslada en auto sentido a
+      provincia deberá pagar en los siguientes casos:
+
+       a) Está llegando al peaje segundos antes de las 7 AM.
+       b) Está llegando al peaje segundos después de las 7 AM.
+        c) Atravesó el peaje segundos antes de las 10 AM.
+       d) Le están cobrando el peaje exactamente a las 11 AM.
+
+   4. Si exactamente a las 8 AM se corta el servicio eléctrico en el peaje y levantan las barreras para que los
+      vehículos pasen sin abonar, recomponiéndose el servicio normal a las 13 horas, hacer un gráfico de la
+      tarifa que debieron pagar los usuarios ese día para autos sentido a provincia.
+
+
+
+
+                                                       3
+

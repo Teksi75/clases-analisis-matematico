@@ -1,0 +1,59 @@
+            EVA 1: PRIMER CUATRIMESTRE - MATEMÁTICA - 5TO AÑO - 26/6/2025
+
+          Nombre y apellido: ................................................... Nota: ......................................................
+1. Messi hizo un tiro libre en el Mundial de la FIFA de Qatar 2022. Eran las 12 del mediodı́a y el sol proyectaba una
+   sombra sobre el terreno exactamente en la vertical de la pelota. El sistema informático del VAR dice que la altura de
+   la pelota (sin rebotes) se modela por la función:
+                                                                          1
+                                                            h(x) = −         (x − 45)2 + 15
+                                                                         135
+    donde x es la distancia entre Messi y la sombra de la pelota luego del lanzamiento (en metros, medida en el terreno) y
+  h es la altura de la pelota respecto al suelo (en metros). Hacer los planteos, deducciones, explicaciones y justificaciones
+  que correspondan para poder responder las siguientes consignas:
+
+    a) Encontrar las posiciones para las cuales la pelota está en el suelo. Si el arco está a 100 metros de Messi, ¿la
+       pelota llega al arco? ¿se pasa del arco? ¿por qué?
+    b) ¿Qué valores de x no tienen sentido real en la función h(x)? ¿por qué?
+    c) ¿Qué altura alcanza la pelota luego de que la sombra recorre 10 metros de distancia desde el pie de Messi? ¿Cuál
+       es la distancia entre Messi y la sombra de la pelota ese momento? ¿y la distancia entre Messi y la pelota?
+    d) Haga la gráfica de la función con toda la información recolectada. Indique si la función tiene ası́ntotas verticales
+       u horizontales. Indique las coordenadas de los puntos que considere importantes en la función. Haga una
+       estimación de la altura máxima que alcanza la pelota (y donde sucede) e indı́quelo en el gráfico.
+
+  Rúbrica. Por cada ı́tem el alumno obtiene el siguiente puntaje:
+
+     • [1 p] por la interpretación y lectura correcta de la consigna.
+     • [1 p] por la resolución adecuada a partir del planteo hecho.
+     • [0.5 p] por la prolijidad y claridad al momento de expresarse matemática y coloquialmente por escrito.
+
+
+
+
+            EVA 1: PRIMER CUATRIMESTRE - MATEMÁTICA - 5TO AÑO - 26/6/2025
+
+          Nombre y apellido: ................................................... Nota: ......................................................
+1. Messi hizo un tiro libre en el Mundial de la FIFA de Qatar 2022. Eran las 12 del mediodı́a y el sol proyectaba una
+   sombra sobre el terreno exactamente en la vertical de la pelota. El sistema informático del VAR dice que la altura de
+   la pelota (sin rebotes) se modela por la función:
+                                                                          1
+                                                            h(x) = −         (x − 45)2 + 15
+                                                                         135
+    donde x es la distancia entre Messi y la sombra de la pelota luego del lanzamiento (en metros, medida en el terreno) y
+  h es la altura de la pelota respecto al suelo (en metros). Hacer los planteos, deducciones, explicaciones y justificaciones
+  que correspondan para poder responder las siguientes consignas:
+
+    a) Encontrar las posiciones para las cuales la pelota está en el suelo. Si el arco está a 100 metros de Messi, ¿la
+       pelota llega al arco? ¿se pasa del arco? ¿por qué?
+    b) ¿Qué valores de x no tienen sentido real en la función h(x)? ¿por qué?
+    c) ¿Qué altura alcanza la pelota luego de que la sombra recorre 10 metros de distancia desde el pie de Messi? ¿Cuál
+       es la distancia entre Messi y la sombra de la pelota ese momento? ¿y la distancia entre Messi y la pelota?
+    d) Haga la gráfica de la función con toda la información recolectada. Indique si la función tiene ası́ntotas verticales
+       u horizontales. Indique las coordenadas de los puntos que considere importantes en la función. Haga una
+       estimación de la altura máxima que alcanza la pelota (y donde sucede) e indı́quelo en el gráfico.
+
+  Rúbrica. Por cada ı́tem el alumno obtiene el siguiente puntaje:
+
+     • [1 p] por la interpretación y lectura correcta de la consigna.
+     • [1 p] por la resolución adecuada a partir del planteo hecho.
+     • [0.5 p] por la prolijidad y claridad al momento de expresarse matemática y coloquialmente por escrito.
+

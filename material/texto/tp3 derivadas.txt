@@ -1,0 +1,223 @@
+                      TRABAJO PRÁCTICO N°3 - v1.2
+                      Derivada
+                      Matemática
+                      5to AÑO - Prof. Damián Pedraza
+
+
+
+                                                    El arte de derivar
+
+Ejercicio 1. Derivar las siguientes funciones. Luego elegir la que más te guste y graficarla junto a su deri-
+vada en GeoGebra.
+
+  1. 𝑓 (𝑥) = 3𝑥 2 − 2𝑥                                                  4. 𝑗 (𝑥) = 𝑠𝑒𝑛(𝑥) · 𝑐𝑜𝑠(𝑥)
+
+  2. 𝑔(𝑥) = 𝑒 𝑥 𝑥 2                                                     5. 𝑤(𝑥) = 𝑥 −3
+               2
+              𝑥 +𝑥
+  3. ℎ(𝑥) =                                                             6. 𝑘 (𝑥) = 𝑥 2 · 𝑠𝑒𝑛(𝑥)
+               𝑥3
+
+
+Desafío Grupal 1. Batalla Naval Matemática: Reglas del juego.
+
+1. Preparación
+
+  1. Cada alumno dispone de una hoja cuadriculada o un espacio para graficar.
+
+  2. De forma secreta, cada jugador inventa una función 𝑓 (𝑥).
+
+         • Funciones permitidas:
+            𝑓 (𝑥) = ±𝑥 + 𝑘,   𝑔(𝑥) = ±𝑥 2 + 𝑘,   ℎ(𝑥) = ±𝑒 𝑥 + 𝑘,   𝑤(𝑥) = ±𝑙𝑛(𝑥) + 𝑘.
+           La constante 𝑘 debe tener un valor fijo, pudiendo ser cualquier número real entre −3 y 3.
+         • Debe estar definida en un dominio claro (por ejemplo, −5 ≤ 𝑥 ≤ 5).
+
+  3. El jugador dibuja su función en la hoja, pero no la muestra al contrincante.
+
+2. Objetivo
+
+Adivinar la función del contrincante antes de que él adivine la tuya.
+
+3. Tipos de preguntas permitidas
+
+En tu turno, podés hacer una sola pregunta:
+
+  1. Para un valor de 𝑥 determinado, preguntar si 𝑓 (𝑥) es positivo o negativo. Ejemplo: ¿ 𝑓 (2) es positivo?
+
+  2. Para un valor de 𝑥 determinado, preguntar si 𝑓 ′ (𝑥) es positivo o negativo. Ejemplo: ¿ 𝑓 ′ (2) es positivo?
+
+
+4. Reglas de las respuestas
+
+   • El jugador debe responder con monosílabos: SÍ o NO.
+
+   • No se puede mentir.
+
+   • No se muestran cálculos ni la gráfica.
+
+
+
+
+                                                                    1
+5to AÑO - Prof. Damián Pedraza                                                                    Matemática
+
+
+ 5. Turnos
+
+   1. El jugador A hace una pregunta (tipo 1 o tipo 2).
+
+   2. El jugador B responde.
+
+   3. Luego el jugador B pregunta y el jugador A responde.
+
+   4. Se repite el proceso entre los jugadores hasta que termine el juego.
+
+ 6. Intentar adivinar
+
+    • En cualquier momento de su turno, un jugador puede intentar adivinar la función del otro.
+
+    • Si acierta, gana la partida.
+
+    • Si falla, pierde el turno y el juego continúa.
+
+ 7. Fin del juego
+
+ El juego termina cuando:
+
+    • Un jugador adivina correctamente la función del otro.
+
+    • Toca el timbre.
+
+ 8. Consejos estratégicos
+
+    • Preguntar sobre la derivada da pistas sobre el crecimiento y la forma de la curva,
+
+    • Preguntar valores de la función ayuda a ubicar puntos clave.
+
+    • Combinar ambos tipos de preguntas acelera el descubrimiento.
+
+
+ Ejercicio 2. Ahora las funciones son un poco más desafiantes, porque se construyen a partir de las funciones
+ del ejercicio anterior. Encontrar la expresión de la funión en cada caso:
+
+   1. 𝐿(𝑥) = 𝑓 (𝑥 2 )                                      4. 𝑃(𝑥) = 𝑗 (𝑥 2 )
+
+   2. 𝑀 (𝑥) = 𝑔(3𝑥)                                        5. 𝑄(𝑥) = 𝑤(𝑥 − 1)
+
+   3. 𝑁 (𝑥) = ℎ(2𝑥)                                        6. 𝑅(𝑥) = 𝑘 (𝑥 3 )
+
+ Una vez encontrada la expresión, determinar en cada caso cuál es la función derivada.
+
+ Ejercicio 3. Si un objeto se mueve según la función 𝑓 (𝑡) (función posición, siendo 𝑡 el tiempo medido en
+ segundos), en cada caso:
+    • Determinar cuál es la velocidad para 0 segundos, 5 segundos, y 10 segundos.
+
+    • Graficar 𝑓 (𝑡) en Geogebra.
+
+    • Especular sobre qué fenómeno podría representarse con cada función.
+
+   1. 𝑓 (𝑡) = 𝑒 −0,5𝑡                                      4. 𝑓 (𝑡) = 𝑒 −𝑡 · 𝑠𝑒𝑛(𝑡)
+                                                                        𝑠𝑒𝑛(𝑡)
+   2. 𝑓 (𝑡) = 𝑠𝑒𝑛(0,3 · 𝑡)                                 5. 𝑓 (𝑡) =
+                                                                          𝑡
+   3. 𝑓 (𝑡) = 𝑙𝑛(2𝑡 + 1)                                   6. 𝑓 (𝑡) = 𝑠𝑒𝑛(𝑡) · 𝑐𝑜𝑠(5𝑡)
+
+
+                                                       2
+Matemática                                                                      5to AÑO - Prof. Damián Pedraza
+
+
+
+             Aplicaciones de la derivada en casos reales: Para informáticos
+
+ Ejercicio 4. Velocidad de descarga.
+ Una conexión de internet por cable de red tiene una velocidad de descarga modelada por:
+
+                                               𝑉 (𝑡) = 50(1 − 𝑒 −0,3𝑡 )
+
+ La unidad es [MB/s] donde 𝑡 es el tiempo en segundos desde que inicia la descarga.
+
+   1. Calculá 𝑉 ′ (𝑡). ¿Cómo calcular como cambia la velocidad en el instante que inicia la descarga?
+
+   2. Para 𝑡 = 10 s, ¿cómo está cambiando la velocidad? ¿Se sigue notando mejora o ya está casi estable?
+
+
+ Ejercicio 5. Consumo de batería vs. brillo.
+ El consumo de una notebook depende del nivel de brillo de pantalla:
+
+                                                𝐶 (𝑏) = 20 + 0,05 · 𝑏 2
+
+ La unidad es [W] donde 𝑏 es el porcentaje de brillo, de 0 a 100.
+
+   1. Calculá 𝐶 ′ (𝑏). ¿Cuánto aumenta el consumo si subo el brillo de 50 % al 51 % ?
+
+   2. ¿En qué rango de valores el consumo crece más rápido con respecto al brillo?
+
+   3. ¿Conviene bajar un poco el brillo para extender la duración de la batería?
+
+
+ Ejercicio 6. Temperatura de un procesador.
+ La temperatura de un CPU al correr un programa pesado se puede modelar así:
+
+                                             𝑇 (𝑡) = 30 + 50(1 − 𝑒 −0,1𝑡 )
+
+ La unidad [°C] El programa se empieza a correr para 𝑡 = 0 segundos.
+
+   1. Encontrá la velocidad con la que cambia la temperatura en el instante de tiempo 𝑡.
+
+   2. ¿En qué momento el procesador deja de calentarse rápidamente y entra en una “meseta”?
+
+
+
+
+             Aplicaciones de la derivada en casos reales: Para electrónicos
+
+ Ejercicio 7. Descarga de un capacitor.
+ En un flash de una cámara (profesional) , la lámpara utiliza un capacitor cuya descarga se aproxima con:
+
+                                                 𝑉 (𝑡) = 300𝑒 −𝑡/0,02
+
+ LA unidad es [V] donde 𝑉 (𝑡) es la tensión en función del tiempo del capacitor.
+
+   1. Graficar una función proporcional al brillo del flash. ¿En qué instante de tiempo el brillo del flash cambia
+      más rápidamente?
+
+
+
+
+                                                          3
+5to AÑO - Prof. Damián Pedraza                                                                Matemática
+
+ Ejercicio 8. Potencia en una lámpara.
+ La potencia desarrollada en una lámpara de resistencia R depende de la tensión y de R.
+
+   1. Encontrar la función potencia en términos de la tensión y la resistencia.
+
+   2. Si R es constante, ¿cómo es la gráfica de la potencia?
+
+   3. Para 𝑈 = 120 V, ¿qué pasa con la potencia si la tensión sube 1 V?
+
+   4. ¿Para qué valor de tensión la potencia aumenta más rápidamente?
+
+
+ Ejercicio 9. Corriente alterna senoidal.
+ La corriente en un circuito RL es:
+
+                                                𝑖(𝑡) = 5𝑠𝑒𝑛(100𝜋𝑡)
+
+ La unidad es [A]
+
+   1. Dibujar el esquemático del circuito.
+
+   2. Recordar como se relaciona la corriente con la tensión del inductor. Luego encontrar la tensión del
+      inductor.
+
+   3. ¿Cuál es la corriente para 𝑡 = 10 segundos? ¿y la tensión?
+
+   4. ¿Qué sucede con la tensión cuando la corriente es máxima o mínima? ¿por qué?
+
+
+
+
+                                                        4
+

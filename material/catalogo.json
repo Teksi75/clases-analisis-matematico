@@ -1,0 +1,45 @@
+{
+  "origen": "/home/pablos/Documentos/Clases-analisis/",
+  "documentos": [
+    {
+      "id": "TP2",
+      "archivo": "material/pdf/TP2 LIMITES.pdf",
+      "paginas": 3,
+      "sha256": "f59343ea17f7c4e258aaaea5672b35583c801561c76c1a650ecbb21f4f205c7c",
+      "texto": "material/texto/TP2 LIMITES.txt",
+      "extraccion": "pdftotext -layout; cotejar fórmulas y gráficos con PDF"
+    },
+    {
+      "id": "EVA1",
+      "archivo": "material/pdf/eva1.pdf",
+      "paginas": 1,
+      "sha256": "fef93847962b7885b563c4e6be42630e107f9cd6492eea791590465ac9cdd0ac",
+      "texto": "material/texto/eva1.txt",
+      "extraccion": "pdftotext -layout; cotejar fórmulas y gráficos con PDF"
+    },
+    {
+      "id": "EVA2",
+      "archivo": "material/pdf/eva2.pdf",
+      "paginas": 2,
+      "sha256": "f4e5f4d7a02da6b254a9217764a8c0c7fd70fe008fcc8f6ba18921dcffa27127",
+      "texto": "material/texto/eva2.txt",
+      "extraccion": "sin capa de texto; consultar transcripción manual y vistas"
+    },
+    {
+      "id": "TP3",
+      "archivo": "material/pdf/tp3 derivadas.pdf",
+      "paginas": 4,
+      "sha256": "03c2d9e54ddd79d6d1d084e711275ac633b198795f68ba7b898f807ac6b4be05",
+      "texto": "material/texto/tp3 derivadas.txt",
+      "extraccion": "pdftotext -layout; cotejar fórmulas y gráficos con PDF"
+    },
+    {
+      "id": "TP4",
+      "archivo": "material/pdf/tp4 integrales.pdf",
+      "paginas": 2,
+      "sha256": "3e09abc69df197e11284aa9d09e130125bf204bb06a4362ec18dddaf4a75c592",
+      "texto": "material/texto/tp4 integrales.txt",
+      "extraccion": "pdftotext -layout; cotejar fórmulas y gráficos con PDF"
+    }
+  ]
+}
