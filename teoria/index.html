@@ -35,7 +35,7 @@
       <p id="tema-actual" class="current-topic" hidden></p>
       <details class="contents-disclosure">
       <summary>Índice de lectura</summary>
-      <div class="index-chapter"><a class="index-title" href="#funciones">01 / Funciones</a>
+      <details class="index-chapter" data-chapter="funciones" open><summary>01 / Funciones</summary><a class="index-title" href="#funciones">Inicio del capítulo</a>
 <a href="#funciones-bases-que-vamos-a-usar">1. Bases que vamos a usar</a>
 <a href="#funciones-qué-hace-que-una-relación-sea-una-función">2. Qué hace que una relación sea una función</a>
 <a href="#funciones-cuatro-maneras-de-representar-la-misma-función">3. Cuatro maneras de representar la misma función</a>
@@ -45,8 +45,8 @@
 <a href="#funciones-familias-para-reconocer-en-tp2">7. Familias para reconocer en TP2</a>
 <a href="#funciones-modelo-de-eva1-la-altura-de-una-pelota">8. Modelo de EVA1: la altura de una pelota</a>
 <a href="#funciones-resumen-conceptual">9. Resumen conceptual</a>
-<a href="#funciones-fuentes-y-continuación">Fuentes y continuación</a></div>
-<div class="index-chapter"><a class="index-title" href="#limites">02 / Límites</a>
+<a href="#funciones-fuentes-y-continuación">Fuentes y continuación</a></details>
+<details class="index-chapter" data-chapter="limites"><summary>02 / Límites</summary><a class="index-title" href="#limites">Inicio del capítulo</a>
 <a href="#limites-acercarse-no-es-llegar">1. Acercarse no es llegar</a>
 <a href="#limites-límites-laterales-y-lectura-gráfica">2. Límites laterales y lectura gráfica</a>
 <a href="#limites-cuándo-se-puede-sustituir-directamente">3. Cuándo se puede sustituir directamente</a>
@@ -55,12 +55,18 @@
 <a href="#limites-límites-al-infinito-y-asíntotas-horizontales">6. Límites al infinito y asíntotas horizontales</a>
 <a href="#limites-continuidad-que-el-valor-acompañe-la-aproximación">7. Continuidad: que el valor acompañe la aproximación</a>
 <a href="#limites-resumen-conceptual">8. Resumen conceptual</a>
-<a href="#limites-fuentes-y-siguiente-uso">Fuentes y siguiente uso</a></div>
+<a href="#limites-fuentes-y-siguiente-uso">Fuentes y siguiente uso</a></details>
       <a class="context-link" href="#lectura">Fuentes y alcance</a>
       <a class="back-top" href="#inicio">Volver al inicio ↑</a>
       </details>
     </nav>
     <main id="contenido" tabindex="-1">
+      <div class="reading-controls" hidden role="group" aria-label="Tamaño de lectura">
+        <span>Lectura</span>
+        <button type="button" id="texto-menos" aria-label="Reducir tamaño de lectura">A−</button>
+        <output id="texto-tamano" aria-live="polite">100%</output>
+        <button type="button" id="texto-mas" aria-label="Aumentar tamaño de lectura">A+</button>
+      </div>
       <div class="chapter-label" aria-hidden="true">01 / Apunte de teoría</div>
 <article id="funciones" aria-labelledby="funciones-funciones-relacionar-representar-e-interpretar">
 <h2 id="funciones-funciones-relacionar-representar-e-interpretar">Funciones: relacionar, representar e interpretar</h2>
@@ -275,9 +281,11 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
 <div class="reading-note ejemplo"><span class="note-label" data-generated="label">Ejemplo resuelto</span>
 <p><strong>Desarrollo docente basado en el PDF local <a href="../material/pdf/eva1.pdf">EVA1, p. 1, incisos a–d</a>.</strong> La fórmula y el contexto proceden del enunciado; las explicaciones y la tabla siguientes se elaboraron para este apunte, no se transcribieron de un solucionario.</p>
 </div>
+<div class="key-formula">
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mn>135</mn></mfrac><mo>+</mo><mn>15</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
 h(x)=-\frac{(x-45)^2}{135}+15.
 </annotation></semantics></math></p>
+</div>
 <p>Aquí <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> es la distancia horizontal entre el punto de lanzamiento y la sombra de la pelota, en metros; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math> es la altura sobre el suelo, también en metros. <strong>La entrada no es el tiempo.</strong> El modelo considera el vuelo sin rebotes.</p>
 <p>Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(x-45)^2\geq0</annotation></semantics></math>, al multiplicar por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mi>/</mi><mn>135</mn></mrow><annotation encoding="application/x-tex">-1/135</annotation></semantics></math> resulta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>≤</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">h(x)\leq15</annotation></semantics></math>. La igualdad se alcanza en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>: el vértice es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>45</mn><mo>,</mo><mn>15</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(45,15)</annotation></semantics></math>, la altura máxima es 15 m y el eje de simetría es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>. La concavidad es hacia abajo.</p>
 <p>Para encontrar dónde está en el suelo buscamos las raíces:</p>
@@ -371,7 +379,7 @@ d=\sqrt{10^2+\left(\frac{160}{27}\right)^2}\approx11{,}62\ \text{m}.
 <p>La fuente local del modelo es <a href="../material/pdf/eva1.pdf">EVA1, p. 1</a>. Para preparar el siguiente tema, ver <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, pp. 1–3</a>. Los demás ejemplos de este apunte son elaboración docente original.</p>
 <p>Como referencia complementaria de nivel se consultó la descripción de la colección <a href="https://www.educ.ar/recursos/151034/matematica-para-la-educacion-secundaria-tecnica-ciclo-basico">Matemática para la Educación Secundaria Técnica. Ciclo Básico — Educ.ar</a>, que incluye funciones cuadráticas, raíces, funciones elementales y modelización. No se reproduce aquí su contenido ni se afirma una equivalencia de programas. El <a href="#lectura">índice</a> aclara el alcance institucional de las referencias.</p>
 <p><strong>Siguiente lectura:</strong> <a href="#limites">Límites, asíntotas y continuidad</a>.</p>
-</article>
+<nav class="chapter-ending" data-generated="navigation" aria-label="Al terminar funciones"><a href="#funciones-resumen-conceptual">Repasar las ideas clave</a><a href="#limites">Continuar con Límites →</a></nav></article>
 <div class="chapter-label" aria-hidden="true">02 / Apunte de teoría</div>
 <article id="limites" aria-labelledby="limites-límites-acercarse-comparar-y-decidir-continuidad">
 <h2 id="limites-límites-acercarse-comparar-y-decidir-continuidad">Límites: acercarse, comparar y decidir continuidad</h2>
@@ -426,11 +434,13 @@ d=\sqrt{10^2+\left(\frac{160}{27}\right)^2}\approx11{,}62\ \text{m}.
 <h3 id="limites-límites-laterales-y-lectura-gráfica">2. Límites laterales y lectura gráfica</h3>
 <p>El límite por la <strong>izquierda</strong>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>−</mo></msup></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to a^-}f(x)</annotation></semantics></math>, usa entradas menores que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>. El límite por la <strong>derecha</strong>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>+</mo></msup></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to a^+}f(x)</annotation></semantics></math>, usa entradas mayores. Los signos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>−</mi><annotation encoding="application/x-tex">-</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>+</mi><annotation encoding="application/x-tex">+</annotation></semantics></math> no indican que la salida sea negativa o positiva.</p>
 <p>En un punto con dominio a ambos lados, existe un límite bilateral <strong>finito</strong> si los dos laterales existen como números reales y coinciden:</p>
+<div class="key-formula">
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>L</mi><mspace width="1.0em"></mspace><mo>⇔</mo><mspace width="1.0em"></mspace><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>−</mo></msup></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>+</mo></msup></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>L</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
 \lim_{x\to a}f(x)=L
 \quad\Longleftrightarrow\quad
 \lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L.
 </annotation></semantics></math></p>
+</div>
 <p>Si los laterales son diferentes, no existe un único límite bilateral. No se promedian y no se elige el que coincide con el valor puntual.</p>
 <p>Para leer un gráfico, recorré cada rama hacia la vertical <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x=a</annotation></semantics></math> y observá a qué altura se acerca. Después, por separado, buscá el punto que define <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math>:</p>
 <ul>
@@ -676,11 +686,13 @@ r(x)=\frac{x+1}{x^2-1}
 <p>En el último caso, para polinomios no nulos el cociente crece en magnitud sin cota. El signo depende de los coeficientes y de la diferencia de grados: por ejemplo, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>3</mn></msup><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x^3/x^2=x</annotation></semantics></math> tiende a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">+\infty</annotation></semantics></math> a la derecha y a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">-\infty</annotation></semantics></math> a la izquierda. La guía no autoriza escribir «<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∞</mi><mi>/</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">\infty/\infty</annotation></semantics></math>» como resultado ni reemplaza el análisis del dominio en entradas finitas.</p>
 <h3 id="limites-continuidad-que-el-valor-acompañe-la-aproximación">7. Continuidad: que el valor acompañe la aproximación</h3>
 <p>En un punto interior <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> del dominio, la función es <strong>continua</strong> si se cumplen juntas estas tres condiciones:</p>
+<div class="key-rule">
 <ol type="1">
 <li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math> está definida.</li>
 <li>Existe un límite bilateral finito <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to a}f(x)</annotation></semantics></math>.</li>
 <li>Ese límite coincide con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math>.</li>
 </ol>
+</div>
 <p>La idea de «dibujar sin levantar el lápiz» puede ayudar visualmente, pero estas condiciones explican qué se está comprobando. Los polinomios son continuos en todo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>; las funciones racionales lo son en cada punto de su dominio.</p>
 <h4 id="limites-qué-pasa-en-un-extremo-del-dominio">Qué pasa en un extremo del dominio</h4>
 <p>Si el dominio es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>90</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,90]</annotation></semantics></math>, en 0 solo hay entradas cercanas <strong>por la derecha</strong> y en 90 solo por la izquierda. La continuidad se analiza relativamente al dominio: pedimos que el límite desde las entradas admitidas coincida con el valor del extremo. No exigimos una rama fuera del dominio.</p>
@@ -755,7 +767,7 @@ k,&amp;x=2.
 <p>Los desarrollos basados en el PDF local están identificados junto a cada ejemplo: <a href="../material/pdf/TP2%20LIMITES.pdf">TP2</a>, p. 1, ej. 1–2; p. 2, ej. 3.1, 4.2 y 5.1. Para practicar continuidad, consultar p. 3, ej. 6; no se incluye su solucionario completo. Los ejemplos marcados como originales son elaboración docente, no transcripciones del PDF.</p>
 <p>Como referencia complementaria de enfoque se consultó <strong>solo la descripción</strong> de <a href="https://www.educ.ar/recursos/152410">Límite de funciones — Educ.ar / INET</a>, dirigido a estudiantes de 4.º año del Segundo Ciclo de Escuela Secundaria Técnica. Esa descripción propone una aproximación intuitiva y menos formal con actividades; no se descargó ni se analizó el documento enlazado. Estos apuntes son un desarrollo propio, no una cita de ese documento ni un programa oficial.</p>
 <p>Volvé al <a href="#lectura">índice de teoría</a> para distinguir fuentes, apuntes y fichas docentes.</p>
-</article>
+<nav class="chapter-ending" data-generated="navigation" aria-label="Al terminar limites"><a href="#limites-resumen-conceptual">Repasar las ideas clave</a><a href="#funciones">← Volver a Funciones</a></nav></article>
       <section id="lectura" class="context" aria-label="Guía de lectura, fuentes y alcance">
         <div class="eyebrow">Notas de edición / Fuentes y alcance</div>
         <h2 id="indice-teoría-para-estudiar-funciones-y-límites">Teoría para estudiar funciones y límites</h2>

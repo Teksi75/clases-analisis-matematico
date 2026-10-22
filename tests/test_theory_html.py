@@ -23,7 +23,7 @@ class Content(HTMLParser):
         if self.generated_depth:
             self.generated_depth += 1
             return
-        if attrs.get('data-generated') in ('figure', 'label'):
+        if attrs.get('data-generated') in ('figure', 'label', 'navigation'):
             self.generated_depth = 1
             return
         self.tags.append(tag)
@@ -99,8 +99,10 @@ class TheoryHTMLTests(unittest.TestCase):
             self.assertIn(rule, css)
         self.assertNotRegex(css, r'@import|url\([\"\x27]?https?://')
         self.assertEqual(self.html.count('class="table-scroll"'), self.page.tags.count("table"))
-        self.assertEqual(re.findall(r'<details\b[^>]*>', self.html),
-                         ['<details class="contents-disclosure">'])  # Only navigation collapses.
+        details = re.findall(r'<details\b[^>]*>', self.html)
+        self.assertEqual(len(details), 3)
+        self.assertTrue(all(re.match(r'<details class="(?:contents-disclosure|index-chapter)"', tag)
+                            for tag in details))  # Only navigation collapses.
 
 
 if __name__ == "__main__":

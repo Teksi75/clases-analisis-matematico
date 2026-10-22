@@ -51,7 +51,33 @@ class ReadingUXTests(unittest.TestCase):
         self.assertIn('prefers-reduced-motion', self.css)
         self.assertIn('.contents-disclosure', self.css)
         self.assertIn('.study-figure', self.css.split('@media print')[-1])
-        self.assertNotRegex(self.html, r'<details(?! class="contents-disclosure")')
+        self.assertNotRegex(self.html, r'<details(?! class="(?:contents-disclosure|index-chapter)")')
+
+    def test_chapters_controls_key_rules_and_endings(self):
+        chapters = re.findall(r'<details class="index-chapter"[^>]*>(.*?)</details>', self.html, re.S)
+        self.assertEqual(len(chapters), 2)
+        for chapter, body in zip(['funciones', 'limites'], chapters):
+            self.assertRegex(body, r'^<summary>')
+            self.assertIn('href="#' + chapter + '"', body)
+            self.assertIn('href="#' + chapter + '-', body)
+        self.assertIn('class="reading-controls" hidden', self.html)
+        for label in ['Reducir tamaño de lectura', 'Aumentar tamaño de lectura']:
+            self.assertIn('aria-label="' + label + '"', self.html)
+        self.assertIn('<output', self.html)
+        formulas = re.findall(r'<div class="key-formula"[^>]*>(.*?)</div>', self.html, re.S)
+        self.assertEqual(len(formulas), 2)
+        self.assertTrue(all('display="block"' in block for block in formulas))
+        self.assertRegex(self.html, r'<div class="key-rule"[^>]*>\s*<ol\b[^>]*>')
+        endings = re.findall(r'<nav class="chapter-ending"[^>]*>(.*?)</nav>', self.html, re.S)
+        self.assertEqual(len(endings), 2)
+        for chapter, body in zip(['funciones', 'limites'], endings):
+            self.assertIn('href="#' + chapter + '-resumen-conceptual"', body)
+        self.assertIn('href="#limites"', endings[0])
+        self.assertIn('href="#funciones"', endings[1])
+        self.assertNotIn('Derivadas', ''.join(endings))
+        self.assertIn('.contents-disclosure > summary', self.css)
+        for selector in ['.reading-controls', '.chapter-ending']:
+            self.assertIn(selector, self.css.split('@media print')[-1])
 
     def test_mathematical_figures_are_labelled_and_sampled(self):
         figures = {ET.fromstring(svg).attrib['id']: ET.fromstring(svg) for svg in

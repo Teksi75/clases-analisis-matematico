@@ -59,6 +59,17 @@ h1 { font-size: clamp(4.2rem, 10.2vw, 9rem); line-height: .98; letter-spacing: -
 .contents .index-title { font: bold .8rem/1.6 var(--mono); margin-bottom: .5rem; }
 .context-link, .back-top { font-family: var(--mono); }
 main { min-width: 0; max-width: 70ch; }
+article { font-size: calc(1em * var(--reading-scale, 1)); }
+article table { font-size: calc(.88rem * var(--reading-scale, 1)); }
+.reading-controls { display: flex; align-items: center; gap: .7rem; margin-bottom: 2rem; font: .75rem var(--mono); color: var(--muted); }
+.reading-controls[hidden] { display: none; }
+.reading-controls button { background: transparent; color: var(--ink); border: 1px solid var(--rule); padding: .5rem .7rem; font: inherit; cursor: pointer; }
+.reading-controls button:disabled { opacity: .4; cursor: default; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.key-formula, .key-rule { border-left: 3px solid var(--accent); padding: .4rem 1rem; margin: 2rem 0; background: #ff805c06; }
+.key-formula math { margin-block: .5rem; }
+.chapter-ending { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 3rem; padding-block: 1.5rem; border-block: 1px solid var(--accent); }
+.chapter-ending a { font-size: 1rem; font-weight: 650; }
 article, section, h2, h3, h4 { scroll-margin-top: 2rem; }
 .chapter-label { color: var(--accent); margin-bottom: 1rem; }
 article + .chapter-label { margin-top: 7rem; border-top: 2px solid var(--accent); padding-top: 2rem; }
@@ -116,7 +127,7 @@ figcaption { font-size: .85rem; line-height: 1.65; color: var(--muted); max-widt
 @media (min-width: 701px) {
   .contents-disclosure::details-content { content-visibility: visible; display: block; }
   .contents-disclosure:not([open]) > :not(summary) { display: block; }
-  .contents-disclosure summary { display: none; }
+  .contents-disclosure > summary { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -153,7 +164,8 @@ figcaption { font-size: .85rem; line-height: 1.65; color: var(--muted); max-widt
   :root { color-scheme: light; --paper: white; --ink: black; --muted: #333; --accent: black; --rule: #999; }
   @page { margin: 18mm; }
   body { font-size: 11pt; line-height: 1.5; background: white; color: black; }
-  .masthead, .contents, .contents-disclosure, .start-link, .motif, .skip-link, footer { display: none; }
+  .masthead, .contents, .contents-disclosure, .start-link, .motif, .skip-link, footer, .reading-controls, .chapter-ending { display: none; }
+  main { --reading-scale: 1 !important; }
   .study-figure { break-inside: avoid; }
   .study-plot { max-width: 125mm; }
   .study-plot .curve, .study-plot .point { stroke: black; }

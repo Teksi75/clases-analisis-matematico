@@ -92,6 +92,9 @@ def decorate(document, figures):
                      'limites-acercarse-no-es-llegar'}
     warning_sections = {'limites-no-es-una-respuesta'}
     section, first = '', False
+    key_formulas = {'funciones-modelo-de-eva1-la-altura-de-una-pelota',
+                    'limites-límites-laterales-y-lectura-gráfica'}
+    highlighted = set()
     for block in blocks:
         if block['t'] == 'Header':
             section = block['c'][1][0]
@@ -112,7 +115,19 @@ def decorate(document, figures):
         if note:
             kind, label = note
             result.append({'t':'RawBlock', 'c':['html', f'<div class="reading-note {kind}"><span class="note-label" data-generated="label">{label}</span>']})
+        display = (block['t'] == 'Para' and len(block['c']) == 1
+                   and block['c'][0]['t'] == 'Math'
+                   and block['c'][0]['c'][0]['t'] == 'DisplayMath')
+        formula = display and section in key_formulas and section not in highlighted
+        rule = (block['t'] == 'OrderedList'
+                and section == 'limites-continuidad-que-el-valor-acompañe-la-aproximación')
+        if formula or rule:
+            kind = 'key-formula' if formula else 'key-rule'
+            result.append({'t': 'RawBlock', 'c': ['html', f'<div class="{kind}">']})
+            highlighted.add(section)
         result.append(block)
+        if formula or rule:
+            result.append({'t': 'RawBlock', 'c': ['html', '</div>']})
         if note:
             result.append({'t':'RawBlock','c':['html','</div>']})
         if block['t'] == 'Header' and section in figures:
@@ -164,10 +179,17 @@ def main():
     for number, (chapter, filename) in enumerate(CHAPTERS, 1):
         body, links = render(filename, chapter)
         title_id = re.search(r'<h2 id="([^"]+)"', body)[1]
+        next_chapter = 'limites' if chapter == 'funciones' else 'funciones'
+        next_label = 'Continuar con Límites →' if chapter == 'funciones' else '← Volver a Funciones'
+        ending = (f'<nav class="chapter-ending" data-generated="navigation" aria-label="Al terminar {chapter}">'
+                  f'<a href="#{chapter}-resumen-conceptual">Repasar las ideas clave</a>'
+                  f'<a href="#{next_chapter}">{next_label}</a></nav>')
         chapters.append(f'<div class="chapter-label" aria-hidden="true">{number:02d} / Apunte de teoría</div>\n'
-                        f'<article id="{chapter}" aria-labelledby="{escape(title_id)}">\n{body}</article>')
-        navigation.append(f'<div class="index-chapter"><a class="index-title" href="#{chapter}">'
-                          f'{number:02d} / {chapter.capitalize().replace("Limites", "Límites")}</a>\n{links}</div>')
+                        f'<article id="{chapter}" aria-labelledby="{escape(title_id)}">\n{body}{ending}</article>')
+        navigation.append(f'<details class="index-chapter" data-chapter="{chapter}"'
+                          f'{" open" if number == 1 else ""}><summary>'
+                          f'{number:02d} / {chapter.capitalize().replace("Limites", "Límites")}</summary>'
+                          f'<a class="index-title" href="#{chapter}">Inicio del capítulo</a>\n{links}</details>')
     context, _ = render("README.md", "indice")
     template = Template((HERE / "plantilla.html").read_text(encoding="utf-8"))
     (HERE / "index.html").write_text(template.substitute(

@@ -41,6 +41,12 @@
       </details>
     </nav>
     <main id="contenido" tabindex="-1">
+      <div class="reading-controls" hidden role="group" aria-label="Tamaño de lectura">
+        <span>Lectura</span>
+        <button type="button" id="texto-menos" aria-label="Reducir tamaño de lectura">A−</button>
+        <output id="texto-tamano" aria-live="polite">100%</output>
+        <button type="button" id="texto-mas" aria-label="Aumentar tamaño de lectura">A+</button>
+      </div>
       $chapters
       <section id="lectura" class="context" aria-label="Guía de lectura, fuentes y alcance">
         <div class="eyebrow">Notas de edición / Fuentes y alcance</div>
