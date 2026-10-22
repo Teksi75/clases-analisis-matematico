@@ -2,6 +2,10 @@
 
 **Idea central:** una fórmula relaciona variables; su dominio matemático y su dominio en una situación real pueden ser distintos.
 
+## Lectura para estudiantes
+
+El apunte [Funciones: relacionar, representar e interpretar](../teoria/01-funciones.md) desarrolla las bases, representaciones, dominio e imagen, lectura de gráficas y el modelo de EVA1. Incluye una tabla para graficar y autocontrol con respuestas breves; esta ficha conserva su función de preparación docente.
+
 ## Fuente
 
 [EVA1](../material/pdf/eva1.pdf), página 1, incisos a–d: trayectoria de una pelota con `h(x)=-(x-45)²/135+15`. Pide raíces, interpretación del dominio, alturas, distancias, gráfica, asíntotas y altura máxima.

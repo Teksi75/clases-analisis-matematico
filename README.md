@@ -4,7 +4,7 @@ Base de conocimiento y planificación inicial para preparar clases a partir de c
 
 ## Por dónde empezar
 
-1. Consultar el [índice de conocimiento](conocimiento/README.md) para ubicar temas y ejercicios.
+1. Abrir el [cuaderno de teoría en HTML: Funciones / Límites](teoria/index.html), con ambos apuntes completos, fórmulas e índice navegable sin conexión. Se conservan la [guía y fuentes editables](teoria/README.md): [funciones](teoria/01-funciones.md) y [límites, asíntotas y continuidad](teoria/02-limites.md), con conceptos desarrollados, ejemplos y autocontrol. Consultar el [índice de conocimiento](conocimiento/README.md) para ubicar temas y ejercicios.
 2. Recorrer la [secuencia de clases propuesta](planificacion/secuencia.md).
 3. Abrir los [diagnósticos en HTML](evaluaciones/diagnosticos/index.html) para leerlos e imprimirlos en el navegador. Las [fuentes editables en Markdown](evaluaciones/diagnosticos/README.md) se conservan. Las pruebas son exclusivamente de Matemática y permiten ajustar el punto de partida.
 4. Usar la [primera clase: funciones y modelos](clases/analisis/clase-01.md) según los resultados del diagnóstico.
@@ -17,6 +17,7 @@ Base de conocimiento y planificación inicial para preparar clases a partir de c
 | [material/catalogo.json](material/catalogo.json) | Inventario, páginas, rutas y huellas SHA-256. |
 | [material/texto/](material/texto/) | Texto extraído por página; EVA2 tiene una transcripción manual separada. |
 | [material/vistas/](material/vistas/) | Imágenes de las dos páginas de EVA2 para cotejar el manuscrito. |
+| [teoria/](teoria/README.md) | Apuntes desarrollados de funciones y límites para estudiantes de secundario; elaboración docente con fuentes identificadas. |
 | [conocimiento/](conocimiento/) | Fichas temáticas, prerrequisitos, alertas y referencias. |
 | [planificacion/](planificacion/) | Secuencia ajustable y plantilla para nuevas clases. |
 | [evaluaciones/diagnosticos/](evaluaciones/diagnosticos/) | Cuatro pruebas matemáticas por tema y guía docente separada; sin computación ni electrónica. |

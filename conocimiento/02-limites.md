@@ -2,6 +2,10 @@
 
 **Idea central:** acercarse a un punto no equivale a evaluar la función en él. Ficha de preparación; no es un solucionario.
 
+## Lectura para estudiantes
+
+El apunte [Límites: acercarse, comparar y decidir continuidad](../teoria/02-limites.md) desarrolla aproximaciones, laterales, cálculo, factorización, asíntotas y continuidad, también en extremos del dominio. Incluye ejemplos identificados y autocontrol con respuestas breves; esta ficha conserva el mapa de ejercicios para preparar las clases.
+
 ## Fuentes y recorrido
 
 Fuente: [TP2 LIMITES.pdf](../material/pdf/TP2%20LIMITES.pdf).

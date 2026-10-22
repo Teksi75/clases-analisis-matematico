@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Funciones y límites: dos apuntes completos con ejemplos, modelos y autocontrol para estudiar sin conexión.">
+  <title>Funciones / Límites — Cuaderno de Matemática</title>
+  <link rel="stylesheet" href="teoria.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="masthead" id="inicio">
+    <a class="wordmark" href="#inicio"><span class="square" aria-hidden="true"></span> Cuaderno / Matemática</a>
+    <a href="#lectura">Sobre los apuntes <span aria-hidden="true">↗</span></a>
+  </header>
+  <section class="hero" aria-labelledby="titulo">
+    <div class="eyebrow">Teoría para estudiantes · Nivel secundario</div>
+    <h1 id="titulo">Funciones<span class="hero-divider" aria-hidden="true">/</span><br><span class="outline-word">Límites</span><span class="period">.</span></h1>
+    <div class="hero-bottom">
+      <p>Relacionar cantidades.<br>Comprender lo que se aproxima.</p>
+      <a class="start-link" href="#funciones">Empezar a leer <span aria-hidden="true">↓</span></a>
+      <svg class="motif" viewBox="0 0 240 120" fill="none" aria-hidden="true" focusable="false">
+        <path d="M10 100H230M30 115V5" stroke="currentColor" stroke-width="1"/>
+        <path d="M35 15Q125 175 215 15" stroke="#ff6339" stroke-width="2"/>
+        <path d="M125 10V110M110 95H140" stroke="currentColor" stroke-dasharray="3 5"/>
+        <rect x="121" y="91" width="8" height="8" fill="#ff6339"/>
+      </svg>
+    </div>
+    <div class="edition-line"><span>01 — 02 / Conceptos, ejemplos y autocontrol</span><span>Lectura sin conexión · Sin derivadas</span></div>
+  </section>
+  <div class="reading-layout">
+    <nav class="contents" aria-label="Índice de capítulos y secciones">
+      <p class="eyebrow">En este cuaderno</p>
+      <div class="index-chapter"><a class="index-title" href="#funciones">01 / Funciones</a>
+<a href="#funciones-bases-que-vamos-a-usar">1. Bases que vamos a usar</a>
+<a href="#funciones-qué-hace-que-una-relación-sea-una-función">2. Qué hace que una relación sea una función</a>
+<a href="#funciones-cuatro-maneras-de-representar-la-misma-función">3. Cuatro maneras de representar la misma función</a>
+<a href="#funciones-dominio-codominio-e-imagen">4. Dominio, codominio e imagen</a>
+<a href="#funciones-evaluar-buscar-preimágenes-y-encontrar-raíces">5. Evaluar, buscar preimágenes y encontrar raíces</a>
+<a href="#funciones-qué-podemos-leer-en-una-gráfica">6. Qué podemos leer en una gráfica</a>
+<a href="#funciones-familias-para-reconocer-en-tp2">7. Familias para reconocer en TP2</a>
+<a href="#funciones-modelo-de-eva1-la-altura-de-una-pelota">8. Modelo de EVA1: la altura de una pelota</a>
+<a href="#funciones-resumen-conceptual">9. Resumen conceptual</a>
+<a href="#funciones-fuentes-y-continuación">Fuentes y continuación</a></div>
+<div class="index-chapter"><a class="index-title" href="#limites">02 / Límites</a>
+<a href="#limites-acercarse-no-es-llegar">1. Acercarse no es llegar</a>
+<a href="#limites-límites-laterales-y-lectura-gráfica">2. Límites laterales y lectura gráfica</a>
+<a href="#limites-cuándo-se-puede-sustituir-directamente">3. Cuándo se puede sustituir directamente</a>
+<a href="#limites-factorizar-sin-perder-restricciones">4. Factorizar sin perder restricciones</a>
+<a href="#limites-límites-infinitos-y-asíntotas-verticales">5. Límites infinitos y asíntotas verticales</a>
+<a href="#limites-límites-al-infinito-y-asíntotas-horizontales">6. Límites al infinito y asíntotas horizontales</a>
+<a href="#limites-continuidad-que-el-valor-acompañe-la-aproximación">7. Continuidad: que el valor acompañe la aproximación</a>
+<a href="#limites-resumen-conceptual">8. Resumen conceptual</a>
+<a href="#limites-fuentes-y-siguiente-uso">Fuentes y siguiente uso</a></div>
+      <a class="context-link" href="#lectura">Fuentes y alcance</a>
+      <a class="back-top" href="#inicio">Volver al inicio ↑</a>
+    </nav>
+    <main id="contenido" tabindex="-1">
+      <div class="chapter-label" aria-hidden="true">01 / Apunte de teoría</div>
+<article id="funciones" aria-labelledby="funciones-funciones-relacionar-representar-e-interpretar">
+<h2 id="funciones-funciones-relacionar-representar-e-interpretar">Funciones: relacionar, representar e interpretar</h2>
+<p>Una función permite describir cómo una cantidad depende de otra. Antes de calcular, necesitamos saber qué representan las cantidades y qué valores tienen sentido. Este apunte prepara la lectura de EVA1 y de las funciones que aparecen en TP2, a nivel secundario y sin derivadas.</p>
+<p><strong>Recorrido:</strong> bases → definición y representaciones → dominio e imagen → lectura del comportamiento → familias → modelo de EVA1. Podés volver al <a href="#lectura">índice de teoría</a> o continuar con <a href="#limites">límites</a>.</p>
+<h3 id="funciones-bases-que-vamos-a-usar">1. Bases que vamos a usar</h3>
+<p>Un punto del plano se escribe <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math>: primero la coordenada horizontal, luego la vertical. Por ejemplo, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2,5)</annotation></semantics></math> se ubica avanzando 2 unidades hacia la derecha y 5 hacia arriba desde el origen <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,0)</annotation></semantics></math>. Los ejes necesitan nombre, escala y, si representan magnitudes, unidades. Una unidad dibujada no tiene por qué medir lo mismo en ambos ejes.</p>
+<p>Los intervalos sirven para describir conjuntos de números reales. Los corchetes incluyen un extremo y los paréntesis lo excluyen:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th>Escritura</th>
+<th>Lectura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,4]</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">0\leq x\leq4</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,4)</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">0&lt;x&lt;4</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,4)</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>x</mi><mo>&lt;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">0\leq x&lt;4</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">(-\infty,4]</annotation></semantics></math></td>
+<td>Todos los reales menores o iguales que 4</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></td>
+<td>Todos los números reales</td>
+</tr>
+</tbody>
+</table></div>
+<p>El símbolo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∞</mi><annotation encoding="application/x-tex">\infty</annotation></semantics></math> no es un número real ni un extremo que pueda incluirse: siempre lleva paréntesis. Para reunir dos intervalos usamos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∪</mi><annotation encoding="application/x-tex">\cup</annotation></semantics></math>, que se lee «unión».</p>
+<p><strong>Sustituir</strong> es reemplazar una letra por un valor, conservando las operaciones. Si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f(x)=2x^2-1</annotation></semantics></math>, entonces <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>3</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo>=</mo><mn>17</mn></mrow><annotation encoding="application/x-tex">f(-3)=2(-3)^2-1=17</annotation></semantics></math>. Los paréntesis evitan confundir <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>3</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><mn>9</mn></mrow><annotation encoding="application/x-tex">(-3)^2=9</annotation></semantics></math> con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msup><mn>3</mn><mn>2</mn></msup><mo>=</mo><mi>−</mi><mn>9</mn></mrow><annotation encoding="application/x-tex">-3^2=-9</annotation></semantics></math>.</p>
+<p><strong>Resolver una ecuación</strong> es buscar los valores que hacen verdadera una igualdad. En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">2x+1=7</annotation></semantics></math>, restamos 1 y dividimos por 2: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">x=3</annotation></semantics></math>. En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mn>9</mn></mrow><annotation encoding="application/x-tex">x^2=9</annotation></semantics></math> hay dos soluciones, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">x=3</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>−</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">x=-3</annotation></semantics></math>. Estas herramientas se usarán para buscar entradas, no solo para calcular salidas.</p>
+<h3 id="funciones-qué-hace-que-una-relación-sea-una-función">2. Qué hace que una relación sea una función</h3>
+<p>Una función asigna a <strong>cada entrada de su dominio una única salida</strong>. Puede haber entradas distintas con la misma salida; lo que no puede haber son dos salidas distintas para una misma entrada.</p>
+<p><strong>Ejemplo original de elaboración docente:</strong> si cada cuaderno cuesta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1500</mn><annotation encoding="application/x-tex">1500</annotation></semantics></math> pesos, el costo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> cuadernos es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1500</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">C(n)=1500n</annotation></semantics></math>. Elegir <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n=2</annotation></semantics></math> determina una sola salida, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3000</mn><annotation encoding="application/x-tex">3000</annotation></semantics></math> pesos. Aquí <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> solo toma enteros no negativos: no compramos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math> cuadernos ni medio cuaderno en este modelo.</p>
+<p><strong>No ejemplo original:</strong> la relación <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y^2=x</annotation></semantics></math> no define una función de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> si se permiten ambas soluciones. Para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">x=4</annotation></semantics></math> admite <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">y=2</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>−</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">y=-2</annotation></semantics></math>. En cambio, elegir solo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msqrt><mi>x</mi></msqrt></mrow><annotation encoding="application/x-tex">y=\sqrt{x}</annotation></semantics></math> sí define una función para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x\geq0</annotation></semantics></math>.</p>
+<p>En una gráfica, esta unicidad se verifica con la <strong>prueba de la recta vertical</strong>: ninguna recta vertical puede cortar el gráfico en más de un punto. Una circunferencia completa no pasa la prueba; una parábola vertical sí.</p>
+<p>La variable <strong>independiente</strong> es la entrada que elegimos dentro del dominio. La <strong>dependiente</strong> es la salida determinada por esa elección. La escritura <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y=f(x)</annotation></semantics></math> se lee «<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> es efe de equis»; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math> no significa <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math> multiplicado por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>. El nombre podría ser <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> u otro: importa la relación que define.</p>
+<h3 id="funciones-cuatro-maneras-de-representar-la-misma-función">3. Cuatro maneras de representar la misma función</h3>
+<p>Una descripción verbal explica la relación y su contexto; una tabla muestra pares; una fórmula permite calcular; un gráfico permite observar tendencias. Ninguna representación reemplaza automáticamente a las otras.</p>
+<p><strong>Ejemplo original:</strong> un tanque contiene inicialmente 10 litros y recibe 2 litros por minuto durante 5 minutos, sin pérdidas ni desbordes.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>10</mn><mo>+</mo><mn>2</mn><mi>t</mi><mo>,</mo><mspace width="2.0em"></mspace><mn>0</mn><mo>≤</mo><mi>t</mi><mo>≤</mo><mn>5</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+V(t)=10+2t,\qquad 0\leq t\leq5.
+</annotation></semantics></math></p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th>Tiempo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> (min)</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volumen <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">V(t)</annotation></semantics></math> (L)</td>
+<td>10</td>
+<td>12</td>
+<td>14</td>
+<td>16</td>
+<td>20</td>
+</tr>
+</tbody>
+</table></div>
+<p>En palabras, el volumen aumenta 2 litros por cada minuto. En el gráfico, colocamos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> en el eje horizontal y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math> en el vertical: los puntos quedan sobre un segmento de recta desde <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>10</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,10)</annotation></semantics></math> hasta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mo>,</mo><mn>20</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(5,20)</annotation></semantics></math>. Se une el segmento porque el modelo admite tiempos intermedios.</p>
+<p>Una tabla finita por sí sola no informa todos los valores intermedios ni determina una única fórmula. La unión de sus puntos debe justificarse por la relación o el contexto. Para cuadernos vendidos, por ejemplo, se marcarían puntos de entradas enteras, no todas las fracciones entre ellos.</p>
+<h3 id="funciones-dominio-codominio-e-imagen">4. Dominio, codominio e imagen</h3>
+<p>El <strong>dominio</strong> es el conjunto de entradas admitidas. El <strong>codominio</strong> es el conjunto de llegada declarado al definir la función. La <strong>imagen</strong> es el conjunto de salidas que efectivamente se obtienen. La imagen está contenida en el codominio, pero no tiene por qué llenarlo.</p>
+<p>Por ejemplo, si declaramos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi mathvariant="double-struck">ℝ</mi><mo>→</mo><mi mathvariant="double-struck">ℝ</mi></mrow><annotation encoding="application/x-tex">f:\mathbb{R}\to\mathbb{R}</annotation></semantics></math> mediante <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">f(x)=x^2</annotation></semantics></math>, el dominio y el codominio son <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>, mientras que la imagen es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,+\infty)</annotation></semantics></math>. No se obtiene ninguna salida negativa. La fórmula sola no siempre informa qué codominio se eligió.</p>
+<p>Para encontrar el dominio algebraico real de una expresión, preguntamos qué operaciones pueden realizarse:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Restricción</th>
+<th>Dominio algebraico real</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2x^2-1</annotation></semantics></math></td>
+<td>Ninguna</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>1</mn><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{1}{x-3}</annotation></semantics></math></td>
+<td>El denominador no puede ser cero</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">ℝ</mi><mo>\</mo><mo stretchy="false" form="prefix">{</mo><mn>3</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}\setminus\{3\}</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{x+2}</annotation></semantics></math></td>
+<td>El radicando debe ser no negativo</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[-2,+\infty)</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table></div>
+<p>El símbolo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>\</mi><annotation encoding="application/x-tex">\setminus</annotation></semantics></math> indica que se quitan elementos. Si hay varias restricciones, deben cumplirse todas: para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><msqrt><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">1/\sqrt{x-1}</annotation></semantics></math> necesitamos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x&gt;1</annotation></semantics></math>, porque la raíz debe existir y además no puede valer cero.</p>
+<p>El <strong>dominio contextual</strong> agrega las condiciones de la situación. La fórmula del tanque admite cualquier real algebraicamente, pero el modelo solo describe <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">t\in[0,5]</annotation></semantics></math>. Su imagen contextual es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>10</mn><mo>,</mo><mn>20</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[10,20]</annotation></semantics></math> litros; no son los minutos de funcionamiento. Siempre preguntamos qué mide cada intervalo.</p>
+<h3 id="funciones-evaluar-buscar-preimágenes-y-encontrar-raíces">5. Evaluar, buscar preimágenes y encontrar raíces</h3>
+<p><strong>Evaluar</strong> parte de una entrada conocida y calcula su salida. <strong>Buscar preimágenes</strong> parte de una salida y pregunta qué entradas la producen. Puede haber ninguna, una o varias preimágenes.</p>
+<p><strong>Ejemplo original:</strong> para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">f(x)=x^2-4</annotation></semantics></math>, evaluar en 3 da <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">f(3)=5</annotation></semantics></math>. Buscar las preimágenes de 5 exige resolver:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mo>=</mo><mn>5</mn><mspace width="1.0em"></mspace><mo>⇒</mo><mspace width="1.0em"></mspace><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mn>9</mn><mspace width="1.0em"></mspace><mo>⇒</mo><mspace width="1.0em"></mspace><mi>x</mi><mo>=</mo><mi>±</mi><mn>3</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+x^2-4=5\quad\Longrightarrow\quad x^2=9\quad\Longrightarrow\quad x=\pm3.
+</annotation></semantics></math></p>
+<p>Los dos números, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>, tienen imagen 5. Si el dominio se restringiera a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,+\infty)</annotation></semantics></math>, solo quedaría 3. La salida <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math> no tiene preimagen real porque pediría <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">x^2=-1</annotation></semantics></math>.</p>
+<p>Las <strong>raíces o ceros</strong> son las preimágenes de 0: las soluciones de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x)=0</annotation></semantics></math>. Para esta función son <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>. En el gráfico corresponden a los puntos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-2,0)</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2,0)</annotation></semantics></math> sobre el eje horizontal.</p>
+<p>La intersección con el eje vertical se obtiene con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math>, si pertenece al dominio: aquí es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>−</mi><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,-4)</annotation></semantics></math>. Una raíz es una entrada; el punto de corte incluye ambas coordenadas.</p>
+<h3 id="funciones-qué-podemos-leer-en-una-gráfica">6. Qué podemos leer en una gráfica</h3>
+<p>El <strong>signo</strong> compara la salida con cero. El gráfico está por encima del eje horizontal cuando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x)&gt;0</annotation></semantics></math> y por debajo cuando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x)&lt;0</annotation></semantics></math>. No hay que confundir el signo de la entrada con el de la salida.</p>
+<p>Para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)=x^2-4=(x-2)(x+2)</annotation></semantics></math>, los ceros separan intervalos:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th>Entradas</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mi>−</mi><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,-2)</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{-2,2\}</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-2,2)</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2,+\infty)</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></td>
+<td>Positivo</td>
+<td>Cero</td>
+<td>Negativo</td>
+<td>Positivo</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una función es <strong>creciente</strong> en un intervalo cuando, al aumentar la entrada, aumenta la salida; es <strong>decreciente</strong> cuando la salida disminuye. Para compararlo elegimos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_1&lt;x_2</annotation></semantics></math>: en el caso creciente resulta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>&lt;</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x_1)&lt;f(x_2)</annotation></semantics></math>. Si las salidas no cambian, es constante en ese intervalo.</p>
+<p>En el ejemplo, la función decrece hasta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math> y luego crece: es decreciente en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">(-\infty,0]</annotation></semantics></math> y creciente en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,+\infty)</annotation></semantics></math>. Aunque sea positiva a la izquierda de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math>, allí es decreciente: signo y crecimiento son preguntas diferentes.</p>
+<p>Un <strong>máximo</strong> es un valor de salida mayor o igual que los comparados; un <strong>mínimo</strong>, menor o igual. Es absoluto si se compara con todo el dominio y local si solo se compara con entradas cercanas. Hay que indicar dónde se alcanza y cuánto vale. En este ejemplo hay mínimo absoluto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">-4</annotation></semantics></math> en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math>, sin máximo absoluto.</p>
+<p>Los extremos incluidos importan: en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">g(x)=x</annotation></semantics></math> sobre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math> hay mínimo 0 y máximo 1; sobre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,1)</annotation></semantics></math> no se alcanza ninguno de esos valores y no hay máximo ni mínimo absoluto.</p>
+<h3 id="funciones-familias-para-reconocer-en-tp2">7. Familias para reconocer en TP2</h3>
+<p>Reconocer la familia ayuda a anticipar forma y restricciones; no reemplaza estudiar el dominio de cada expresión.</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Familia</th>
+<th>Fórmula de referencia</th>
+<th>Lectura inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constante</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">f(x)=c</annotation></semantics></math></td>
+<td>Recta horizontal; siempre la misma salida.</td>
+</tr>
+<tr>
+<td>Afín</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>m</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(x)=mx+b</annotation></semantics></math></td>
+<td>Recta; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> es el corte vertical y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> el cambio de salida por unidad de entrada.</td>
+</tr>
+<tr>
+<td>Cuadrática</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">f(x)=ax^2+bx+c</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a\ne0</annotation></semantics></math></td>
+<td>Parábola; admite un vértice y hasta dos raíces reales.</td>
+</tr>
+<tr>
+<td>Racional</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>Q</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)=P(x)/Q(x)</annotation></semantics></math></td>
+<td>Cociente de polinomios; se excluyen los ceros de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>.</td>
+</tr>
+<tr>
+<td>Raíz cuadrada</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msqrt><mi>x</mi></msqrt></mrow><annotation encoding="application/x-tex">f(x)=\sqrt{x}</annotation></semantics></math></td>
+<td>Dominio e imagen <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,+\infty)</annotation></semantics></math>; el radicando impone restricciones.</td>
+</tr>
+</tbody>
+</table></div>
+<p>En una afín, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">m&gt;0</annotation></semantics></math> indica crecimiento y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">m&lt;0</annotation></semantics></math> decrecimiento; con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">m=0</annotation></semantics></math> resulta constante. En una racional, un denominador nulo no garantiza una asíntota: puede haber un hueco, como veremos en límites.</p>
+<h4 id="funciones-leer-una-parábola-sin-derivadas">Leer una parábola sin derivadas</h4>
+<p>En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">ax^2+bx+c</annotation></semantics></math>, el signo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> determina la concavidad: hacia arriba si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a&gt;0</annotation></semantics></math> y hacia abajo si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a&lt;0</annotation></semantics></math>. El valor de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>a</mi><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">|a|</annotation></semantics></math> modifica la abertura: con ejes y escalas iguales, un valor mayor produce una parábola más cerrada. El coeficiente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">c=f(0)</annotation></semantics></math> da el corte vertical; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> también influye en la posición del eje de simetría.</p>
+<p>La forma <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>a</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mi>p</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">f(x)=a(x-p)^2+q</annotation></semantics></math> permite leer directamente el <strong>vértice</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(p,q)</annotation></semantics></math> y el eje de simetría <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">x=p</annotation></semantics></math>. Desde la forma desarrollada se obtiene <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mi>−</mi><mi>b</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p=-b/(2a)</annotation></semantics></math> y luego <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">q=f(p)</annotation></semantics></math>. Si abre hacia arriba, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> es el mínimo; si abre hacia abajo, es el máximo.</p>
+<p>Las raíces se buscan igualando a cero. Si se usa la fórmula general,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>−</mi><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><mo>,</mo></mrow><annotation encoding="application/x-tex">
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
+</annotation></semantics></math></p>
+<p>el discriminante <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">b^2-4ac</annotation></semantics></math> indica dos raíces reales si es positivo, una raíz doble si es cero y ninguna raíz real si es negativo. Una parábola puede, por tanto, no cortar el eje horizontal.</p>
+<h3 id="funciones-modelo-de-eva1-la-altura-de-una-pelota">8. Modelo de EVA1: la altura de una pelota</h3>
+<p><strong>Desarrollo docente basado en el PDF local <a href="../material/pdf/eva1.pdf">EVA1, p. 1, incisos a–d</a>.</strong> La fórmula y el contexto proceden del enunciado; las explicaciones y la tabla siguientes se elaboraron para este apunte, no se transcribieron de un solucionario.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mn>135</mn></mfrac><mo>+</mo><mn>15</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+h(x)=-\frac{(x-45)^2}{135}+15.
+</annotation></semantics></math></p>
+<p>Aquí <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> es la distancia horizontal entre el punto de lanzamiento y la sombra de la pelota, en metros; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math> es la altura sobre el suelo, también en metros. <strong>La entrada no es el tiempo.</strong> El modelo considera el vuelo sin rebotes.</p>
+<p>Como <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(x-45)^2\geq0</annotation></semantics></math>, al multiplicar por <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mi>/</mi><mn>135</mn></mrow><annotation encoding="application/x-tex">-1/135</annotation></semantics></math> resulta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>≤</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">h(x)\leq15</annotation></semantics></math>. La igualdad se alcanza en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>: el vértice es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>45</mn><mo>,</mo><mn>15</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(45,15)</annotation></semantics></math>, la altura máxima es 15 m y el eje de simetría es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>. La concavidad es hacia abajo.</p>
+<p>Para encontrar dónde está en el suelo buscamos las raíces:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><mn>2025</mn><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>x</mi><mo>−</mo><mn>45</mn><mo>=</mo><mi>±</mi><mn>45</mn><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>x</mi><mo>=</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">o</mtext><mspace width="0.222em"></mspace><mi>x</mi><mo>=</mo><mn>90</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+h(x)=0\ \Longleftrightarrow\ (x-45)^2=2025
+\ \Longleftrightarrow\ x-45=\pm45
+\ \Longleftrightarrow\ x=0\ \text{o}\ x=90.
+</annotation></semantics></math></p>
+<p>El polinomio tiene dominio algebraico <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> e imagen <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mn>15</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">(-\infty,15]</annotation></semantics></math>. Si lo declaramos con codominio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>, ese codominio no coincide con la imagen. En el vuelo físico usamos dominio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>90</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,90]</annotation></semantics></math> e imagen <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>15</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,15]</annotation></semantics></math>: se incluyen lanzamiento y caída. Las alturas negativas fuera del intervalo no describen este vuelo. Por eso no se prolonga el vuelo hasta un arco situado a 100 m.</p>
+<h4 id="funciones-una-tabla-para-construir-el-gráfico">Una tabla para construir el gráfico</h4>
+<p>En papel cuadriculado, rotulá el eje horizontal «distancia <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> (m)» y el vertical «altura <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math> (m)». Elegí escalas que permitan ver 90 m de alcance y 15 m de altura. Estos puntos orientan el dibujo:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> (m)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math> exacta (m)</th>
+<th>Aproximación (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+<td>0</td>
+</tr>
+<tr>
+<td>10</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mi>/</mi><mn>27</mn></mrow><annotation encoding="application/x-tex">160/27</annotation></semantics></math></td>
+<td>5,93</td>
+</tr>
+<tr>
+<td>30</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mi>/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">40/3</annotation></semantics></math></td>
+<td>13,33</td>
+</tr>
+<tr>
+<td>45</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math></td>
+<td>15</td>
+</tr>
+<tr>
+<td>60</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mi>/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">40/3</annotation></semantics></math></td>
+<td>13,33</td>
+</tr>
+<tr>
+<td>80</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mi>/</mi><mn>27</mn></mrow><annotation encoding="application/x-tex">160/27</annotation></semantics></math></td>
+<td>5,93</td>
+</tr>
+<tr>
+<td>90</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<p>Marcá raíces y vértice, y trazá un arco suave respetando la simetría; no una sucesión de segmentos rectos. Destacá solo el tramo físico. La altura crece en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>45</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,45]</annotation></semantics></math>, decrece en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>45</mn><mo>,</mo><mn>90</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[45,90]</annotation></semantics></math> y es positiva en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>90</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,90)</annotation></semantics></math>. Los mínimos físicos son 0 m en ambos extremos.</p>
+<p>Este polinomio no tiene asíntotas verticales ni horizontales: no se dispara cerca de ninguna entrada finita y, al alejarnos indefinidamente, su altura algebraica disminuye sin acercarse a una constante. Tampoco tiene asíntota oblicua: la diferencia con cualquier recta no tiende a cero. El eje <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math> es de <strong>simetría</strong>, no una asíntota. Estas ideas se precisan en el próximo apunte.</p>
+<h4 id="funciones-tres-distancias-que-no-son-intercambiables">Tres distancias que no son intercambiables</h4>
+<p>Evaluar a los 10 m horizontales da:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo>−</mo><mn>45</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mn>135</mn></mfrac><mo>+</mo><mn>15</mn><mo>=</mo><mi>−</mi><mfrac><mn>1225</mn><mn>135</mn></mfrac><mo>+</mo><mn>15</mn><mo>=</mo><mfrac><mn>160</mn><mn>27</mn></mfrac><mo>≈</mo><mn>5</mn><mo>,</mo><mn>93</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">
+h(10)=-\frac{(10-45)^2}{135}+15
+=-\frac{1225}{135}+15=\frac{160}{27}\approx5{,}93\ \text{m}.
+</annotation></semantics></math></p>
+<p>La distancia a la sombra es <strong>10 m</strong>, no <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(10)</annotation></semantics></math>. Suponiendo al lanzador en el origen, la distancia en línea recta a la pelota es la hipotenusa del triángulo horizontal-vertical:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><msqrt><mrow><msup><mn>10</mn><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>160</mn><mn>27</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></msqrt><mo>≈</mo><mn>11</mn><mo>,</mo><mn>62</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">
+d=\sqrt{10^2+\left(\frac{160}{27}\right)^2}\approx11{,}62\ \text{m}.
+</annotation></semantics></math></p>
+<p>Ninguna de esas tres magnitudes es la longitud del arco recorrido por la pelota. La gráfica de altura frente a distancia no informa directamente cuánto tiempo pasó.</p>
+<h3 id="funciones-resumen-conceptual">9. Resumen conceptual</h3>
+<p>Una función tiene una sola salida por entrada admitida. Dominio, codominio e imagen responden preguntas diferentes. Evaluar calcula una salida; buscar preimágenes resuelve una ecuación. Raíces, signo, crecimiento y extremos describen aspectos distintos del gráfico. En un modelo, las unidades y el dominio contextual son parte de la interpretación, no un agregado al final.</p>
+<h4 id="funciones-autocontrol-elaboración-docente-original">Autocontrol — elaboración docente original</h4>
+<ol type="1">
+<li>¿Puede una función tener <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">f(2)=5</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">f(3)=5</annotation></semantics></math>? ¿Y dos salidas distintas en 2?</li>
+<li>Para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">f(x)=x^2</annotation></semantics></math> con dominio y codominio <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>, ¿cuál es la imagen? ¿Qué entradas dan 9?</li>
+<li>¿Ser positiva implica ser creciente? Buscá un ejemplo en este apunte.</li>
+<li>En EVA1, ¿qué representan 45 y 15? ¿Por qué no usamos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">x=100</annotation></semantics></math> como parte del vuelo?</li>
+<li>¿Por qué <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(10)</annotation></semantics></math> no responde cuánto mide la distancia recta a la pelota?</li>
+</ol>
+<h4 id="funciones-respuestas-breves-para-revisar-después">Respuestas breves para revisar después</h4>
+<ol type="1">
+<li>Sí: entradas diferentes pueden compartir salida. No puede haber dos salidas distintas para una misma entrada.</li>
+<li>La imagen es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,+\infty)</annotation></semantics></math>; las preimágenes de 9 son <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>.</li>
+<li>No. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">x^2-4</annotation></semantics></math> es positiva y decreciente en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mi>−</mi><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,-2)</annotation></semantics></math>.</li>
+<li>La altura máxima de 15 m ocurre a 45 m horizontales. El vuelo sin rebotes termina en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>90</mn></mrow><annotation encoding="application/x-tex">x=90</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mn>10</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h(10)</annotation></semantics></math> mide la altura vertical; la distancia recta combina esa altura con los 10 m horizontales.</li>
+</ol>
+<h3 id="funciones-fuentes-y-continuación">Fuentes y continuación</h3>
+<p>La fuente local del modelo es <a href="../material/pdf/eva1.pdf">EVA1, p. 1</a>. Para preparar el siguiente tema, ver <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, pp. 1–3</a>. Los demás ejemplos de este apunte son elaboración docente original.</p>
+<p>Como referencia complementaria de nivel se consultó la descripción de la colección <a href="https://www.educ.ar/recursos/151034/matematica-para-la-educacion-secundaria-tecnica-ciclo-basico">Matemática para la Educación Secundaria Técnica. Ciclo Básico — Educ.ar</a>, que incluye funciones cuadráticas, raíces, funciones elementales y modelización. No se reproduce aquí su contenido ni se afirma una equivalencia de programas. El <a href="#lectura">índice</a> aclara el alcance institucional de las referencias.</p>
+<p><strong>Siguiente lectura:</strong> <a href="#limites">Límites, asíntotas y continuidad</a>.</p>
+</article>
+<div class="chapter-label" aria-hidden="true">02 / Apunte de teoría</div>
+<article id="limites" aria-labelledby="limites-límites-acercarse-comparar-y-decidir-continuidad">
+<h2 id="limites-límites-acercarse-comparar-y-decidir-continuidad">Límites: acercarse, comparar y decidir continuidad</h2>
+<p>Un límite describe el comportamiento de las salidas cuando las entradas se acercan a un lugar o se alejan indefinidamente. No pregunta necesariamente qué ocurre justo en un punto. Vamos a construir esa idea antes de usar reglas de cálculo, con el nivel intuitivo necesario para TP2.</p>
+<p><strong>Recorrido:</strong> aproximación → laterales y gráficos → cálculo y factorización → asíntotas → continuidad. Antes conviene leer <a href="#funciones">funciones</a>; el <a href="#lectura">índice</a> reúne fuentes y navegación.</p>
+<h3 id="limites-acercarse-no-es-llegar">1. Acercarse no es llegar</h3>
+<p><strong>Ejemplo original de elaboración docente:</strong> consideremos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f(x)=2x+1</annotation></semantics></math> y entradas próximas a 2. Elegimos valores a ambos lados, sin usar todavía el propio 2:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x&lt;2</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x&gt;2</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1,9</td>
+<td>4,8</td>
+<td>2,1</td>
+<td>5,2</td>
+</tr>
+<tr>
+<td>1,99</td>
+<td>4,98</td>
+<td>2,01</td>
+<td>5,02</td>
+</tr>
+<tr>
+<td>1,999</td>
+<td>4,998</td>
+<td>2,001</td>
+<td>5,002</td>
+</tr>
+</tbody>
+</table></div>
+<p>Por la izquierda las salidas se acercan a 5 desde abajo; por la derecha, desde arriba. Escribimos:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\lim_{x\to2}f(x)=5.
+</annotation></semantics></math></p>
+<p>Se lee «el límite de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math> cuando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> tiende a 2 es 5». La expresión <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x\to a</annotation></semantics></math> habla de las <strong>entradas</strong> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>→</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">f(x)\to L</annotation></semantics></math> de las <strong>salidas</strong>. No significa que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> valga siempre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>, ni que las salidas deban alcanzar exactamente <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>.</p>
+<p>La tabla permite explorar, pero una cantidad finita de valores no demuestra por sí sola un límite: podría ocultar otro comportamiento entre ellos. En este caso la fórmula confirma la tendencia: si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> se acerca a 2, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2x+1</annotation></semantics></math> se acerca a 5.</p>
+<h4 id="limites-el-valor-puntual-es-otra-pregunta">El valor puntual es otra pregunta</h4>
+<p><strong>Ejemplo original:</strong> definamos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">g(x)=2x+1</annotation></semantics></math> para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x\ne2</annotation></semantics></math>, dejando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">g(2)</annotation></semantics></math> sin definir. La tabla anterior no cambia. El límite sigue siendo 5, aunque hay un <strong>hueco</strong> en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2,5)</annotation></semantics></math>.</p>
+<p>Si ahora definimos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>9</mn></mrow><annotation encoding="application/x-tex">g(2)=9</annotation></semantics></math>, solo cambia ese punto: el límite continúa siendo 5 y el valor puntual es 9. Si elegimos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">g(2)=5</annotation></semantics></math>, llenamos el hueco de manera coherente con la aproximación. Por tanto, conocer <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math> no basta para conocer el límite, y conocer el límite no obliga a que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math> esté definido.</p>
+<h3 id="limites-límites-laterales-y-lectura-gráfica">2. Límites laterales y lectura gráfica</h3>
+<p>El límite por la <strong>izquierda</strong>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>−</mo></msup></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to a^-}f(x)</annotation></semantics></math>, usa entradas menores que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>. El límite por la <strong>derecha</strong>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>+</mo></msup></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to a^+}f(x)</annotation></semantics></math>, usa entradas mayores. Los signos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>−</mi><annotation encoding="application/x-tex">-</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>+</mi><annotation encoding="application/x-tex">+</annotation></semantics></math> no indican que la salida sea negativa o positiva.</p>
+<p>En un punto con dominio a ambos lados, existe un límite bilateral <strong>finito</strong> si los dos laterales existen como números reales y coinciden:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>L</mi><mspace width="1.0em"></mspace><mo>⇔</mo><mspace width="1.0em"></mspace><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>−</mo></msup></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>+</mo></msup></mrow></munder><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>L</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\lim_{x\to a}f(x)=L
+\quad\Longleftrightarrow\quad
+\lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L.
+</annotation></semantics></math></p>
+<p>Si los laterales son diferentes, no existe un único límite bilateral. No se promedian y no se elige el que coincide con el valor puntual.</p>
+<p>Para leer un gráfico, recorré cada rama hacia la vertical <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x=a</annotation></semantics></math> y observá a qué altura se acerca. Después, por separado, buscá el punto que define <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math>:</p>
+<ul>
+<li>Un <strong>círculo abierto</strong> indica que ese punto no está incluido en esa rama. Puede señalar la altura de aproximación, pero no define por sí solo el valor puntual.</li>
+<li>Un <strong>punto cerrado</strong> pertenece al gráfico; en la vertical <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x=a</annotation></semantics></math> determina <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math>.</li>
+<li>Si no hay punto cerrado en esa vertical, la función no está definida allí. Puede aun así tener límite.</li>
+</ul>
+<p><strong>Práctica con la fuente:</strong> <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, p. 1, ej. 1, ítems 1–24</a> requiere mirar los gráficos del PDF. El texto extraído no conserva sus curvas: este apunte no inventa sus valores ni reemplaza esa lectura.</p>
+<h4 id="limites-ejemplo-por-tramos-de-tp2">Ejemplo por tramos de TP2</h4>
+<p><strong>Desarrollo docente basado en <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, p. 1, ej. 2</a>:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mi>x</mi><mo>+</mo><mn>2</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>x</mi><mo>&lt;</mo><mn>1</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>3</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>x</mi><mo>=</mo><mn>1</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><msup><mi>x</mi><mn>2</mn></msup><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>x</mi><mo>&gt;</mo><mn>1</mn><mi>.</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+f(x)=\begin{cases}
+x+2,&amp;x&lt;1,\\
+3,&amp;x=1,\\
+x^2,&amp;x&gt;1.
+\end{cases}
+</annotation></semantics></math></p>
+<p>A la izquierda corresponde la fórmula <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x+2</annotation></semantics></math>: al acercarse <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> a 1, la salida se acerca a 3. A la derecha corresponde <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mn>2</mn></msup><annotation encoding="application/x-tex">x^2</annotation></semantics></math>: la salida se acerca a 1. En el propio 1 usamos la fila especial, que da 3.</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Resultado</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mn>1</mn><mo>−</mo></msup></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to1^-}f(x)</annotation></semantics></math></td>
+<td>3</td>
+<td>Rama <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x+2</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mn>1</mn><mo>+</mo></msup></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to1^+}f(x)</annotation></semantics></math></td>
+<td>1</td>
+<td>Rama <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mn>2</mn></msup><annotation encoding="application/x-tex">x^2</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mn>1</mn></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to1}f(x)</annotation></semantics></math></td>
+<td>No existe</td>
+<td>Los laterales no coinciden</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(1)</annotation></semantics></math></td>
+<td>3</td>
+<td>Fila <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table></div>
+<p>Para dibujar, la rama izquierda termina con círculo abierto en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1,3)</annotation></semantics></math>, pero la fila puntual coloca allí un punto cerrado. La rama derecha tiene círculo abierto en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math>. Cambiar solo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(1)</annotation></semantics></math> no lograría unir las dos aproximaciones.</p>
+<h3 id="limites-cuándo-se-puede-sustituir-directamente">3. Cuándo se puede sustituir directamente</h3>
+<p>Para límites finitos, si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\lim_{x\to a}f(x)=A</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></msub><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\lim_{x\to a}g(x)=B</annotation></semantics></math>, con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A,B</annotation></semantics></math> reales, se pueden combinar resultados:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Límite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suma o resta</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A+B</annotation></semantics></math> o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>−</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A-B</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Producto</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Multiplicación por constante <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">kA</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Cociente</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>/</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">A/B</annotation></semantics></math>, <strong>solo si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">B\ne0</annotation></semantics></math></strong></td>
+</tr>
+<tr>
+<td>Potencia entera positiva</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>A</mi><mi>n</mi></msup><annotation encoding="application/x-tex">A^n</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table></div>
+<p>Los polinomios permiten sustituir en cualquier entrada real. En un cociente de polinomios podemos sustituir si el denominador no se anula. Para raíces pares, además debe respetarse el dominio real; la aproximación se hace con entradas donde la expresión existe.</p>
+<p><strong>Ejemplo original:</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">\lim_{x\to2}(x^2+3)=7</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>3</mn><mi>/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">\lim_{x\to2}(x+1)/(x+2)=3/4</annotation></semantics></math>. En cambio, si el denominador tiende a cero, la regla del cociente no permite dividir entre cero. Hace falta otro análisis.</p>
+<h4 id="limites-no-es-una-respuesta"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>/</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">0/0</annotation></semantics></math> no es una respuesta</h4>
+<p>Si sustituir produce numerador cero y denominador cero, se obtiene la <strong>forma indeterminada</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>/</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">0/0</annotation></semantics></math>. No es un número, no significa que el límite sea cero y no demuestra que el límite no exista. Es una señal para transformar la expresión o estudiar su comportamiento.</p>
+<p><strong>Ejemplo original:</strong> cerca de 0, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi>/</mi><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x/x=1</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mi>/</mi><mi>x</mi><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x^2/x=x</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn><mi>/</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">x/x^2=1/x</annotation></semantics></math>, siempre con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x\ne0</annotation></semantics></math>. Las tres expresiones dan la forma <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>/</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">0/0</annotation></semantics></math> al intentar sustituir, pero sus comportamientos son diferentes: límite 1, límite 0 y ausencia de límite bilateral finito, respectivamente.</p>
+<h3 id="limites-factorizar-sin-perder-restricciones">4. Factorizar sin perder restricciones</h3>
+<p>Factorizar es escribir una suma como producto. Se pueden cancelar <strong>factores comunes no nulos</strong>, no términos sueltos de una suma. Este repertorio prepara <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, p. 2, ej. 3</a>:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>Identidad</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Factor común</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi><mo>+</mo><mi>A</mi><mi>C</mi><mo>=</mo><mi>A</mi><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mo>+</mo><mi>C</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">AB+AC=A(B+C)</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mi>x</mi><mo>=</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x^2-x=x(x-1)</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Diferencia de cuadrados</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>u</mi><mn>2</mn></msup><mo>−</mo><msup><mi>v</mi><mn>2</mn></msup><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>u</mi><mo>−</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>u</mi><mo>+</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">u^2-v^2=(u-v)(u+v)</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x^2-4=(x-2)(x+2)</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Trinomio mónico</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo>+</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mi>x</mi><mo>+</mo><mi>r</mi><mi>s</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x^2+(r+s)x+rs=(x+r)(x+s)</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x^2+3x+2=(x+1)(x+2)</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Cuadrado perfecto</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>u</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>u</mi><mi>v</mi><mo>+</mo><msup><mi>v</mi><mn>2</mn></msup><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>u</mi><mo>+</mo><mi>v</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">u^2+2uv+v^2=(u+v)^2</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>4</mn><mi>x</mi><mo>+</mo><mn>4</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^2+4x+4=(x+2)^2</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Diferencia de cubos</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>u</mi><mn>3</mn></msup><mo>−</mo><msup><mi>v</mi><mn>3</mn></msup><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>u</mi><mo>−</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msup><mi>u</mi><mn>2</mn></msup><mo>+</mo><mi>u</mi><mi>v</mi><mo>+</mo><msup><mi>v</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">u^3-v^3=(u-v)(u^2+uv+v^2)</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>−</mo><mn>1</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x^3-1=(x-1)(x^2+x+1)</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table></div>
+<p>Las identidades son válidas para todos los reales, pero al cancelar en un <strong>cociente</strong> conservamos las exclusiones de su denominador original. Por ejemplo, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>3</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(x^3-1)/(x-1)=x^2+x+1</annotation></semantics></math> solo para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x\ne1</annotation></semantics></math>. La simplificación no agrega el valor que faltaba.</p>
+<h4 id="limites-ejemplo-desarrollado-un-hueco-no-una-división-entre-cero">Ejemplo desarrollado: un hueco, no una división entre cero</h4>
+<p><strong>Desarrollo docente basado en <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, p. 2, ej. 3.1</a>:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></munder><mfrac><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\lim_{x\to2}\frac{x^2-4}{x-2}.
+</annotation></semantics></math></p>
+<p>La sustitución produce <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>/</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">0/0</annotation></semantics></math>. Factorizamos y, para las entradas cercanas con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x\ne2</annotation></semantics></math>, podemos cancelar:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow></mfrac><mo>=</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>x</mi><mo>≠</mo><mn>2</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{(x-2)(x+2)}{x-2}=x+2,\qquad x\ne2.
+</annotation></semantics></math></p>
+<p>Así, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\lim_{x\to2}(x^2-4)/(x-2)=\lim_{x\to2}(x+2)=4</annotation></semantics></math>. La función original sigue sin estar definida en 2. Su gráfico coincide con la recta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">y=x+2</annotation></semantics></math>, excepto por el hueco en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2,4)</annotation></semantics></math>.</p>
+<p>Esto funciona porque el límite estudia entradas próximas a 2, distintas de 2. No escribimos que <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>/</mi><mn>0</mn><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">0/0=4</annotation></semantics></math>: calculamos un límite mediante una igualdad válida fuera del punto excluido.</p>
+<h3 id="limites-límites-infinitos-y-asíntotas-verticales">5. Límites infinitos y asíntotas verticales</h3>
+<p>Cuando las salidas crecen sin cota superior al acercarnos a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>, escribimos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>→</mo><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">f(x)\to+\infty</annotation></semantics></math>; cuando disminuyen sin cota inferior, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>→</mo><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">f(x)\to-\infty</annotation></semantics></math>. <strong>Infinito no es un valor real de la función</strong>. Un límite infinito no es un límite finito, aunque usemos la misma notación de aproximación.</p>
+<p><strong>Ejemplo original:</strong> para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">1/(x-1)</annotation></semantics></math>, el denominador es negativo y muy pequeño en valor absoluto a la izquierda de 1: las salidas son negativas con magnitud cada vez mayor. A la derecha, son positivas y crecen sin cota:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><msup><mn>1</mn><mo>−</mo></msup></mrow></munder><mfrac><mn>1</mn><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mspace width="2.0em"></mspace><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><msup><mn>1</mn><mo>+</mo></msup></mrow></munder><mfrac><mn>1</mn><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mi>+</mi><mi>∞</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\lim_{x\to1^-}\frac1{x-1}=-\infty,
+\qquad
+\lim_{x\to1^+}\frac1{x-1}=+\infty.
+</annotation></semantics></math></p>
+<p>No hay límite bilateral finito ni un mismo límite infinito bilateral. Sin embargo, la recta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math> es una <strong>asíntota vertical</strong>: basta que al menos un límite lateral sea <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">+\infty</annotation></semantics></math> o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">-\infty</annotation></semantics></math>.</p>
+<h4 id="limites-contrastar-una-asíntota-con-un-hueco">Contrastar una asíntota con un hueco</h4>
+<p><strong>Desarrollo docente basado en <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, p. 2, ej. 4.2</a>:</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>x</mi><mo>≠</mo><mi>−</mi><mn>1</mn><mo>,</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+r(x)=\frac{x+1}{x^2-1}
+=\frac{x+1}{(x-1)(x+1)}
+=\frac1{x-1},\qquad x\ne-1,1.
+</annotation></semantics></math></p>
+<p>El dominio original excluye <strong>dos</strong> entradas. En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">x=-1</annotation></semantics></math>, la expresión simplificada se acerca a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/(-2)=-1/2</annotation></semantics></math> desde ambos lados: hay un hueco en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><mo>,</mo><mi>−</mi><mn>1</mn><mi>/</mi><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-1,-1/2)</annotation></semantics></math>, no una asíntota vertical.</p>
+<p>En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math>, queda un denominador que tiende a cero y el numerador simplificado vale 1. Analizamos signos sin sustituir «infinito» como si fuera un número:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<thead>
+<tr>
+<th>Acercamiento</th>
+<th>Signo de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x-1</annotation></semantics></math></th>
+<th>Comportamiento de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">r(x)</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><msup><mn>1</mn><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">x\to1^-</annotation></semantics></math></td>
+<td>Negativo</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">-\infty</annotation></semantics></math></td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><msup><mn>1</mn><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">x\to1^+</annotation></semantics></math></td>
+<td>Positivo</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">+\infty</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table></div>
+<p>Por eso <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math> sí es asíntota vertical. Una raíz del denominador es solo una <strong>candidata</strong>: primero hay que factorizar, conservar restricciones y estudiar los límites.</p>
+<h3 id="limites-límites-al-infinito-y-asíntotas-horizontales">6. Límites al infinito y asíntotas horizontales</h3>
+<p>Ahora cambia la pregunta: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">x\to+\infty</annotation></semantics></math> significa entradas cada vez mayores; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">x\to-\infty</annotation></semantics></math>, entradas negativas de magnitud cada vez mayor. No nos acercamos a una entrada finita. Por ejemplo, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">1/x</annotation></semantics></math> se acerca a 0 en ambos sentidos, aunque no vale cero para ninguna entrada de su dominio.</p>
+<p>Si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mi>+</mi><mi>∞</mi></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">\lim_{x\to+\infty}f(x)=L</annotation></semantics></math> o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mi>−</mi><mi>∞</mi></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">\lim_{x\to-\infty}f(x)=L</annotation></semantics></math>, con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math> real, la recta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">y=L</annotation></semantics></math> es una <strong>asíntota horizontal</strong> en ese sentido. Hay que estudiar ambos sentidos: en otras familias pueden dar resultados diferentes. Una asíntota horizontal describe el comportamiento lejano y no prohíbe que el gráfico la cruce.</p>
+<h4 id="limites-normalizar-un-cociente">Normalizar un cociente</h4>
+<p><strong>Desarrollo docente basado en <a href="../material/pdf/TP2%20LIMITES.pdf">TP2, p. 2, ej. 5.1</a>:</strong> dividimos numerador y denominador por la mayor potencia del denominador, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mn>2</mn></msup><annotation encoding="application/x-tex">x^2</annotation></semantics></math>, para <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x\ne0</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>3</mn></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mo>+</mo><mn>3</mn><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup></mrow><mrow><mn>1</mn><mo>+</mo><mn>1</mn><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{2x^2+3}{x^2+1}
+=\frac{2+3/x^2}{1+1/x^2}.
+</annotation></semantics></math></p>
+<p>Cuando <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">x\to+\infty</annotation></semantics></math> o <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">x\to-\infty</annotation></semantics></math>, los términos <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">1/x^2</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">3/x^2</annotation></semantics></math> tienden a cero. El denominador transformado tiende a 1, que no es cero, por lo que el límite es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>/</mi><mn>1</mn><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2/1=2</annotation></semantics></math> en ambos sentidos. La asíntota horizontal es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">y=2</annotation></semantics></math>.</p>
+<p>La restricción <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x\ne0</annotation></semantics></math> se usa para esta transformación, no para quitar el 0 del dominio original: el límite al infinito trabaja con entradas de gran magnitud.</p>
+<h4 id="limites-guía-por-grados-para-funciones-racionales">Guía por grados para funciones racionales</h4>
+<p>Si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math> son polinomios no nulos, con coeficientes principales <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>, comparamos sus grados en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>Q</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P(x)/Q(x)</annotation></semantics></math>:</p>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Comparación</th>
+<th>Límite al infinito</th>
+<th>Asíntota horizontal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> menor que grado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td>0 en ambos sentidos</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y=0</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Grados iguales</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>/</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">a/b</annotation></semantics></math> en ambos sentidos</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>a</mi><mi>/</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">y=a/b</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>Grado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> mayor que grado de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td>No hay límite finito; estudiar signos en cada sentido</td>
+<td>No hay horizontal</td>
+</tr>
+</tbody>
+</table></div>
+<p>En el último caso, para polinomios no nulos el cociente crece en magnitud sin cota. El signo depende de los coeficientes y de la diferencia de grados: por ejemplo, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>3</mn></msup><mi>/</mi><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x^3/x^2=x</annotation></semantics></math> tiende a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">+\infty</annotation></semantics></math> a la derecha y a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">-\infty</annotation></semantics></math> a la izquierda. La guía no autoriza escribir «<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∞</mi><mi>/</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">\infty/\infty</annotation></semantics></math>» como resultado ni reemplaza el análisis del dominio en entradas finitas.</p>
+<h3 id="limites-continuidad-que-el-valor-acompañe-la-aproximación">7. Continuidad: que el valor acompañe la aproximación</h3>
+<p>En un punto interior <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> del dominio, la función es <strong>continua</strong> si se cumplen juntas estas tres condiciones:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math> está definida.</li>
+<li>Existe un límite bilateral finito <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\lim_{x\to a}f(x)</annotation></semantics></math>.</li>
+<li>Ese límite coincide con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math>.</li>
+</ol>
+<p>La idea de «dibujar sin levantar el lápiz» puede ayudar visualmente, pero estas condiciones explican qué se está comprobando. Los polinomios son continuos en todo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>; las funciones racionales lo son en cada punto de su dominio.</p>
+<h4 id="limites-qué-pasa-en-un-extremo-del-dominio">Qué pasa en un extremo del dominio</h4>
+<p>Si el dominio es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>90</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,90]</annotation></semantics></math>, en 0 solo hay entradas cercanas <strong>por la derecha</strong> y en 90 solo por la izquierda. La continuidad se analiza relativamente al dominio: pedimos que el límite desde las entradas admitidas coincida con el valor del extremo. No exigimos una rama fuera del dominio.</p>
+<p>Así, el modelo físico <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math> de EVA1 es continuo también en sus extremos: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mn>0</mn><mo>+</mo></msup></mrow></msub><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\lim_{x\to0^+}h(x)=h(0)=0</annotation></semantics></math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><msup><mn>90</mn><mo>−</mo></msup></mrow></msub><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>h</mi><mo stretchy="false" form="prefix">(</mo><mn>90</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\lim_{x\to90^-}h(x)=h(90)=0</annotation></semantics></math>. La falta de entradas físicas menores que 0 no produce una discontinuidad.</p>
+<h4 id="limites-tres-maneras-de-fallar">Tres maneras de fallar</h4>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Qué sucede</th>
+<th>Ejemplo ya estudiado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evitable o removible</td>
+<td>Existe límite finito, pero falta el valor o es distinto</td>
+<td>Hueco en <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2,4)</annotation></semantics></math> de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x^2-4)/(x-2)</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>De salto</td>
+<td>Hay laterales finitos diferentes</td>
+<td>Función por tramos de TP2 en 1</td>
+</tr>
+<tr>
+<td>Infinita</td>
+<td>Al menos un lateral es infinito</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">1/(x-1)</annotation></semantics></math> en 1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cuando el punto no pertenece al dominio, hablamos aquí de hueco o discontinuidad en el sentido gráfico escolar; estrictamente la función no puede evaluarse ni ser continua <strong>en ese punto</strong> sin extender su dominio. No todo comportamiento discontinuo pertenece necesariamente a una de estas tres categorías, pero son las que necesitamos en este recorrido.</p>
+<h4 id="limites-reparar-un-hueco">Reparar un hueco</h4>
+<p><strong>Ejemplo original que retoma el cociente de TP2:</strong> buscamos qué valor asignar en 2 para obtener una función continua:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mstyle displaystyle="true"><mfrac><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow></mfrac></mstyle><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>x</mi><mo>≠</mo><mn>2</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mi>k</mi><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>x</mi><mo>=</mo><mn>2</mn><mi>.</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+F(x)=\begin{cases}
+\dfrac{x^2-4}{x-2},&amp;x\ne2,\\
+k,&amp;x=2.
+\end{cases}
+</annotation></semantics></math></p>
+<p>El límite ya calculado es 4, independientemente de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>. Para cumplir las tres condiciones elegimos <strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">k=4</annotation></semantics></math></strong>: ahora <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>4</mn><mo>=</mo><msub><mrow><mi mathvariant="normal">lim</mi><mo>&#8289;</mo></mrow><mrow><mi>x</mi><mo>→</mo><mn>2</mn></mrow></msub><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">F(2)=4=\lim_{x\to2}F(x)</annotation></semantics></math>. Esta nueva función coincide con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x+2</annotation></semantics></math> en todo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> y es continua.</p>
+<p>Un salto no se repara cambiando solo un punto: los laterales seguirían siendo diferentes. Una asíntota vertical tampoco se elimina asignando un valor real en el punto.</p>
+<h3 id="limites-resumen-conceptual">8. Resumen conceptual</h3>
+<p>Un límite estudia aproximaciones y no necesariamente el valor puntual. Para un bilateral finito interior, los laterales deben coincidir. La sustitución exige operaciones válidas; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>/</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">0/0</annotation></semantics></math> pide analizar, no responder. Factorizar permite simplificar cerca del punto sin borrar restricciones. Un hueco tiene límite finito; una asíntota vertical se reconoce por un lateral infinito. Las asíntotas horizontales describen entradas lejanas. La continuidad exige que el valor acompañe al límite, usando solo el lado disponible en extremos del dominio.</p>
+<h4 id="limites-autocontrol-elaboración-docente-original">Autocontrol — elaboración docente original</h4>
+<ol type="1">
+<li>Si <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>9</mn></mrow><annotation encoding="application/x-tex">f(2)=9</annotation></semantics></math>, ¿necesariamente el límite en 2 vale 9?</li>
+<li>En la función por tramos de TP2, ¿se puede lograr continuidad en 1 cambiando solo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f(1)</annotation></semantics></math>?</li>
+<li>¿Qué permite cancelar <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x-2</annotation></semantics></math> en el cociente trabajado? ¿La función original adquiere valor en 2?</li>
+<li>En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x+1)/(x^2-1)</annotation></semantics></math>, ¿por qué <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math> y 1 no producen el mismo fenómeno?</li>
+<li>¿Cuál es la diferencia entre <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x\to1</annotation></semantics></math> con salida infinita y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>+</mi><mi>∞</mi></mrow><annotation encoding="application/x-tex">x\to+\infty</annotation></semantics></math> con salida finita?</li>
+<li>¿La continuidad de <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mi>x</mi></msqrt><annotation encoding="application/x-tex">\sqrt{x}</annotation></semantics></math> en 0 necesita entradas negativas?</li>
+</ol>
+<h4 id="limites-respuestas-breves-para-revisar-después">Respuestas breves para revisar después</h4>
+<ol type="1">
+<li>No; el valor aislado no determina el comportamiento cercano. Puede haber límite diferente o no existir.</li>
+<li>No; los laterales son 3 y 1 y no cambian al modificar un único valor.</li>
+<li>Trabajar con <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x\ne2</annotation></semantics></math>, donde el factor no es cero. La función original sigue sin valor en 2.</li>
+<li>En <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math> se cancela el factor responsable y el límite es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">-1/2</annotation></semantics></math>; en 1 queda una división con denominador tendiendo a cero y laterales infinitos de signos opuestos.</li>
+<li>En el primer caso las entradas se acercan a un número y las salidas no tienen cota; en el segundo las entradas se alejan y las salidas se acercan a un número.</li>
+<li>No; su dominio real es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>+</mi><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,+\infty)</annotation></semantics></math> y el límite por la derecha es <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>=</mo><msqrt><mn>0</mn></msqrt></mrow><annotation encoding="application/x-tex">0=\sqrt{0}</annotation></semantics></math>.</li>
+</ol>
+<h3 id="limites-fuentes-y-siguiente-uso">Fuentes y siguiente uso</h3>
+<p>Los desarrollos basados en el PDF local están identificados junto a cada ejemplo: <a href="../material/pdf/TP2%20LIMITES.pdf">TP2</a>, p. 1, ej. 1–2; p. 2, ej. 3.1, 4.2 y 5.1. Para practicar continuidad, consultar p. 3, ej. 6; no se incluye su solucionario completo. Los ejemplos marcados como originales son elaboración docente, no transcripciones del PDF.</p>
+<p>Como referencia complementaria de enfoque se consultó <strong>solo la descripción</strong> de <a href="https://www.educ.ar/recursos/152410">Límite de funciones — Educ.ar / INET</a>, dirigido a estudiantes de 4.º año del Segundo Ciclo de Escuela Secundaria Técnica. Esa descripción propone una aproximación intuitiva y menos formal con actividades; no se descargó ni se analizó el documento enlazado. Estos apuntes son un desarrollo propio, no una cita de ese documento ni un programa oficial.</p>
+<p>Volvé al <a href="#lectura">índice de teoría</a> para distinguir fuentes, apuntes y fichas docentes.</p>
+</article>
+      <section id="lectura" class="context" aria-label="Guía de lectura, fuentes y alcance">
+        <div class="eyebrow">Notas de edición / Fuentes y alcance</div>
+        <h2 id="indice-teoría-para-estudiar-funciones-y-límites">Teoría para estudiar funciones y límites</h2>
+<p>Estos dos apuntes desarrollan las ideas necesarias para empezar a trabajar con EVA1 y TP2 en el secundario. Leé primero los conceptos y ejemplos; después usá las preguntas de autocontrol y, al final, compará con las respuestas breves. No son una evaluación nueva ni un solucionario completo.</p>
+<p><strong>Lectura recomendada:</strong> abrí <a href="index.html">Funciones / Límites en HTML</a> en el navegador. Reúne ambos apuntes completos, con índice navegable y fórmulas legibles sin conexión. Conservá <code>index.html</code> y <code>teoria.css</code> en la misma carpeta; los PDF enlazados siguen en <code>../material/pdf/</code>.</p>
+<h3 id="indice-recorrido-de-lectura">Recorrido de lectura</h3>
+<div class="table-scroll" role="region" aria-label="Tabla de estudio" tabindex="0"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Apunte</th>
+<th>Qué vas a aprender</th>
+<th>Fuente local para practicar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#funciones">1. Funciones: relacionar, representar e interpretar</a></td>
+<td>Variables, representaciones, dominio e imagen, raíces, comportamiento y parábolas.</td>
+<td><a href="../material/pdf/eva1.pdf">EVA1, p. 1, a–d</a></td>
+</tr>
+<tr>
+<td><a href="#limites">2. Límites: acercarse, comparar y decidir continuidad</a></td>
+<td>Aproximación, laterales, factorización, asíntotas y continuidad.</td>
+<td><a href="../material/pdf/TP2%20LIMITES.pdf">TP2, pp. 1–3</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>No hace falta conocer derivadas para este recorrido. Si cuesta sustituir o resolver ecuaciones, retomá la primera sección del apunte de funciones. Para leer los gráficos de TP2, abrí el PDF: el texto extraído no conserva la información visual.</p>
+<h3 id="indice-cómo-reconocer-las-fuentes">Cómo reconocer las fuentes</h3>
+<p>Los apuntes son <strong>elaboración docente propia para este repositorio</strong>. Cada ejemplo trabajado a partir de un PDF local indica página y ejercicio; los otros ejemplos se identifican como originales. Las explicaciones y tablas no se presentan como soluciones oficiales de los autores de los PDF.</p>
+<p>Como referencias complementarias de nivel y enfoque se consultaron las descripciones de dos recursos oficiales:</p>
+<ul>
+<li><a href="https://www.educ.ar/recursos/151034/matematica-para-la-educacion-secundaria-tecnica-ciclo-basico">Matemática para la Educación Secundaria Técnica. Ciclo Básico — Educ.ar</a>: colección que incluye funciones cuadráticas, raíces, funciones elementales y modelización, y recomienda recursos de INET.</li>
+<li><a href="https://www.educ.ar/recursos/152410">Límite de funciones — Educ.ar / INET</a>: recurso para 4.º año del Segundo Ciclo de Escuela Secundaria Técnica, con enfoque intuitivo y menos formal. Se consultó solo su descripción, no el documento descargable.</li>
+</ul>
+<p>Se localizó el <a href="https://etec.um.edu.ar/">sitio oficial de ETec Mendoza</a>, pero en la búsqueda realizada no se encontró un programa público de estos temas. <strong>No se atribuyen estos apuntes ni los PDF locales a ETec Mendoza, ni se afirma alineación curricular oficial con esa institución.</strong> La coincidencia de nombres con otras escuelas no acredita una relación institucional.</p>
+<h3 id="indice-para-continuar">Para continuar</h3>
+<p>Las <a href="../conocimiento/README.md">fichas de conocimiento</a> ofrecen una vista de preparación docente; estos apuntes ofrecen la explicación para estudiantes. La <a href="../clases/analisis/clase-01.md">clase inicial</a> propone trabajar el modelo de EVA1. Volver al <a href="../README.md">inicio del repositorio</a>.</p>
+
+      </section>
+    </main>
+  </div>
+  <footer><span>Cuaderno de Matemática / Funciones y límites</span><a href="#inicio">Volver al inicio ↑</a></footer>
+</body>
+</html>
