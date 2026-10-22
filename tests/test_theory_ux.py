@@ -23,6 +23,27 @@ class ReadingUXTests(unittest.TestCase):
         self.assertNotRegex(js, r'localStorage|sessionStorage|fetch\(|XMLHttpRequest|scrollIntoView|\.focus\(')
         self.assertIn('a[aria-current="location"]', self.css)
 
+    def test_cover_identifies_etec_with_requested_wording(self):
+        for text in [self.html, (FOLDER / 'plantilla.html').read_text()]:
+            heading = re.search(r'<section class="hero"[^>]*>\s*<div class="eyebrow">([^<]+)</div>', text)[1]
+            self.assertEqual(heading, 'Teoría de matemática para ETec')
+
+    def test_cover_label_describes_the_site_without_limiting_future_topics(self):
+        for text in [self.html, (FOLDER / 'plantilla.html').read_text()]:
+            banner = re.search(r'<div class="edition-line">(.*?)</div>', text, re.S)[1]
+            self.assertIn('Apuntes de Matemática · Nivel secundario', banner)
+            self.assertNotIn('Lectura sin conexión', banner)
+            self.assertNotIn('Sin derivadas', banner)
+
+    def test_active_topic_has_larger_heavier_type(self):
+        active = re.search(r'\.contents a\[aria-current="location"\]\s*\{([^}]+)\}', self.css)[1]
+        normal = re.search(r'\.contents\s*\{([^}]+)\}', self.css)[1]
+        active_size = re.search(r'font-size:\s*([\d.]+)rem', active)
+        self.assertIsNotNone(active_size, 'The active topic needs its own larger type size')
+        normal_size = re.search(r'font-size:\s*([\d.]+)rem', normal)
+        self.assertGreater(float(active_size[1]), float(normal_size[1]))
+        self.assertRegex(active, r'font-weight:\s*(?:[6-9]\d\d|bold)')
+
     def test_restrained_hierarchy_and_print(self):
         for kind in ['idea', 'ejemplo', 'advertencia']:
             self.assertIn('class="reading-note ' + kind + '"', self.html)

@@ -96,6 +96,18 @@ try {
     result = await metrics();
     assert.equal(result.active, '#funciones-qué-hace-que-una-relación-sea-una-función');
     assert.ok(result.topic.includes('Qué hace'));
+    const emphasis = await evaluate(`(() => {
+      const active = document.querySelector('.contents a[aria-current="location"]');
+      const inactive = document.querySelector('.index-chapter a:not(.index-title):not([aria-current])');
+      const current = getComputedStyle(active), normal = getComputedStyle(inactive);
+      return { activeSize:parseFloat(current.fontSize), normalSize:parseFloat(normal.fontSize),
+        activeWeight:Number(current.fontWeight), normalWeight:Number(normal.fontWeight),
+        color:current.color, accent:getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() };
+    })()`);
+    assert.ok(emphasis.activeSize > emphasis.normalSize, JSON.stringify(emphasis));
+    assert.ok(emphasis.activeWeight > emphasis.normalWeight, JSON.stringify(emphasis));
+    assert.equal(emphasis.color, 'rgb(255, 128, 92)');
+    console.log(JSON.stringify({ mode:'active-topic-emphasis', width, ...emphasis }));
     await capture(width === 1440 ? 'ux-preview-desktop.png' : 'ux-preview-mobile.png');
     await scroll('#parabola');
     if (width === 390) await capture('ux-preview-parabola.png');

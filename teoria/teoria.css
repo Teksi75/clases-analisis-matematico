@@ -88,7 +88,14 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 5%; display: flex; j
 summary { cursor: pointer; min-height: 44px; padding: .6rem 0; font-family: var(--mono); }
 summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .current-topic { border-left: 2px solid var(--accent); padding-left: .8rem; color: var(--ink); font: .7rem/1.6 var(--mono); }
-.contents a[aria-current="location"] { border-left: 3px solid var(--accent); padding-left: .7rem; color: var(--accent); background: #ff805c0d; }
+.contents a[aria-current="location"] {
+  border-left: 3px solid var(--accent);
+  padding-left: .7rem;
+  color: var(--accent);
+  background: #ff805c0d;
+  font-size: .9rem;
+  font-weight: 650;
+}
 .reading-note { border-left: 2px solid var(--rule); padding-left: 1.1rem; margin: 1.8rem 0; }
 .reading-note.idea { border-color: var(--accent); }
 .reading-note.advertencia { border-color: var(--ink); }
