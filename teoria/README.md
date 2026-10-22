@@ -2,7 +2,7 @@
 
 Estos dos apuntes desarrollan las ideas necesarias para empezar a trabajar con EVA1 y TP2 en el secundario. Leé primero los conceptos y ejemplos; después usá las preguntas de autocontrol y, al final, compará con las respuestas breves. No son una evaluación nueva ni un solucionario completo.
 
-**Lectura recomendada:** abrí [Funciones / Límites en HTML](index.html) en el navegador. Reúne ambos apuntes completos, con índice navegable y fórmulas legibles sin conexión. Conservá `index.html` y `teoria.css` en la misma carpeta; los PDF enlazados siguen en `../material/pdf/`.
+**Lectura recomendada:** abrí [Funciones / Límites en HTML](index.html) en el navegador. Reúne ambos apuntes completos, con índice navegable y fórmulas legibles sin conexión. Conservá `index.html`, `teoria.css` y el archivo opcional `lectura.js` en la misma carpeta; los PDF enlazados siguen en `../material/pdf/`.
 
 ## Recorrido de lectura
 
@@ -36,6 +36,17 @@ Las fuentes editables siguen siendo [01-funciones.md](01-funciones.md) y [02-lim
 python3 teoria/generar.py
 ```
 
-Requiere Python 3 y Pandoc en `/usr/bin/pandoc`; no instala dependencias. El generador usa `teoria/plantilla.html` y `teoria/teoria.css`, convierte las fórmulas a MathML nativo con anotaciones TeX y prefija los identificadores de cada capítulo. También incluye esta guía hasta la sección de mantenimiento. No necesita JavaScript, fuentes remotas ni servicios externos. Las referencias web son enlaces de consulta, no recursos necesarios para leer.
+Requiere Python 3 y Pandoc en `/usr/bin/pandoc`; no instala dependencias. El generador usa `teoria/plantilla.html` y `teoria/teoria.css`, convierte las fórmulas a MathML nativo con anotaciones TeX y prefija los identificadores de cada capítulo. También incluye esta guía hasta la sección de mantenimiento. La lectura no necesita JavaScript, fuentes remotas ni servicios externos. `lectura.js` solo adapta el índice al ancho de pantalla y marca el tema actual al desplazarse; no guarda datos ni mueve el foco. En celular, los accesos a Funciones y Límites preceden al índice plegable nativo; en escritorio, el índice queda visible incluso sin JavaScript. Las referencias web son enlaces de consulta, no recursos necesarios para leer.
+
+Las etiquetas «Idea clave», «Ejemplo resuelto» y «Error frecuente» se agregan a bloques seleccionados por estructura o identificador estable, sin alterar el texto fuente. Las cinco gráficas SVG incluyen descripción, escalas y puntos de los ejemplos: vuelo de EVA1, límite frente a valor puntual, hueco, salto de TP2 y asíntota vertical. El generador muestrea cada rama por separado y las incorpora como complemento, no como reemplazo de la teoría.
+
+Comprobaciones desde la raíz (sin instalar paquetes):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_theory*.py'
+/usr/bin/node teoria/comprobar_navegador.mjs
+```
+
+La segunda requiere `/usr/bin/chromium`, usa un perfil temporal desechable y verifica escritorio, móvil, lectura sin JS y estilos de impresión. Escribe las cuatro capturas `ux-preview-*.png`; no comprueba una impresión física. Las pruebas comparan el texto completo, las tablas y las anotaciones TeX con Pandoc sobre los Markdown originales; excluyen únicamente figuras y etiquetas generadas.
 
 Para imprimir, usá la opción del navegador: se aplica fondo blanco, texto negro y se oculta la navegación. Las respuestas permanecen visibles en su posición original.

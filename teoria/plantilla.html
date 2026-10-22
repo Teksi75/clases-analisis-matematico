@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark light">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Funciones y límites: dos apuntes completos con ejemplos, modelos y autocontrol para estudiar sin conexión.">
   <title>Funciones / Límites — Cuaderno de Matemática</title>
   <link rel="stylesheet" href="teoria.css">
@@ -31,10 +31,14 @@
   </section>
   <div class="reading-layout">
     <nav class="contents" aria-label="Índice de capítulos y secciones">
-      <p class="eyebrow">En este cuaderno</p>
+      <div class="chapter-shortcuts" aria-label="Accesos directos"><a href="#funciones">01 / Funciones</a><a href="#limites">02 / Límites</a></div>
+      <p id="tema-actual" class="current-topic" hidden></p>
+      <details class="contents-disclosure">
+      <summary>Índice de lectura</summary>
       $navigation
       <a class="context-link" href="#lectura">Fuentes y alcance</a>
       <a class="back-top" href="#inicio">Volver al inicio ↑</a>
+      </details>
     </nav>
     <main id="contenido" tabindex="-1">
       $chapters
@@ -45,5 +49,6 @@
     </main>
   </div>
   <footer><span>Cuaderno de Matemática / Funciones y límites</span><a href="#inicio">Volver al inicio ↑</a></footer>
+  <script src="lectura.js" defer></script>
 </body>
 </html>

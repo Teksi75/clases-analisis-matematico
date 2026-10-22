@@ -15,18 +15,30 @@ class Content(HTMLParser):
     def __init__(self, html):
         super().__init__(convert_charrefs=True)
         self.words, self.ids, self.links, self.tags = [], [], [], []
+        self.generated_depth = 0
         self.feed(html)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if self.generated_depth:
+            self.generated_depth += 1
+            return
+        if attrs.get('data-generated') in ('figure', 'label'):
+            self.generated_depth = 1
+            return
         self.tags.append(tag)
         if "id" in attrs:
             self.ids.append(attrs["id"])
         if tag == "a":
             self.links.append(attrs.get("href", ""))
 
+    def handle_endtag(self, tag):
+        if self.generated_depth:
+            self.generated_depth -= 1
+
     def handle_data(self, text):
-        self.words.extend(text.split())
+        if not self.generated_depth:
+            self.words.extend(text.split())
 
 
 class TheoryHTMLTests(unittest.TestCase):
@@ -47,6 +59,8 @@ class TheoryHTMLTests(unittest.TestCase):
                 self.assertEqual(Content(expected).words, Content(actual).words)
                 for tag in ["table", "tr", "th", "td", "p", "li", "math", "annotation"]:
                     self.assertEqual(Content(expected).tags.count(tag), Content(actual).tags.count(tag), tag)
+                self.assertEqual(re.findall(r'<math\b.*?</math>', expected, re.S),
+                                 re.findall(r'<math\b.*?</math>', actual, re.S))
                 self.assertEqual(re.findall(r'<annotation.*?</annotation>', expected, re.S),
                                  re.findall(r'<annotation.*?</annotation>', actual, re.S))
                 self.assertIn("<mfrac>", actual)
@@ -75,7 +89,9 @@ class TheoryHTMLTests(unittest.TestCase):
         self.assertFalse(any(urlsplit(link).path in CHAPTERS.values() for link in self.page.links))
 
     def test_offline_responsive_print_and_containment(self):
-        self.assertNotRegex(self.html, r'<script\b|<(?:link|img)[^>]+(?:href|src)="https?://')
+        self.assertEqual(re.findall(r'<script\b[^>]*>.*?</script>', self.html, re.S),
+                         ['<script src="lectura.js" defer></script>'])
+        self.assertNotRegex(self.html, r'<(?:link|img)[^>]+(?:href|src)="https?://')
         self.assertIn('href="teoria.css"', self.html)
         self.assertIn('name="viewport"', self.html)
         css = (FOLDER / "teoria.css").read_text()
@@ -83,7 +99,8 @@ class TheoryHTMLTests(unittest.TestCase):
             self.assertIn(rule, css)
         self.assertNotRegex(css, r'@import|url\([\"\x27]?https?://')
         self.assertEqual(self.html.count('class="table-scroll"'), self.page.tags.count("table"))
-        self.assertNotIn("<details", self.html)  # Answers must always print, without opening controls.
+        self.assertEqual(re.findall(r'<details\b[^>]*>', self.html),
+                         ['<details class="contents-disclosure">'])  # Only navigation collapses.
 
 
 if __name__ == "__main__":

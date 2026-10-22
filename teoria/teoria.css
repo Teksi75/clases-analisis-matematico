@@ -82,6 +82,39 @@ math[display="block"] { display: block; max-width: 100%; overflow-x: auto; overf
 .context h2 { margin-top: 1.5rem; font-size: 2rem; }
 .context h3 { font-size: 1.4rem; }
 footer { border-top: 1px solid var(--rule); padding: 1.5rem 5%; display: flex; justify-content: space-between; gap: 1rem; font: .7rem/1.6 var(--mono); color: var(--muted); }
+/* Navigation stays native on mobile; desktop is expanded even without JavaScript. */
+.chapter-shortcuts { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.chapter-shortcuts a { color: var(--accent); min-height: 44px; }
+summary { cursor: pointer; min-height: 44px; padding: .6rem 0; font-family: var(--mono); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.current-topic { border-left: 2px solid var(--accent); padding-left: .8rem; color: var(--ink); font: .7rem/1.6 var(--mono); }
+.contents a[aria-current="location"] { border-left: 3px solid var(--accent); padding-left: .7rem; color: var(--accent); background: #ff805c0d; }
+.reading-note { border-left: 2px solid var(--rule); padding-left: 1.1rem; margin: 1.8rem 0; }
+.reading-note.idea { border-color: var(--accent); }
+.reading-note.advertencia { border-color: var(--ink); }
+.note-label { display: block; color: var(--accent); font: .65rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+.reading-note.advertencia .note-label { color: var(--ink); }
+.reading-note p { margin-block: .6rem; }
+.study-figure { margin: 2rem 0; border-block: 1px solid var(--rule); padding-block: 1rem; break-inside: avoid; }
+.study-plot { display: block; width: 100%; max-width: 600px; height: auto; margin-inline: auto; }
+.study-plot text { fill: var(--ink); font: 14px var(--mono); }
+.study-plot path { fill: none; vector-effect: non-scaling-stroke; }
+.study-plot .axis { stroke: var(--muted); stroke-width: 1; }
+.study-plot .curve { stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+.study-plot .point { stroke: var(--accent); stroke-width: 2; }
+.study-plot .open { fill: var(--paper); }
+.study-plot .filled { fill: var(--accent); }
+.study-plot .asymptote { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 5; }
+figcaption { font-size: .85rem; line-height: 1.65; color: var(--muted); max-width: 60ch; }
+@media (min-width: 701px) {
+  .contents-disclosure::details-content { content-visibility: visible; display: block; }
+  .contents-disclosure:not([open]) > :not(summary) { display: block; }
+  .contents-disclosure summary { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 @media (max-width: 900px) {
   .reading-layout { grid-template-columns: 200px minmax(0, 1fr); gap: 2rem; }
   .motif { width: 160px; }
@@ -100,7 +133,9 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 5%; display: flex; j
   .reading-layout { display: block; padding-top: 2rem; }
   .contents { position: static; max-height: none; margin-bottom: 4rem; padding: 0; }
   .index-chapter { padding-bottom: 1rem; }
-  .contents a { padding-block: .45rem; }
+  .contents a { padding-block: .65rem; min-height: 44px; }
+  .contents { margin-bottom: 2rem; }
+  .current-topic { font-size: .72rem; }
   main { width: 100%; }
   h2 { font-size: 2.1rem; }
   h3 { font-size: 1.45rem; }
@@ -111,7 +146,14 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 5%; display: flex; j
   :root { color-scheme: light; --paper: white; --ink: black; --muted: #333; --accent: black; --rule: #999; }
   @page { margin: 18mm; }
   body { font-size: 11pt; line-height: 1.5; background: white; color: black; }
-  .masthead, .contents, .start-link, .motif, .skip-link, footer { display: none; }
+  .masthead, .contents, .contents-disclosure, .start-link, .motif, .skip-link, footer { display: none; }
+  .study-figure { break-inside: avoid; }
+  .study-plot { max-width: 125mm; }
+  .study-plot .curve, .study-plot .point { stroke: black; }
+  .study-plot .axis, .study-plot .asymptote { stroke: #555; }
+  .study-plot .filled { fill: black; }
+  .study-plot .open { fill: white; }
+  .study-plot text, .note-label { fill: black; color: black; }
   .hero { padding: 0; background: none; }
   h1 { font-size: 44pt; }
   .hero-divider, .period, strong, a, .outline-word { color: black; }
