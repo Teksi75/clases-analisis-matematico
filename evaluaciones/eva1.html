@@ -18,6 +18,10 @@
     .eva1 a, .eva1 a:visited { color: var(--eva1-accent); text-underline-offset: .2em; }
     .eva1 a:hover { color: var(--eva1-ink); }
     .eva1 a:focus-visible { outline: 2px solid var(--eva1-accent); outline-offset: 4px; }
+    .eva1 .enunciado { border: 1px solid var(--eva1-rule); border-radius: 6px; margin-block: 1.5em; padding: 0 1em; }
+    .eva1 .enunciado > summary { position: sticky; top: 0; z-index: 1; padding: .75em 0; background: var(--eva1-paper); color: var(--eva1-accent); cursor: pointer; font-weight: 700; }
+    .eva1 .enunciado > summary:focus-visible { outline: 2px solid var(--eva1-accent); outline-offset: 4px; }
+    .eva1 .enunciado .fuente { color: var(--eva1-muted); font-size: .85em; }
     .eva1 .skip-link { position: absolute; left: -10000px; }
     .eva1 .skip-link:focus { position: static; }
     .eva1 nav ul { display: flex; flex-wrap: wrap; gap: .4em 1.5em; list-style: none; padding: 0; }
@@ -43,9 +47,21 @@
 <main id="contenido" tabindex="-1" aria-label="Resolución pedagógica EVA1">
 <h1 id="eva1-la-altura-de-una-pelota">EVA1 · La altura de una
 pelota</h1>
-<p>Enunciado de referencia: <a
-href="../material/pdf/eva1.pdf">EVA1,
-página 1, incisos a–d</a>.</p>
+<details class="enunciado">
+<summary>Enunciado original · abrir / ocultar</summary>
+<p>Messi hizo un tiro libre en el Mundial de la FIFA de Qatar 2022. Eran las 12 del mediodía y el sol proyectaba una sombra sobre el terreno exactamente en la vertical de la pelota. El sistema informático del VAR dice que la altura de la pelota (sin rebotes) se modela por la función:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(x)=-\frac{1}{135}(x-45)^2+15
+</annotation></semantics></math></p>
+<p>donde x es la distancia entre Messi y la sombra de la pelota luego del lanzamiento (en metros, medida en el terreno) y h es la altura de la pelota respecto al suelo (en metros). Hacer los planteos, deducciones, explicaciones y justificaciones que correspondan para poder responder las siguientes consignas:</p>
+<ol type="a">
+<li>Encontrar las posiciones para las cuales la pelota está en el suelo. Si el arco está a 100 metros de Messi, ¿la pelota llega al arco? ¿se pasa del arco? ¿por qué?</li>
+<li>¿Qué valores de x no tienen sentido real en la función h(x)? ¿por qué?</li>
+<li>¿Qué altura alcanza la pelota luego de que la sombra recorre 10 metros de distancia desde el pie de Messi? ¿Cuál es la distancia entre Messi y la sombra de la pelota ese momento? ¿y la distancia entre Messi y la pelota?</li>
+<li>Haga la gráfica de la función con toda la información recolectada. Indique si la función tiene asíntotas verticales u horizontales. Indique las coordenadas de los puntos que considere importantes en la función. Haga una estimación de la altura máxima que alcanza la pelota (y donde sucede) e indíquelo en el gráfico.</li>
+</ol>
+<p class="fuente">Fuente: EVA 1 · Matemática · 5to año · 26/6/2025, ejercicio 1, incisos a–d.</p>
+</details>
 <nav aria-label="Secciones de la resolución EVA1">
 <ul>
 <li><a href="#interpretación-del-modelo">Interpretación del modelo</a></li>

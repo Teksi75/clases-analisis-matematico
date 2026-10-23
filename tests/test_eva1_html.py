@@ -1,6 +1,8 @@
 """Checks of the published, self-contained EVA1 solution and its entry points."""
 import re
 import unittest
+import unicodedata
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -48,7 +50,7 @@ class Eva1HTMLTests(unittest.TestCase):
         links = [attrs["href"] for attrs in self.page.attrs("a")]
         self.assertIn("#contenido", links)
         self.assertEqual(links.count("../teoria/index.html"), 2)
-        self.assertIn("../material/pdf/eva1.pdf", links)
+        self.assertFalse(any(urlsplit(link).path.lower().endswith(".pdf") for link in links))
         self.assertIn('class="skip-link"', self.html)
         self.assertIn(":focus-visible", self.html)
         self.assertTrue(any(attrs.get("aria-label") for attrs in self.page.attrs("nav")))
@@ -67,9 +69,10 @@ class Eva1HTMLTests(unittest.TestCase):
         self.assertGreater(self.html.rindex('href="../teoria/index.html"'), self.html.rindex("</table>"))
 
     def test_complete_offline_pedagogy_math_graph_and_tables(self):
+        solution = Page(self.html.split('<nav aria-label="Secciones de la resolución EVA1">', 1)[1])
         for tag, count in {"math": 89, "annotation": 89, "svg": 1,
                            "table": 3, "tr": 21, "h2": 5, "h3": 7}.items():
-            self.assertEqual(len(self.page.attrs(tag)), count, tag)
+            self.assertEqual(len(solution.attrs(tag)), count, tag)
         text = " ".join(self.page.words)
         for phrase in ["representa una distancia, no el tiempo.",
                        "es la raíz principal", "cae 10 metros antes",
@@ -96,6 +99,53 @@ class Eva1HTMLTests(unittest.TestCase):
         self.assertIn("overflow-x: auto", self.html)
         self.assertIn("prolongación matemática", text)
         self.assertIn("Una curva puede cruzar una asíntota", text)
+
+    def test_original_statement_is_faithful_native_and_collapsed(self):
+        root = ET.fromstring(self.html.replace('xmlns="http://www.w3.org/1999/xhtml"', '', 1))
+        details = root.findall('.//details')
+        self.assertEqual(len(details), 1)
+        statement = details[0]
+        self.assertNotIn('open', statement.attrib)
+        self.assertEqual(statement[0].tag, 'summary')
+        self.assertIn('Enunciado original', ''.join(statement[0].itertext()))
+        self.assertFalse(statement[0].attrib.get('role'))
+        self.assertNotIn('tabindex', statement[0].attrib)
+        for forbidden in ('iframe', 'object', 'embed', 'script', 'link'):
+            self.assertFalse(self.page.attrs(forbidden), forbidden)
+        for _, attrs in self.page.elements:
+            self.assertNotIn('target', attrs)
+            self.assertFalse(any(key.startswith('on') for key in attrs))
+
+        def normalize(text):
+            return ' '.join(unicodedata.normalize('NFC', text.replace('ı', 'i')).split())
+
+        source = normalize((ROOT / 'material/texto/eva1.txt').read_text(encoding='utf-8'))
+        exercise = source.split('1. ', 1)[1].split('Rúbrica.', 1)[0]
+        intro = exercise.split('h(x) =', 1)[0].rstrip(' 1')
+        definitions = exercise.split('donde x', 1)[1].split('a)', 1)[0]
+        paragraphs = [normalize(''.join(p.itertext())) for p in statement.findall('p')]
+        self.assertEqual(paragraphs[0], intro)
+        self.assertEqual(paragraphs[2], 'donde x' + definitions.rstrip())
+        items = statement.findall('ol/li')
+        self.assertEqual(len(items), 4)
+        self.assertEqual(statement.find('ol').get('type'), 'a')
+        for index, label in enumerate('abcd'):
+            expected = exercise.split(label + ')', 1)[1]
+            if label != 'd':
+                expected = expected.split(chr(ord(label) + 1) + ')', 1)[0]
+            self.assertEqual(normalize(''.join(items[index].itertext())), expected.strip())
+        self.assertEqual(' '.join(statement.itertext()).count('Messi hizo un tiro libre'), 1)
+        math = statement.findall('.//{http://www.w3.org/1998/Math/MathML}math')
+        self.assertEqual(len(math), 1)
+        self.assertEqual(math[0].get('display'), 'block')
+        solution_formula = root.findall('.//{http://www.w3.org/1998/Math/MathML}math')[1]
+        self.assertEqual(ET.tostring(math[0]), ET.tostring(solution_formula))
+        self.assertEqual(len(self.page.attrs('math')), 90)
+        self.assertIn(r'h(x)=-\frac{1}{135}(x-45)^2+15', ''.join(math[0].itertext()))
+        self.assertTrue(math[0].findall('.//{http://www.w3.org/1998/Math/MathML}mfrac'))
+        self.assertTrue(math[0].findall('.//{http://www.w3.org/1998/Math/MathML}msup'))
+        self.assertIn('.eva1 .enunciado > summary:focus-visible', self.html)
+        self.assertRegex(self.html, r'\.eva1 \.enunciado > summary\s*\{[^}]*position: sticky')
 
     def test_published_and_editable_entry_points(self):
         for filename in ("teoria/plantilla.html", "teoria/index.html"):
