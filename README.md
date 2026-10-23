@@ -9,6 +9,8 @@ Base de conocimiento y planificación inicial para preparar clases a partir de c
 3. Abrir los [diagnósticos en HTML](evaluaciones/diagnosticos/index.html) para leerlos e imprimirlos en el navegador. Las [fuentes editables en Markdown](evaluaciones/diagnosticos/README.md) se conservan. Las pruebas son exclusivamente de Matemática y permiten ajustar el punto de partida.
 4. Usar la [primera clase: funciones y modelos](clases/analisis/clase-01.md) según los resultados del diagnóstico.
 
+La [resolución pedagógica de EVA1](evaluaciones/eva1.html) desarrolla los incisos a–d paso a paso, con fórmulas, tablas y gráfica disponibles sin conexión.
+
 ## Estructura
 
 | Carpeta o archivo | Contenido |

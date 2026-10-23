@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="eva1-document" xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>EVA1 · Resolución pedagógica</title>
+  <style>
+    html.eva1-document { color-scheme: dark; background: #202020; }
+    body.eva1-page { margin: 0; padding: clamp(18px, 5vw, 56px); background: #202020; color: #f2eee5; }
+    .eva1 { --eva1-paper: var(--paper, #202020); --eva1-ink: var(--ink, #f2eee5); --eva1-muted: var(--muted, #bcb8af); --eva1-accent: var(--accent, #ff805c); --eva1-rule: var(--rule, #494743); color: var(--eva1-ink); background: var(--eva1-paper); max-width: 76ch; margin-inline: auto; font: 18px/1.75 "Segoe UI", "Helvetica Neue", Arial, sans-serif; overflow-wrap: break-word; }
+    .eva1 *, .eva1 *::before, .eva1 *::after { box-sizing: border-box; }
+    .eva1 h1, .eva1 h2, .eva1 h3 { color: var(--eva1-ink); line-height: 1.3; letter-spacing: normal; font-weight: 700; }
+    .eva1 h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin: 0 0 1.3em; }
+    .eva1 h2 { font-size: 1.5rem; margin: 2.5em 0 1em; border-top: 1px solid var(--eva1-rule); padding-top: 1em; }
+    .eva1 h3 { font-size: 1.15rem; margin: 1.8em 0 .7em; color: var(--eva1-accent); }
+    .eva1 p { margin: 1em 0; }
+    .eva1 a, .eva1 a:visited { color: var(--eva1-accent); text-underline-offset: .2em; }
+    .eva1 a:hover { color: var(--eva1-ink); }
+    .eva1 a:focus-visible { outline: 2px solid var(--eva1-accent); outline-offset: 4px; }
+    .eva1 .skip-link { position: absolute; left: -10000px; }
+    .eva1 .skip-link:focus { position: static; }
+    .eva1 nav ul { display: flex; flex-wrap: wrap; gap: .4em 1.5em; list-style: none; padding: 0; }
+    .eva1 strong { color: inherit; }
+    .eva1 ul, .eva1 ol { padding-left: 1.5em; }
+    .eva1 li { margin-block: .35em; }
+    .eva1 math { color: inherit; background: transparent; font-size: 1.08em; }
+    .eva1 math[display="block"] { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: .9em .35em; margin: 1em 0; color: var(--eva1-ink); }
+    .eva1 table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 1.5em 0; font-size: .94em; color: var(--eva1-ink); background: transparent; }
+    .eva1 th, .eva1 td { padding: .7em .9em; text-align: left; border-bottom: 1px solid var(--eva1-rule); color: inherit; background: transparent; }
+    .eva1 th { color: var(--eva1-accent); background: #292826; }
+    .eva1 figure { margin: 1.5em 0; border: 1px solid var(--eva1-rule); border-radius: 6px; overflow: hidden; }
+    .eva1 figure svg { display: block; width: 100%; height: auto; background: var(--eva1-paper); color: var(--eva1-ink); }
+    .eva1 figcaption { padding: .8em 1em; color: var(--eva1-muted); font-size: .85em; }
+    @media (max-width: 600px) { .eva1 { font-size: 16px; } .eva1 th, .eva1 td { padding: .5em; } }
+    @media print { html.eva1-document, body.eva1-page { background: white; color: black; } .eva1 { --eva1-paper: #ffffff; --eva1-ink: #111111; --eva1-muted: #444444; --eva1-accent: #853019; --eva1-rule: #777777; font-size: 11pt; } .eva1 th { background: transparent; } .eva1 h2, .eva1 h3 { break-after: avoid; } .eva1 figure { break-inside: avoid; } }
+</style>
+</head>
+<body class="eva1-page">
+<div class="eva1">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header><p><a href="../teoria/index.html">← Volver al cuaderno de teoría</a></p></header>
+<main id="contenido" tabindex="-1" aria-label="Resolución pedagógica EVA1">
+<h1 id="eva1-la-altura-de-una-pelota">EVA1 · La altura de una
+pelota</h1>
+<p>Enunciado de referencia: <a
+href="../material/pdf/eva1.pdf">EVA1,
+página 1, incisos a–d</a>.</p>
+<nav aria-label="Secciones de la resolución EVA1">
+<ul>
+<li><a href="#interpretación-del-modelo">Interpretación del modelo</a></li>
+<li><a href="#a-dónde-está-la-pelota-en-el-suelo-llega-al-arco">a) Suelo y arco</a></li>
+<li><a href="#b-qué-valores-de-x-no-tienen-sentido-en-esta-situación">b) Dominio físico</a></li>
+<li><a href="#c-qué-sucede-cuando-la-sombra-recorrió-10-metros">c) Altura y distancias</a></li>
+<li><a href="#d-gráfica-altura-máxima-y-asíntotas">d) Gráfica, máximo y asíntotas</a></li>
+</ul>
+</nav>
+<h2 id="interpretación-del-modelo">Interpretación del modelo</h2>
+<p>La altura de la pelota está dada por:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(x)=-\frac{1}{135}(x-45)^2+15
+</annotation></semantics></math></p>
+<p>En esta expresión:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+es la distancia <strong>horizontal</strong> entre Messi y la sombra de
+la pelota.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math>
+es la <strong>altura</strong> de la pelota sobre el suelo.</li>
+<li>Ambas magnitudes se expresan en metros.</li>
+</ul>
+<p>Como la sombra se encuentra justo debajo de la pelota, su distancia a
+Messi coincide con el avance horizontal de la pelota. <strong>La
+variable
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+representa una distancia, no el tiempo.</strong></p>
+<p>La distancia directa entre Messi y la pelota es otra medida: se
+calcula combinando la distancia horizontal y la altura.</p>
+<h2 id="a-dónde-está-la-pelota-en-el-suelo-llega-al-arco">a) ¿Dónde está
+la pelota en el suelo? ¿Llega al arco?</h2>
+<p>Estar en el suelo significa que la <strong>altura es cero</strong>.
+Por eso planteamos:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+h(x)=0
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>15</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+-\frac{1}{135}(x-45)^2+15=0
+</annotation></semantics></math></p>
+<p>Despejamos:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mo>−</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+-\frac{1}{135}(x-45)^2=-15
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mn>15</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mn>135</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+(x-45)^2=(-15)(-135)
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>2025</mn></mrow><annotation encoding="application/x-tex">
+(x-45)^2=2025
+</annotation></semantics></math></p>
+<p>Para despejar la expresión elevada al cuadrado, usamos la raíz
+cuadrada y consideramos los dos signos:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>45</mn><mo>=</mo><mo>±</mo><msqrt><mn>2025</mn></msqrt></mrow><annotation encoding="application/x-tex">
+x-45=\pm\sqrt{2025}
+</annotation></semantics></math></p>
+<p>Como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2025</mn><mo>=</mo><msup><mn>45</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">2025=45^2</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>45</mn><mo>=</mo><mo>±</mo><msqrt><msup><mn>45</mn><mn>2</mn></msup></msqrt><mo>=</mo><mo>±</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">
+x-45=\pm\sqrt{45^2}=\pm45
+</annotation></semantics></math></p>
+<p><strong>¿Por qué aparecen dos soluciones?</strong> Porque tanto
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>45</mn><annotation encoding="application/x-tex">45</annotation></semantics></math>
+como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">-45</annotation></semantics></math>,
+al elevarlos al cuadrado, dan
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2025</mn><annotation encoding="application/x-tex">2025</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>45</mn><mn>2</mn></msup><mo>=</mo><mn>2025</mn><mspace width="2.0em"></mspace><mtext mathvariant="normal">y</mtext><mspace width="2.0em"></mspace><msup><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>2025</mn></mrow><annotation encoding="application/x-tex">
+45^2=2025
+\qquad\text{y}\qquad
+(-45)^2=2025
+</annotation></semantics></math></p>
+<p>Por eso debemos considerar las dos posibilidades:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>45</mn><mo>=</mo><mn>45</mn><mspace width="2.0em"></mspace><mtext mathvariant="normal">o</mtext><mspace width="2.0em"></mspace><mi>x</mi><mo>−</mo><mn>45</mn><mo>=</mo><mo>−</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">
+x-45=45
+\qquad\text{o}\qquad
+x-45=-45
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn><mo>+</mo><mn>45</mn><mo>=</mo><mn>90</mn><mspace width="2.0em"></mspace><mtext mathvariant="normal">o</mtext><mspace width="2.0em"></mspace><mi>x</mi><mo>=</mo><mn>45</mn><mo>−</mo><mn>45</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+x=45+45=90
+\qquad\text{o}\qquad
+x=45-45=0
+</annotation></semantics></math></p>
+<p><strong>Aclaración:</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2025</mn></msqrt><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">\sqrt{2025}=45</annotation></semantics></math>
+es la raíz principal. El signo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>±</mo><annotation encoding="application/x-tex">\pm</annotation></semantics></math>
+aparece porque estamos resolviendo una ecuación con una expresión al
+cuadrado.</p>
+<p>Las posiciones en las que la pelota está en el suelo son:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext><mspace width="2.0em"></mspace><mtext mathvariant="normal">y</mtext><mspace width="2.0em"></mspace><mi>x</mi><mo>=</mo><mn>90</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{x=0\ \text{m}\qquad\text{y}\qquad x=90\ \text{m}}
+</annotation></semantics></math></p>
+<ul>
+<li>En
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math>,
+la pelota está en el suelo cuando Messi la patea.</li>
+<li>En
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>90</mn></mrow><annotation encoding="application/x-tex">x=90</annotation></semantics></math>,
+vuelve a tocar el suelo.</li>
+</ul>
+<p>El arco está a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>100</mn><annotation encoding="application/x-tex">100</annotation></semantics></math>
+metros y la pelota cae a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>90</mn><annotation encoding="application/x-tex">90</annotation></semantics></math>
+metros:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>−</mo><mn>90</mn><mo>=</mo><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext></mrow><annotation encoding="application/x-tex">
+100-90=10\ \text{m}
+</annotation></semantics></math></p>
+<p><strong>La pelota no llega al arco durante el vuelo descrito: cae 10
+metros antes.</strong> El modelo no permite determinar qué sucede
+después de tocar el suelo, por ejemplo, si sigue rodando.</p>
+<h2 id="b-qué-valores-de-x-no-tienen-sentido-en-esta-situación">b) ¿Qué
+valores de x no tienen sentido en esta situación?</h2>
+<p>La fórmula puede calcularse para cualquier número real, pero no todos
+los valores representan el vuelo de la pelota.</p>
+<ul>
+<li>Si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&lt;0</annotation></semantics></math>,
+tendríamos una distancia negativa, incompatible con la definición de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>.</li>
+<li>Si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mn>90</mn></mrow><annotation encoding="application/x-tex">x&gt;90</annotation></semantics></math>,
+la fórmula da alturas negativas: ubicaría la pelota debajo del suelo,
+después de haber caído.</li>
+</ul>
+<p>Por eso, el dominio físico del modelo es:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mn>0</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>90</mn></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{0\leq x\leq90}
+</annotation></semantics></math></p>
+<table>
+<thead>
+<tr class="header">
+<th>Tipo de dominio</th>
+<th>Valores</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Matemático de la fórmula</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Físico del vuelo descrito</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>;</mo><mn>90</mn><mo stretchy="true" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0;90]</annotation></semantics></math>
+metros</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Una fórmula puede estar bien definida matemáticamente y dejar
+de representar la situación real fuera de cierto intervalo.</strong></p>
+<h2 id="c-qué-sucede-cuando-la-sombra-recorrió-10-metros">c) ¿Qué sucede
+cuando la sombra recorrió 10 metros?</h2>
+<h3 id="altura-de-la-pelota">Altura de la pelota</h3>
+<p>En ese momento,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">x=10</annotation></semantics></math>.
+Reemplazamos en la función:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(10)=-\frac{1}{135}(10-45)^2+15
+</annotation></semantics></math></p>
+<p>Resolvemos el paréntesis y la potencia:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>−</mo><mn>45</mn><mo>=</mo><mo>−</mo><mn>35</mn><mspace width="2.0em"></mspace><mtext mathvariant="normal">y</mtext><mspace width="2.0em"></mspace><msup><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mn>35</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>1225</mn></mrow><annotation encoding="application/x-tex">
+10-45=-35
+\qquad\text{y}\qquad
+(-35)^2=1225
+</annotation></semantics></math></p>
+<p>Entonces:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1225</mn><mn>135</mn></mfrac><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(10)=-\frac{1225}{135}+15
+</annotation></semantics></math></p>
+<p>Expresamos
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math>
+con el mismo denominador:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1225</mn><mn>135</mn></mfrac><mo>+</mo><mfrac><mn>2025</mn><mn>135</mn></mfrac><mo>=</mo><mfrac><mn>800</mn><mn>135</mn></mfrac><mo>=</mo><mfrac><mn>160</mn><mn>27</mn></mfrac></mrow><annotation encoding="application/x-tex">
+h(10)=-\frac{1225}{135}+\frac{2025}{135}
+=\frac{800}{135}
+=\frac{160}{27}
+</annotation></semantics></math></p>
+<p>Por lo tanto:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>160</mn><mn>27</mn></mfrac><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext><mo>≈</mo><mn>5</mn><mo>,</mo><mn>93</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{h(10)=\frac{160}{27}\ \text{m}\approx5{,}93\ \text{m}}
+</annotation></semantics></math></p>
+<h3 id="distancia-entre-messi-y-la-sombra">Distancia entre Messi y la
+sombra</h3>
+<p>Es directamente el valor de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mn>10</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{10\ \text{m}}
+</annotation></semantics></math></p>
+<h3 id="distancia-entre-messi-y-la-pelota">Distancia entre Messi y la
+pelota</h3>
+<p>Se forma un triángulo rectángulo:</p>
+<ul>
+<li>El cateto horizontal mide
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math>
+metros.</li>
+<li>El cateto vertical mide
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>160</mn><mn>27</mn></mfrac><annotation encoding="application/x-tex">\frac{160}{27}</annotation></semantics></math>
+metros.</li>
+<li>La hipotenusa es la distancia directa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+que queremos calcular.</li>
+</ul>
+<p>Aplicamos el teorema de Pitágoras:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>d</mi><mn>2</mn></msup><mo>=</mo><msup><mn>10</mn><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>160</mn><mn>27</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
+d^2=10^2+\left(\frac{160}{27}\right)^2
+</annotation></semantics></math></p>
+<p>Despejamos
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>.
+Como es una distancia, elegimos la raíz positiva:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><msqrt><mrow><msup><mn>10</mn><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>160</mn><mn>27</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">
+d=\sqrt{10^2+\left(\frac{160}{27}\right)^2}
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>d</mi><mo>≈</mo><mn>11</mn><mo>,</mo><mn>62</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m</mtext></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{d\approx11{,}62\ \text{m}}
+</annotation></semantics></math></p>
+<p><strong>Esta es la distancia en línea recta desde el punto de
+lanzamiento hasta la pelota. No es la longitud de la trayectoria curva
+recorrida.</strong></p>
+<h2 id="d-gráfica-altura-máxima-y-asíntotas">d) Gráfica, altura máxima y
+asíntotas</h2>
+<h3 id="forma-de-la-gráfica-y-vértice">Forma de la gráfica y
+vértice</h3>
+<p>La función está escrita en forma canónica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>a</mi><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>v</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msub><mi>y</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">
+h(x)=a(x-x_v)^2+y_v
+</annotation></semantics></math></p>
+<p>Al comparar con la función del problema:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(x)=-\frac{1}{135}(x-45)^2+15
+</annotation></semantics></math></p>
+<p>Reconocemos:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>x</mi><mi>v</mi></msub><mo>=</mo><mn>45</mn><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>y</mi><mi>v</mi></msub><mo>=</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+a=-\frac{1}{135},\qquad x_v=45,\qquad y_v=15
+</annotation></semantics></math></p>
+<p>Por lo tanto, el vértice es:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>V</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>45</mn><mo>;</mo><mn>15</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{V=(45;15)}
+</annotation></semantics></math></p>
+<p>Como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a&lt;0</annotation></semantics></math>,
+la parábola abre hacia abajo y el vértice representa su
+<strong>máximo</strong>.</p>
+<h3 id="por-qué-la-altura-máxima-es-15-metros">¿Por qué la altura máxima
+es 15 metros?</h3>
+<p>Cualquier cuadrado es mayor o igual que cero:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+(x-45)^2\geq0
+</annotation></semantics></math></p>
+<p>Por eso, en la expresión de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math>
+se resta a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math>
+una cantidad que nunca es negativa. La altura no puede superar los
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math>
+metros:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≤</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(x)\leq15
+</annotation></semantics></math></p>
+<p>Al tomar
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>,
+el término al cuadrado se hace cero:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>135</mn></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>45</mn><mo>−</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>15</mn><mo>=</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">
+h(45)=-\frac{1}{135}(45-45)^2+15=15
+</annotation></semantics></math></p>
+<p>Así obtenemos el máximo exacto, no solo una estimación:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mrow><mtext mathvariant="normal">Altura máxima: </mtext><mspace width="0.333em"></mspace></mrow><mn>15</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">m, a </mtext><mspace width="0.333em"></mspace></mrow><mn>45</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">m de Messi</mtext></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{\text{Altura máxima: }15\ \text{m, a }45\ \text{m de Messi}}
+</annotation></semantics></math></p>
+<h3 id="gráfica-del-vuelo">Gráfica del vuelo</h3>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 320" role="img" aria-labelledby="eva1-titulo" style="max-width:100%;height:auto;font:14px sans-serif">
+<title id="eva1-titulo">
+Trayectoria de la pelota: salida en 0 metros, máximo de 15 metros a los
+45 metros y caída a los 90 metros. Arco a 100 metros.
+</title>
+<path d="M55 25 V245 H690" fill="none" stroke="currentColor"/>
+<path d="M325 65 V245 M55 65 H325" fill="none" stroke="#a0a0a0" stroke-dasharray="5 5"/>
+<polyline points="55.00,245.00 61.00,237.09 67.00,229.36 73.00,221.80 79.00,214.42 85.00,207.22 91.00,200.20 97.00,193.36 103.00,186.69 109.00,180.20 115.00,173.89 121.00,167.76 127.00,161.80 133.00,156.02 139.00,150.42 145.00,145.00 151.00,139.76 157.00,134.69 163.00,129.80 169.00,125.09 175.00,120.56 181.00,116.20 187.00,112.02 193.00,108.02 199.00,104.20 205.00,100.56 211.00,97.09 217.00,93.80 223.00,90.69 229.00,87.76 235.00,85.00 241.00,82.42 247.00,80.02 253.00,77.80 259.00,75.76 265.00,73.89 271.00,72.20 277.00,70.69 283.00,69.36 289.00,68.20 295.00,67.22 301.00,66.42 307.00,65.80 313.00,65.36 319.00,65.09 325.00,65.00 331.00,65.09 337.00,65.36 343.00,65.80 349.00,66.42 355.00,67.22 361.00,68.20 367.00,69.36 373.00,70.69 379.00,72.20 385.00,73.89 391.00,75.76 397.00,77.80 403.00,80.02 409.00,82.42 415.00,85.00 421.00,87.76 427.00,90.69 433.00,93.80 439.00,97.09 445.00,100.56 451.00,104.20 457.00,108.02 463.00,112.02 469.00,116.20 475.00,120.56 481.00,125.09 487.00,129.80 493.00,134.69 499.00,139.76 505.00,145.00 511.00,150.42 517.00,156.02 523.00,161.80 529.00,167.76 535.00,173.89 541.00,180.20 547.00,186.69 553.00,193.36 559.00,200.20 565.00,207.22 571.00,214.42 577.00,221.80 583.00,229.36 589.00,237.09 595.00,245.00" fill="none" stroke="#80c8ff" stroke-width="3"/>
+<g fill="#ff805c"><circle cx="55" cy="245" r="5"/><circle cx="115" cy="173.89" r="5"/><circle cx="325" cy="65" r="5"/><circle cx="595" cy="245" r="5"/></g>
+<path d="M115 245 V173.89 M655 232 V258" stroke="#ff805c" stroke-dasharray="3 3"/>
+<g fill="currentColor"><text x="70" y="230">Salida (0;
+0)</text><text x="125" y="174">(10;
+5,93)</text><text x="325" y="45" text-anchor="middle">Máximo (45;
+15)</text><text x="590" y="230" text-anchor="end">Caída (90;
+0)</text><text x="655" y="280" text-anchor="middle">Arco: 100
+m</text><text x="325" y="268" text-anchor="middle">45</text><text x="40" y="70" text-anchor="end">15</text><text x="55" y="18">Altura
+h(x) (m)</text><text x="55" y="305">Distancia horizontal x
+(m)</text></g>
+</svg>
+<figcaption>
+Vuelo descrito por el modelo: desde x = 0 hasta x = 90 metros.
+</figcaption>
+</figure>
+<p>El eje horizontal representa la distancia
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+en metros; el vertical, la altura
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math>
+en metros. Solo se dibuja el tramo físicamente válido, desde el
+lanzamiento hasta la caída.</p>
+<p>Para construir la gráfica a mano, podemos usar esta tabla:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distancia horizontal x (m)</th>
+<th>Altura exacta h(x) (m)</th>
+<th>Altura aproximada (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>160</mn><mn>27</mn></mfrac><annotation encoding="application/x-tex">\frac{160}{27}</annotation></semantics></math></td>
+<td>5,93</td>
+</tr>
+<tr class="odd">
+<td>30</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>40</mn><mn>3</mn></mfrac><annotation encoding="application/x-tex">\frac{40}{3}</annotation></semantics></math></td>
+<td>13,33</td>
+</tr>
+<tr class="even">
+<td>45</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math></td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>60</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>40</mn><mn>3</mn></mfrac><annotation encoding="application/x-tex">\frac{40}{3}</annotation></semantics></math></td>
+<td>13,33</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>160</mn><mn>27</mn></mfrac><annotation encoding="application/x-tex">\frac{160}{27}</annotation></semantics></math></td>
+<td>5,93</td>
+</tr>
+<tr class="odd">
+<td>90</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>La parábola es simétrica respecto de la recta
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>.
+Por ejemplo, a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math>
+y a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>80</mn><annotation encoding="application/x-tex">80</annotation></semantics></math>
+metros la pelota tiene la misma altura porque esas posiciones están a
+igual distancia horizontal del vértice.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Elemento</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Punto de salida</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0;0)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Punto calculado en c)</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo>;</mo><mn>5</mn><mo>,</mo><mn>93</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(10;5{,}93)</annotation></semantics></math>,
+aproximadamente</td>
+</tr>
+<tr class="odd">
+<td>Vértice o máximo</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>45</mn><mo>;</mo><mn>15</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(45;15)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Punto de caída</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>90</mn><mo>;</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(90;0)</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td>Eje de simetría</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Tramo ascendente</td>
+<td>De
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math>
+a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td>Tramo descendente</td>
+<td>De
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">x=45</annotation></semantics></math>
+a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>90</mn></mrow><annotation encoding="application/x-tex">x=90</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Dominio físico</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>;</mo><mn>90</mn><mo stretchy="true" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0;90]</annotation></semantics></math>
+metros</td>
+</tr>
+<tr class="odd">
+<td>Imagen del modelo físico</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>;</mo><mn>15</mn><mo stretchy="true" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0;15]</annotation></semantics></math>
+metros</td>
+</tr>
+</tbody>
+</table>
+<h3 id="asíntotas">Asíntotas</h3>
+<p><strong>La función no tiene asíntotas verticales ni
+horizontales.</strong></p>
+<ul>
+<li><strong>Verticales:</strong> no hay ningún valor finito de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+al que la altura tienda a infinito. La función cuadrática está definida
+y es continua para todo número real.</li>
+<li><strong>Horizontales:</strong> al prolongar matemáticamente la
+parábola hacia ambos extremos, los valores de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math>
+disminuyen sin límite; no se acercan a una altura fija.</li>
+</ul>
+<p>El suelo,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">h=0</annotation></semantics></math>,
+<strong>no es una asíntota</strong>: en la prolongación matemática, la altura disminuye sin límite al alejarnos hacia ambos extremos, en lugar de acercarse a cero. La pelota alcanza el suelo en dos
+posiciones concretas,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>90</mn></mrow><annotation encoding="application/x-tex">x=90</annotation></semantics></math>.</p>
+<p>Una curva puede cruzar una asíntota; esos cruces por sí solos no la descartan.
+Aquí lo decisivo es el comportamiento sin límite de la prolongación matemática,
+no los puntos donde la pelota toca el suelo.</p>
+</main>
+<footer><p><a href="../teoria/index.html">← Volver al cuaderno de teoría</a></p></footer>
+</div>
+</body>
+</html>

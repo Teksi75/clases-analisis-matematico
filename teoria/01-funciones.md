@@ -136,6 +136,8 @@ el discriminante $b^2-4ac$ indica dos raíces reales si es positivo, una raíz d
 
 ## 8. Modelo de EVA1: la altura de una pelota
 
+Para seguir todos los pasos de los incisos a–d, consultar la [resolución pedagógica de EVA1](../evaluaciones/eva1.html), con gráfica y distinción entre altura y distancias.
+
 **Desarrollo docente basado en el PDF local [EVA1, p. 1, incisos a–d](../material/pdf/eva1.pdf).** La fórmula y el contexto proceden del enunciado; las explicaciones y la tabla siguientes se elaboraron para este apunte, no se transcribieron de un solucionario.
 
 $$
