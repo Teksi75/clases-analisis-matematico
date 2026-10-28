@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 210" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Gráfica de y = 1 + sen 2x</title><desc id="desc">Senoide de período pi, línea media y igual a 1, máximos 2 y mínimos 0; cruza el eje vertical en 1 ascendiendo.</desc>
+<rect width="570" height="210" fill="white"/>
+<g stroke="#222" stroke-width="2" fill="none"><path d="M20 160 H550 M290 190 V15"/><path d="M543 156 L550 160 L543 164 M286 22 L290 15 L294 22"/><path d="M130 155 V165 M450 155 V165 M285 40 H295 M285 100 H295"/></g>
+<path d="M50 100 C72 100 68 160 90 160 C112 160 108 100 130 100 C152 100 148 40 170 40 C192 40 188 100 210 100 C232 100 228 160 250 160 C272 160 268 100 290 100 C312 100 308 40 330 40 C352 40 348 100 370 100 C392 100 388 160 410 160 C432 160 428 100 450 100 C472 100 468 40 490 40 C512 40 508 100 530 100" fill="none" stroke="#1674c8" stroke-width="3"/>
+<g fill="#111" font-family="serif" font-size="18"><text x="115" y="183">−π</text><text x="446" y="183">π</text><text x="272" y="179">0</text><text x="268" y="46">2</text><text x="556" y="166">x</text><text x="298" y="20">y</text></g>
+</svg>

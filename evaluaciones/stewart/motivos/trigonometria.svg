@@ -1,0 +1,14 @@
+<svg class="motif" data-topic="trigonometria" viewBox="0 0 240 120" fill="none" aria-hidden="true" focusable="false">
+  <title>Seno y coseno en la circunferencia unitaria</title>
+  <path d="M25 60H150M85 112V8" stroke="currentColor"/>
+  <circle cx="85" cy="60" r="42" stroke="currentColor"/>
+  <path d="M85 60L110.2 26.4M85 60H110.2" stroke="#ff6339" stroke-width="2"/>
+  <path d="M110.2 26.4V60" stroke="#ff6339" stroke-dasharray="3 4"/>
+  <path d="M102 60A17 17 0 0 0 95.2 46.4" stroke="#ff6339"/>
+  <circle cx="110.2" cy="26.4" r="3" fill="#ff6339"/>
+  <g fill="currentColor" font-family="serif" font-size="16">
+    <text x="105" y="54">θ</text>
+    <text x="159" y="44">cos θ</text><text x="159" y="73">sen θ</text>
+    <text x="122" y="76">1</text>
+  </g>
+</svg>

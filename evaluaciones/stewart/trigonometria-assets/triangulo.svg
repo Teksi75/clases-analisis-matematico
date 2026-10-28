@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Triángulo rectángulo del ejercicio 5</title><desc id="desc">Hipotenusa 24; ángulo theta abajo a la izquierda, lado opuesto a y adyacente b; ángulo recto abajo a la derecha.</desc>
+<rect width="320" height="200" fill="white"/>
+<path d="M25 160 L275 160 L275 25 Z M255 160 L255 140 L275 140" fill="none" stroke="#1674c8" stroke-width="3"/>
+<path d="M65 160 A40 40 0 0 0 60 140" fill="none" stroke="#1674c8" stroke-width="2"/>
+<g fill="#111" font-family="serif" font-size="24"><text x="130" y="76">24</text><text x="284" y="100">a</text><text x="145" y="190">b</text><text x="70" y="151">θ</text></g>
+</svg>
