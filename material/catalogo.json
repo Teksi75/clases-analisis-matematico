@@ -40,6 +40,19 @@
       "sha256": "3e09abc69df197e11284aa9d09e130125bf204bb06a4362ec18dddaf4a75c592",
       "texto": "material/texto/tp4 integrales.txt",
       "extraccion": "pdftotext -layout; cotejar fórmulas y gráficos con PDF"
+    },
+    {
+      "id": "STEWART6",
+      "archivo": "material/pdf/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf",
+      "origen": "/home/pablos/Descargas/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf",
+      "paginas": 923,
+      "sha256": "2ef35c3f5a8bf7655a7b0a7775c1d56ecaf98936cc45e9b10c7435585c65d2dd",
+      "extracto": "material/pdf/stewart-examenes-diagnostico.pdf",
+      "extracto_paginas_pdf": "22-26",
+      "extracto_paginas_impresas": "xx-xxiv",
+      "extracto_sha256": "5764f50e82c6c804ee55d5ad6a5bf781b6a90807b4cec5a3006e61dd44b83d4e",
+      "texto": "material/texto/stewart-examenes-diagnostico.txt",
+      "extraccion": "pdftotext -layout, páginas PDF 22–26; solo búsqueda aproximada: símbolos matemáticos incorrectos, consultar el PDF para ejercicios y respuestas"
     }
   ]
 }
