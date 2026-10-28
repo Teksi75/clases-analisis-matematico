@@ -11,6 +11,7 @@ Ruta conceptual: **funciones y modelos → límites y continuidad → derivadas 
 | TP3 | [tp3 derivadas.pdf](../material/pdf/tp3%20derivadas.pdf) | 4 | Reglas, composición, interpretación de velocidad, aplicaciones informáticas y electrónicas. |
 | TP4 | [tp4 integrales.pdf](../material/pdf/tp4%20integrales.pdf) | 2 | Primitivas, integral definida y acumulación de datos y energía. |
 | EVA2 | [eva2.pdf](../material/pdf/eva2.pdf) | 2 | Evaluación integradora y resolución manuscrita; [transcripción de consulta](../material/texto/eva2-transcripcion.md). |
+| STEWART6 | [Libro completo](../material/pdf/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf) · [exámenes de diagnóstico en PDF](../material/pdf/stewart-examenes-diagnostico.pdf) · [exámenes con desarrollos en HTML](../evaluaciones/stewart/index.html) | 923; diagnósticos en PDF 22–26 (xx–xxiv impresas) | Álgebra (22–23), geometría analítica (24), funciones (25) y trigonometría (26), con respuestas. El [texto extraído](../material/texto/stewart-examenes-diagnostico.txt) es solo para búsqueda: contiene símbolos matemáticos incorrectos. |
 
 Las huellas y rutas de extracción están en el [catálogo](../material/catalogo.json). Los números de página de las fichas son los del PDF, no la posición dentro del texto extraído.
 

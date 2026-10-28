@@ -1,0 +1,6 @@
+<svg class="motif" viewBox="0 0 240 120" fill="none" aria-hidden="true" focusable="false">
+  <path d="M10 100H230M30 115V5" stroke="currentColor" stroke-width="1"/>
+  <path d="M35 15Q125 175 215 15" stroke="#ff6339" stroke-width="2"/>
+  <path d="M125 10V110M110 95H140" stroke="currentColor" stroke-dasharray="3 5"/>
+  <rect x="121" y="91" width="8" height="8" fill="#ff6339"/>
+</svg>

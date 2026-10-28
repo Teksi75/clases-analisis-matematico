@@ -1,6 +1,6 @@
 # Clases de Análisis Matemático
 
-Base de conocimiento y planificación inicial para preparar clases a partir de cinco PDF de Matemática de 5.º año. Los originales se conservan sin modificaciones y cada tema remite a su fuente.
+Base de conocimiento y planificación inicial para preparar clases a partir de material de Matemática de 5.º año y un libro de consulta de cálculo. Los originales se conservan sin modificaciones y cada tema remite a su fuente.
 
 ## Por dónde empezar
 
@@ -9,13 +9,15 @@ Base de conocimiento y planificación inicial para preparar clases a partir de c
 3. Abrir los [diagnósticos en HTML](evaluaciones/diagnosticos/index.html) para leerlos e imprimirlos en el navegador. Las [fuentes editables en Markdown](evaluaciones/diagnosticos/README.md) se conservan. Las pruebas son exclusivamente de Matemática y permiten ajustar el punto de partida.
 4. Usar la [primera clase: funciones y modelos](clases/analisis/clase-01.md) según los resultados del diagnóstico.
 
+Como material de consulta adicional, los [exámenes de diagnóstico de Stewart en HTML](evaluaciones/stewart/index.html) reúnen álgebra, geometría analítica, funciones y trigonometría, con desarrollos y respuestas. También está disponible el [extracto original en PDF](material/pdf/stewart-examenes-diagnostico.pdf). Son las páginas 22 a 26 del [libro completo](material/pdf/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf); en el libro están numeradas xx a xxiv.
+
 La [resolución pedagógica de EVA1](evaluaciones/eva1.html) desarrolla los incisos a–d paso a paso, con fórmulas, tablas y gráfica disponibles sin conexión.
 
 ## Estructura
 
 | Carpeta o archivo | Contenido |
 |---|---|
-| [material/pdf/](material/pdf/) | Los cinco PDF originales importados. |
+| [material/pdf/](material/pdf/) | PDF originales importados y extracto de los exámenes de diagnóstico de Stewart. |
 | [material/catalogo.json](material/catalogo.json) | Inventario, páginas, rutas y huellas SHA-256. |
 | [material/texto/](material/texto/) | Texto extraído por página; EVA2 tiene una transcripción manual separada. |
 | [material/vistas/](material/vistas/) | Imágenes de las dos páginas de EVA2 para cotejar el manuscrito. |
@@ -46,6 +48,6 @@ Para volver a extraer un PDF con Poppler instalado:
 pdftotext -layout 'material/pdf/TP2 LIMITES.pdf' 'material/texto/TP2 LIMITES.txt'
 ```
 
-**La extracción no reemplaza al PDF:** puede alterar fracciones, exponentes, funciones por tramos y orden de columnas; los gráficos no se recuperan como texto. EVA2 no tiene capa de texto, por lo que su `.txt` está vacío de contenido útil. Consultar su [transcripción revisada](material/texto/eva2-transcripcion.md) y el original. TP2 produce una advertencia de ligadura al extraer: conservarla como limitación conocida, no como contenido matemático.
+**La extracción no reemplaza al PDF:** puede alterar fracciones, exponentes, funciones por tramos y orden de columnas; los gráficos no se recuperan como texto. En particular, el [texto extraído de los diagnósticos de Stewart](material/texto/stewart-examenes-diagnostico.txt) contiene símbolos matemáticos incorrectos y sirve solo para búsquedas aproximadas: consultá el PDF para leer o utilizar los ejercicios y las respuestas. EVA2 no tiene capa de texto, por lo que su `.txt` está vacío de contenido útil. Consultar su [transcripción revisada](material/texto/eva2-transcripcion.md) y el original. TP2 produce una advertencia de ligadura al extraer: conservarla como limitación conocida, no como contenido matemático.
 
 Al incorporar material, conservar el original, registrar su huella y páginas en el catálogo y enlazarlo desde las fichas y la planificación. No atribuir a los PDF ejercicios nuevos: identificarlos como elaboración docente.

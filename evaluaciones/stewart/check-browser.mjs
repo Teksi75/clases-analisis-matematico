@@ -1,0 +1,149 @@
+// Comprobación local con Chromium y DevTools; sin paquetes ni servicios remotos.
+import { spawn, spawnSync } from 'node:child_process';
+import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, dirname } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+
+const folder = dirname(fileURLToPath(import.meta.url));
+const visual = join(folder, 'verificacion-visual');
+await mkdir(visual, {recursive:true});
+const profile = await mkdtemp(join(tmpdir(), 'stewart-browser-'));
+console.log('Perfil temporal: ' + profile);
+const browser = spawn('/usr/bin/chromium', ['--headless', '--no-sandbox', '--disable-gpu',
+  '--no-first-run', '--disable-background-networking', '--remote-debugging-port=0',
+  '--user-data-dir=' + profile, 'about:blank'], { stdio: ['ignore', 'ignore', 'pipe'] });
+let ws, deadline, failures = 0;
+const timeout = new Promise((_, reject) => { deadline = setTimeout(() => reject(new Error('Tiempo máximo de 180 s agotado')), 180000); });
+try {
+  await Promise.race([timeout, (async () => {
+    const endpoint = await new Promise((resolve, reject) => {
+      let text = '';
+      browser.stderr.on('data', chunk => {
+        text += chunk;
+        const match = text.match(/DevTools listening on (ws:\/\/[^\s]+)/);
+        if (match) resolve(match[1]);
+      });
+      browser.once('error', reject);
+      browser.once('exit', code => reject(new Error('Chromium terminó: ' + code)));
+    });
+    const targets = await (await fetch(`http://127.0.0.1:${new URL(endpoint).port}/json/list`)).json();
+    ws = new WebSocket(targets.find(t => t.type === 'page').webSocketDebuggerUrl);
+    await new Promise((resolve, reject) => { ws.onopen = resolve; ws.onerror = reject; });
+    let id = 0;
+    const pending = new Map(), events = new Map();
+    ws.onmessage = event => {
+      const msg = JSON.parse(event.data);
+      if (msg.id) {
+        const task = pending.get(msg.id); pending.delete(msg.id);
+        if (msg.error) task.reject(new Error(JSON.stringify(msg.error))); else task.resolve(msg.result);
+      } else if (events.has(msg.method)) { events.get(msg.method)(msg.params); events.delete(msg.method); }
+    };
+    const call = (method, params = {}) => new Promise((resolve, reject) => {
+      pending.set(++id, {resolve, reject}); ws.send(JSON.stringify({id, method, params}));
+    });
+    const once = method => new Promise(resolve => events.set(method, resolve));
+    const evalJS = async expression => {
+      const result = await call('Runtime.evaluate', {expression, awaitPromise:true, returnByValue:true});
+      if (result.exceptionDetails) throw new Error(JSON.stringify(result.exceptionDetails));
+      return result.result.value;
+    };
+    const ready = () => evalJS('document.fonts.ready.then(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))).then(() => true)');
+    const navigate = async name => {
+      const loaded = once('Page.loadEventFired');
+      const path = name === 'modelo' ? join(folder, '../../teoria/index.html') : join(folder, name + '.html');
+      await call('Page.navigate', {url:pathToFileURL(path).href});
+      await loaded; await ready();
+    };
+    const clickPage = async selector => {
+      const loaded = once('Page.loadEventFired');
+      await evalJS(`document.querySelector(${JSON.stringify(selector)}).click()`);
+      await loaded; await ready();
+    };
+    const screenshot = async name => {
+      const shot = await call('Page.captureScreenshot', {format:'png'});
+      await writeFile(join(visual, name + '.png'), Buffer.from(shot.data, 'base64'));
+    };
+    const print = async name => {
+      const pdf = await call('Page.printToPDF', {printBackground:true});
+      const path = join(visual, name + '-impresion.pdf');
+      await writeFile(path, Buffer.from(pdf.data, 'base64'));
+      const raster = spawnSync('/usr/bin/pdftoppm', ['-f','1','-l','1','-singlefile','-png','-r','90',path,join(visual,name+'-impresion')], {encoding:'utf8'});
+      if (raster.status !== 0) throw new Error('pdftoppm: ' + raster.stderr);
+      return Math.floor(pdf.data.length * 3 / 4);
+    };
+    await call('Page.enable'); await call('Network.enable');
+    await call('Network.setBlockedURLs', {urls:['http://*', 'https://*']});
+    const names = ['index', 'algebra', 'geometria', 'funciones', 'trigonometria'];
+    for (const width of [1280, 390]) {
+      await call('Emulation.setDeviceMetricsOverride', {width, height:900, deviceScaleFactor:1, mobile:false});
+      await call('Emulation.setEmulatedMedia', {media:'screen'});
+      for (const name of names) {
+        await navigate(name);
+        await screenshot(name + '-' + width + '-portada');
+        if (name !== 'index') {
+          const selector = name === 'funciones' ? 'svg.study-plot' : name === 'geometria' ? 'img' : name === 'trigonometria' ? 'figure img' : '#ejercicio-1';
+          await evalJS(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'start'})`);
+          await ready(); await screenshot(name + '-' + width + '-interior');
+        }
+        const result = await evalJS(`(async () => {
+          const maths = [...document.querySelectorAll('math')];
+          const images = [...document.querySelectorAll('img')];
+          const embedded = [...document.querySelectorAll('svg image')];
+          const raster = await Promise.all(embedded.map(e => new Promise(resolve => {
+            const img = new Image(); img.onload = () => resolve({href:e.getAttribute('href'), ok:img.naturalWidth>0, width:img.naturalWidth});
+            img.onerror = () => resolve({href:e.getAttribute('href'), ok:false}); img.src=e.href.baseVal;
+          })));
+          const badMath = maths.filter(m => { const r=m.getBoundingClientRect(); return r.width<=0 || r.height<=0; }).length;
+          const widest = maths.reduce((a,m) => Math.max(a,m.getBoundingClientRect().width),0);
+          return {width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth,
+            math:maths.length, badMath, widestMath:Math.round(widest), images:images.map(i=>({src:i.getAttribute('src'),ok:i.complete && i.naturalWidth>0})), raster,
+            nav:[...document.querySelectorAll('nav a')].map(a=>a.getAttribute('href'))};
+        })()`);
+        if (result.scroll > result.width || result.badMath || result.images.some(i=>!i.ok) || result.raster.some(i=>!i.ok)) failures++;
+        if (name === 'index') {
+          for (const exam of names.slice(1)) {
+            await clickPage(`a[href="${exam}.html"]`);
+            if (!(await evalJS(`location.pathname.endsWith('/${exam}.html')`))) failures++;
+            await clickPage('nav a[href="index.html"]');
+            if (!(await evalJS(`location.pathname.endsWith('/index.html')`))) failures++;
+          }
+        } else {
+          await evalJS(`document.querySelector('nav a[href="#respuestas-del-libro"]').click()`);
+          const anchor = await evalJS(`({hash:location.hash, visible:!!document.querySelector('#respuestas-del-libro') && document.querySelector('#respuestas-del-libro').getBoundingClientRect().height>0})`);
+          if (anchor.hash !== '#respuestas-del-libro' || !anchor.visible) failures++;
+          result.anchor = anchor;
+        }
+        console.log(JSON.stringify({mode:'screen', page:name, ...result}));
+      }
+      await navigate('modelo');
+      await screenshot('modelo-' + width + '-portada');
+      await evalJS(`document.querySelector('#funciones-qué-hace-que-una-relación-sea-una-función').scrollIntoView({block:'start'})`);
+      await ready(); await screenshot('modelo-' + width + '-interior');
+    }
+    await call('Emulation.setEmulatedMedia', {media:'print'});
+    for (const name of names) {
+      await navigate(name);
+      const result = await evalJS(`(() => ({background:getComputedStyle(document.body).backgroundColor,
+        math:document.querySelectorAll('math').length,
+        badMath:[...document.querySelectorAll('math')].filter(m=>{const r=m.getBoundingClientRect();return r.width<=0||r.height<=0}).length,
+        images:[...document.querySelectorAll('img, svg image')].length,
+        answers:!!document.querySelector('#respuestas-del-libro') && getComputedStyle(document.querySelector('#respuestas-del-libro')).display!=='none'}))()`);
+      result.pdfBytes = await print(name);
+      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || (name !== 'index' && !result.answers)) failures++;
+      console.log(JSON.stringify({mode:'print', page:name, ...result}));
+    }
+    await navigate('modelo');
+    console.log(JSON.stringify({mode:'print', page:'modelo', pdfBytes:await print('modelo')}));
+    console.log('Imágenes y PDF: ' + visual);
+    console.log('Comprobaciones fallidas: ' + failures);
+    if (failures) process.exitCode = 1;
+  })()]);
+} catch (error) {
+  console.error(error); process.exitCode = 1;
+} finally {
+  clearTimeout(deadline); ws?.close();
+  const exited = new Promise(resolve => browser.once('exit', resolve));
+  browser.kill();
+  if (browser.exitCode === null) await exited;
+}

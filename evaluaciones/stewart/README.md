@@ -1,0 +1,16 @@
+# Exámenes de diagnóstico de Stewart
+
+Abrí el [índice HTML](index.html) para elegir un examen. Las consignas y respuestas provienen del libro; los desarrollos son docentes y las erratas de la fuente se señalan sin ocultarlas. Son distintos de los [diagnósticos del proyecto](../diagnosticos/index.html).
+
+## Mantenimiento
+
+Los archivos Markdown son la fuente editable. Con Python 3 y Pandoc 3.11 instalados, desde la raíz del proyecto:
+
+```sh
+python3 -B evaluaciones/stewart/generar.py
+python3 -B evaluaciones/stewart/generar.py --check
+python3 -B -m unittest discover -s tests -p 'test_stewart*.py' -v
+node evaluaciones/stewart/check-browser.mjs
+```
+
+El generador combina los fragmentos de Pandoc con `plantilla.html`, la hoja del modelo de teoría y `stewart.css`: masthead, portada e índice de lectura funcionan también sin JavaScript ni servicios externos. El contenido matemático usa MathML nativo. La plantilla y la hoja local son la fuente de la presentación; no edites directamente los HTML generados. Los motivos decorativos de portada se editan en `motivos/*.svg` y el generador los incorpora dentro del HTML: factorización en Álgebra, circunferencia con radio en Geometría analítica, correspondencia entre entradas y salidas en Funciones y circunferencia unitaria en Trigonometría. El índice conserva su motivo general. Comparten la estética del cuaderno, no una ilustración idéntica; no reemplazan las figuras de los ejercicios. Para trigonometría usa `markdown-fancy_lists` para conservar los incisos literales. `--check` compara sin escribir. La comprobación de navegador requiere Node.js con WebSocket, Chromium en `/usr/bin/chromium` y `pdftoppm` en `/usr/bin/pdftoppm`; muestra la ruta del perfil temporal que crea y guarda capturas y PDF en `verificacion-visual/`. Conservá las carpetas de imágenes junto a los exámenes: en particular, `funciones-assets/pagina-025.png` es utilizada por imágenes SVG recortadas. Después de editar una fórmula o una gráfica, comparala con el PDF original y revisá pantalla móvil e impresión.
