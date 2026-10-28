@@ -1,14 +1,15 @@
 // Comprobación local con Chromium y DevTools; sin paquetes ni servicios remotos.
 import { spawn, spawnSync } from 'node:child_process';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const folder = dirname(fileURLToPath(import.meta.url));
-const visual = join(folder, 'verificacion-visual');
-await mkdir(visual, {recursive:true});
-const profile = await mkdtemp(join(tmpdir(), 'stewart-browser-'));
+const visualRoot = join(folder, 'verificacion-visual');
+await mkdir(visualRoot, {recursive:true});
+const visual = await mkdtemp(join(visualRoot, 'navegacion-'));
+const profile = join(visual, 'perfil');
+await mkdir(profile);
 console.log('Perfil temporal: ' + profile);
 const browser = spawn('/usr/bin/chromium', ['--headless', '--no-sandbox', '--disable-gpu',
   '--no-first-run', '--disable-background-networking', '--remote-debugging-port=0',
@@ -52,7 +53,7 @@ try {
     const navigate = async name => {
       const loaded = once('Page.loadEventFired');
       const path = name === 'modelo' ? join(folder, '../../teoria/index.html') : join(folder, name + '.html');
-      await call('Page.navigate', {url:pathToFileURL(path).href});
+      await call('Page.navigate', {url:pathToFileURL(path).href + (name === 'modelo' ? '#funciones' : '')});
       await loaded; await ready();
     };
     const clickPage = async selector => {
@@ -117,9 +118,26 @@ try {
         console.log(JSON.stringify({mode:'screen', page:name, ...result}));
       }
       await navigate('modelo');
-      await screenshot('modelo-' + width + '-portada');
-      await evalJS(`document.querySelector('#funciones-qué-hace-que-una-relación-sea-una-función').scrollIntoView({block:'start'})`);
-      await ready(); await screenshot('modelo-' + width + '-interior');
+      const direct = await evalJS(`(() => {
+        const link = document.querySelector('#funciones .related-diagnostics a');
+        const r = link.getBoundingClientRect();
+        return {hash: location.hash, visible: r.width > 0 && r.height > 0 && r.top < innerHeight && r.bottom > 0,
+          width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth};
+      })()`);
+      if (direct.hash !== '#funciones' || !direct.visible || direct.scroll > direct.width) failures++;
+      await screenshot('modelo-' + width + '-funciones');
+      await clickPage('#funciones .related-diagnostics a');
+      await evalJS(`document.querySelector('.exam-cards').scrollIntoView({block:'start'})`);
+      await ready(); await screenshot('recorrido-' + width + '-tarjetas');
+      const cards = await evalJS(`(() => ({count:document.querySelectorAll('.exam-cards a').length,
+        width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth}))()`);
+      if (cards.count !== 4 || cards.scroll > cards.width) failures++;
+      await clickPage('.exam-cards a[href="funciones.html"]');
+      const trail = await evalJS(`document.querySelector('.breadcrumbs').innerText`);
+      if (!trail.includes('Diagnósticos de Stewart') || !trail.includes('Funciones')) failures++;
+      await clickPage('.breadcrumbs a[href="../../teoria/index.html#funciones"]');
+      if (!(await evalJS(`location.pathname.endsWith('/teoria/index.html') && location.hash === '#funciones'`))) failures++;
+      console.log(JSON.stringify({mode:'route', width, direct, cards, trail}));
     }
     await call('Emulation.setEmulatedMedia', {media:'print'});
     for (const name of names) {
@@ -130,7 +148,8 @@ try {
         images:[...document.querySelectorAll('img, svg image')].length,
         answers:!!document.querySelector('#respuestas-del-libro') && getComputedStyle(document.querySelector('#respuestas-del-libro')).display!=='none'}))()`);
       result.pdfBytes = await print(name);
-      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || (name !== 'index' && !result.answers)) failures++;
+      const navigationHidden = await evalJS(`getComputedStyle(document.querySelector('.breadcrumbs')).display === 'none'`);
+      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || (name !== 'index' && !result.answers)) failures++;
       console.log(JSON.stringify({mode:'print', page:name, ...result}));
     }
     await navigate('modelo');

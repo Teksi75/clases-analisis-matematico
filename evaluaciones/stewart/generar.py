@@ -42,6 +42,10 @@ def render(name):
     return template.substitute(title=escape(title), hero_first=escape(first),
                                hero_second=escape(second), edition=escape(edition),
                                shortcut=shortcut, navigation=navigation, body=body,
+                               disclosure='' if name == 'index' else ' open',
+                               breadcrumb=('<span aria-current="page">Diagnósticos de Stewart</span>' if name == 'index'
+                                           else '<a href="index.html">Diagnósticos de Stewart</a> <span aria-hidden="true">/</span> '
+                                           + '<span aria-current="page">' + escape(title) + '</span>'),
                                motif=(HERE / 'motivos' / (name + '.svg')).read_text(encoding='utf-8'))
 
 

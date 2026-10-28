@@ -9,12 +9,25 @@ img, svg { max-width: 100%; height: auto; }
 figure { margin: 2rem 0; }
 math[display="inline"] { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
 .contents .index-title { display: block; }
+.breadcrumbs { margin-bottom: 2.5rem; font: .75rem/1.8 var(--mono); color: var(--muted); }
+.breadcrumbs span[aria-hidden] { padding: 0 .4rem; color: var(--rule); }
+.notes-links { margin-top: .6rem; }
+.exam-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0; }
+.exam-cards a { display: flex; flex-direction: column; min-height: 11rem; padding: 1.3rem; border: 1px solid var(--rule); color: var(--ink); text-decoration: none; }
+.exam-cards a:hover, .exam-cards a:focus-visible { border-color: var(--accent); background: #ff805c0d; }
+.exam-cards span { color: var(--accent); font: .7rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.exam-cards strong { margin: .8rem 0; font-size: 1.35rem; line-height: 1.2; }
+.exam-cards small { margin-top: auto; color: var(--muted); font: .75rem/1.6 var(--mono); }
 @media (max-width: 700px) {
   .hero h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); }
   .masthead { flex-wrap: wrap; }
   article h1 { font-size: 2rem; }
+  .exam-cards { grid-template-columns: 1fr; }
 }
 @media print {
+  .breadcrumbs { display: none; }
+  .exam-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .exam-cards a { break-inside: avoid; }
   .hero h1 { font-size: 34pt; }
   article h1 { font-size: 25pt; }
   math[display="inline"] { overflow: visible; }

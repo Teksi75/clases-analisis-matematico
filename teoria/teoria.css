@@ -58,6 +58,12 @@ h1 { font-size: clamp(4.2rem, 10.2vw, 9rem); line-height: .98; letter-spacing: -
 .index-chapter { border-top: 1px solid var(--rule); padding: .8rem 0 1rem; }
 .contents .index-title { font: bold .8rem/1.6 var(--mono); margin-bottom: .5rem; }
 .context-link, .back-top { font-family: var(--mono); }
+.stewart-sidebar { border-block: 1px solid var(--rule); padding: .8rem 0; margin-bottom: 1rem; font: .7rem/1.6 var(--mono); }
+.contents .stewart-sidebar a { color: var(--accent); }
+.stewart-sidebar span { color: var(--muted); text-transform: uppercase; }
+.related-diagnostics { border-left: 2px solid var(--accent); padding: .35rem 1rem; margin-bottom: 1.5rem; font: .8rem/1.6 var(--mono); }
+@media (max-width: 700px) { .theory-masthead { flex-wrap: wrap; } }
+@media print { .related-diagnostics { display: none; } }
 main { min-width: 0; max-width: 70ch; }
 article { font-size: calc(1em * var(--reading-scale, 1)); }
 article table { font-size: calc(.88rem * var(--reading-scale, 1)); }

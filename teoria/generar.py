@@ -184,8 +184,10 @@ def main():
         ending = (f'<nav class="chapter-ending" data-generated="navigation" aria-label="Al terminar {chapter}">'
                   f'<a href="#{chapter}-resumen-conceptual">Repasar las ideas clave</a>'
                   f'<a href="#{next_chapter}">{next_label}</a></nav>')
+        related = ('<aside class="related-diagnostics" data-generated="navigation" aria-label="Para practicar">'
+                   '<a href="../evaluaciones/stewart/index.html">Diagnósticos de Stewart →</a></aside>')
         chapters.append(f'<div class="chapter-label" aria-hidden="true">{number:02d} / Apunte de teoría</div>\n'
-                        f'<article id="{chapter}" aria-labelledby="{escape(title_id)}">\n{body}{ending}</article>')
+                        f'<article id="{chapter}" aria-labelledby="{escape(title_id)}">\n{related}{body}{ending}</article>')
         navigation.append(f'<details class="index-chapter" data-chapter="{chapter}"'
                           f'{" open" if number == 1 else ""}><summary>'
                           f'{number:02d} / {chapter.capitalize().replace("Limites", "Límites")}</summary>'
