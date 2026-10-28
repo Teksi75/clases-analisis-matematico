@@ -1,0 +1,17 @@
+<svg class="motif" data-topic="funciones" viewBox="0 0 240 120" fill="none" aria-hidden="true" focusable="false">
+  <title>Correspondencia entre entradas y salidas de una función</title>
+  <ellipse cx="45" cy="65" rx="27" ry="42" stroke="currentColor"/>
+  <ellipse cx="195" cy="65" rx="27" ry="42" stroke="currentColor"/>
+  <g stroke="#ff6339" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M52 40L187 45M180 40L187 45L180 49"/>
+    <path d="M52 65L187 85M181 79L187 85L179 88"/>
+    <path d="M52 90L187 85M179 81L187 85L180 90"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="45" cy="40" r="3"/><circle cx="45" cy="65" r="3"/><circle cx="45" cy="90" r="3"/>
+    <circle cx="195" cy="45" r="3"/><circle cx="195" cy="85" r="3"/>
+  </g>
+  <g fill="currentColor" font-family="serif" font-size="18" text-anchor="middle">
+    <text x="45" y="17">x</text><text x="195" y="17">f(x)</text>
+  </g>
+</svg>
