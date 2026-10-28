@@ -1,0 +1,11 @@
+<svg class="motif" data-topic="geometria" viewBox="0 0 240 120" fill="none" aria-hidden="true" focusable="false">
+  <title>Circunferencia y radio en el plano cartesiano</title>
+  <path d="M20 60H205M105 112V8" stroke="currentColor"/>
+  <circle cx="105" cy="60" r="42" stroke="#ff6339" stroke-width="2"/>
+  <path d="M105 60L138.6 34.8M138.6 34.8V60" stroke="currentColor" stroke-dasharray="3 4"/>
+  <circle cx="105" cy="60" r="3" fill="currentColor"/>
+  <circle cx="138.6" cy="34.8" r="4" fill="#ff6339"/>
+  <g fill="currentColor" font-family="serif" font-size="16">
+    <text x="209" y="65">x</text><text x="111" y="15">y</text><text x="121" y="42">r</text>
+  </g>
+</svg>
