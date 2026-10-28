@@ -1,0 +1,7 @@
+<svg class="motif" data-topic="algebra" viewBox="0 0 240 120" fill="none" aria-hidden="true" focusable="false">
+  <title>Factorización de una diferencia de cuadrados</title>
+  <text x="120" y="32" text-anchor="middle" fill="currentColor" font-family="serif" font-size="30">x² − 1</text>
+  <path d="M109 49H131M109 56H131" stroke="currentColor"/>
+  <text x="120" y="92" text-anchor="middle" fill="#ff6339" font-family="serif" font-size="28">(x − 1)(x + 1)</text>
+  <path d="M30 107H210" stroke="currentColor" stroke-dasharray="3 5"/>
+</svg>

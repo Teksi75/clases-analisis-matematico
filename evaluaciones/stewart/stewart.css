@@ -1,0 +1,21 @@
+/* Adaptación de la edición de lectura de teoría para los diagnósticos. */
+.hero h1 { font-size: clamp(3.2rem, 7vw, 7rem); overflow-wrap: anywhere; }
+article h1 { font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.2; letter-spacing: -.03em; margin: 0 0 2rem; }
+article h2 { margin-top: 4rem; }
+article h3 { margin-top: 2.5rem; }
+/* El Markdown de geometría conserva su contenedor original sin limitar la columna. */
+article > div[style], article > section[style] { max-width: none !important; margin: 0 !important; padding: 0 !important; }
+img, svg { max-width: 100%; height: auto; }
+figure { margin: 2rem 0; }
+math[display="inline"] { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+.contents .index-title { display: block; }
+@media (max-width: 700px) {
+  .hero h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); }
+  .masthead { flex-wrap: wrap; }
+  article h1 { font-size: 2rem; }
+}
+@media print {
+  .hero h1 { font-size: 34pt; }
+  article h1 { font-size: 25pt; }
+  math[display="inline"] { overflow: visible; }
+}
