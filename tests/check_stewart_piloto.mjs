@@ -154,6 +154,8 @@ try {
     const loaded = once('Page.loadEventFired');
     await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/algebra.html')).href});
     await loaded; await call('Page.bringToFront');
+    const algebraButton = await evaluate(`getComputedStyle(document.querySelector('.consulta-selector button')).backgroundColor`);
+    assert.equal(algebraButton, 'rgba(133, 201, 192, 0.04)', 'Álgebra conserva su fondo verde azulado');
     const panels = await panelNodes();
     let s = await snapshot();
     assert.equal(panels.length, 10);
@@ -295,6 +297,87 @@ try {
     assert.ok(s.panels[0].choices[1].open && s.panels[0].choices[1].brief);
     console.log(JSON.stringify({width, scriptDisabled:true, panels:10, outerAndInnerOpened:46,
       keyboard:'Enter', mouse:true, independent:true, closedInitially:true}));
+  }
+
+  // Geometría: tres selectores de incisos y dos resoluciones únicas nativas.
+  for (const enabled of [true, false]) {
+    await call('Emulation.setScriptExecutionDisabled', {value:!enabled});
+    for (const width of [1280, 390]) {
+      await call('Emulation.setDeviceMetricsOverride', {width, height:900, deviceScaleFactor:1, mobile:false});
+      const loaded = once('Page.loadEventFired');
+      await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/geometria.html')).href});
+      await loaded; await call('Page.bringToFront');
+      if (enabled) {
+        const colors = await evaluate(`(() => {
+          const panel = document.querySelector('.consulta-geometria');
+          const button = panel.querySelector('button');
+          const idle = getComputedStyle(button).backgroundColor;
+          button.click();
+          return {idle, selected: getComputedStyle(button).backgroundColor,
+            panel: getComputedStyle(panel).backgroundColor};
+        })()`);
+        assert.match(colors.idle, /^rgba\(144, 189, 242, /, 'el fondo de botones de Geometría debe ser azul');
+        assert.equal(colors.selected, 'rgb(144, 189, 242)', 'la selección de Geometría debe ser azul');
+        assert.match(colors.panel, /^rgba\(144, 189, 242, /, 'el panel de Geometría debe tener un matiz azul');
+        const reloaded = once('Page.loadEventFired');
+        await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/geometria.html')).href});
+        await reloaded;
+      }
+      const doc = (await call('DOM.getDocument')).root.nodeId;
+      const panels = (await call('DOM.querySelectorAll', {nodeId:doc, selector:'.consulta-geometria'})).nodeIds;
+      assert.equal(panels.length, 5);
+      const geoSnapshot = () => evaluate(`(() => {
+        const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+        return {width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth,
+          panels:[...document.querySelectorAll('.consulta-geometria')].map(p => ({
+            buttons:[...p.querySelectorAll('button')].map(b=>b.getAttribute('aria-pressed')),
+            choices:[...p.querySelectorAll(':scope > details')].map(d=>({open:d.open, hidden:d.hidden,
+              brief:shown(d.querySelector(':scope > p')), inner:d.querySelector(':scope > details').open,
+              steps:shown(d.querySelector(':scope > details > p'))}))}))};
+      })()`);
+      let state = await geoSnapshot();
+      assert.ok(state.scroll <= state.width);
+      assert.deepEqual(state.panels.map(p=>p.choices.length), [4,1,1,6,6]);
+      assert.ok(state.panels.every(p=>p.choices.every(c=>!c.open && !c.brief && !c.inner && !c.steps)));
+      await evaluate(`document.querySelector('.consulta-geometria').scrollIntoView({block:'start'})`);
+      await screenshot(`geometria-${width}-${enabled ? 'js' : 'sin-js'}-inicial`);
+      for (let p=0; p<5; p++) {
+        const single = p===1 || p===2;
+        const count = state.panels[p].choices.length;
+        for (let i=0; i<count; i++) {
+          const before = await geoSnapshot();
+          const target = await query(panels[p], enabled && !single
+            ? `.consulta-selector button:nth-child(${i+1})`
+            : `:scope > details:nth-of-type(${i+1}) > summary`);
+          if (i===0 && p%2===0) await mouseClick(target);
+          else if (enabled && !single && i===1) {
+            const first = await query(panels[p], '.consulta-selector button:first-child');
+            await call('DOM.focus', {nodeId:first}); await press('Tab', 'Tab', 9);
+            assert.equal(await evaluate(`document.activeElement.getAttribute('aria-controls')`), `geo-${p+1}-b`);
+            await press(' ', 'Space', 32, ' ');
+          } else { await call('DOM.focus', {nodeId:target}); await enter(); }
+          state = await geoSnapshot();
+          before.panels.forEach((v,j)=>{if (j!==p) assert.deepEqual(state.panels[j],v);});
+          assert.ok(state.panels[p].choices[i].open && state.panels[p].choices[i].brief);
+          assert.equal(state.panels[p].choices[i].inner, false);
+          if (enabled && !single) {
+            assert.equal(state.panels[p].buttons.filter(v=>v==='true').length,1);
+            assert.ok(state.panels[p].choices.every((c,j)=>(j===i || (!c.open && !c.brief)) && !c.inner && !c.steps));
+          }
+          const inner = await query(panels[p], `:scope > details:nth-of-type(${i+1}) > details > summary`);
+          await call('DOM.focus', {nodeId:inner}); await enter();
+          state = await geoSnapshot();
+          assert.ok(state.panels[p].choices[i].inner && state.panels[p].choices[i].steps);
+          assert.ok(state.scroll <= state.width);
+          if (!enabled || single) {
+            await enter(); await call('DOM.focus', {nodeId:target}); await enter();
+          }
+        }
+      }
+      await evaluate(`document.querySelector('.consulta-geometria').scrollIntoView({block:'start'})`);
+      await screenshot(`geometria-${width}-${enabled ? 'js' : 'sin-js'}`);
+      console.log(JSON.stringify({page:'geometria', width, scriptEnabled:enabled, tasks:18, mouse:true, keyboard:enabled ? 'Tab/Space/Enter' : 'Enter', independent:true}));
+    }
   }
 } finally {
   clearTimeout(timer);
