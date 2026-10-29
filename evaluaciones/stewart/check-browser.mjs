@@ -161,10 +161,35 @@ try {
         })()`);
         if (result.panels.length !== 10 || result.panels.some(p => !p.heading || !p.prompt || p.selected || p.visibleAnswers)) failures++;
       }
+      if (name === 'geometria') {
+        result.panels = await evalJS(`(() => {
+          const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+          return [...document.querySelectorAll('.consulta-geometria')].map(panel => {
+            const choices = [...panel.querySelectorAll(':scope > details')];
+            return {count:choices.length, answers:choices.filter(d => shown(d.querySelector(':scope > p'))).length,
+              selected:panel.querySelectorAll('button[aria-pressed="true"]').length};
+          });
+        })()`);
+        if (result.panels.length !== 5 || result.panels.some(p => p.answers || p.selected)) failures++;
+      }
       result.pdfBytes = await print(name);
       const navigationHidden = await evalJS(`getComputedStyle(document.querySelector('.breadcrumbs')).display === 'none'`);
       if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || result.answers) failures++;
       console.log(JSON.stringify({mode:'print', page:name, ...result}));
+      if (name === 'geometria') {
+        const selected = await evalJS(`(() => {
+          const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+          return [...document.querySelectorAll('.consulta-geometria')].map(panel => {
+            const button = panel.querySelector('.consulta-selector button');
+            const choice = panel.querySelector(':scope > details');
+            if (button) button.click(); else choice.open = true;
+            return {answer:shown(choice.querySelector(':scope > p')), steps:choice.querySelector(':scope > details').open};
+          });
+        })()`);
+        const pdfBytes = await print('geometria-selecciones');
+        if (selected.length !== 5 || selected.some(p => !p.answer || p.steps) || pdfBytes < 1000) failures++;
+        console.log(JSON.stringify({mode:'print-selected', page:name, panels:selected, pdfBytes}));
+      }
       if (name === 'algebra') {
         // Imprimir también con una respuesta por ejercicio seleccionada, sin abrir los pasos.
         const selected = await evalJS(`(() => {

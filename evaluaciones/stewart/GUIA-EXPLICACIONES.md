@@ -1,12 +1,12 @@
 # Extender las explicaciones de Stewart
 
-El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó a los diez ejercicios de Álgebra. Esta guía sirve para mantener esa adaptación y, después, extenderla a Geometría analítica, Funciones y Trigonometría. Ninguna de esas otras áreas está adaptada todavía. Ver [el piloto y su mantenimiento](README.md#piloto-de-explicaciones-aprobado-y-cerrado) y [la evidencia de Álgebra 2–10](../../odd/pilotos/stewart-algebra-2-10-entrada.md).
+El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó a los diez ejercicios de Álgebra y los cinco de Geometría analítica. Esta guía sirve para mantener esas adaptaciones y extenderlas a Funciones y Trigonometría. Ver [el piloto y su mantenimiento](README.md#piloto-de-explicaciones-aprobado-y-cerrado) y [la evidencia de Álgebra 2–10](../../odd/pilotos/stewart-algebra-2-10-entrada.md).
 
 ## Experiencia aprobada
 
 - Escribí para quien termina la secundaria, no para un curso universitario. Presentá primero una idea breve y clara; explicitá las condiciones matemáticas necesarias. Reservá el paso a paso para quien lo solicite.
 - Conservá todas las consignas originales de un ejercicio agrupadas antes de su panel, sin respuestas visibles ni el rótulo «Desarrollo docente». No adelantes resultados en las etiquetas.
-- Un panel por ejercicio: al cargar, ningún inciso está seleccionado. Los botones con letras muestran solo la explicación breve elegida. El detalle empieza cerrado y se cierra de nuevo al cambiar de selección.
+- Un panel por ejercicio: al cargar, ningún inciso está seleccionado. Los botones con letras muestran solo la explicación breve elegida. El detalle empieza cerrado y se cierra de nuevo al cambiar de selección. Si el ejercicio no tiene incisos, los dos niveles son controles nativos anidados, sin selector de letras.
 - Mantené espacio generoso entre «Consultá una resolución» y los botones, y entre los propios botones, como en el diseño aprobado. Los controles deben poder usarse con teclado.
 - Sin JavaScript, conservá el respaldo actual: cada explicación breve es un `details` nativo inicialmente cerrado, con su paso a paso anidado también cerrado. No dependas de servicios externos.
 
@@ -45,6 +45,7 @@ Desarrollo detallado.
 </section>
 ```
 
+- En tareas sin incisos, como Geometría 2 y 3, usá un `details` nativo para «Explicación breve» y otro anidado para «Paso a paso», ambos cerrados. No inventes letras ni conectes estos controles al selector de incisos; funcionan con y sin JavaScript.
 - Incluí el script local diferido **una sola vez por página**, no una vez por panel. Detecta todas las secciones con `data-consulta-incisos` y genera los botones; no los escribas a mano.
 - Cada panel necesita un encabezado con ID único en toda la página y `aria-labelledby` que lo referencie. Cada `details` exterior necesita su propio ID globalmente único: el script lo usa para `aria-controls`. Si asignás un ID a la sección, también debe ser único; no reutilices los IDs del ejemplo entre ejercicios.
 - Los `details[data-inciso]` son hijos directos de la sección, en el orden de las consignas; `data-inciso` contiene la letra del botón. Cada uno lleva `summary`, explicación breve y un `details` anidado para el paso a paso, sin `open` ni `hidden` iniciales. Aunque el paso a paso sea opcional para el estudiante, el script actual espera ese `details` en cada inciso.
@@ -53,12 +54,12 @@ Desarrollo detallado.
 
 ## Color por examen
 
-La interacción y el verde azulado de Álgebra están aprobados y aplicados en el piloto. Los demás pares son **referencias para una adaptación futura**, no estilos ya aplicados ni verificados:
+La interacción y el verde azulado de Álgebra están aprobados y aplicados en el piloto. El azul de Geometría está aplicado; los pares restantes son referencias para adaptaciones futuras:
 
 | Examen | Color de acento | Contorno | Estado |
 | --- | --- | --- | --- |
 | Álgebra | verde azulado `#85c9c0` | `#618b85` | Aplicado a los ejercicios 1–10 |
-| Geometría analítica | azul `#90bdf2` | `#5c80a9` | Referencia futura |
+| Geometría analítica | azul `#90bdf2` | `#5c80a9` | Aplicado a los ejercicios 1–5 |
 | Funciones | violeta `#c3a7ec` | `#8c73ad` | Referencia futura |
 | Trigonometría | ámbar `#e4bd79` | `#a18455` | Referencia futura |
 
@@ -66,7 +67,7 @@ Al adaptar cada examen, verificá contraste, foco y legibilidad en pantalla e im
 
 ## Verificar cada extensión
 
-Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas actuales cubren Álgebra completa; no demuestran esas futuras extensiones.
+Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas actuales cubren Álgebra y Geometría; no demuestran las futuras extensiones.
 
 Desde la raíz, con Python 3, Pandoc 3.11 y las dependencias de navegador indicadas en el [README](README.md#mantenimiento):
 
