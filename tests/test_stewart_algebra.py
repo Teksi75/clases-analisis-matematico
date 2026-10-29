@@ -61,42 +61,42 @@ class AlgebraTests(unittest.TestCase):
                      if tag == "h2" and re.fullmatch(r"Ejercicio \d+", text)]
         self.assertEqual([text for _, text in exercises],
                          [f"Ejercicio {i}" for i in range(1, 11)])
-        answer_index = headings.index(("h2", "Respuestas del libro"))
-        self.assertGreater(answer_index, exercises[-1][0])
+        self.assertNotIn(("h2", "Respuestas del libro"), headings)
         self.assertNotIn("Desarrollo docente", self.html)
         for number in range(1, 11):
             start = self.html.index(f'id="ejercicio-{number}"')
             end = (self.html.index(f'id="ejercicio-{number + 1}"') if number < 10
-                   else self.html.index('id="respuestas-del-libro"'))
+                   else self.html.index('</article>'))
             section = self.html[start:end]
             anchor = 'desarrollo-docente' + (f'-{number - 1}' if number > 1 else '')
             self.assertIn(f'id="{anchor}"', section)
             self.assertIn('<hr', section)
 
-    def test_all_subparts_and_book_answers_present(self):
-        # Cada inciso aparece una vez en la consigna, una en el desarrollo y otra en la clave.
+    def test_all_subparts_present_and_book_answers_internal(self):
+        reference = (ROOT / 'odd/referencias/stewart-claves-y-erratas.md').read_text(encoding='utf-8')
+        key = reference.split('# Álgebra', 1)[1].split('# Geometría', 1)[0]
         for number, count in enumerate(COUNTS, 1):
             with self.subTest(exercise=number):
                 start = self.html.index(f'id="ejercicio-{number}"')
                 end = (self.html.index(f'id="ejercicio-{number + 1}"') if number < 10
-                       else self.html.index('id="respuestas-del-libro"'))
+                       else self.html.index('</article>'))
                 section = self.html[start:end]
-                answers = self.html[self.html.index(f'id="respuestas-{number}"'):]
+                answers = key.split(f'### Respuestas {number}\n', 1)[1]
                 if number < 10:
-                    answers = answers[:answers.index(f'id="respuestas-{number + 1}"')]
-                for letter in "abcdefg"[:count]:
-                    marker = f"<strong>({letter})</strong>"
+                    answers = answers.split(f'### Respuestas {number + 1}\n', 1)[0]
+                for letter in 'abcdefg'[:count]:
+                    marker = f'<strong>({letter})</strong>'
                     self.assertEqual(section.count(marker), 2, (number, marker))
-                    self.assertEqual(answers.count(marker), 1, (number, marker))
+                    self.assertEqual(answers.count(f'**({letter})**'), 1, (number, marker))
 
     def test_book_typo_is_explicit_and_original_is_retained(self):
-        text = " ".join(self.page.text)
-        self.assertIn("errata", text.lower())
-        for item in ("5(c)", "8(c)", "8(e)"):
+        text = (ROOT / 'odd/referencias/stewart-claves-y-erratas.md').read_text(encoding='utf-8')
+        self.assertIn('errata', text.lower())
+        for item in ('5(c)', '8(c)', '8(e)'):
             self.assertIn(item, text)
-        # Printed and corrected expressions remain visible in MathML annotations.
-        for expression in ("-3, 4", "-1, 2", r"\pm1\pm\sqrt2", r"\pm1,\pm\sqrt2"):
-            self.assertIn(expression, self.html)
+        for expression in ('-3, 4', '-1, 2', r'\pm1\pm\sqrt2', r'\pm1,\pm\sqrt2'):
+            self.assertIn(expression, text)
+        self.assertNotIn('errata', ' '.join(self.page.text).lower())
 
 
 if __name__ == "__main__":

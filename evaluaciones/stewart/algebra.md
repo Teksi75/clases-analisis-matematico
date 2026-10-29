@@ -10,7 +10,7 @@ header-includes: |
   </style>
 ---
 
-Consignas y respuestas del examen A de James Stewart, sexta edición, páginas impresas xx–xxi (páginas físicas 22–23 del PDF local). Los desarrollos son **elaboración docente**, no forman parte de la clave del libro. Intentá cada ejercicio antes de leer su desarrollo; al final está la [clave original](#respuestas-del-libro), con las erratas identificadas.
+Consignas del examen A de James Stewart, sexta edición, páginas impresas xx–xxi (páginas físicas 22–23 del PDF local). Los desarrollos son **elaboración docente**. Intentá cada ejercicio antes de leer su desarrollo.
 
 ## Ejercicio 1
 
@@ -409,7 +409,7 @@ Los denominadores $(x-3)(x+3)$ y $2x+1$ dan las tres exclusiones. Factorizando y
 <details id="consulta-ej5-c" data-inciso="c">
 <summary><strong>(c)</strong> Explicación breve</summary>
 
-**Resultado:** $\dfrac{3x-2}{x^2-4}$, con $x\ne-2,2$. Usamos un denominador común; la clave impresa tiene una errata señalada al final.
+**Resultado:** $\dfrac{3x-2}{x^2-4}$, con $x\ne-2,2$. Usamos un denominador común.
 
 <details>
 <summary>Paso a paso</summary>
@@ -574,7 +574,7 @@ Como $x(x+1)\ne0$, podemos multiplicar ambos lados por ese producto: $2x^2=(2x-1
 <details>
 <summary>Paso a paso</summary>
 
-$x^2-x-2=(x-2)(x+1)$. Por lo tanto $x-2=0$ o $x+1=0$. La clave impresa da otras raíces; la errata está señalada al final.
+$x^2-x-2=(x-2)(x+1)$. Por lo tanto $x-2=0$ o $x+1=0$.
 
 </details>
 </details>
@@ -600,7 +600,7 @@ Con coeficientes $a=2$, $b=4$ y $c=1$, el discriminante es $4^2-4(2)(1)=8>0$. En
 <details>
 <summary>Paso a paso</summary>
 
-Sea $t=x^2\geq0$. Entonces $t^2-3t+2=(t-1)(t-2)=0$, de modo que $t=1$ o $t=2$; ambos valores son admisibles. Resolver $x^2=1$ y $x^2=2$ da los cuatro valores indicados. La notación impresa en la clave tiene una errata señalada al final.
+Sea $t=x^2\geq0$. Entonces $t^2-3t+2=(t-1)(t-2)=0$, de modo que $t=1$ o $t=2$; ambos valores son admisibles. Resolver $x^2=1$ y $x^2=2$ da los cuatro valores indicados.
 
 </details>
 </details>
@@ -811,89 +811,3 @@ En ese dominio, $a/x-b/x=(a-b)/x$ no es cero. Entonces $\dfrac{1/x}{(a-b)/x}=\df
 </details>
 </details>
 </section>
-
-## Respuestas del libro
-
-Esta sección reproduce la clave impresa, incluso sus respuestas inconsistentes con las consignas. Las explicaciones y la identificación de erratas son de elaboración docente.
-
-### Respuestas 1
-
-**(a)** $81$\
-**(b)** $-81$\
-**(c)** $\frac1{81}$\
-**(d)** $25$\
-**(e)** $\frac94$\
-**(f)** $\frac18$
-
-### Respuestas 2
-
-**(a)** $6\sqrt2$\
-**(b)** $48a^5b^7$\
-**(c)** $\dfrac{x}{9y^7}$
-
-### Respuestas 3
-
-**(a)** $11x-2$\
-**(b)** $4x^2+7x-15$\
-**(c)** $a-b$\
-**(d)** $4x^2+12x+9$\
-**(e)** $x^3+6x^2+12x+8$
-
-### Respuestas 4
-
-**(a)** $(2x-5)(2x+5)$\
-**(b)** $(2x-3)(x+4)$\
-**(c)** $(x-3)(x-2)(x+2)$\
-**(d)** $x(x+3)(x^2-3x+9)$\
-**(e)** $3x^{-1/2}(x-1)(x-2)$\
-**(f)** $xy(x-2)(x+2)$
-
-### Respuestas 5
-
-**(a)** $\dfrac{x+2}{x-2}$\
-**(b)** $\dfrac{x-1}{x-3}$\
-**(c)** $\dfrac1{x-2}$\
-**(d)** $-(x+y)$
-
-**Errata de la clave, 5(c):** la respuesta impresa anterior no coincide con la consigna impresa; el desarrollo obtiene $\dfrac{3x-2}{x^2-4}$. Por ejemplo, para $x=0$, la consigna vale $1/2$, mientras que la clave da $-1/2$.
-
-### Respuestas 6
-
-**(a)** $5\sqrt2+2\sqrt{10}$\
-**(b)** $\dfrac1{\sqrt{4+h}+2}$
-
-### Respuestas 7
-
-**(a)** $(x+\frac12)^2+\frac34$\
-**(b)** $2(x-3)^2-7$
-
-### Respuestas 8
-
-**(a)** $6$\
-**(b)** $1$\
-**(c)** $-3, 4$\
-**(d)** $-1\pm\frac12\sqrt2$\
-**(e)** $\pm1\pm\sqrt2$\
-**(f)** $\frac23,\frac{22}3$\
-**(g)** $\frac{12}5$
-
-**Errata de la clave, 8(c):** el libro imprime $-3, 4$, pero la ecuación de la consigna tiene soluciones $-1, 2$; ninguna de las dos cifras impresas anula ese polinomio.
-
-**Errata de notación de la clave, 8(e):** el libro imprime $\pm1\pm\sqrt2$, sin coma entre ambos términos. Esa escritura indica sumas y restas, no las cuatro raíces $\pm1,\pm\sqrt2$ que se obtienen al resolver la ecuación. Una coma separaría los dos pares de soluciones.
-
-### Respuestas 9
-
-**(a)** $[-4,3)$\
-**(b)** $(-2,4)$\
-**(c)** $(-2,0)\cup(1,\infty)$\
-**(d)** $(1,7)$\
-**(e)** $(-1,4]$
-
-### Respuestas 10
-
-**(a)** Falsa\
-**(b)** Verdadera\
-**(c)** Falsa\
-**(d)** Falsa\
-**(e)** Falsa\
-**(f)** Verdadera

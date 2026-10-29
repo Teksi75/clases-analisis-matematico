@@ -37,7 +37,8 @@ def render(name):
         # Índice a partir de los encabezados publicados, sin alterar su contenido.
         headings = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body, re.S)
         navigation = '\n'.join(f'<a href="#{identifier}">{label}</a>' for identifier, label in headings)
-        shortcut = '<a href="#respuestas-del-libro">Respuestas del libro</a>'
+        shortcut = ('<a href="#respuestas-del-libro">Respuestas del libro</a>'
+                    if any(identifier == 'respuestas-del-libro' for identifier, _ in headings) else '')
     template = Template((HERE / 'plantilla.html').read_text(encoding='utf-8'))
     return template.substitute(title=escape(title), hero_first=escape(first),
                                hero_second=escape(second), edition=escape(edition),
