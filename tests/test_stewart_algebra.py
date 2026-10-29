@@ -50,21 +50,28 @@ class AlgebraTests(unittest.TestCase):
         self.assertEqual(self.page.lang, "es")
         self.assertIn("../../teoria/teoria.css", self.page.resources)
         self.assertFalse(re.search(r'(?:src|href)="(?:https?:)?//', self.html))
-        self.assertNotIn("<script", self.html)
+        self.assertEqual(re.findall(r'<script\b[^>]*>', self.html),
+                         ['<script defer src="consulta-incisos.js">'])
         self.assertRegex(self.html, r'<math\b[^>]*xmlns="http://www\.w3\.org/1998/Math/MathML"')
         self.assertIn("<mfrac>", self.html)
 
-    def test_ten_exercises_each_followed_by_teacher_development(self):
+    def test_ten_exercises_separate_statements_and_developments_without_label(self):
         headings = self.page.headings
         exercises = [(i, text) for i, (tag, text) in enumerate(headings)
                      if tag == "h2" and re.fullmatch(r"Ejercicio \d+", text)]
         self.assertEqual([text for _, text in exercises],
                          [f"Ejercicio {i}" for i in range(1, 11)])
         answer_index = headings.index(("h2", "Respuestas del libro"))
-        for position, (index, _) in enumerate(exercises):
-            end = exercises[position + 1][0] if position < 9 else answer_index
-            self.assertEqual(headings[index + 1:end].count(("h3", "Desarrollo docente")), 1)
         self.assertGreater(answer_index, exercises[-1][0])
+        self.assertNotIn("Desarrollo docente", self.html)
+        for number in range(1, 11):
+            start = self.html.index(f'id="ejercicio-{number}"')
+            end = (self.html.index(f'id="ejercicio-{number + 1}"') if number < 10
+                   else self.html.index('id="respuestas-del-libro"'))
+            section = self.html[start:end]
+            anchor = 'desarrollo-docente' + (f'-{number - 1}' if number > 1 else '')
+            self.assertIn(f'id="{anchor}"', section)
+            self.assertIn('<hr', section)
 
     def test_all_subparts_and_book_answers_present(self):
         # Cada inciso aparece una vez en la consigna, una en el desarrollo y otra en la clave.

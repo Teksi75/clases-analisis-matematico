@@ -16,11 +16,23 @@ Consignas y respuestas del examen A de James Stewart, sexta edición, páginas i
 
 Sin usar calculadora, evalúe cada una de estas expresiones.
 
-### Desarrollo docente
+**(a)** $\left(-3\right)^4$\
+**(b)** $-3^4$\
+**(c)** $3^{-4}$\
+**(d)** $\dfrac{5^{23}}{5^{21}}$\
+**(e)** $\left(\dfrac{2}{3}\right)^{-2}$\
+**(f)** $16^{-3/4}$
 
-**(a)** $\left(-3\right)^4$
+<span id="desarrollo-docente"></span>
 
-<details>
+---
+
+<script defer src="consulta-incisos.js"></script>
+
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-titulo">
+<h3 id="consulta-titulo">Consultá una resolución</h3>
+
+<details id="consulta-a" data-inciso="a">
 <summary><strong>(a)</strong> Explicación breve</summary>
 
 **Resultado:** $81$. La base negativa está entre paréntesis y el exponente es par, así que el resultado es positivo.
@@ -35,9 +47,7 @@ Hay cuatro factores negativos. Al multiplicarlos de a pares, $(-3)\cdot(-3)=9$; 
 </details>
 </details>
 
-**(b)** $-3^4$
-
-<details>
+<details id="consulta-b" data-inciso="b">
 <summary><strong>(b)</strong> Explicación breve</summary>
 
 **Resultado:** $-81$. El exponente afecta solo al $3$; el signo menos queda afuera y se aplica al final.
@@ -52,9 +62,7 @@ Después aplicamos el signo menos: $-3^4=-(3^4)=-81$. A diferencia de (a), aquí
 </details>
 </details>
 
-**(c)** $3^{-4}$
-
-<details>
+<details id="consulta-c" data-inciso="c">
 <summary><strong>(c)</strong> Explicación breve</summary>
 
 **Resultado:** $\frac{1}{81}$. En este caso el exponente negativo indica el recíproco: $3^{-4}=\frac{1}{3^4}$.
@@ -69,9 +77,7 @@ Entonces $3^{-4}=\frac{1}{3^4}=\frac{1}{81}$. El signo menos del exponente no vu
 </details>
 </details>
 
-**(d)** $\dfrac{5^{23}}{5^{21}}$
-
-<details>
+<details id="consulta-d" data-inciso="d">
 <summary><strong>(d)</strong> Explicación breve</summary>
 
 **Resultado:** $25$. Al dividir potencias de la misma base distinta de cero, restamos los exponentes.
@@ -88,9 +94,7 @@ También podemos cancelar $21$ factores de $5$: quedan dos factores, $5\cdot5$.
 </details>
 </details>
 
-**(e)** $\left(\dfrac{2}{3}\right)^{-2}$
-
-<details>
+<details id="consulta-e" data-inciso="e">
 <summary><strong>(e)</strong> Explicación breve</summary>
 
 **Resultado:** $\frac{9}{4}$. El exponente negativo indica invertir esta fracción y después elevarla al cuadrado.
@@ -105,9 +109,7 @@ Luego $\left(\frac{3}{2}\right)^2=\frac{3^2}{2^2}=\frac{9}{4}$.
 </details>
 </details>
 
-**(f)** $16^{-3/4}$
-
-<details>
+<details id="consulta-f" data-inciso="f">
 <summary><strong>(f)</strong> Explicación breve</summary>
 
 **Resultado:** $\frac{1}{8}$. En este caso el exponente combina raíz cuarta y cubo; el signo negativo indica el recíproco.
@@ -123,6 +125,7 @@ Por lo tanto, $16^{-3/4}=\frac{1}{8}$.
 
 </details>
 </details>
+</section>
 
 ## Ejercicio 2
 
@@ -132,7 +135,9 @@ Simplifique estas expresiones. Escriba su respuesta sin exponentes negativos.
 **(b)** $(3a^3b^3)(4ab^2)^2$\
 **(c)** $\left(\dfrac{3x^{3/2}y^3}{x^2y^{-1/2}}\right)^{-2}$
 
-### Desarrollo docente
+<span id="desarrollo-docente-1"></span>
+
+---
 
 **(a)** Extraemos cuadrados perfectos: $\sqrt{200}-\sqrt{32}=10\sqrt2-4\sqrt2=6\sqrt2$.
 
@@ -150,7 +155,9 @@ Expanda y simplifique.
 **(d)** $(2x+3)^2$\
 **(e)** $(x+2)^3$
 
-### Desarrollo docente
+<span id="desarrollo-docente-2"></span>
+
+---
 
 **(a)** Distribuimos y agrupamos: $3x+18+8x-20=11x-2$.
 
@@ -173,7 +180,9 @@ Factorice estas expresiones.
 **(e)** $3x^{3/2}-9x^{1/2}+6x^{-1/2}$\
 **(f)** $x^3y-4xy$
 
-### Desarrollo docente
+<span id="desarrollo-docente-3"></span>
+
+---
 
 **(a)** Diferencia de cuadrados: $(2x)^2-5^2=(2x-5)(2x+5)$.
 
@@ -196,7 +205,9 @@ Simplifique la expresión racional.
 **(c)** $\dfrac{x^2}{x^2-4}-\dfrac{x-1}{x+2}$\
 **(d)** $\dfrac{\frac yx-\frac xy}{\frac1y-\frac1x}$
 
-### Desarrollo docente
+<span id="desarrollo-docente-4"></span>
+
+---
 
 **(a)** Factorizamos y cancelamos el factor común: $\dfrac{(x+1)(x+2)}{(x+1)(x-2)}=\dfrac{x+2}{x-2}$. La expresión inicial exige $x\ne-1,2$.
 
@@ -213,7 +224,9 @@ Racionalice la expresión y simplifique.
 **(a)** $\dfrac{\sqrt{10}}{\sqrt5-2}$\
 **(b)** $\dfrac{\sqrt{4+h}-2}{h}$
 
-### Desarrollo docente
+<span id="desarrollo-docente-5"></span>
+
+---
 
 **(a)** Multiplicamos por el conjugado: $\dfrac{\sqrt{10}(\sqrt5+2)}{5-4}=\sqrt{50}+2\sqrt{10}=5\sqrt2+2\sqrt{10}$.
 
@@ -226,7 +239,9 @@ Complete el cuadrado de lo siguiente.
 **(a)** $x^2+x+1$\
 **(b)** $2x^2-12x+11$
 
-### Desarrollo docente
+<span id="desarrollo-docente-6"></span>
+
+---
 
 **(a)** Sumamos y restamos el cuadrado de la mitad de 1: $x^2+x+\frac14+\frac34=(x+\frac12)^2+\frac34$.
 
@@ -244,7 +259,9 @@ Resuelva la ecuación. (Encuentre sólo las soluciones reales.)
 **(f)** $3|x-4|=10$\
 **(g)** $2x(4-x)^{-1/2}-3\sqrt{4-x}=0$
 
-### Desarrollo docente
+<span id="desarrollo-docente-7"></span>
+
+---
 
 **(a)** Sumamos $\frac12x$ y restamos 5: $\frac32x=9$, por lo que $x=6$.
 
@@ -270,7 +287,9 @@ Resuelva estas desigualdades, use notación de intervalo.
 **(d)** $|x-4|<3$\
 **(e)** $\dfrac{2x-3}{x+1}\leq1$
 
-### Desarrollo docente
+<span id="desarrollo-docente-8"></span>
+
+---
 
 **(a)** Restamos 5: $-9<-3x\leq12$. Al dividir por $-3$ invertimos los signos: $3>x\geq-4$. Solución: $[-4,3)$.
 
@@ -293,7 +312,9 @@ Exprese si cada una de estas ecuaciones es verdadera o falsa.
 **(e)** $\dfrac1{x-y}=\dfrac1x-\dfrac1y$\
 **(f)** $\dfrac{1/x}{a/x-b/x}=\dfrac1{a-b}$
 
-### Desarrollo docente
+<span id="desarrollo-docente-9"></span>
+
+---
 
 **(a)** Falsa: al desarrollar aparece $2pq$. Por ejemplo, $p=q=1$ da $4\ne2$.
 

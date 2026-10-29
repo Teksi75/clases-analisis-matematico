@@ -18,6 +18,22 @@ math[display="inline"] { display: inline-block; max-width: 100%; overflow-x: aut
 .exam-cards span { color: var(--accent); font: .7rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
 .exam-cards strong { margin: .8rem 0; font-size: 1.35rem; line-height: 1.2; }
 .exam-cards small { margin-top: auto; color: var(--muted); font: .75rem/1.6 var(--mono); }
+/* Patrón aprobado de consulta: el respaldo nativo no depende del script. */
+.consulta-incisos { --consulta-accent: #85c9c0; --consulta-outline: #618b85; border: 1px solid var(--rule); border-top: 3px solid var(--consulta-accent); padding: 1.25rem 1.4rem; margin: 2rem 0; }
+.consulta-incisos h3 { border: 0; padding: 0; margin: 0 0 1.75rem; font-size: 1.25rem; }
+.consulta-incisos .consulta-selector { display: flex; flex-wrap: wrap; gap: .5rem; }
+.consulta-incisos .consulta-selector button { min-width: 44px; min-height: 44px; border: 1px solid var(--consulta-outline); background: #85c9c00a; color: var(--ink); font: 600 .9rem var(--mono); cursor: pointer; }
+.consulta-incisos .consulta-selector button:hover { border-color: var(--consulta-accent); }
+.consulta-incisos .consulta-selector button[aria-pressed="true"] { background: var(--consulta-accent); border-color: var(--consulta-accent); color: var(--paper); }
+.consulta-incisos :is(button, summary):focus-visible { outline-color: var(--consulta-accent); }
+.consulta-incisos .consulta-prompt { color: var(--muted); font-size: .9rem; margin: 1rem 0 0; }
+.consulta-incisos.consulta-mejorada > details > summary { display: none; }
+.consulta-incisos > details > p { margin: 1rem 0; }
+.consulta-incisos > details > details { border-top: 1px solid var(--rule); }
+.consulta-incisos [hidden] { display: none; }
+@media print {
+  .consulta-incisos .consulta-selector button[aria-pressed="true"] { color: #000; border-color: #000; }
+}
 @media (max-width: 700px) {
   .hero h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); }
   .masthead { flex-wrap: wrap; }

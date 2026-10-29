@@ -63,6 +63,15 @@ class PilotTests(unittest.TestCase):
         section = html.split('id="ejercicio-1"', 1)[1].split('id="ejercicio-2"', 1)[0]
         self.root = Tree(section).root
 
+    def test_consultation_panel_is_a_local_progressive_enhancement(self):
+        panels = [n for n in self.root.descendants('section') if 'data-consulta-incisos' in n.attrs]
+        self.assertEqual(len(panels), 1)
+        panel = panels[0]
+        self.assertIn('Consultá una resolución', panel.text())
+        controls = [n for n in panel.children if isinstance(n, Node) and n.tag == 'details']
+        self.assertEqual([n.attrs.get('data-inciso') for n in controls], list('abcdef'))
+        self.assertTrue(all('open' not in n.attrs and 'hidden' not in n.attrs for n in controls))
+
     def test_visible_original_statements_and_closed_independent_explanations(self):
         details = list(self.root.descendants('details'))
         outer = [node for node in details if any(
@@ -73,7 +82,7 @@ class PilotTests(unittest.TestCase):
         # Solo las consignas aparecen fuera de cualquier control cerrado.
         visible_tex = []
         for child in self.root.children:
-            if isinstance(child, Node) and child.tag != 'details':
+            if isinstance(child, Node) and child.tag not in ('details', 'section'):
                 visible_tex.extend(tex(child))
         self.assertEqual(visible_tex, STATEMENTS)
         statement_math = next(self.root.descendants('math'))
@@ -97,19 +106,20 @@ class PilotTests(unittest.TestCase):
                 self.assertTrue(all(m.attrs.get('xmlns') == 'http://www.w3.org/1998/Math/MathML'
                                     for m in control.descendants('math')))
 
-    def test_each_statement_is_immediately_followed_by_its_own_disclosure(self):
+    def test_statements_are_grouped_before_the_separated_disclosures(self):
         elements = [c for c in self.root.children if isinstance(c, Node)]
-        for letter, statement in zip('abcdef', STATEMENTS):
-            with self.subTest(inciso=letter):
-                matches = [i for i, node in enumerate(elements)
-                           if node.tag == 'p' and tex(node) == [statement]]
-                self.assertEqual(len(matches), 1)
-                index = matches[0]
-                self.assertIn(f'({letter})', elements[index].text())
-                control = elements[index + 1]
-                self.assertEqual(control.tag, 'details')
-                summary = next(c for c in control.children if isinstance(c, Node) and c.tag == 'summary')
-                self.assertIn(f'({letter})', summary.text())
+        panel_index = next(i for i, node in enumerate(elements) if 'data-consulta-incisos' in node.attrs)
+        statements = [node for node in elements[:panel_index] if tex(node) == STATEMENTS]
+        self.assertEqual(len(statements), 1)
+        for letter in 'abcdef':
+            self.assertIn(f'({letter})', statements[0].text())
+        self.assertTrue(any(node.tag == 'hr' for node in elements[:panel_index]))
+        self.assertNotIn('Desarrollo docente', self.root.text())
+        controls = [n for n in elements[panel_index].children if isinstance(n, Node) and n.tag == 'details']
+        self.assertEqual(len(controls), 6)
+        for letter, control in zip('abcdef', controls):
+            summary = next(c for c in control.children if isinstance(c, Node) and c.tag == 'summary')
+            self.assertIn(f'({letter})', summary.text())
 
     def test_existing_exercises_and_separate_book_key_remain(self):
         html = PAGE.read_text(encoding='utf-8')

@@ -2,14 +2,14 @@
 import { spawn, spawnSync } from 'node:child_process';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const folder = dirname(fileURLToPath(import.meta.url));
 const visualRoot = join(folder, 'verificacion-visual');
 await mkdir(visualRoot, {recursive:true});
 const visual = await mkdtemp(join(visualRoot, 'navegacion-'));
-const profile = join(visual, 'perfil');
-await mkdir(profile);
+const profile = await mkdtemp(join(tmpdir(), 'stewart-navegacion-perfil-'));
 console.log('Perfil temporal: ' + profile);
 const browser = spawn('/usr/bin/chromium', ['--headless', '--no-sandbox', '--disable-gpu',
   '--no-first-run', '--disable-background-networking', '--remote-debugging-port=0',
@@ -95,7 +95,8 @@ try {
             const img = new Image(); img.onload = () => resolve({href:e.getAttribute('href'), ok:img.naturalWidth>0, width:img.naturalWidth});
             img.onerror = () => resolve({href:e.getAttribute('href'), ok:false}); img.src=e.href.baseVal;
           })));
-          const badMath = maths.filter(m => { const r=m.getBoundingClientRect(); return r.width<=0 || r.height<=0; }).length;
+          const intentionallyHidden = m => !!m.closest('[hidden]') || [...m.closest('article').querySelectorAll('details:not([open])')].some(d => d.contains(m) && !d.querySelector(':scope > summary')?.contains(m));
+          const badMath = maths.filter(m => { if (intentionallyHidden(m)) return false; const r=m.getBoundingClientRect(); return r.width<=0 || r.height<=0; }).length;
           const widest = maths.reduce((a,m) => Math.max(a,m.getBoundingClientRect().width),0);
           return {width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth,
             math:maths.length, badMath, widestMath:Math.round(widest), images:images.map(i=>({src:i.getAttribute('src'),ok:i.complete && i.naturalWidth>0})), raster,
@@ -144,7 +145,7 @@ try {
       await navigate(name);
       const result = await evalJS(`(() => ({background:getComputedStyle(document.body).backgroundColor,
         math:document.querySelectorAll('math').length,
-        badMath:[...document.querySelectorAll('math')].filter(m=>{const r=m.getBoundingClientRect();return r.width<=0||r.height<=0}).length,
+        badMath:[...document.querySelectorAll('math')].filter(m=>{if (m.closest('[hidden]') || [...m.closest('article').querySelectorAll('details:not([open])')].some(d=>d.contains(m) && !d.querySelector(':scope > summary')?.contains(m))) return false; const r=m.getBoundingClientRect();return r.width<=0||r.height<=0}).length,
         images:[...document.querySelectorAll('img, svg image')].length,
         answers:!!document.querySelector('#respuestas-del-libro') && getComputedStyle(document.querySelector('#respuestas-del-libro')).display!=='none'}))()`);
       result.pdfBytes = await print(name);
