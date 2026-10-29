@@ -17,10 +17,20 @@ Pruebas: generación Stewart, unittest, Chromium con y sin JavaScript, pantalla 
 ## Tasks
 
 - T1 [S1,S4,S8] done — Comprobar modelos y preparar rama; ruta: inline; commit: no aplica.
-- T2 [S2,S3,S4] done — Generar propuestas independientes, dictamen anónimo y evidencia; ruta: modelos y juez, preparación delegated por context backstop; commit: pendiente.
-- T3 [S2,S3,S4,S5,S6] done — Verificar matemática y adaptar explicaciones y paneles; ruta: delegated por context backstop; commit: pendiente.
-- T4 [S2,S5,S6,S7] done — Extender pruebas y verificar accesibilidad, renderizado e impresión; ruta: delegated por context backstop; commit: pendiente.
-- T5 [S7,S8,S9] in_progress — Documentar, revisar, confirmar unidades y habilitar vista local; ruta: inline; commit: pendiente.
+- T2 [S2,S3,S4] done — Generar propuestas independientes, dictamen anónimo y evidencia; ruta: modelos y juez, preparación delegated por context backstop; commit: `987ded0`.
+- T3 [S2,S3,S4,S5,S6] done — Verificar matemática y adaptar explicaciones y paneles; ruta: delegated por context backstop; commit: `b0aba37`.
+- T4 [S2,S5,S6,S7] done — Extender pruebas y verificar accesibilidad, renderizado e impresión; ruta: delegated por context backstop; commit: `b0aba37`.
+- T5 [S7,S8,S9] done — Documentar, revisar, confirmar unidades y habilitar vista local; ruta: inline; commit: cierre de documentación de esta rama.
+- T6 [S5,S7] done — Separar verticalmente las consignas fraccionarias que se pisaban; ruta: inline; commit: `1175f87`.
+
+## Slices
+
+Estrategia elegida por el usuario: `chain_strategy=feature-branch-chain`. Tramos revisables, todos con la suite verde al cerrar:
+
+1. `8bb0439..987ded0` — evidencia de propuestas, dictamen y verificaciones, más esta ficha.
+2. `987ded0..b0aba37` — contenido de los 40 incisos, HTML regenerado y pruebas estructurales, de navegador e impresión.
+3. `b0aba37..HEAD` — documentación de mantenimiento y cierre de la ficha.
+4. `d653bed..1175f87` — corrección de espaciado fraccionario y su prueba de regresión.
 
 ## Log
 
@@ -101,3 +111,5 @@ Pruebas: generación Stewart, unittest, Chromium con y sin JavaScript, pantalla 
 - L17: `job-12` rasterizó las diez páginas de cada PDF; el padre inspeccionó las hojas de contacto de ambos estados y una captura móvil. No se observa recorte evidente, aunque algunos paneles se dividen entre páginas; no se modificó la presentación aprobada. Las imágenes están en la carpeta visual nueva, ajena al commit.
 - L18: `job-10` falló primero por un defecto del propio script de prueba: `snapshot()` esperaba `requestAnimationFrame` y con la ejecución de scripts desactivada esa promesa nunca se resuelve (`Tiempo máximo agotado`, exit 13). La parte con JavaScript ya había pasado en ambas anchuras. Se reemplazó la espera por lecturas de layout sincrónicas y se amplió el límite a 300 s: `job-13` pasó con exit 0 en las cuatro combinaciones, 10 paneles y 46 incisos. No fue un defecto del sitio.
 - L19: La prueba de dominios sobre HTML público se agregó con `mvtq24t9-8-brrw`; el padre la ejecutó junto con la suite. Verificación final observada: `python3 -B tests/test_stewart_piloto.py` 10 tests OK; `generar.py --check` HTML comprobados; `python3 -B -m unittest discover -s tests -p 'test_stewart*.py'` 36 tests OK; `git diff --check` correcto; `node evaluaciones/stewart/check-browser.mjs` 0 fallas con MathML correcto en 1265/375 px e impresión; `node tests/check_stewart_piloto.mjs` correcto en 1280/390 px con y sin JavaScript. El usuario informó un problema con OpenAI y cambió el modelo de la sesión a `deepseek-v4.1-flash`; el dictamen con `openai/gpt-6.1-sol` ya estaba terminado y conservado, por lo que no se repitió ni se simuló nada.
+- L20: Vista local servida en `http://127.0.0.1:8765/evaluaciones/stewart/algebra.html` con `python3 -m http.server`; responde HTTP 200. Los archivos ajenos sin rastrear (`.codegraph/`, `.pi/`, `fuentes/`, `scripts/`, `src/`, `verificacion-visual/`, entre otros) quedaron fuera de todos los commits. No se hizo push, PR, merge ni despliegue.
+- L21: “perecto pero necesito que le des mayor separación a los ejercicios fracionarios por que se enciman unos a otros … chequea la imagen”. Medición con CDP: cada caja MathML de fracción medía 39,1 px y la siguiente empezaba exactamente en su borde inferior, con separación 0 px en 1280 y 390. RED con la nueva comprobación de `tests/check_stewart_piloto.mjs` (ejercicios 1, 5, 6, 8 y 10); se agregó `math[display="inline"]:has(mfrac) { margin-block: .35em }` en `stewart.css` y la separación pasó a 13,6/12,8 px. GREEN: 36 pruebas, HTML comprobados, navegador e impresión con 0 fallas, y capturas revisadas en ambas anchuras. Sin `:has()` el navegador conserva el comportamiento anterior. Commit `1175f87`.
