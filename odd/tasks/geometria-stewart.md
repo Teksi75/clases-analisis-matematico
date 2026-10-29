@@ -16,9 +16,9 @@ Rama: `odd/geometria-stewart`, base `5d37761`; entrega: auto-chain, `feature-bra
 - T1 [S1,S3] done — Comprobar base y estado de Álgebra; ruta: inline; commit: no aplica.
 - T2 [S1] done — Actualizar README y verificar su estado; ruta: inline; commit: `52c6879`.
 - T3 [S2] done — Preparar propuestas independientes, comprobar modelos y obtener dictamen anónimo; ruta: delegado por context backstop y modelos; commit: `a8d5bc8`.
-- T4 [S2] blocked — Verificar matemática e implementar Geometría con pruebas; ruta: delegado por context backstop; espera decisión sobre falta de RED previo para pruebas de navegador; commit: pendiente.
-- T5 [S2] pending — Verificar experiencia y documentar resultados; ruta: por determinar; commit: pendiente.
-- T6 [S5] done — Corregir distinción de color de Geometría y volver a verificar; ruta: inline; commit: pendiente.
+- T4 [S2] done — Verificar matemática e implementar Geometría con pruebas; ruta: delegado por context backstop; commit: `2c152ba`; falta evidencia RED previa para las pruebas de interacción originales.
+- T5 [S2] done — Verificar experiencia y documentar resultados; ruta: inline y delegado; commit: `2c152ba`; sin auditoría formal de contraste ni inspección visual de todas las páginas impresas.
+- T6 [S5] done — Corregir distinción de color de Geometría y volver a verificar; ruta: inline; commit: `2c152ba`.
 - T7 [S6] in_progress — Preparar y publicar con PR, merge y comprobación de despliegue; ruta: inline; commit: pendiente.
 
 ## Log
@@ -42,3 +42,4 @@ Rama: `odd/geometria-stewart`, base `5d37761`; entrega: auto-chain, `feature-bra
 - L17: Plan de revisión: tracker desde `main` con README ya confirmado; primer tramo para evidencia de propuestas y juez; segundo para la adaptación junto con sus pruebas y documentación. El segundo tramo contiene 640 líneas fuente más HTML generado, sin una división obvia que preserve pruebas y comportamiento juntos; la evidencia generada añade un volumen considerable que debe declararse. No se comprimen ni omiten pruebas o documentación para alcanzar el límite.
 - L18: PR tracker en borrador [#7](https://github.com/Teksi75/clases-analisis-matematico/pull/7). La evidencia original suma 1.843 líneas, incluyendo entrada y salidas íntegras generadas; `git diff --cached --check` devuelve 2 por espacios finales de saltos Markdown de la salida original de DeepSeek, reproducida en la entrada al juez. Se conserva sin alterar para mantener la evidencia exacta; no confundir con una comprobación limpia.
 - L19: El commit `a8d5bc8` conserva la evidencia; PR de primer tramo [#8](https://github.com/Teksi75/clases-analisis-matematico/pull/8) abierto contra tracker. La evaluación nativa para el rango confirmado sigue unassessable por archivos preexistentes no rastreados.
+- L20: El usuario aprobó la vista y pidió expresamente la entrega en L15, después de la decisión anterior de mantener pendiente L11. Los PR #8 y #9 se fusionaron en el tracker; el árbol integrado `d4fb45b` es idéntico al árbol del commit probado `2c152ba`. Pasaron generación, 40 pruebas, navegación con y sin JS en escritorio/móvil, impresión automatizada y `git diff --check` del tramo funcional. No se presenta como observada la fase RED previa ausente de pruebas de interacción; tampoco se inspeccionaron visualmente todas las páginas impresas ni se midió formalmente el contraste. RDD no clasificó los rangos por archivos sin seguimiento; no hubo revisión nativa. Falta integración a main y verificación del despliegue.
