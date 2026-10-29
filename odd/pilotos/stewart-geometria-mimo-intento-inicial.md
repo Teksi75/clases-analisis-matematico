@@ -1,0 +1,1 @@
+<tool_call><function=bash><parameter=command>ls -la && ls evaluaciones/stewart/ 2>/dev/null</parameter></function></tool_call><tool_call><function=glob><parameter=pattern>**/geometria.md</parameter></function></tool_call>
