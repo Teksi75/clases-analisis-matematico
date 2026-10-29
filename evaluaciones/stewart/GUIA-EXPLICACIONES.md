@@ -49,7 +49,7 @@ Desarrollo detallado.
 - Cada panel necesita un encabezado con ID único en toda la página y `aria-labelledby` que lo referencie. Cada `details` exterior necesita su propio ID globalmente único: el script lo usa para `aria-controls`. Si asignás un ID a la sección, también debe ser único; no reutilices los IDs del ejemplo entre ejercicios.
 - Los `details[data-inciso]` son hijos directos de la sección, en el orden de las consignas; `data-inciso` contiene la letra del botón. Cada uno lleva `summary`, explicación breve y un `details` anidado para el paso a paso, sin `open` ni `hidden` iniciales. Aunque el paso a paso sea opcional para el estudiante, el script actual espera ese `details` en cada inciso.
 - El script oculta las opciones hasta seleccionar una, actualiza `aria-pressed` y cierra el detalle al seleccionar. Con JavaScript desactivado quedan los dos niveles nativos. Conservá líneas en blanco alrededor del contenido Markdown dentro de las etiquetas, como en `algebra.md`.
-- Reutilizá los estilos acotados a `.consulta-incisos` de `stewart.css` y los recursos locales para funcionar sin conexión. Mantené la clave original separada al final y señalá las erratas sin modificar ni ocultar la fuente.
+- Reutilizá los estilos acotados a `.consulta-incisos` de `stewart.css` y los recursos locales para funcionar sin conexión. Conservá la clave original y las erratas en la referencia de mantenimiento, sin enlazarla desde las páginas de los exámenes; allí mostrá los resultados correctos. La referencia está en el repositorio público y no es privada; las imágenes originales también permanecen accesibles por URL directa.
 
 ## Color por examen
 
@@ -66,7 +66,7 @@ Al adaptar cada examen, verificá contraste, foco y legibilidad en pantalla e im
 
 ## Verificar cada extensión
 
-Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados y clave/erratas separadas. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas actuales cubren Álgebra completa; no demuestran esas futuras extensiones.
+Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas actuales cubren Álgebra completa; no demuestran esas futuras extensiones.
 
 Desde la raíz, con Python 3, Pandoc 3.11 y las dependencias de navegador indicadas en el [README](README.md#mantenimiento):
 
@@ -78,4 +78,4 @@ node tests/check_stewart_piloto.mjs
 node evaluaciones/stewart/check-browser.mjs
 ```
 
-El primer comando regenera HTML; `--check` solo compara. Los comandos de navegador crean capturas en `verificacion-visual/`; consultá los requisitos y efectos en el README antes de ejecutarlos.
+El primer comando regenera HTML; `--check` solo compara. Los comandos de navegador crean capturas en carpetas temporales del sistema; consultá los requisitos y efectos en el README antes de ejecutarlos.

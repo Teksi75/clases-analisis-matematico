@@ -61,7 +61,6 @@ class StewartGeometriaTests(unittest.TestCase):
         expected = []
         for number in range(1, 6):
             expected.extend([f"ejercicio-{number}", f"desarrollo-{number}"])
-        expected.append("respuestas-del-libro")
         self.assertEqual(self.page.headings, expected)
         for number in range(1, 6):
             self.assertIn("Desarrollo docente", self.page.text(f"desarrollo-{number}"))
@@ -73,11 +72,12 @@ class StewartGeometriaTests(unittest.TestCase):
                 with self.subTest(exercise=number, part=letter):
                     self.assertIn(f"({letter})", self.page.text(f"ejercicio-{number}"))
                     self.assertIn(f"({letter})", self.page.text(f"desarrollo-{number}"))
-        answers = self.page.text("respuestas-del-libro")
+        reference = (ROOT / 'odd/referencias/stewart-claves-y-erratas.md').read_text(encoding='utf-8')
+        answers = reference.split('# Geometría', 1)[1].split('# Funciones', 1)[0]
         for number in range(1, 6):
-            self.assertIn(f"{number}.", answers)
-        for letter in "abcdef":
-            self.assertIn(f"({letter})", answers)
+            self.assertIn(f'**{number}.**', answers)
+        for letter in 'abcdef':
+            self.assertIn(f'({letter})', answers)
 
     def test_original_math_is_rendered_as_mathml(self):
         self.assertGreater(self.page.math, 60)
@@ -94,7 +94,7 @@ class StewartGeometriaTests(unittest.TestCase):
         self.assertEqual(self.page.lang, "es")
         self.assertEqual(self.page.scripts, 0)
         self.assertIn("../../teoria/teoria.css", self.page.links)
-        self.assertTrue(self.page.images, "Faltan las seis gráficas de respuestas del libro")
+        self.assertNotIn('geometria-assets/respuestas-graficas.png', [image.get('src') for image in self.page.images])
         for image in self.page.images:
             self.assertTrue(image.get("alt"))
             self.assertTrue((PAGE.parent / image["src"]).is_file())

@@ -24,7 +24,7 @@ class Estetica(unittest.TestCase):
                 self.assertIn('href="#inicio"', html)
                 if name != 'index':
                     self.assertIn('href="#ejercicio-1"', html)
-                    self.assertIn('href="#respuestas-del-libro"', html)
+                    self.assertNotIn('href="#respuestas-del-libro"', html)
 
     def test_exam_cover_motifs_are_distinct_and_related_to_the_topic(self):
         titles = {

@@ -121,19 +121,15 @@ class PilotTests(unittest.TestCase):
             summary = next(c for c in control.children if isinstance(c, Node) and c.tag == 'summary')
             self.assertIn(f'({letter})', summary.text())
 
-    def test_existing_exercises_and_separate_book_key_remain(self):
+    def test_existing_exercises_remain_without_published_key(self):
         html = PAGE.read_text(encoding='utf-8')
         for number in range(2, 11):
             self.assertIn(f'id="ejercicio-{number}"', html)
-            self.assertIn(f'id="respuestas-{number}"', html)
-        key = html.split('id="respuestas-1"', 1)[1].split('id="respuestas-2"', 1)[0]
-        for result in ('81', '-81', r'\frac1{81}', '25', r'\frac94', r'\frac18'):
-            self.assertIn(result, key)
-        self.assertIn('id="respuestas-del-libro"', html)
+            self.assertNotIn(f'id="respuestas-{number}"', html)
+        self.assertNotIn('id="respuestas-del-libro"', html)
 
 
-# Las consignas y la clave son datos publicados, no resultados calculados por
-# el componente. Se conservan incluso las respuestas impresas con erratas.
+# Las consignas son datos publicados; la clave se conserva como referencia interna.
 EXERCISES = {
     1: ('Sin usar calculadora, evalúe cada una de estas expresiones.', STATEMENTS),
     2: ('Simplifique estas expresiones. Escriba su respuesta sin exponentes negativos.', [
@@ -183,7 +179,7 @@ BOOK_KEY = {
 
 
 def exercise_section(html, number):
-    end = f'id="ejercicio-{number + 1}"' if number < 10 else 'id="respuestas-del-libro"'
+    end = f'id="ejercicio-{number + 1}"' if number < 10 else '</article>'
     return Tree(html.split(f'id="ejercicio-{number}"', 1)[1].split(end, 1)[0]).root
 
 
@@ -330,30 +326,24 @@ class CompleteAlgebraTests(unittest.TestCase):
         self.assertEqual(len(scripts), 1)
         self.assertIn('defer', scripts[0].attrs)
 
-    def test_original_book_key_and_identified_errata_remain(self):
+    def test_original_book_key_and_identified_errata_are_internal(self):
+        text = (PAGE.parents[2] / 'odd/referencias/stewart-claves-y-erratas.md').read_text(encoding='utf-8')
+        key = text.split('# Álgebra', 1)[1].split('# Geometría', 1)[0]
         for number in range(1, 11):
             with self.subTest(exercise=number):
-                part = self.html.split(f'id="respuestas-{number}"', 1)[1]
+                part = key.split(f'### Respuestas {number}\n', 1)[1]
                 if number < 10:
-                    part = part.split(f'id="respuestas-{number + 1}"', 1)[0]
-                root = Tree(part).root
-                first_paragraph = next(root.descendants('p'))
-                letters = 'abcdefg'[:len(EXERCISES[number][1])]
-                self.assertEqual([normalized(n.text()) for n in first_paragraph.descendants('strong')],
-                                 [f'({letter})' for letter in letters])
-                if number < 10:
-                    self.assertEqual(tex(first_paragraph), BOOK_KEY[number])
-                else:
-                    self.assertEqual(normalized(first_paragraph.text()),
-                                     '(a) Falsa (b) Verdadera (c) Falsa (d) Falsa (e) Falsa (f) Verdadera')
-        key = Tree(self.html.split('id="respuestas-del-libro"', 1)[1]).root
-        text = normalized(key.text())
+                    part = part.split(f'### Respuestas {number + 1}\n', 1)[0]
+                for letter in 'abcdefg'[:len(EXERCISES[number][1])]:
+                    self.assertIn(f'**({letter})**', part)
+                for expression in BOOK_KEY.get(number, []):
+                    self.assertIn(expression, part)
         for label in ('Errata de la clave, 5(c):', 'Errata de la clave, 8(c):',
                       'Errata de notación de la clave, 8(e):'):
-            self.assertIn(label, text)
+            self.assertIn(label, key)
         for expression in (r'\dfrac{3x-2}{x^2-4}', '-3, 4', '-1, 2',
                            r'\pm1\pm\sqrt2', r'\pm1,\pm\sqrt2'):
-            self.assertIn(expression, tex(key))
+            self.assertIn(expression, key)
 
 
 if __name__ == '__main__':

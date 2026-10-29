@@ -7,9 +7,7 @@ lang: es
 
 # Examen de diagnóstico C: Funciones
 
-**Fuente:** James Stewart, *Cálculo*, sexta edición, página física 25 (página impresa xxiii), [PDF local](../../material/pdf/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf). Se reproducen las consignas y, al final, las respuestas del libro; los desarrollos intercalados son de elaboración docente. Las estimaciones gráficas son aproximadas.
-
-[Ir a las respuestas del libro](#respuestas-del-libro).
+**Fuente:** James Stewart, *Cálculo*, sexta edición, página física 25 (página impresa xxiii), [PDF local](../../material/pdf/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf). Se reproducen las consignas; los desarrollos intercalados son de elaboración docente. Las estimaciones gráficas son aproximadas.
 
 ## Ejercicio 1
 
@@ -37,7 +35,7 @@ La gráfica de una función $f$ se da a la izquierda.
 1. **(a)** En la cuadrícula cada división representa una unidad. Al buscar $x=-1$, la curva está en $y=-2$; por tanto, $f(-1)=-2$.
 2. **(b)** Al buscar $x=2$, la altura es aproximadamente $2.8$; entonces $f(2)\approx2.8$.
 3. **(c)** La horizontal $y=2$ corta la curva en $x=-3$ y $x=1$.
-4. **(d)** Los cortes con el eje horizontal están cerca de $x=-2.5$ y $x=0.3$. En la respuesta impresa aparece «03» para el segundo valor: falta el punto decimal; se conserva abajo tal como está impreso.
+4. **(d)** Los cortes con el eje horizontal están cerca de $x=-2.5$ y $x=0.3$.
 5. **(e)** La curva va desde $x=-3$ hasta $x=3$: el dominio es $[-3,3]$. Su altura mínima es $-2$ y la máxima es $3$: el rango es $[-2,3]$.
 
 ## Ejercicio 2
@@ -80,7 +78,7 @@ Encuentre el dominio de la función.
 
 1. **(a)** Cada punto $(x,y)$ pasa a $(x,-y)$: reflejamos la gráfica respecto del eje $x$.
 2. **(b)** Cada altura primero se duplica y luego se resta 1: estiramos verticalmente por un factor 2 y desplazamos una unidad hacia abajo.
-3. **(c)** **Errata de la consigna:** la fórmula impresa es $y=(x-3)+2$, sin $f$. Tal como está escrita se simplifica a $y=x-1$ y no depende de $f$. La respuesta impresa describe en cambio $y=f(x-3)+2$: para esta fórmula, cada punto $(x,y)$ de $f$ pasa a $(x+3,y+2)$, es decir, tres unidades a la derecha y dos hacia arriba. Se mantiene la consigna original y se distingue esta interpretación de la fórmula impresa.
+3. **(c)** La fórmula $y=(x-3)+2$ se simplifica a $y=x-1$ y no depende de $f$; su gráfica es una recta de pendiente $1$ y ordenada al origen $-1$.
 
 ## Ejercicio 5
 
@@ -104,7 +102,7 @@ Sin usar calculadora, haga un bosquejo aproximado de la gráfica.
 
 ### Desarrollo docente
 
-Para cada bosquejo, marcá los puntos indicados y uní según la forma de la familia. Las gráficas originales del libro están en la sección de respuestas.
+Para cada bosquejo, marcá los puntos indicados y uní según la forma de la familia.
 
 1. **(a)** La cúbica creciente pasa por $(-1,-1)$, $(0,0)$ y $(1,1)$; su cambio de concavidad está en el origen.
 2. **(b)** Partimos de (a) y desplazamos una unidad a la izquierda. El punto central pasa a $(-1,0)$ y la curva pasa también por $(0,1)$.
@@ -126,7 +124,7 @@ Sea $f(x)=\begin{cases}1-x^2 & \text{si }x\leq0,\\ 2x+1 & \text{si }x>0.\end{cas
 ### Desarrollo docente
 
 1. **(a)** Como $-2\leq0$, usamos la primera regla: $f(-2)=1-(-2)^2=-3$. Como $1>0$, usamos la segunda: $f(1)=2(1)+1=3$.
-2. **(b)** Para $x\leq0$ dibujamos solo la mitad izquierda de la parábola $y=1-x^2$, incluyendo $(0,1)$; pasa por $(-1,0)$ y $(-2,-3)$. Para $x>0$ dibujamos la semirrecta de $y=2x+1$, que pasa por $(1,3)$. La primera rama incluye $(0,1)$; la segunda se aproxima al mismo punto pero no lo incluye por sí sola. La gráfica original aparece en las respuestas.
+2. **(b)** Para $x\leq0$ dibujamos solo la mitad izquierda de la parábola $y=1-x^2$, incluyendo $(0,1)$; pasa por $(-1,0)$ y $(-2,-3)$. Para $x>0$ dibujamos la semirrecta de $y=2x+1$, que pasa por $(1,3)$. La primera rama incluye $(0,1)$; la segunda se aproxima al mismo punto pero no lo incluye por sí sola.
 
 ## Ejercicio 7
 
@@ -143,70 +141,5 @@ Si $f(x)=x^2+2x-1$ y $g(x)=2x-3$, encuentre cada una de las siguientes funciones
 1. **(a)** Primero aplicamos $g$ y luego $f$: $(f\circ g)(x)=(2x-3)^2+2(2x-3)-1=4x^2-8x+2$.
 2. **(b)** Primero aplicamos $f$ y luego $g$: $(g\circ f)(x)=2(x^2+2x-1)-3=2x^2+4x-5$.
 3. **(c)** Repetimos $g$: $g(g(x))=2(2x-3)-3=4x-9$ y $g(g(g(x)))=2(4x-9)-3=8x-21$.
-
-## Respuestas del libro
-
-Las respuestas siguientes reproducen la clave impresa, incluidas sus gráficas y la errata señalada. Los desarrollos anteriores no forman parte de esa clave.
-
-### Respuesta 1
-
-**(a)** $-2$; **(b)** $2.8$; **(c)** $-3,\ 1$; **(d)** $-2.5,\ 03$; **(e)** $[-3,3],\ [-2,3]$.
-
-**Errata:** en (d) la clave imprime «03»; la lectura aproximada del gráfico es $0.3$.
-
-### Respuesta 2
-
-$12+6h+h^2$.
-
-### Respuesta 3
-
-**(a)** $(-\infty,-2)\cup(-2,1)\cup(1,\infty)$; **(b)** $(-\infty,\infty)$; **(c)** $(-\infty,-1]\cup[1,4]$.
-
-### Respuesta 4
-
-**(a)** Refleje alrededor del eje $x$.
-
-**(b)** Estire verticalmente en un factor de 2, y a continuación desplace 1 unidad hacia abajo.
-
-**(c)** Desplace 3 unidades a la derecha y 2 unidades hacia arriba. (Esta respuesta presupone la $f$ omitida en la consigna impresa; véase el desarrollo docente.)
-
-### Respuesta 5
-
-Gráficas originales de las respuestas 5 y 6: para 5(a)–(c), véase la primera imagen; para 5(d)–(h), la segunda. Se conservan los rótulos y ejes del libro.
-
-<figure class="study-figure">
-<svg class="study-plot" viewBox="207 1490 580 175" role="img" aria-label="Respuesta 5 del libro: gráficas originales a, b y c">
-<image href="funciones-assets/pagina-025.png" width="1606" height="2007"/>
-</svg>
-<figcaption>Respuesta 5: gráficas (a), (b) y (c).</figcaption>
-</figure>
-
-<figure class="study-figure">
-<svg class="study-plot" viewBox="862 1095 550 345" role="img" aria-label="Respuesta 5 del libro: gráficas originales d, e, f, g y h">
-<image href="funciones-assets/pagina-025.png" width="1606" height="2007"/>
-</svg>
-<figcaption>Respuesta 5: gráficas (d), (e), (f), (g) y (h).</figcaption>
-</figure>
-
-### Respuesta 6
-
-**(a)** $-3,\ 3$.
-
-**(b)** Gráfica original:
-
-<figure class="study-figure">
-<svg class="study-plot" viewBox="842 1462 175 195" role="img" aria-label="Respuesta 6 b del libro: gráfica original de la función por tramos">
-<image href="funciones-assets/pagina-025.png" width="1606" height="2007"/>
-</svg>
-<figcaption>Respuesta 6(b).</figcaption>
-</figure>
-
-### Respuesta 7
-
-**(a)** $(f\circ g)(x)=4x^2-8x+2$.
-
-**(b)** $(g\circ f)(x)=2x^2+4x-5$.
-
-**(c)** $(g\circ g\circ g)(x)=8x-21$.
 
 </main>

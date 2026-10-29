@@ -43,7 +43,7 @@ class TrigonometriaTest(unittest.TestCase):
     def test_nine_exercises_and_immediate_teacher_explanations(self):
         for number in range(1, 10):
             start = self.html.index(f'id="ejercicio-{number}"')
-            end = self.html.index(f'id="ejercicio-{number + 1}"') if number < 9 else self.html.index('id="respuestas-del-libro"')
+            end = self.html.index(f'id="ejercicio-{number + 1}"') if number < 9 else self.html.index('</article>')
             section = self.html[start:end]
             self.assertIn("Desarrollo docente", section)
         self.assertEqual(self.html.count("Desarrollo docente"), 9)
@@ -55,7 +55,7 @@ class TrigonometriaTest(unittest.TestCase):
             exercise = self.source.split(f"## Ejercicio {number} {{#ejercicio-{number}}}", 1)[1].split("### Desarrollo docente", 1)[0]
             for part in parts:
                 self.assertIn(part, exercise)
-        answers = self.source.split("## Respuestas del libro", 1)[1]
+        answers = (ROOT / 'odd/referencias/stewart-claves-y-erratas.md').read_text(encoding='utf-8').split('# Trigonometría', 1)[1]
         for excerpt in (r"5\pi/3", r"-\pi/10", r"150^\circ", r"360/\pi\approx114.6^\circ",
                         r"2\pi", r"\sqrt3", r"-\frac12", r"24\operatorname{sen}\theta",
                         r"24\cos\theta", r"-\frac{1}{15}(4+6\sqrt2)",
@@ -63,12 +63,13 @@ class TrigonometriaTest(unittest.TestCase):
             self.assertIn(excerpt, answers)
 
     def test_original_answers_and_errata_are_separate(self):
-        answer_section = self.html.split('id="respuestas-del-libro"', 1)[1]
+        answer_section = (ROOT / 'odd/referencias/stewart-claves-y-erratas.md').read_text(encoding='utf-8').split('# Trigonometría', 1)[1]
         for number in range(1, 9):
-            self.assertIn(f'id="respuesta-{number}"', answer_section)
-        self.assertIn("errata", answer_section.lower())
-        self.assertIn("numeración", answer_section.lower())
-        self.assertIn("4+6", self.source)
+            self.assertIn(f'{{#respuesta-{number}}}', answer_section)
+        self.assertIn('errata', answer_section.lower())
+        self.assertIn('numeración', answer_section.lower())
+        self.assertIn(r'\frac{4+6\sqrt2}{15}', self.html)
+        self.assertNotIn('id="respuestas-del-libro"', self.html)
 
     def test_standalone_math_and_local_figures(self):
         self.assertGreaterEqual(self.page.math, 30)

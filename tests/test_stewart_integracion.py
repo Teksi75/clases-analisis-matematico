@@ -32,6 +32,30 @@ class Page(HTMLParser):
 
 
 class Integracion(unittest.TestCase):
+    def test_exams_do_not_publish_book_keys_or_errata(self):
+        for name in EXAMS:
+            with self.subTest(page=name):
+                html = (DIR / (name + '.html')).read_text(encoding='utf-8')
+                doc = Page(html)
+                self.assertNotIn('respuestas-del-libro', doc.ids)
+                self.assertNotIn('#respuestas-del-libro', doc.links)
+                self.assertFalse('respuestas del libro' in html.lower())
+                self.assertFalse('errata' in html.lower())
+
+    def test_internal_reference_preserves_keys_and_errata(self):
+        reference = ROOT / 'odd/referencias/stewart-claves-y-erratas.md'
+        self.assertTrue(reference.is_file())
+        text = reference.read_text(encoding='utf-8')
+        for excerpt in ('no publicado', 'Álgebra', 'Geometría', 'Funciones', 'Trigonometría',
+                        'Errata de la clave, 5(c):', 'errata de rotulación',
+                        'Errata de la consigna:', 'Errata de signo:',
+                        r'$-\frac{1}{15}(4+6\sqrt2)$', '«03»'):
+            with self.subTest(excerpt=excerpt):
+                self.assertIn(excerpt, text)
+        for name in ('index', *EXAMS):
+            doc = Page((DIR / (name + '.html')).read_text(encoding='utf-8'))
+            self.assertFalse(any('stewart-claves-y-erratas' in link for link in doc.links))
+
     def test_navigation_local_links_and_source_graphs(self):
         for name in ('index', *EXAMS):
             with self.subTest(page=name):
@@ -53,7 +77,7 @@ class Integracion(unittest.TestCase):
                         self.assertIn(exam + '.html', links)
                 else:
                     self.assertIn('index.html', links)
-                    self.assertIn('#respuestas-del-libro', links)
+                    self.assertNotIn('#respuestas-del-libro', links)
                     self.assertIn('stewart.css', links)
         self.assertTrue((DIR / 'funciones-assets/pagina-025.png').is_file())
         self.assertIn('funciones-assets/pagina-025.png', Page((DIR / 'funciones.html').read_text(encoding='utf-8')).links)

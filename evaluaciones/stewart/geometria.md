@@ -2,7 +2,7 @@
 
 # Examen de diagnóstico B: Geometría analítica
 
-Las consignas y las respuestas finales proceden de James Stewart, sexta edición, examen de diagnóstico B, página impresa xxii (página física 24 del PDF). Los desarrollos inmediatamente posteriores a cada consigna son **elaboración docente**, no respuestas transcritas del libro. Primero intentá resolver los ejercicios; al final podés consultar las [respuestas del libro](#respuestas-del-libro).
+Las consignas proceden de James Stewart, sexta edición, examen de diagnóstico B, página impresa xxii (página física 24 del PDF). Los desarrollos inmediatamente posteriores a cada consigna son **elaboración docente**. Primero intentá resolver los ejercicios.
 
 ## Ejercicio 1 {#ejercicio-1}
 
@@ -78,21 +78,5 @@ Trace la región en el plano $xy$ definida por la ecuación o desigualdades.
 - (d) La frontera $y=x^2-1$ es una parábola de vértice $(0,-1)$, abierta hacia arriba, que corta el eje $x$ en $(-1,0)$ y $(1,0)$. La dibujamos continua porque se admite la igualdad y sombrearemos los puntos por encima de ella.
 - (e) La frontera $x^2+y^2=4$ es una circunferencia de centro $(0,0)$ y radio $2$. La desigualdad exige distancia al origen menor que $2$: sombrearemos el interior y dibujamos la frontera discontinua, sin incluirla.
 - (f) Dividimos por $144$: $\frac{x^2}{16}+\frac{y^2}{9}=1$. La ecuación describe solo la elipse, no su interior: su centro es el origen y corta los ejes en $(\pm4,0)$ y $(0,\pm3)$. La curva se dibuja continua.
-
-## Respuestas del libro {#respuestas-del-libro}
-
-Las expresiones y las seis gráficas siguientes reproducen la sección de respuestas de la página xxii; las explicaciones anteriores son independientes de ella. La marca «(a)» de la respuesta 2 aparece así en el libro, aunque el ejercicio 2 no tiene incisos: es una errata de rotulación, no un cambio en la respuesta matemática. En la respuesta 4 también se conserva la ausencia de la marca «(a)» antes de la pendiente.
-
-**1.** (a) $y=-3x+1$; (b) $y=-5$; (c) $x=2$; (d) $y=\frac12x-6$.
-
-**2.** (a) $(x+1)^2+(y-4)^2=52$.
-
-**3.** Centro $(3,-5)$, radio $5$.
-
-**4.** $-\frac43$; (b) $4x+3y+16=0$; cruce con eje $x$ $-4$, cruce con eje $y$ $-\frac{16}{3}$; (c) $(-1,-4)$; (d) $20$; (e) $3x-4y=13$; (f) $(x+1)^2+(y+4)^2=100$.
-
-**5.** Gráficas originales del libro: (a) franja cerrada entre $y=-1$ e $y=3$; (b) interior de un rectángulo con fronteras discontinuas en $x=\pm4$ e $y=\pm2$; (c) semiplano inferior a la recta discontinua; (d) región por encima de la parábola continua; (e) interior de la circunferencia discontinua de radio $2$; (f) elipse sin sombreado, con intersecciones $4$ y $3$ en los semiejes positivos.
-
-![Respuestas gráficas del libro para 5 (a)–(f): franja cerrada; rectángulo abierto; semiplano bajo una recta abierta; región sobre una parábola cerrada; disco abierto; elipse.](geometria-assets/respuestas-graficas.png){width=100%}
 
 :::

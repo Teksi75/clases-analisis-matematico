@@ -1,14 +1,12 @@
 // Comprobación local con Chromium y DevTools; sin paquetes ni servicios remotos.
 import { spawn, spawnSync } from 'node:child_process';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdtemp, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const folder = dirname(fileURLToPath(import.meta.url));
-const visualRoot = join(folder, 'verificacion-visual');
-await mkdir(visualRoot, {recursive:true});
-const visual = await mkdtemp(join(visualRoot, 'navegacion-'));
+const visual = await mkdtemp(join(tmpdir(), 'stewart-navegacion-'));
 const profile = await mkdtemp(join(tmpdir(), 'stewart-navegacion-perfil-'));
 console.log('Perfil temporal: ' + profile);
 const browser = spawn('/usr/bin/chromium', ['--headless', '--no-sandbox', '--disable-gpu',
@@ -83,7 +81,7 @@ try {
         await navigate(name);
         await screenshot(name + '-' + width + '-portada');
         if (name !== 'index') {
-          const selector = name === 'funciones' ? 'svg.study-plot' : name === 'geometria' ? 'img' : name === 'trigonometria' ? 'figure img' : '#ejercicio-1';
+          const selector = name === 'funciones' ? 'svg.study-plot' : name === 'geometria' ? '#ejercicio-5' : name === 'trigonometria' ? 'figure img' : '#ejercicio-1';
           await evalJS(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'start'})`);
           await ready(); await screenshot(name + '-' + width + '-interior');
         }
@@ -111,9 +109,10 @@ try {
             if (!(await evalJS(`location.pathname.endsWith('/index.html')`))) failures++;
           }
         } else {
-          await evalJS(`document.querySelector('nav a[href="#respuestas-del-libro"]').click()`);
-          const anchor = await evalJS(`({hash:location.hash, visible:!!document.querySelector('#respuestas-del-libro') && document.querySelector('#respuestas-del-libro').getBoundingClientRect().height>0})`);
-          if (anchor.hash !== '#respuestas-del-libro' || !anchor.visible) failures++;
+          await evalJS(`document.querySelector('nav a[href="#ejercicio-1"]').click()`);
+          const anchor = await evalJS(`({hash:location.hash, visible:!!document.querySelector('#ejercicio-1') && document.querySelector('#ejercicio-1').getBoundingClientRect().height>0,
+            key:!!document.querySelector('#respuestas-del-libro, a[href="#respuestas-del-libro"]'), errata:document.body.innerText.toLowerCase().includes('errata')})`);
+          if (anchor.hash !== '#ejercicio-1' || !anchor.visible || anchor.key || anchor.errata) failures++;
           result.anchor = anchor;
         }
         console.log(JSON.stringify({mode:'screen', page:name, ...result}));
@@ -164,7 +163,7 @@ try {
       }
       result.pdfBytes = await print(name);
       const navigationHidden = await evalJS(`getComputedStyle(document.querySelector('.breadcrumbs')).display === 'none'`);
-      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || (name !== 'index' && !result.answers)) failures++;
+      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || result.answers) failures++;
       console.log(JSON.stringify({mode:'print', page:name, ...result}));
       if (name === 'algebra') {
         // Imprimir también con una respuesta por ejercicio seleccionada, sin abrir los pasos.

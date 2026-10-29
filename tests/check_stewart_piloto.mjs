@@ -1,15 +1,13 @@
 // Comprueba los diez paneles y el respaldo nativo con Chromium/CDP.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdtemp, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const visual = join(root, 'evaluaciones/stewart/verificacion-visual');
-await mkdir(visual, { recursive: true });
-const captures = await mkdtemp(join(visual, 'consulta-panel-'));
+const captures = await mkdtemp(join(tmpdir(), 'stewart-consulta-panel-'));
 const profile = await mkdtemp(join(tmpdir(), 'stewart-piloto-perfil-'));
 console.log(`Capturas: ${captures}`);
 console.log(`Perfil exclusivo: ${profile}`);
@@ -160,6 +158,8 @@ try {
     let s = await snapshot();
     assert.equal(panels.length, 10);
     assert.equal(s.panels.length, 10);
+    assert.equal(await evaluate(`!!document.querySelector('#respuestas-del-libro, a[href="#respuestas-del-libro"]')`), false);
+    assert.equal(await evaluate(`document.body.innerText.toLowerCase().includes('errata')`), false);
     const controlIds = [];
     for (let p = 0; p < panels.length; p++) {
       const panel = s.panels[p];
