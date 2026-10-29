@@ -45,8 +45,6 @@ class FuncionesTests(unittest.TestCase):
         expected = []
         for number in range(1, 8):
             expected.extend([f'Ejercicio {number}', 'Desarrollo docente'])
-        expected.append('Respuestas del libro')
-        expected.extend(f'Respuesta {n}' for n in range(1, 8))
         self.assertEqual(headings, expected)
 
     def test_subparts_and_source_graphs_are_present(self):
@@ -58,8 +56,10 @@ class FuncionesTests(unittest.TestCase):
                 self.assertIn(f'**({letter})**', exercise, (n, letter))
         html = PAGE.read_text(encoding='utf-8')
         self.assertIn('Gráfica original del ejercicio 1', html)
-        self.assertIn('Gráficas originales de las respuestas 5 y 6', html)
-        self.assertIn('Errata', html)
+        self.assertNotIn('Gráficas originales de las respuestas 5 y 6', html)
+        self.assertNotIn('Errata', html)
+        self.assertIn('y=x-1', html)
+        self.assertIn('x=0.3', html)
 
     def test_offline_spanish_and_mathml(self):
         html = PAGE.read_text(encoding='utf-8')

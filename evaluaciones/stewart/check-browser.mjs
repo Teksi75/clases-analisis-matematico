@@ -1,14 +1,12 @@
 // Comprobación local con Chromium y DevTools; sin paquetes ni servicios remotos.
 import { spawn, spawnSync } from 'node:child_process';
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdtemp, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const folder = dirname(fileURLToPath(import.meta.url));
-const visualRoot = join(folder, 'verificacion-visual');
-await mkdir(visualRoot, {recursive:true});
-const visual = await mkdtemp(join(visualRoot, 'navegacion-'));
+const visual = await mkdtemp(join(tmpdir(), 'stewart-navegacion-'));
 const profile = await mkdtemp(join(tmpdir(), 'stewart-navegacion-perfil-'));
 console.log('Perfil temporal: ' + profile);
 const browser = spawn('/usr/bin/chromium', ['--headless', '--no-sandbox', '--disable-gpu',
@@ -83,7 +81,7 @@ try {
         await navigate(name);
         await screenshot(name + '-' + width + '-portada');
         if (name !== 'index') {
-          const selector = name === 'funciones' ? 'svg.study-plot' : name === 'geometria' ? 'img' : name === 'trigonometria' ? 'figure img' : '#ejercicio-1';
+          const selector = name === 'funciones' ? 'svg.study-plot' : name === 'geometria' ? '#ejercicio-5' : name === 'trigonometria' ? 'figure img' : '#ejercicio-1';
           await evalJS(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'start'})`);
           await ready(); await screenshot(name + '-' + width + '-interior');
         }
@@ -111,9 +109,10 @@ try {
             if (!(await evalJS(`location.pathname.endsWith('/index.html')`))) failures++;
           }
         } else {
-          await evalJS(`document.querySelector('nav a[href="#respuestas-del-libro"]').click()`);
-          const anchor = await evalJS(`({hash:location.hash, visible:!!document.querySelector('#respuestas-del-libro') && document.querySelector('#respuestas-del-libro').getBoundingClientRect().height>0})`);
-          if (anchor.hash !== '#respuestas-del-libro' || !anchor.visible) failures++;
+          await evalJS(`document.querySelector('nav a[href="#ejercicio-1"]').click()`);
+          const anchor = await evalJS(`({hash:location.hash, visible:!!document.querySelector('#ejercicio-1') && document.querySelector('#ejercicio-1').getBoundingClientRect().height>0,
+            key:!!document.querySelector('#respuestas-del-libro, a[href="#respuestas-del-libro"]'), errata:document.body.innerText.toLowerCase().includes('errata')})`);
+          if (anchor.hash !== '#ejercicio-1' || !anchor.visible || anchor.key || anchor.errata) failures++;
           result.anchor = anchor;
         }
         console.log(JSON.stringify({mode:'screen', page:name, ...result}));
@@ -148,10 +147,46 @@ try {
         badMath:[...document.querySelectorAll('math')].filter(m=>{if (m.closest('[hidden]') || [...m.closest('article').querySelectorAll('details:not([open])')].some(d=>d.contains(m) && !d.querySelector(':scope > summary')?.contains(m))) return false; const r=m.getBoundingClientRect();return r.width<=0||r.height<=0}).length,
         images:[...document.querySelectorAll('img, svg image')].length,
         answers:!!document.querySelector('#respuestas-del-libro') && getComputedStyle(document.querySelector('#respuestas-del-libro')).display!=='none'}))()`);
+      if (name === 'algebra') {
+        result.panels = await evalJS(`(() => {
+          const panels = [...document.querySelectorAll('[data-consulta-incisos]')];
+          const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+          return panels.map((panel, i) => {
+            const heading = document.querySelector('#ejercicio-' + (i + 1));
+            const choices = [...panel.querySelectorAll(':scope > details[data-inciso]')];
+            return {heading:shown(heading), prompt:shown(panel.querySelector('.consulta-prompt')),
+              selected:panel.querySelectorAll('button[aria-pressed="true"]').length,
+              visibleAnswers:choices.filter(d => shown(d) || shown(d.querySelector(':scope > p'))).length};
+          });
+        })()`);
+        if (result.panels.length !== 10 || result.panels.some(p => !p.heading || !p.prompt || p.selected || p.visibleAnswers)) failures++;
+      }
       result.pdfBytes = await print(name);
       const navigationHidden = await evalJS(`getComputedStyle(document.querySelector('.breadcrumbs')).display === 'none'`);
-      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || (name !== 'index' && !result.answers)) failures++;
+      if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || result.answers) failures++;
       console.log(JSON.stringify({mode:'print', page:name, ...result}));
+      if (name === 'algebra') {
+        // Imprimir también con una respuesta por ejercicio seleccionada, sin abrir los pasos.
+        const selected = await evalJS(`(() => {
+          const panels = [...document.querySelectorAll('[data-consulta-incisos]')];
+          panels.forEach(panel => panel.querySelector('.consulta-selector button').click());
+          const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+          return panels.map(panel => {
+            const choices = [...panel.querySelectorAll(':scope > details[data-inciso]')];
+            const math = [...choices[0].querySelectorAll(':scope > p math')];
+            return {pressed:panel.querySelectorAll('button[aria-pressed="true"]').length,
+              visibleAnswers:choices.filter(d => shown(d.querySelector(':scope > p'))).length,
+              firstVisible:shown(choices[0].querySelector(':scope > p')),
+              stepsOpen:choices.some(d => d.querySelector(':scope > details').open),
+              math:math.length, badMath:math.filter(m => m.namespaceURI !== 'http://www.w3.org/1998/Math/MathML' ||
+                !shown(m) || m.getBoundingClientRect().width <= 0).length};
+          });
+        })()`);
+        const pdfBytes = await print('algebra-selecciones');
+        if (selected.length !== 10 || selected.some(p => p.pressed !== 1 || p.visibleAnswers !== 1 ||
+            !p.firstVisible || p.stepsOpen || !p.math || p.badMath) || pdfBytes < 1000) failures++;
+        console.log(JSON.stringify({mode:'print-selected', page:name, panels:selected, pdfBytes}));
+      }
     }
     await navigate('modelo');
     console.log(JSON.stringify({mode:'print', page:'modelo', pdfBytes:await print('modelo')}));

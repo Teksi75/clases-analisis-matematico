@@ -10,7 +10,7 @@ header-includes: |
   </style>
 ---
 
-Consignas y respuestas del examen A de James Stewart, sexta edición, páginas impresas xx–xxi (páginas físicas 22–23 del PDF local). Los desarrollos son **elaboración docente**, no forman parte de la clave del libro. Intentá cada ejercicio antes de leer su desarrollo; al final está la [clave original](#respuestas-del-libro), con las erratas identificadas.
+Consignas del examen A de James Stewart, sexta edición, páginas impresas xx–xxi (páginas físicas 22–23 del PDF local). Los desarrollos son **elaboración docente**. Intentá cada ejercicio antes de leer su desarrollo.
 
 ## Ejercicio 1
 
@@ -139,11 +139,50 @@ Simplifique estas expresiones. Escriba su respuesta sin exponentes negativos.
 
 ---
 
-**(a)** Extraemos cuadrados perfectos: $\sqrt{200}-\sqrt{32}=10\sqrt2-4\sqrt2=6\sqrt2$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej2-titulo">
+<h3 id="consulta-ej2-titulo">Consultá una resolución</h3>
 
-**(b)** Primero $(4ab^2)^2=16a^2b^4$; al multiplicar queda $48a^5b^7$.
+<details id="consulta-ej2-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Dentro del paréntesis, restamos exponentes: $3x^{-1/2}y^{7/2}$. Al elevar a $-2$ obtenemos $3^{-2}x^1y^{-7}=\dfrac{x}{9y^7}$. En los reales, la expresión original requiere $x>0$ e $y>0$.
+**Resultado:** $6\sqrt2$. Extraemos cuadrados perfectos y restamos radicales semejantes.
+
+<details>
+<summary>Paso a paso</summary>
+
+Como $200=100\cdot2$ y $32=16\cdot2$, las raíces son $10\sqrt2$ y $4\sqrt2$. Al restarlas queda $6\sqrt2$.
+
+</details>
+</details>
+
+<details id="consulta-ej2-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $48a^5b^7$. Elevamos el segundo factor y multiplicamos las potencias de igual base.
+
+<details>
+<summary>Paso a paso</summary>
+
+$(4ab^2)^2=16a^2b^4$. Luego $3\cdot16=48$, $a^3a^2=a^5$ y $b^3b^4=b^7$.
+
+</details>
+</details>
+
+<details id="consulta-ej2-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Resultado:** $\dfrac{x}{9y^7}$, con $x>0$ e $y>0$. Simplificamos las potencias y después aplicamos el exponente negativo.
+
+<details>
+<summary>Paso a paso</summary>
+
+La raíz en $x^{3/2}$ permite $x\geq0$, pero el denominador $x^2$ excluye $x=0$. Además, $y^{-1/2}=1/\sqrt y$ exige $y>0$. Con estas condiciones la base elevada a $-2$ es positiva.
+
+Dentro del paréntesis queda $3x^{-1/2}y^{7/2}$. Al elevar cada factor a $-2$, obtenemos $3^{-2}x^1y^{-7}=\dfrac{x}{9y^7}$. La fórmula final aislada admite otros valores, pero la expresión original no.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 3
 
@@ -159,15 +198,74 @@ Expanda y simplifique.
 
 ---
 
-**(a)** Distribuimos y agrupamos: $3x+18+8x-20=11x-2$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej3-titulo">
+<h3 id="consulta-ej3-titulo">Consultá una resolución</h3>
 
-**(b)** Multiplicamos cada término: $4x^2-5x+12x-15=4x^2+7x-15$.
+<details id="consulta-ej3-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Es una diferencia de cuadrados: $(\sqrt a)^2-(\sqrt b)^2=a-b$, para $a,b\geq0$.
+**Resultado:** $11x-2$. Distribuimos y reunimos términos semejantes.
 
-**(d)** Usamos $(u+v)^2=u^2+2uv+v^2$: $4x^2+12x+9$.
+<details>
+<summary>Paso a paso</summary>
 
-**(e)** Multiplicamos $(x^2+4x+4)(x+2)$ y reunimos términos: $x^3+6x^2+12x+8$.
+$3(x+6)=3x+18$ y $4(2x-5)=8x-20$. Entonces $(3x+8x)+(18-20)=11x-2$.
+
+</details>
+</details>
+
+<details id="consulta-ej3-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $4x^2+7x-15$. Multiplicamos cada término del primer paréntesis por cada término del segundo.
+
+<details>
+<summary>Paso a paso</summary>
+
+La distributiva da $4x^2-5x+12x-15$. Los términos con $x$ suman $7x$.
+
+</details>
+</details>
+
+<details id="consulta-ej3-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Resultado:** $a-b$, para $a\geq0$ y $b\geq0$. Es una suma por una diferencia.
+
+<details>
+<summary>Paso a paso</summary>
+
+Usamos $(u+v)(u-v)=u^2-v^2$, con $u=\sqrt a$ y $v=\sqrt b$. Así obtenemos $(\sqrt a)^2-(\sqrt b)^2=a-b$. Aunque $a-b$ existe para todos los reales, la expresión original exige que existan ambas raíces.
+
+</details>
+</details>
+
+<details id="consulta-ej3-d" data-inciso="d">
+<summary><strong>(d)</strong> Explicación breve</summary>
+
+**Resultado:** $4x^2+12x+9$. El cuadrado de una suma también tiene un término del medio.
+
+<details>
+<summary>Paso a paso</summary>
+
+En $(u+v)^2=u^2+2uv+v^2$, tomamos $u=2x$ y $v=3$. Los tres términos son $4x^2$, $2(2x)(3)=12x$ y $9$.
+
+</details>
+</details>
+
+<details id="consulta-ej3-e" data-inciso="e">
+<summary><strong>(e)</strong> Explicación breve</summary>
+
+**Resultado:** $x^3+6x^2+12x+8$. Multiplicamos el cuadrado de la suma por otro factor $(x+2)$.
+
+<details>
+<summary>Paso a paso</summary>
+
+Primero $(x+2)^2=x^2+4x+4$. Al multiplicar por $(x+2)$ queda $x^3+4x^2+4x+2x^2+8x+8$; agrupamos los términos semejantes.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 4
 
@@ -184,17 +282,87 @@ Factorice estas expresiones.
 
 ---
 
-**(a)** Diferencia de cuadrados: $(2x)^2-5^2=(2x-5)(2x+5)$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej4-titulo">
+<h3 id="consulta-ej4-titulo">Consultá una resolución</h3>
 
-**(b)** Separamos el término central: $2x^2+8x-3x-12=2x(x+4)-3(x+4)=(2x-3)(x+4)$.
+<details id="consulta-ej4-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Agrupamos: $x^2(x-3)-4(x-3)=(x-3)(x^2-4)=(x-3)(x-2)(x+2)$.
+**Resultado:** $(2x-5)(2x+5)$. Aplicamos la diferencia de cuadrados.
 
-**(d)** Sacamos $x$ y factorizamos la suma de cubos: $x(x^3+3^3)=x(x+3)(x^2-3x+9)$.
+<details>
+<summary>Paso a paso</summary>
 
-**(e)** Sacamos $3x^{-1/2}$: $3x^{-1/2}(x^2-3x+2)=3x^{-1/2}(x-1)(x-2)$, con $x>0$.
+Escribimos $4x^2=(2x)^2$ y $25=5^2$. Luego usamos $u^2-v^2=(u-v)(u+v)$ con $u=2x$ y $v=5$.
 
-**(f)** Sacamos $xy$ y aplicamos diferencia de cuadrados: $xy(x^2-4)=xy(x-2)(x+2)$.
+</details>
+</details>
+
+<details id="consulta-ej4-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $(2x-3)(x+4)$. Separamos el término central y factorizamos por grupos.
+
+<details>
+<summary>Paso a paso</summary>
+
+Buscamos dos números que sumen $5$ y cuyo producto sea $2\cdot(-12)=-24$: son $8$ y $-3$. Así, $2x^2+8x-3x-12=2x(x+4)-3(x+4)=(2x-3)(x+4)$.
+
+</details>
+</details>
+
+<details id="consulta-ej4-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Resultado:** $(x-3)(x-2)(x+2)$. Agrupamos y después usamos diferencia de cuadrados.
+
+<details>
+<summary>Paso a paso</summary>
+
+Los dos grupos tienen el factor $(x-3)$: $x^2(x-3)-4(x-3)=(x-3)(x^2-4)$. Como $x^2-4=(x-2)(x+2)$, obtenemos la factorización completa.
+
+</details>
+</details>
+
+<details id="consulta-ej4-d" data-inciso="d">
+<summary><strong>(d)</strong> Explicación breve</summary>
+
+**Resultado:** $x(x+3)(x^2-3x+9)$. Sacamos factor común y factorizamos una suma de cubos.
+
+<details>
+<summary>Paso a paso</summary>
+
+$x^4+27x=x(x^3+3^3)$. Usamos $u^3+v^3=(u+v)(u^2-uv+v^2)$. El último factor no tiene raíces reales, pues su discriminante es $(-3)^2-4(1)(9)=-27$.
+
+</details>
+</details>
+
+<details id="consulta-ej4-e" data-inciso="e">
+<summary><strong>(e)</strong> Explicación breve</summary>
+
+**Resultado:** $\dfrac{3(x-1)(x-2)}{\sqrt x}$, con $x>0$. Extraemos la menor potencia de $x$ como factor común.
+
+<details>
+<summary>Paso a paso</summary>
+
+La potencia $x^{-1/2}=1/\sqrt x$ exige $x>0$. Al extraer $3x^{-1/2}$ queda $3x^{-1/2}(x^2-3x+2)$. El trinomio es $(x-1)(x-2)$; reemplazamos $x^{-1/2}$ por $1/\sqrt x$.
+
+</details>
+</details>
+
+<details id="consulta-ej4-f" data-inciso="f">
+<summary><strong>(f)</strong> Explicación breve</summary>
+
+**Resultado:** $xy(x-2)(x+2)$. Extraemos el factor común y usamos diferencia de cuadrados.
+
+<details>
+<summary>Paso a paso</summary>
+
+$x^3y-4xy=xy(x^2-4)$ y $x^2-4=(x-2)(x+2)$. No dividimos por $x$ ni por $y$, así que también se permiten valores nulos.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 5
 
@@ -209,13 +377,63 @@ Simplifique la expresión racional.
 
 ---
 
-**(a)** Factorizamos y cancelamos el factor común: $\dfrac{(x+1)(x+2)}{(x+1)(x-2)}=\dfrac{x+2}{x-2}$. La expresión inicial exige $x\ne-1,2$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej5-titulo">
+<h3 id="consulta-ej5-titulo">Consultá una resolución</h3>
 
-**(b)** Factorizamos: $\dfrac{(2x+1)(x-1)}{(x-3)(x+3)}\cdot\dfrac{x+3}{2x+1}=\dfrac{x-1}{x-3}$. Se mantienen las restricciones originales $x\ne-3,3,-1/2$.
+<details id="consulta-ej5-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Usamos denominador común $(x-2)(x+2)$: $\dfrac{x^2-(x-1)(x-2)}{x^2-4}=\dfrac{3x-2}{x^2-4}$, con $x\ne-2,2$. La clave impresa da otra expresión: ver la errata señalada abajo.
+**Resultado:** $\dfrac{x+2}{x-2}$, con $x\ne-1,2$. Factorizamos y cancelamos el factor común sin recuperar valores excluidos.
 
-**(d)** Multiplicamos numerador y denominador por $xy$: $\dfrac{y^2-x^2}{x-y}=\dfrac{(y-x)(y+x)}{x-y}=-(x+y)$. La expresión original requiere $x\ne0$, $y\ne0$ y $x\ne y$.
+<details>
+<summary>Paso a paso</summary>
+
+El denominador original es $(x+1)(x-2)$ y debe ser distinto de cero. Entonces $\dfrac{(x+1)(x+2)}{(x+1)(x-2)}=\dfrac{x+2}{x-2}$: se cancela $x+1$ porque $x\ne-1$. Esa exclusión sigue vigente aunque no aparezca en la fórmula final.
+
+</details>
+</details>
+
+<details id="consulta-ej5-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $\dfrac{x-1}{x-3}$, con $x\ne-3,3,-\frac12$. Factorizamos y cancelamos conservando las restricciones originales.
+
+<details>
+<summary>Paso a paso</summary>
+
+Los denominadores $(x-3)(x+3)$ y $2x+1$ dan las tres exclusiones. Factorizando y cancelando los factores que no son cero: $\dfrac{(2x+1)(x-1)}{(x-3)(x+3)}\cdot\dfrac{x+3}{2x+1}=\dfrac{x-1}{x-3}$.
+
+</details>
+</details>
+
+<details id="consulta-ej5-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Resultado:** $\dfrac{3x-2}{x^2-4}$, con $x\ne-2,2$. Usamos un denominador común.
+
+<details>
+<summary>Paso a paso</summary>
+
+Como $x^2-4=(x-2)(x+2)$, ambos valores $2$ y $-2$ están excluidos. El numerador común es $x^2-(x-1)(x-2)=x^2-(x^2-3x+2)=3x-2$.
+
+</details>
+</details>
+
+<details id="consulta-ej5-d" data-inciso="d">
+<summary><strong>(d)</strong> Explicación breve</summary>
+
+**Resultado:** $-(x+y)$, con $x\ne0$, $y\ne0$ y $x\ne y$. Simplificamos las fracciones internas antes de dividir.
+
+<details>
+<summary>Paso a paso</summary>
+
+Con denominador común $xy$, el numerador es $(y^2-x^2)/(xy)$ y el denominador es $(x-y)/(xy)$. Este último no puede ser cero, por eso $x\ne y$.
+
+Al dividir queda $\dfrac{(y-x)(y+x)}{x-y}=-(x+y)$, porque $y-x=-(x-y)$. Las tres restricciones originales se conservan.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 6
 
@@ -228,9 +446,39 @@ Racionalice la expresión y simplifique.
 
 ---
 
-**(a)** Multiplicamos por el conjugado: $\dfrac{\sqrt{10}(\sqrt5+2)}{5-4}=\sqrt{50}+2\sqrt{10}=5\sqrt2+2\sqrt{10}$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej6-titulo">
+<h3 id="consulta-ej6-titulo">Consultá una resolución</h3>
 
-**(b)** Multiplicamos por $\sqrt{4+h}+2$: $\dfrac{(4+h)-4}{h(\sqrt{4+h}+2)}=\dfrac1{\sqrt{4+h}+2}$. La igualdad vale donde estaba definida la expresión inicial: $h\geq-4$ y $h\ne0$.
+<details id="consulta-ej6-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
+
+**Resultado:** $5\sqrt2+2\sqrt{10}$. Multiplicamos por el conjugado del denominador.
+
+<details>
+<summary>Paso a paso</summary>
+
+El denominador original no es cero porque $\sqrt5\ne2$. Al multiplicar arriba y abajo por $\sqrt5+2$, el denominador queda $5-4=1$. El numerador es $\sqrt{50}+2\sqrt{10}=5\sqrt2+2\sqrt{10}$.
+
+</details>
+</details>
+
+<details id="consulta-ej6-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $\dfrac1{\sqrt{4+h}+2}$, con $h\geq-4$ y $h\ne0$. Usamos el conjugado del numerador.
+
+<details>
+<summary>Paso a paso</summary>
+
+La raíz exige $h\geq-4$ y el denominador original excluye $h=0$. El conjugado $\sqrt{4+h}+2$ es positivo en ese dominio. Por tanto,
+
+$\dfrac{(\sqrt{4+h}-2)(\sqrt{4+h}+2)}{h(\sqrt{4+h}+2)}=\dfrac{h}{h(\sqrt{4+h}+2)}=\dfrac1{\sqrt{4+h}+2}$.
+
+La fórmula final existe en $h=0$, pero la original no; mantenemos la exclusión.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 7
 
@@ -243,9 +491,35 @@ Complete el cuadrado de lo siguiente.
 
 ---
 
-**(a)** Sumamos y restamos el cuadrado de la mitad de 1: $x^2+x+\frac14+\frac34=(x+\frac12)^2+\frac34$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej7-titulo">
+<h3 id="consulta-ej7-titulo">Consultá una resolución</h3>
 
-**(b)** Sacamos 2 de los dos primeros términos y completamos: $2(x^2-6x+9)-18+11=2(x-3)^2-7$.
+<details id="consulta-ej7-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
+
+**Resultado:** $(x+\frac12)^2+\frac34$. Completamos el cuadrado usando la mitad del coeficiente de $x$.
+
+<details>
+<summary>Paso a paso</summary>
+
+La mitad de $1$ es $\frac12$ y su cuadrado es $\frac14$. Sumamos y restamos esa cantidad: $x^2+x+\frac14+1-\frac14=(x+\frac12)^2+\frac34$.
+
+</details>
+</details>
+
+<details id="consulta-ej7-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $2(x-3)^2-7$. Sacamos el factor $2$ y completamos el cuadrado dentro del paréntesis.
+
+<details>
+<summary>Paso a paso</summary>
+
+La mitad de $-6$ es $-3$, cuyo cuadrado es $9$. Entonces $2(x^2-6x+9-9)+11=2(x-3)^2-18+11=2(x-3)^2-7$.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 8
 
@@ -263,19 +537,100 @@ Resuelva la ecuación. (Encuentre sólo las soluciones reales.)
 
 ---
 
-**(a)** Sumamos $\frac12x$ y restamos 5: $\frac32x=9$, por lo que $x=6$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej8-titulo">
+<h3 id="consulta-ej8-titulo">Consultá una resolución</h3>
 
-**(b)** Con $x\ne0,-1$, multiplicamos por $x(x+1)$: $2x^2=(2x-1)(x+1)=2x^2+x-1$. Así $x=1$, que es admisible.
+<details id="consulta-ej8-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Factorizamos $(x-2)(x+1)=0$: las soluciones son $x=-1, 2$. La clave impresa contiene una errata, identificada al final.
+**Solución:** $x=6$. Reunimos las incógnitas de un lado y las constantes del otro.
 
-**(d)** Dividimos por 2 y completamos el cuadrado: $(x+1)^2=\frac12$. Por tanto $x=-1\pm\frac{\sqrt2}{2}$.
+<details>
+<summary>Paso a paso</summary>
 
-**(e)** Con $u=x^2$, resolvemos $(u-1)(u-2)=0$. Entonces $x^2=1$ o $x^2=2$, y $x=\pm1,\pm\sqrt2$.
+Multiplicamos por $2$: $2x+10=28-x$. Sumamos $x$ y restamos $10$: $3x=18$, de donde $x=6$. En la ecuación inicial ambos lados valen $11$.
 
-**(f)** Dividimos por 3: $|x-4|=10/3$. Los dos casos $x-4=\pm10/3$ dan $x=2/3$ y $x=22/3$.
+</details>
+</details>
 
-**(g)** La potencia negativa exige $x<4$. Multiplicamos por $\sqrt{4-x}>0$: $2x-3(4-x)=0$, luego $5x=12$ y $x=12/5$. Este valor cumple $x<4$.
+<details id="consulta-ej8-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Solución:** $x=1$. Con $x\ne0,-1$, multiplicamos por los denominadores.
+
+<details>
+<summary>Paso a paso</summary>
+
+Como $x(x+1)\ne0$, podemos multiplicar ambos lados por ese producto: $2x^2=(2x-1)(x+1)=2x^2+x-1$. Al restar $2x^2$ queda $x=1$, que cumple las restricciones.
+
+</details>
+</details>
+
+<details id="consulta-ej8-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Soluciones:** $x=-1, 2$. Factorizamos y usamos que un producto es cero si alguno de sus factores es cero.
+
+<details>
+<summary>Paso a paso</summary>
+
+$x^2-x-2=(x-2)(x+1)$. Por lo tanto $x-2=0$ o $x+1=0$.
+
+</details>
+</details>
+
+<details id="consulta-ej8-d" data-inciso="d">
+<summary><strong>(d)</strong> Explicación breve</summary>
+
+**Soluciones:** $x=-1\pm\dfrac{\sqrt2}{2}$. Aplicamos la fórmula cuadrática.
+
+<details>
+<summary>Paso a paso</summary>
+
+Con coeficientes $a=2$, $b=4$ y $c=1$, el discriminante es $4^2-4(2)(1)=8>0$. Entonces $x=\dfrac{-4\pm\sqrt8}{4}=-1\pm\dfrac{\sqrt2}{2}$.
+
+</details>
+</details>
+
+<details id="consulta-ej8-e" data-inciso="e">
+<summary><strong>(e)</strong> Explicación breve</summary>
+
+**Soluciones:** $x=\pm1,\pm\sqrt2$. Tratamos la ecuación como una cuadrática en $x^2$.
+
+<details>
+<summary>Paso a paso</summary>
+
+Sea $t=x^2\geq0$. Entonces $t^2-3t+2=(t-1)(t-2)=0$, de modo que $t=1$ o $t=2$; ambos valores son admisibles. Resolver $x^2=1$ y $x^2=2$ da los cuatro valores indicados.
+
+</details>
+</details>
+
+<details id="consulta-ej8-f" data-inciso="f">
+<summary><strong>(f)</strong> Explicación breve</summary>
+
+**Soluciones:** $x=\frac23,\frac{22}3$. Consideramos los dos signos posibles de la expresión dentro del valor absoluto.
+
+<details>
+<summary>Paso a paso</summary>
+
+Al dividir por $3$, queda $|x-4|=\frac{10}3$. Entonces $x-4=\frac{10}3$ da $x=\frac{22}3$, y $x-4=-\frac{10}3$ da $x=\frac23$.
+
+</details>
+</details>
+
+<details id="consulta-ej8-g" data-inciso="g">
+<summary><strong>(g)</strong> Explicación breve</summary>
+
+**Solución:** $x=\dfrac{12}5$. En el dominio $x<4$, multiplicamos por la raíz positiva para eliminar el denominador.
+
+<details>
+<summary>Paso a paso</summary>
+
+La potencia negativa es $1/\sqrt{4-x}$, que exige $4-x>0$. Multiplicar por $\sqrt{4-x}>0$ es reversible y da $2x-3(4-x)=0$. Así $5x=12$ y $x=\frac{12}5$, que cumple $x<4$.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 9
 
@@ -291,15 +646,74 @@ Resuelva estas desigualdades, use notación de intervalo.
 
 ---
 
-**(a)** Restamos 5: $-9<-3x\leq12$. Al dividir por $-3$ invertimos los signos: $3>x\geq-4$. Solución: $[-4,3)$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej9-titulo">
+<h3 id="consulta-ej9-titulo">Consultá una resolución</h3>
 
-**(b)** Pasamos todo a un lado y factorizamos: $(x-4)(x+2)<0$. El producto es negativo entre las raíces: $(-2,4)$.
+<details id="consulta-ej9-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Los ceros $-2,0,1$ dividen la recta. El producto es positivo en $(-2,0)$ y $(1,\infty)$; como la desigualdad es estricta, se excluyen los ceros. Resultado: $(-2,0)\cup(1,\infty)$.
+**Solución:** $[-4,3)$. Al dividir por un número negativo se invierten las desigualdades.
 
-**(d)** $|x-4|<3$ equivale a $-3<x-4<3$. Sumamos 4 y obtenemos $(1,7)$.
+<details>
+<summary>Paso a paso</summary>
 
-**(e)** Con $x\ne-1$, restamos 1: $\dfrac{x-4}{x+1}\leq0$. El cociente es negativo entre $-1$ y 4; se excluye el denominador nulo y se incluye el cero del numerador: $(-1,4]$.
+Restamos $5$: $-9<-3x\leq12$. Al dividir por $-3$, queda $3>x\geq-4$. Se incluye $-4$ y se excluye $3$.
+
+</details>
+</details>
+
+<details id="consulta-ej9-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Solución:** $(-2,4)$. El producto factorizado es negativo entre sus raíces.
+
+<details>
+<summary>Paso a paso</summary>
+
+Pasamos todo al mismo lado: $x^2-2x-8=(x-4)(x+2)<0$. Entre $-2$ y $4$ los factores tienen signos distintos; fuera de ese intervalo tienen el mismo signo. Los extremos no se incluyen porque la desigualdad es estricta.
+
+</details>
+</details>
+
+<details id="consulta-ej9-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Solución:** $(-2,0)\cup(1,\infty)$. Los ceros dividen la recta en intervalos donde estudiamos el signo del producto.
+
+<details>
+<summary>Paso a paso</summary>
+
+Los ceros son $-2$, $0$ y $1$. De izquierda a derecha, los signos del producto en los cuatro intervalos son $-$, $+$, $-$ y $+$. Elegimos los intervalos positivos y excluimos los ceros porque se pide $>0$.
+
+</details>
+</details>
+
+<details id="consulta-ej9-d" data-inciso="d">
+<summary><strong>(d)</strong> Explicación breve</summary>
+
+**Solución:** $(1,7)$. Un valor absoluto menor que $3$ equivale a una desigualdad doble.
+
+<details>
+<summary>Paso a paso</summary>
+
+$|x-4|<3$ equivale a $-3<x-4<3$. Sumando $4$ en los tres miembros obtenemos $1<x<7$; ninguno de los extremos se incluye.
+
+</details>
+</details>
+
+<details id="consulta-ej9-e" data-inciso="e">
+<summary><strong>(e)</strong> Explicación breve</summary>
+
+**Solución:** $(-1,4]$, con $x\ne-1$. Restamos $1$ y estudiamos los signos del cociente.
+
+<details>
+<summary>Paso a paso</summary>
+
+$\dfrac{2x-3}{x+1}-1=\dfrac{x-4}{x+1}$. En los intervalos separados por $-1$ y $4$, los signos son $+$, $-$ y $+$, respectivamente. Se excluye $-1$ porque anula el denominador; se incluye $4$ porque anula el numerador y se permite la igualdad.
+
+</details>
+</details>
+</section>
 
 ## Ejercicio 10
 
@@ -316,100 +730,84 @@ Exprese si cada una de estas ecuaciones es verdadera o falsa.
 
 ---
 
-**(a)** Falsa: al desarrollar aparece $2pq$. Por ejemplo, $p=q=1$ da $4\ne2$.
+<section class="consulta-incisos" data-consulta-incisos aria-labelledby="consulta-ej10-titulo">
+<h3 id="consulta-ej10-titulo">Consultá una resolución</h3>
 
-**(b)** Verdadera para $a,b\geq0$: el producto de las raíces no negativas es la raíz no negativa de $ab$. En reales, la igualdad se considera donde ambos lados están definidos.
+<details id="consulta-ej10-a" data-inciso="a">
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Falsa: con $a=b=1$, el lado izquierdo es $\sqrt2$ y el derecho es 2.
+**Falsa en general:** al desarrollar el cuadrado aparece un término adicional, $2pq$.
 
-**(d)** Falsa: para $C\ne0$, el lado izquierdo es $1/C+T$, no $1+T$ en general; por ejemplo, $C=2$, $T=0$.
+<details>
+<summary>Paso a paso</summary>
 
-**(e)** Falsa: con $x=2$, $y=1$, el lado izquierdo es 1 y el derecho $-1/2$.
+$(p+q)^2=p^2+2pq+q^2$. Por ejemplo, con $p=q=1$ los lados valen $4$ y $2$. La igualdad se cumple solo cuando $pq=0$.
 
-**(f)** Verdadera donde está definida: para $x\ne0$ y $a\ne b$, el denominador izquierdo es $(a-b)/x$; por eso $(1/x)/((a-b)/x)=1/(a-b)$.
+</details>
+</details>
 
-## Respuestas del libro
+<details id="consulta-ej10-b" data-inciso="b">
+<summary><strong>(b)</strong> Explicación breve</summary>
 
-Esta sección reproduce la clave impresa, incluso sus respuestas inconsistentes con las consignas. Las explicaciones y la identificación de erratas son de elaboración docente.
+**Verdadera donde ambos lados están definidos:** $a\geq0$ y $b\geq0$. El producto de las raíces es la raíz no negativa del producto.
 
-### Respuestas 1
+<details>
+<summary>Paso a paso</summary>
 
-**(a)** $81$\
-**(b)** $-81$\
-**(c)** $\frac1{81}$\
-**(d)** $25$\
-**(e)** $\frac94$\
-**(f)** $\frac18$
+El lado derecho requiere $a,b\geq0$; el izquierdo solo requiere $ab\geq0$. En el dominio común, $\sqrt a\sqrt b$ es no negativo y su cuadrado es $ab$, así que es $\sqrt{ab}$. Por ejemplo, con $a=b=-1$ el lado izquierdo existe, pero el derecho no está definido en los reales: no es un contraejemplo en el dominio común.
 
-### Respuestas 2
+</details>
+</details>
 
-**(a)** $6\sqrt2$\
-**(b)** $48a^5b^7$\
-**(c)** $\dfrac{x}{9y^7}$
+<details id="consulta-ej10-c" data-inciso="c">
+<summary><strong>(c)</strong> Explicación breve</summary>
 
-### Respuestas 3
+**Falsa en general:** la raíz de la suma de cuadrados no coincide siempre con la suma de los números.
 
-**(a)** $11x-2$\
-**(b)** $4x^2+7x-15$\
-**(c)** $a-b$\
-**(d)** $4x^2+12x+9$\
-**(e)** $x^3+6x^2+12x+8$
+<details>
+<summary>Paso a paso</summary>
 
-### Respuestas 4
+Ambos lados existen para cualquier par real. Si $a=b=1$, el izquierdo vale $\sqrt2$ y el derecho $2$; son distintos.
 
-**(a)** $(2x-5)(2x+5)$\
-**(b)** $(2x-3)(x+4)$\
-**(c)** $(x-3)(x-2)(x+2)$\
-**(d)** $x(x+3)(x^2-3x+9)$\
-**(e)** $3x^{-1/2}(x-1)(x-2)$\
-**(f)** $xy(x-2)(x+2)$
+</details>
+</details>
 
-### Respuestas 5
+<details id="consulta-ej10-d" data-inciso="d">
+<summary><strong>(d)</strong> Explicación breve</summary>
 
-**(a)** $\dfrac{x+2}{x-2}$\
-**(b)** $\dfrac{x-1}{x-3}$\
-**(c)** $\dfrac1{x-2}$\
-**(d)** $-(x+y)$
+**Falsa en general:** para $C\ne0$, dividir cada término da $1/C+T$, no necesariamente $1+T$.
 
-**Errata de la clave, 5(c):** la respuesta impresa anterior no coincide con la consigna impresa; el desarrollo obtiene $\dfrac{3x-2}{x^2-4}$. Por ejemplo, para $x=0$, la consigna vale $1/2$, mientras que la clave da $-1/2$.
+<details>
+<summary>Paso a paso</summary>
 
-### Respuestas 6
+El denominador del lado izquierdo exige $C\ne0$. Allí $\dfrac{1+TC}{C}=\dfrac1C+T$. Por ejemplo, con $C=2$ y $T=0$, los lados son $\frac12$ y $1$. La igualdad sí se cumple cuando $C=1$.
 
-**(a)** $5\sqrt2+2\sqrt{10}$\
-**(b)** $\dfrac1{\sqrt{4+h}+2}$
+</details>
+</details>
 
-### Respuestas 7
+<details id="consulta-ej10-e" data-inciso="e">
+<summary><strong>(e)</strong> Explicación breve</summary>
 
-**(a)** $(x+\frac12)^2+\frac34$\
-**(b)** $2(x-3)^2-7$
+**Falsa:** en el dominio común $x\ne0$, $y\ne0$ y $x\ne y$, restar las fracciones no da el recíproco de la diferencia.
 
-### Respuestas 8
+<details>
+<summary>Paso a paso</summary>
 
-**(a)** $6$\
-**(b)** $1$\
-**(c)** $-3, 4$\
-**(d)** $-1\pm\frac12\sqrt2$\
-**(e)** $\pm1\pm\sqrt2$\
-**(f)** $\frac23,\frac{22}3$\
-**(g)** $\frac{12}5$
+El lado izquierdo exige $x\ne y$; el derecho exige $x,y\ne0$. Al restar, $\dfrac1x-\dfrac1y=\dfrac{y-x}{xy}$. Con $x=2$ e $y=1$, valores permitidos, el lado izquierdo vale $1$ y el derecho $-\frac12$.
 
-**Errata de la clave, 8(c):** el libro imprime $-3, 4$, pero la ecuación de la consigna tiene soluciones $-1, 2$; ninguna de las dos cifras impresas anula ese polinomio.
+</details>
+</details>
 
-**Errata de notación de la clave, 8(e):** el libro imprime $\pm1\pm\sqrt2$, sin coma entre ambos términos. Esa escritura indica sumas y restas, no las cuatro raíces $\pm1,\pm\sqrt2$ que se obtienen al resolver la ecuación. Una coma separaría los dos pares de soluciones.
+<details id="consulta-ej10-f" data-inciso="f">
+<summary><strong>(f)</strong> Explicación breve</summary>
 
-### Respuestas 9
+**Verdadera** para $x\ne0$ y $a\ne b$: el denominador izquierdo se reduce a $(a-b)/x$.
 
-**(a)** $[-4,3)$\
-**(b)** $(-2,4)$\
-**(c)** $(-2,0)\cup(1,\infty)$\
-**(d)** $(1,7)$\
-**(e)** $(-1,4]$
+<details>
+<summary>Paso a paso</summary>
 
-### Respuestas 10
+En ese dominio, $a/x-b/x=(a-b)/x$ no es cero. Entonces $\dfrac{1/x}{(a-b)/x}=\dfrac1x\cdot\dfrac{x}{a-b}=\dfrac1{a-b}$. El lado derecho aislado admite $x=0$, pero la expresión original no; conservamos esa restricción.
 
-**(a)** Falsa\
-**(b)** Verdadera\
-**(c)** Falsa\
-**(d)** Falsa\
-**(e)** Falsa\
-**(f)** Verdadera
+</details>
+</details>
+</section>

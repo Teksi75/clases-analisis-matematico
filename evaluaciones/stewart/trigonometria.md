@@ -1,7 +1,7 @@
 ---
 title: "Examen de diagnóstico D: Trigonometría"
 lang: es
-description: "Consignas de Stewart, resolución docente y respuestas originales."
+description: "Consignas de Stewart y resolución docente."
 header-includes: |
   <style>
   body { max-width: 78ch; margin: 0 auto; padding: 1rem clamp(1rem, 4vw, 2rem) 4rem; }
@@ -12,9 +12,7 @@ header-includes: |
   </style>
 ---
 
-**Fuente:** James Stewart, *Cálculo*, sexta edición, página física 26 del PDF (página impresa xxiv). Las consignas y la sección final reproducen el examen; los desarrollos intercalados son de elaboración docente. La sección final conserva y señala las erratas observadas en la fuente.
-
-[Ir a las respuestas del libro](#respuestas-del-libro)
+**Fuente:** James Stewart, *Cálculo*, sexta edición, página física 26 del PDF (página impresa xxiv). Las consignas reproducen el examen; los desarrollos intercalados son de elaboración docente.
 
 ## Ejercicio 1 {#ejercicio-1}
 
@@ -90,7 +88,7 @@ Si $\operatorname{sen}x=\frac13$ y $\sec y=\frac54$, donde $x$ y $y$ están entr
 
 $$\operatorname{sen}(x+y)=\operatorname{sen}x\cos y+\cos x\operatorname{sen}y=\frac13\frac45+\frac{2\sqrt2}{3}\frac35=\frac{4+6\sqrt2}{15}.$$
 
-El resultado es positivo, como corresponde al seno de la suma de dos ángulos en el primer cuadrante. El signo negativo impreso en la respuesta del libro es una errata; se conserva abajo para mostrar la fuente.
+El resultado es positivo, como corresponde al seno de la suma de dos ángulos en el primer cuadrante.
 
 ## Ejercicio 7 {#ejercicio-7}
 
@@ -136,45 +134,3 @@ Trace la gráfica de la función $y=1+\operatorname{sen}2x$ sin usar calculadora
 2. En un período, marcamos $(0,1)$, $(\pi/4,2)$, $(\pi/2,1)$, $(3\pi/4,0)$ y $(\pi,1)$. Unimos suavemente con la forma sinusoidal y repetimos cada $\pi$ hacia ambos lados.
 
 ![Gráfica de y igual a 1 más seno de 2x: amplitud 1, línea media 1 y período pi.](trigonometria-assets/grafica.svg)
-
-## Respuestas del libro {#respuestas-del-libro}
-
-Reproducción de las respuestas impresas, con su numeración original. La gráfica se redibuja con los mismos ejes y comportamiento. Las aclaraciones de erratas se distinguen de la respuesta impresa.
-
-### 1 {#respuesta-1}
-
-(a) $5\pi/3$  (b) $-\pi/10$
-
-### 2 {#respuesta-2}
-
-(a) $150^\circ$  (b) $360/\pi\approx114.6^\circ$
-
-### 3 {#respuesta-3}
-
-$2\pi$ cm
-
-### 4 {#respuesta-4}
-
-(a) $\sqrt3$  (b) $-\frac12$  (c) $2$
-
-### 5 {#respuesta-5}
-
-(a) $24\operatorname{sen}\theta$  (b) $24\cos\theta$
-
-### 6 {#respuesta-6}
-
-$-\frac{1}{15}(4+6\sqrt2)$
-
-**Errata de signo:** el libro imprime el signo menos anterior; el resultado correcto, demostrado en el ejercicio 6, es positivo.
-
-### 7 {#respuesta-7}
-
-$0,\pi/3,\pi,5\pi/3,2\pi$
-
-**Errata de numeración:** esta lista corresponde a la ecuación del ejercicio 8, no a las identidades del ejercicio 7. La fuente no imprime una respuesta separada para las identidades.
-
-### 8 {#respuesta-8}
-
-![Respuesta gráfica impresa con el número 8: senoide de y igual a 1 más seno de 2x.](trigonometria-assets/grafica.svg)
-
-**Errata de numeración:** la gráfica impresa como respuesta 8 corresponde al ejercicio 9. No hay una respuesta numerada 9 en la fuente.

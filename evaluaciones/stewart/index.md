@@ -5,7 +5,7 @@ lang: es
 
 # Exámenes de diagnóstico de Stewart
 
-Consignas y respuestas del libro con desarrollos docentes. Elegí un examen para leerlo sin conexión o imprimirlo.
+Consignas del libro con desarrollos docentes. Elegí un examen para leerlo sin conexión o imprimirlo.
 
 <nav class="exam-cards" aria-label="Elegir un examen de diagnóstico">
   <a href="algebra.html"><span>Diagnóstico A</span><strong>Álgebra</strong><small>Expresiones, ecuaciones y factorización →</small></a>
