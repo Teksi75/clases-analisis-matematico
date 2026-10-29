@@ -8,6 +8,11 @@ article > div[style], article > section[style] { max-width: none !important; mar
 img, svg { max-width: 100%; height: auto; }
 figure { margin: 2rem 0; }
 math[display="inline"] { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+/* Una fracción MathML es más alta que la línea de texto. Sin margen propio, dos
+   consignas fraccionarias consecutivas —separadas solo por <br>— quedan pegadas
+   y se leen como una sola expresión. El margen se aplica únicamente a las
+   fórmulas que contienen fracciones para no separar el texto común. */
+math[display="inline"]:has(mfrac) { margin-block: .35em; }
 .contents .index-title { display: block; }
 .breadcrumbs { margin-bottom: 2.5rem; font: .75rem/1.8 var(--mono); color: var(--muted); }
 .breadcrumbs span[aria-hidden] { padding: 0 .4rem; color: var(--rule); }

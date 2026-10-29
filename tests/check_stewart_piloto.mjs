@@ -119,6 +119,37 @@ try {
     assert.ok(s.scroll <= s.width, `desborde ${context}: ${s.scroll} > ${s.width}`);
     assert.ok(s.panels.every(p => p.choices.every(c => c.badMath === 0)), `MathML ${context}`);
   };
+  // Las fracciones de MathML son más altas que la línea de texto: si dos
+  // consignas fraccionarias consecutivas quedan pegadas, se leen como si
+  // fueran una sola expresión. Se exige una separación mínima entre líneas.
+  const MIN_FRACTION_GAP = 3;
+  const fractionGaps = () => evaluate(`(() => {
+    const result = [];
+    for (const heading of document.querySelectorAll('h2[id^="ejercicio-"]')) {
+      let worst = null;
+      let node = heading.nextElementSibling;
+      while (node && !node.matches('[data-consulta-incisos]')) {
+        if (node.tagName === 'P') {
+          const lines = [];
+          for (const math of node.querySelectorAll('math')) {
+            if (!math.querySelector('mfrac')) continue;
+            const r = math.getBoundingClientRect();
+            const line = lines.find(l => Math.abs(l.top - r.top) < 1);
+            if (line) line.bottom = Math.max(line.bottom, r.bottom);
+            else lines.push({top:r.top, bottom:r.bottom});
+          }
+          lines.sort((a, b) => a.top - b.top);
+          for (let i = 1; i < lines.length; i++) {
+            const gap = lines[i].top - lines[i - 1].bottom;
+            if (worst === null || gap < worst) worst = gap;
+          }
+        }
+        node = node.nextElementSibling;
+      }
+      result.push({exercise: heading.id, minGap: worst === null ? null : +worst.toFixed(1)});
+    }
+    return result;
+  })()`);
   await call('Page.enable');
   for (const width of [1280, 390]) {
     await call('Emulation.setDeviceMetricsOverride', { width, height:900, deviceScaleFactor:1, mobile:false });
@@ -147,6 +178,11 @@ try {
     }
     assert.equal(new Set(controlIds).size, controlIds.length);
     checkLayout(s, `${width} inicial`);
+    const gaps = await fractionGaps();
+    const tight = gaps.filter(g => g.minGap !== null && g.minGap < MIN_FRACTION_GAP);
+    assert.equal(tight.length, 0,
+      `consignas fraccionarias pegadas en ${width}px: ${JSON.stringify(tight)}`);
+    console.log(JSON.stringify({width, fractionGaps: gaps.filter(g => g.minGap !== null)}));
     await evaluate(`document.querySelector('[data-consulta-incisos]').scrollIntoView({block:'start'})`);
     await screenshot(`${width}-inicial`);
     assert.equal(await evaluate(`(() => {
