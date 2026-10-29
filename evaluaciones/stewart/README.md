@@ -2,6 +2,14 @@
 
 Abrí el [índice HTML](index.html) para elegir un examen. Desde el [cuaderno de Funciones y Límites](../../teoria/index.html#funciones) se puede entrar a Stewart por la cabecera o el índice de lectura; cada examen ofrece la ruta de regreso al índice y a los apuntes. Las consignas y respuestas provienen del libro; los desarrollos son docentes y las erratas de la fuente se señalan sin ocultarlas. Son distintos de los [diagnósticos del proyecto](../diagnosticos/index.html).
 
+## Piloto de explicaciones
+
+Solo el **ejercicio 1 de Álgebra** (sus seis incisos) implementa el sistema; los demás ejercicios y las áreas de Geometría analítica, Funciones y Trigonometría todavía no están adaptados. La clave original del libro sigue separada al final.
+
+Para extenderlo, conservá visible cada consigna sin su respuesta y ofrecé por inciso una explicación breve inicialmente cerrada. Dentro de ella, otro control inicialmente cerrado permite abrir el paso a paso. Los controles nativos `details`/`summary` funcionan sin JavaScript; no pongas resultados en sus etiquetas. Escribí para estudiantes que terminan la secundaria: primero una idea corta, y más detalle solo a pedido. Las condiciones de las reglas matemáticas deben quedar explícitas cuando corresponda.
+
+El piloto se elaboró con propuestas independientes de MiMo y DeepSeek, evaluadas sin identificar los modelos por un juez pedagógico de otro modelo. Se eligió DeepSeek como base y se incorporaron las correcciones del dictamen, incluida la base no nula en la regla del cociente. Las propuestas y el dictamen están en [la evidencia del piloto](../../odd/pilotos/stewart-algebra-ejercicio-1.md). La selección de un modelo no reemplaza la verificación matemática y docente antes de publicar o extender el sistema.
+
 ## Mantenimiento
 
 Los archivos Markdown son la fuente editable. Con Python 3 y Pandoc 3.11 instalados, desde la raíz del proyecto:
@@ -10,6 +18,7 @@ Los archivos Markdown son la fuente editable. Con Python 3 y Pandoc 3.11 instala
 python3 -B evaluaciones/stewart/generar.py
 python3 -B evaluaciones/stewart/generar.py --check
 python3 -B -m unittest discover -s tests -p 'test_stewart*.py' -v
+node tests/check_stewart_piloto.mjs
 node evaluaciones/stewart/check-browser.mjs
 ```
 

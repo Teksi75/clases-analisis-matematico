@@ -16,26 +16,113 @@ Consignas y respuestas del examen A de James Stewart, sexta edición, páginas i
 
 Sin usar calculadora, evalúe cada una de estas expresiones.
 
-**(a)** $(-3)^4$\
-**(b)** $-3^4$\
-**(c)** $3^{-4}$\
-**(d)** $\dfrac{5^{23}}{5^{21}}$\
-**(e)** $\left(\dfrac{2}{3}\right)^{-2}$\
-**(f)** $16^{-3/4}$
-
 ### Desarrollo docente
 
-**(a)** El signo negativo está dentro de la potencia: $(-3)^4=81$.
+**(a)** $\left(-3\right)^4$
 
-**(b)** Primero se calcula la potencia y luego el signo: $-3^4=-(3^4)=-81$.
+<details>
+<summary><strong>(a)</strong> Explicación breve</summary>
 
-**(c)** Un exponente negativo invierte la potencia: $3^{-4}=1/3^4=1/81$.
+**Resultado:** $81$. La base negativa está entre paréntesis y el exponente es par, así que el resultado es positivo.
 
-**(d)** Al dividir potencias de la misma base, restamos exponentes: $5^{23-21}=5^2=25$.
+<details>
+<summary>Paso a paso</summary>
 
-**(e)** Invertimos la fracción y elevamos al cuadrado: $(2/3)^{-2}=(3/2)^2=9/4$.
+$\left(-3\right)^4=(-3)\cdot(-3)\cdot(-3)\cdot(-3)$.
 
-**(f)** Como $16^{1/4}=2$, resulta $16^{-3/4}=1/(16^{1/4})^3=1/8$.
+Hay cuatro factores negativos. Al multiplicarlos de a pares, $(-3)\cdot(-3)=9$; después, $9\cdot9=81$.
+
+</details>
+</details>
+
+**(b)** $-3^4$
+
+<details>
+<summary><strong>(b)</strong> Explicación breve</summary>
+
+**Resultado:** $-81$. El exponente afecta solo al $3$; el signo menos queda afuera y se aplica al final.
+
+<details>
+<summary>Paso a paso</summary>
+
+Primero calculamos la potencia: $3^4=3\cdot3\cdot3\cdot3=81$.
+
+Después aplicamos el signo menos: $-3^4=-(3^4)=-81$. A diferencia de (a), aquí el signo no está dentro de la base.
+
+</details>
+</details>
+
+**(c)** $3^{-4}$
+
+<details>
+<summary><strong>(c)</strong> Explicación breve</summary>
+
+**Resultado:** $\frac{1}{81}$. En este caso el exponente negativo indica el recíproco: $3^{-4}=\frac{1}{3^4}$.
+
+<details>
+<summary>Paso a paso</summary>
+
+Calculamos $3^4=3\cdot3\cdot3\cdot3=81$.
+
+Entonces $3^{-4}=\frac{1}{3^4}=\frac{1}{81}$. El signo menos del exponente no vuelve negativo este resultado.
+
+</details>
+</details>
+
+**(d)** $\dfrac{5^{23}}{5^{21}}$
+
+<details>
+<summary><strong>(d)</strong> Explicación breve</summary>
+
+**Resultado:** $25$. Al dividir potencias de la misma base distinta de cero, restamos los exponentes.
+
+<details>
+<summary>Paso a paso</summary>
+
+Para $a\ne0$ y exponentes enteros, $\frac{a^m}{a^n}=a^{m-n}$. Aquí la base es $5$, que no es cero:
+
+$\frac{5^{23}}{5^{21}}=5^{23-21}=5^2=5\cdot5=25$.
+
+También podemos cancelar $21$ factores de $5$: quedan dos factores, $5\cdot5$.
+
+</details>
+</details>
+
+**(e)** $\left(\dfrac{2}{3}\right)^{-2}$
+
+<details>
+<summary><strong>(e)</strong> Explicación breve</summary>
+
+**Resultado:** $\frac{9}{4}$. El exponente negativo indica invertir esta fracción y después elevarla al cuadrado.
+
+<details>
+<summary>Paso a paso</summary>
+
+Invertimos la fracción y cambiamos el exponente a positivo: $\left(\frac{2}{3}\right)^{-2}=\left(\frac{3}{2}\right)^2$.
+
+Luego $\left(\frac{3}{2}\right)^2=\frac{3^2}{2^2}=\frac{9}{4}$.
+
+</details>
+</details>
+
+**(f)** $16^{-3/4}$
+
+<details>
+<summary><strong>(f)</strong> Explicación breve</summary>
+
+**Resultado:** $\frac{1}{8}$. En este caso el exponente combina raíz cuarta y cubo; el signo negativo indica el recíproco.
+
+<details>
+<summary>Paso a paso</summary>
+
+$16^{-3/4}=\frac{1}{16^{3/4}}$.
+
+Como $\sqrt[4]{16}=2$, entonces $16^{3/4}=\left(\sqrt[4]{16}\right)^3=2^3=8$.
+
+Por lo tanto, $16^{-3/4}=\frac{1}{8}$.
+
+</details>
+</details>
 
 ## Ejercicio 2
 
