@@ -122,7 +122,7 @@ try {
   // Las fracciones de MathML son más altas que la línea de texto: si dos
   // consignas fraccionarias consecutivas quedan pegadas, se leen como si
   // fueran una sola expresión. Se exige una separación mínima entre líneas.
-  const MIN_FRACTION_GAP = 3;
+  const MIN_FRACTION_GAP = 20;
   const fractionGaps = () => evaluate(`(() => {
     const result = [];
     for (const heading of document.querySelectorAll('h2[id^="ejercicio-"]')) {
