@@ -1,4 +1,4 @@
-// Comprueba la mejora progresiva y el respaldo nativo con Chromium/CDP.
+// Comprueba los diez paneles y el respaldo nativo con Chromium/CDP.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
@@ -17,7 +17,7 @@ const browser = spawn('/usr/bin/chromium', ['--headless', '--no-sandbox', '--dis
   '--no-first-run', '--disable-background-networking', '--remote-debugging-port=0',
   `--user-data-dir=${profile}`, 'about:blank'], { stdio: ['ignore', 'ignore', 'pipe'] });
 let ws;
-const timer = setTimeout(() => { console.error('Tiempo máximo agotado'); browser.kill(); }, 120000);
+const timer = setTimeout(() => { console.error('Tiempo máximo agotado'); browser.kill(); }, 300000);
 try {
   const endpoint = await new Promise((resolve, reject) => {
     let output = '';
@@ -50,152 +50,215 @@ try {
     if (response.exceptionDetails) throw new Error(JSON.stringify(response.exceptionDetails));
     return response.result.value;
   };
-  const state = () => evaluate(`(() => {
-    const controls = [...document.querySelectorAll('[data-consulta-incisos] > details')];
-    return controls.map(d => {
-      const inner = d.querySelector('details');
-      const brief = d.querySelector('p');
-      const step = inner.querySelector('p');
+  const snapshot = async () => evaluate(`(() => {
+      // Las lecturas de layout fuerzan un reflujo sincrónico; no se espera
+      // requestAnimationFrame porque con la ejecución de scripts desactivada
+      // esa promesa nunca se resuelve y el protocolo queda bloqueado.
+      void document.documentElement.offsetHeight;
       const shown = e => !!e && e.checkVisibility({contentVisibilityAuto:true, visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
-      return {open:d.open, innerOpen:inner.open, brief:shown(brief), step:shown(step),
-        focusedOuter:document.activeElement === d.querySelector(':scope > summary'),
-        focusedInner:document.activeElement === inner.querySelector(':scope > summary')};
-    });
-  })()`);
-  const pressEnter = async () => {
-    for (const type of ['keyDown', 'keyUp']) await call('Input.dispatchKeyEvent',
-      { type, key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13, nativeVirtualKeyCode: 13,
-        ...(type === 'keyDown' ? { text: '\r', unmodifiedText: '\r' } : {}) });
-  };
+      const panels = [...document.querySelectorAll('[data-consulta-incisos]')];
+      const ids = [...document.querySelectorAll('[id]')].map(e => e.id);
+      return {width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth,
+        panels:panels.map(panel => ({
+          prompt:shown(panel.querySelector('.consulta-prompt')),
+          buttons:[...panel.querySelectorAll('.consulta-selector button')].map(b => ({
+            text:b.textContent.trim(), label:b.getAttribute('aria-label'),
+            pressed:b.getAttribute('aria-pressed'), controls:b.getAttribute('aria-controls'),
+            controlCount:ids.filter(id => id === b.getAttribute('aria-controls')).length
+          })),
+          choices:[...panel.querySelectorAll(':scope > details[data-inciso]')].map(d => {
+            const inner = d.querySelector(':scope > details');
+            const brief = [...d.querySelectorAll(':scope > p')];
+            const steps = [...inner.querySelectorAll(':scope > p')];
+            const math = d.open && !d.hidden
+              ? [...d.querySelectorAll('math')].filter(m => !inner.contains(m) || inner.open) : [];
+            return {letter:d.dataset.inciso, id:d.id, shown:shown(d), open:d.open,
+              brief:brief.length > 0 && brief.every(shown), innerOpen:inner.open,
+              step:steps.length > 0 && steps.every(shown),
+              badMath:math.filter(m => m.namespaceURI !== 'http://www.w3.org/1998/Math/MathML' ||
+                !shown(m) || m.getBoundingClientRect().width <= 0).length};
+          })
+        }))};
+    })()`);
   const press = async (key, code, number, text) => {
     for (const type of ['keyDown', 'keyUp']) await call('Input.dispatchKeyEvent', {
       type, key, code, windowsVirtualKeyCode:number, nativeVirtualKeyCode:number,
       ...(type === 'keyDown' && text ? {text, unmodifiedText:text} : {})
     });
   };
+  const enter = () => press('Enter', 'Enter', 13, '\r');
   const screenshot = async name => {
     const image = await call('Page.captureScreenshot', {format:'png'});
     await writeFile(join(captures, name + '.png'), Buffer.from(image.data, 'base64'));
   };
+  const panelNodes = async () => {
+    const doc = (await call('DOM.getDocument')).root.nodeId;
+    return (await call('DOM.querySelectorAll', {nodeId:doc, selector:'[data-consulta-incisos]'})).nodeIds;
+  };
+  const query = async (nodeId, selector) => {
+    const node = (await call('DOM.querySelector', {nodeId, selector})).nodeId;
+    assert.ok(node, `falta ${selector} dentro del panel`);
+    return node;
+  };
+  const mouseClick = async nodeId => {
+    await call('DOM.scrollIntoViewIfNeeded', {nodeId});
+    const box = await call('DOM.getBoxModel', {nodeId});
+    const q = box.model.content;
+    const x = (q[0] + q[2]) / 2, y = (q[1] + q[5]) / 2;
+    await call('Input.dispatchMouseEvent', {type:'mouseMoved', x, y});
+    await call('Input.dispatchMouseEvent', {type:'mousePressed', x, y, button:'left', clickCount:1});
+    await call('Input.dispatchMouseEvent', {type:'mouseReleased', x, y, button:'left', clickCount:1});
+  };
+  const letters = ['abcdef', 'abc', 'abcde', 'abcdef', 'abcd', 'ab', 'ab', 'abcdefg', 'abcde', 'abcdef'];
+  const otherPanelsUnchanged = (before, after, index) => {
+    before.panels.forEach((panel, j) => {
+      if (j !== index) assert.deepEqual(after.panels[j], panel, `cambió el panel ${j + 1}`);
+    });
+  };
+  const checkLayout = (s, context) => {
+    assert.ok(s.scroll <= s.width, `desborde ${context}: ${s.scroll} > ${s.width}`);
+    assert.ok(s.panels.every(p => p.choices.every(c => c.badMath === 0)), `MathML ${context}`);
+  };
   await call('Page.enable');
-  // La mejora progresiva empieza sin respuesta y muestra una sola resolución.
   for (const width of [1280, 390]) {
-    await call('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false });
+    await call('Emulation.setDeviceMetricsOverride', { width, height:900, deviceScaleFactor:1, mobile:false });
     const loaded = once('Page.loadEventFired');
-    await call('Page.navigate', { url: pathToFileURL(join(root, 'evaluaciones/stewart/algebra.html')).href });
-    await loaded;
-    await call('Page.bringToFront');
-    const snapshot = async () => {
-      await evaluate('new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))');
-      return evaluate(`(() => {
-      const panel = document.querySelector('[data-consulta-incisos]');
-      if (!panel) return null;
-      const visible = e => e.checkVisibility({contentVisibilityAuto:true, visibilityProperty:true, contentVisibilityHidden:true}) && e.getBoundingClientRect().height > 0;
-      return {prompt: [...panel.querySelectorAll('p')].some(p => p.textContent.includes('Elegí un inciso para consultar su resolución.') && visible(p)),
-        buttons: [...panel.querySelectorAll('button')].map(b => ({text:b.textContent.trim(), pressed:b.getAttribute('aria-pressed'), controls:b.getAttribute('aria-controls')})),
-        choices: [...panel.querySelectorAll('details[data-inciso]')].map(d => ({id:d.id, shown:visible(d), open:d.open,
-          detailOpen:d.querySelector(':scope > details').open, detailShown:visible(d.querySelector(':scope > details > p'))}))};
-    })()`);
-    };
+    await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/algebra.html')).href});
+    await loaded; await call('Page.bringToFront');
+    const panels = await panelNodes();
     let s = await snapshot();
-    assert.ok(s, 'falta el panel de consulta');
-    assert.equal(s.prompt, true);
-    assert.equal(s.buttons.length, 6);
-    assert.ok(s.choices.every(c => !c.shown && !c.detailOpen));
-    assert.ok(s.buttons.every(b => b.pressed === 'false'));
+    assert.equal(panels.length, 10);
+    assert.equal(s.panels.length, 10);
+    const controlIds = [];
+    for (let p = 0; p < panels.length; p++) {
+      const panel = s.panels[p];
+      assert.equal(panel.prompt, true, `indicación inicial ejercicio ${p + 1}`);
+      assert.deepEqual(panel.buttons.map(b => b.text), [...letters[p]]);
+      assert.deepEqual(panel.choices.map(c => c.letter), [...letters[p]]);
+      panel.buttons.forEach((b, i) => {
+        assert.equal(b.label, `Inciso ${letters[p][i]}`);
+        assert.equal(b.pressed, 'false');
+        assert.equal(b.controls, panel.choices[i].id);
+        assert.ok(b.controls);
+        assert.equal(b.controlCount, 1);
+        controlIds.push(b.controls);
+      });
+      assert.ok(panel.choices.every(c => !c.shown && !c.open && !c.brief && !c.innerOpen && !c.step));
+    }
+    assert.equal(new Set(controlIds).size, controlIds.length);
+    checkLayout(s, `${width} inicial`);
     await evaluate(`document.querySelector('[data-consulta-incisos]').scrollIntoView({block:'start'})`);
     await screenshot(`${width}-inicial`);
-    // Un resumen oculto no puede tomar el foco.
     assert.equal(await evaluate(`(() => {
-      const target = document.querySelector('details[data-inciso="b"] details > summary');
+      const panel = document.querySelector('[data-consulta-incisos]');
+      const target = panel.querySelector('details[data-inciso="b"] details > summary');
       target.focus(); return document.activeElement === target;
-    })()`), false);
-    for (let i = 0; i < 6; i++) {
-      const doc = (await call('DOM.getDocument')).root.nodeId;
-      const button = (await call('DOM.querySelector', {nodeId:doc, selector:`[data-consulta-incisos] button:nth-child(${i + 1})`})).nodeId;
-      assert.ok(button, `botón ${i}`);
-      if (i === 0) {
-        const box = await call('DOM.getBoxModel', {nodeId:button});
-        const q = box.model.content;
-        const x = (q[0] + q[2]) / 2, y = (q[1] + q[5]) / 2;
-        await call('Input.dispatchMouseEvent', {type:'mouseMoved', x, y});
-        await call('Input.dispatchMouseEvent', {type:'mousePressed', x, y, button:'left', clickCount:1});
-        await call('Input.dispatchMouseEvent', {type:'mouseReleased', x, y, button:'left', clickCount:1});
-      } else if (i === 1) {
-        const first = (await call('DOM.querySelector', {nodeId:doc, selector:'[data-consulta-incisos] button'})).nodeId;
-        await call('DOM.focus', {nodeId:first});
-        await press('Tab', 'Tab', 9);
-        assert.equal(await evaluate(`document.activeElement.textContent.trim()`), 'b');
-        await press(' ', 'Space', 32, ' ');
-      } else {
-        await call('DOM.focus', {nodeId:button});
-        await pressEnter();
+    })()`), false, 'un resumen oculto no debe recibir foco');
+
+    for (let p = 0; p < panels.length; p++) {
+      for (let i = 0; i < letters[p].length; i++) {
+        const panel = panels[p];
+        const button = await query(panel, `.consulta-selector button:nth-child(${i + 1})`);
+        const before = await snapshot();
+        if (i === 0) {
+          await mouseClick(button);
+        } else if (i === 1) {
+          const first = await query(panel, '.consulta-selector button:first-child');
+          await call('DOM.focus', {nodeId:first});
+          await press('Tab', 'Tab', 9);
+          assert.equal(await evaluate(`document.activeElement.getAttribute('aria-controls')`), before.panels[p].choices[i].id);
+          await press(' ', 'Space', 32, ' ');
+        } else {
+          await call('DOM.focus', {nodeId:button}); await enter();
+        }
+        s = await snapshot();
+        otherPanelsUnchanged(before, s, p);
+        assert.equal(s.panels[p].prompt, false);
+        assert.ok(s.panels[p].buttons.every((b, j) => b.pressed === (i === j ? 'true' : 'false')));
+        assert.ok(s.panels[p].choices.every((c, j) => c.shown === (i === j) && c.open === (i === j) &&
+          c.brief === (i === j) && !c.innerOpen && !c.step), JSON.stringify({width, p, i, panel:s.panels[p]}));
+        checkLayout(s, `${width} ejercicio ${p + 1} inciso ${letters[p][i]}`);
+        if (p === 0 && i === 0) await screenshot(`${width}-seleccion-a`);
+        const inner = await query(panel, `details[data-inciso="${letters[p][i]}"] > details > summary`);
+        await call('DOM.focus', {nodeId:inner}); await enter();
+        const expanded = await snapshot();
+        otherPanelsUnchanged(s, expanded, p);
+        assert.ok(expanded.panels[p].choices[i].innerOpen && expanded.panels[p].choices[i].step);
+        checkLayout(expanded, `${width} ejercicio ${p + 1} pasos ${letters[p][i]}`);
       }
+      // Al volver al primero, también se reinicia el último detalle abierto.
+      const before = await snapshot();
+      const first = await query(panels[p], '.consulta-selector button:first-child');
+      await call('DOM.focus', {nodeId:first}); await enter();
       s = await snapshot();
-      assert.equal(s.prompt, false);
-      assert.equal(s.buttons[i].text, 'abcdef'[i]);
-      assert.equal(s.buttons[i].controls, s.choices[i].id);
-      assert.ok(s.buttons.every((b, j) => b.pressed === (i === j ? 'true' : 'false')));
-      assert.ok(s.choices.every((c, j) => c.shown === (i === j) && c.open === (i === j) && !c.detailOpen && !c.detailShown), JSON.stringify({i, s}));
-      if (i === 0) await screenshot(`${width}-seleccion-a`);
-      const detail = (await call('DOM.querySelector', {nodeId:doc, selector:`details[data-inciso="${'abcdef'[i]}"] details > summary`})).nodeId;
-      await call('DOM.focus', {nodeId:detail});
-      await pressEnter();
-      const expanded = (await snapshot()).choices[i];
-      assert.ok(expanded.detailOpen && expanded.detailShown, JSON.stringify(expanded));
+      otherPanelsUnchanged(before, s, p);
+      assert.ok(s.panels[p].choices.every(c => !c.innerOpen && !c.step));
+      assert.ok(s.panels[p].choices[0].brief);
     }
-    // Volver al primer inciso tampoco conserva el detalle anteriormente abierto.
-    const doc = (await call('DOM.getDocument')).root.nodeId;
-    const first = (await call('DOM.querySelector', {nodeId:doc, selector:'[data-consulta-incisos] button'})).nodeId;
-    await call('DOM.focus', {nodeId:first}); await pressEnter();
-    assert.ok((await snapshot()).choices.every(c => !c.detailOpen));
-    console.log(JSON.stringify({width, scriptEnabled:true, selected:6, mouse:true, keyboard:'Tab/Space/Enter', resetOnSwitch:true}));
+    console.log(JSON.stringify({width, scriptEnabled:true, panels:10, selected:46,
+      mouse:true, keyboard:'Tab/Space/Enter', resetOnSwitch:true, independent:true}));
   }
-  await call('Emulation.setScriptExecutionDisabled', { value: true });
+
+  await call('Emulation.setScriptExecutionDisabled', {value:true});
   for (const width of [1280, 390]) {
-    await call('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false });
+    await call('Emulation.setDeviceMetricsOverride', {width, height:900, deviceScaleFactor:1, mobile:false});
     const loaded = once('Page.loadEventFired');
-    await call('Page.navigate', { url: pathToFileURL(join(root, 'evaluaciones/stewart/algebra.html')).href });
-    await loaded;
-    await call('Page.bringToFront');
-    const doc = (await call('DOM.getDocument')).root.nodeId;
-    const outer = (await call('DOM.querySelectorAll', { nodeId: doc, selector: '[data-consulta-incisos] > details' })).nodeIds;
-    assert.equal(outer.length, 6);
-    let before = await state();
-    assert.ok(before.every(s => !s.open && !s.innerOpen && !s.brief && !s.step), JSON.stringify(before));
-    // Diagnostic: compare DevTools evaluation's focus attempt with the DOM protocol.
-    const focusAttempt = await evaluate(`(() => {
-      const target = document.querySelector('[data-consulta-incisos] > details > summary');
-      const before = document.activeElement.tagName;
-      target.focus();
-      return {before, after: document.activeElement.tagName, focused: document.activeElement === target};
-    })()`);
-    console.log(JSON.stringify({ width, scriptDisabled: true, initialClosed: before.length, focusAttempt,
-      documentHasFocus: await evaluate('document.hasFocus()') }));
-    for (let i = 0; i < outer.length; i++) {
-      const outerSummary = (await call('DOM.querySelector', { nodeId: outer[i], selector: ':scope > summary' })).nodeId;
-      const innerSummary = (await call('DOM.querySelector', { nodeId: outer[i], selector: ':scope > details > summary' })).nodeId;
-      await call('DOM.focus', { nodeId: outerSummary });
-      let current = await state();
-      assert.equal(current[i].focusedOuter, true, `foco exterior ${i}`);
-      await pressEnter();
-      current = await state();
-      assert.ok(current[i].open && current[i].brief && !current[i].innerOpen && !current[i].step, JSON.stringify(current[i]));
-      assert.ok(current.every((s, j) => i === j || (!s.open && !s.innerOpen && !s.brief && !s.step)));
-      await call('DOM.focus', { nodeId: innerSummary });
-      current = await state();
-      assert.equal(current[i].focusedInner, true, `foco interior ${i}`);
-      await pressEnter();
-      current = await state();
-      assert.ok(current[i].open && current[i].innerOpen && current[i].brief && current[i].step, JSON.stringify(current[i]));
-      assert.ok(current.every((s, j) => i === j || (!s.open && !s.innerOpen && !s.brief && !s.step)));
-      await pressEnter();
-      await call('DOM.focus', { nodeId: outerSummary });
-      await pressEnter();
-      current = await state();
-      assert.ok(current.every(s => !s.open && !s.innerOpen && !s.brief && !s.step), JSON.stringify(current));
+    await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/algebra.html')).href});
+    await loaded; await call('Page.bringToFront');
+    const panels = await panelNodes();
+    let s = await snapshot();
+    assert.equal(panels.length, 10);
+    assert.equal(s.panels.length, 10);
+    for (let p = 0; p < panels.length; p++) {
+      assert.deepEqual(s.panels[p].choices.map(c => c.letter), [...letters[p]]);
+      assert.equal(s.panels[p].buttons.length, 0);
+      assert.ok(s.panels[p].choices.every(c => !c.open && !c.innerOpen && !c.brief && !c.step));
     }
-    console.log(JSON.stringify({ width, keyboard: 'Enter', outerAndInnerOpened: 6, independent: true, closedAgain: true }));
+    checkLayout(s, `${width} sin script inicial`);
+    for (let p = 0; p < panels.length; p++) {
+      for (let i = 0; i < letters[p].length; i++) {
+        const outer = await query(panels[p], `details[data-inciso="${letters[p][i]}"] > summary`);
+        const inner = await query(panels[p], `details[data-inciso="${letters[p][i]}"] > details > summary`);
+        const before = await snapshot();
+        await call('DOM.focus', {nodeId:outer});
+        assert.equal(await evaluate(`document.activeElement.parentElement.id`), before.panels[p].choices[i].id);
+        await enter();
+        s = await snapshot();
+        otherPanelsUnchanged(before, s, p);
+        assert.ok(s.panels[p].choices[i].open && s.panels[p].choices[i].brief &&
+          !s.panels[p].choices[i].innerOpen && !s.panels[p].choices[i].step);
+        assert.ok(s.panels[p].choices.every((c, j) => i === j || (!c.open && !c.innerOpen && !c.brief && !c.step)));
+        checkLayout(s, `${width} sin script ejercicio ${p + 1} inciso ${letters[p][i]}`);
+        await call('DOM.focus', {nodeId:inner}); await enter();
+        const expanded = await snapshot();
+        otherPanelsUnchanged(s, expanded, p);
+        assert.ok(expanded.panels[p].choices[i].innerOpen && expanded.panels[p].choices[i].step);
+        checkLayout(expanded, `${width} sin script pasos ${p + 1}${letters[p][i]}`);
+        await enter();
+        await call('DOM.focus', {nodeId:outer}); await enter();
+        s = await snapshot();
+        assert.ok(s.panels[p].choices.every(c => !c.open && !c.innerOpen && !c.brief && !c.step));
+      }
+    }
+    // Los detalles nativos pueden permanecer abiertos simultáneamente, incluso entre paneles.
+    const first = await query(panels[0], 'details[data-inciso="a"] > summary');
+    const second = await query(panels[1], 'details[data-inciso="a"] > summary');
+    await mouseClick(first);
+    const beforeSecond = await snapshot();
+    await call('DOM.focus', {nodeId:second}); await enter();
+    s = await snapshot();
+    otherPanelsUnchanged(beforeSecond, s, 1);
+    assert.ok(s.panels[0].choices[0].open && s.panels[0].choices[0].brief);
+    assert.ok(s.panels[1].choices[0].open && s.panels[1].choices[0].brief);
+    const sibling = await query(panels[0], 'details[data-inciso="b"] > summary');
+    const beforeSibling = s;
+    await call('DOM.focus', {nodeId:sibling}); await enter();
+    s = await snapshot();
+    otherPanelsUnchanged(beforeSibling, s, 0);
+    assert.ok(s.panels[0].choices[0].open && s.panels[0].choices[0].brief);
+    assert.ok(s.panels[0].choices[1].open && s.panels[0].choices[1].brief);
+    console.log(JSON.stringify({width, scriptDisabled:true, panels:10, outerAndInnerOpened:46,
+      keyboard:'Enter', mouse:true, independent:true, closedInitially:true}));
   }
 } finally {
   clearTimeout(timer);
