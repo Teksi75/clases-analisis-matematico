@@ -2,6 +2,8 @@
 
 Base de conocimiento y planificación inicial para preparar clases a partir de material de Matemática de 5.º año y un libro de consulta de cálculo. Los originales se conservan sin modificaciones y cada tema remite a su fuente.
 
+**Prioridad actual:** Matemática y Análisis Matemático. Las clases de computación están suspendidas por el momento; su material se conserva.
+
 ## Por dónde empezar
 
 1. Abrir el [cuaderno de teoría en HTML: Funciones / Límites](teoria/index.html), con ambos apuntes completos, fórmulas e índice navegable sin conexión. Se conservan la [guía y fuentes editables](teoria/README.md): [funciones](teoria/01-funciones.md) y [límites, asíntotas y continuidad](teoria/02-limites.md), con conceptos desarrollados, ejemplos y autocontrol. Consultar el [índice de conocimiento](conocimiento/README.md) para ubicar temas y ejercicios.
