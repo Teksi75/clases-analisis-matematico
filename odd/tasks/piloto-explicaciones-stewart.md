@@ -12,8 +12,8 @@ Rama prevista: `odd/piloto-explicaciones-stewart`; previsión inicial: menos de 
 ## Tasks
 
 - T1 [S1,S4] done — Verificar acceso efectivo a los modelos propuestos; ruta: inline; commit: no aplica.
-- T2 [S1,S2,S3,S4] done — Generar y evaluar propuestas independientes para un piloto acotado de Álgebra; ruta: modelos independientes y juez; commit: pendiente.
-- T3 [S1,S2,S3,S4] done — Documentar el sistema e implementar el piloto con verificaciones; ruta: delegated (context backstop); commit: pendiente.
+- T2 [S1,S2,S3,S4] done — Generar y evaluar propuestas independientes para un piloto acotado de Álgebra; ruta: modelos independientes y juez; commit: `9ccb477`.
+- T3 [S1,S2,S3,S4] done — Documentar el sistema e implementar el piloto con verificaciones; ruta: delegated (context backstop); commit: `9ccb477`.
 
 ## Log
 
@@ -27,3 +27,4 @@ Rama prevista: `odd/piloto-explicaciones-stewart`; previsión inicial: menos de 
 - L8: `node evaluaciones/stewart/check-browser.mjs` pasó con 0 fallas en escritorio, móvil e impresión. La comprobación adicional confirmó contenido inicialmente oculto, pero falló al intentar abrir el primer nivel con teclado.
 - L9: El agente reorganizó cada consigna inmediatamente antes de su control, observó RED y GREEN, y comprobó que el primer nivel se abre por teclado sin JavaScript. Su prueba focalizada falló por seleccionar el summary exterior en lugar del anidado; se corrigió el selector.
 - L10: `node tests/check_stewart_piloto.mjs` pasó para seis incisos a 1280 y 390 píxeles: los dos niveles se abren y cierran con Enter, independientemente, con JavaScript desactivado. `python3 -B -m unittest discover -s tests -p 'test_stewart*.py' -v`: 29 correctas; `python3 -B evaluaciones/stewart/generar.py --check`: HTML comprobados; `git diff --check`: correcto. El navegador general pasó en escritorio, móvil e impresión tras la reorganización.
+- L11: La unidad funcional y la evidencia quedaron en `9ccb477`, contra la base `c327dd18c581876a0cf1b0020685061757bfa8e2`. El conteo bruto de 845 líneas incluye HTML generado y 285 líneas de propuestas/dictamen generados por modelos; el resto suma 398 líneas en la unidad. La evaluación nativa incluso para el rango confirmado siguió no disponible por archivos no rastreados preexistentes; no se ejecutó revisión nativa.
