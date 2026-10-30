@@ -172,10 +172,36 @@ try {
         })()`);
         if (result.panels.length !== 5 || result.panels.some(p => p.answers || p.selected)) failures++;
       }
+      if (name === 'trigonometria') {
+        result.panels = await evalJS(`(() => {
+          const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+          return [...document.querySelectorAll('.consulta-trigonometria')].map(panel => ({
+            answers:[...panel.querySelectorAll(':scope > details')].filter(d=>shown(d.querySelector(':scope > p'))).length,
+            selected:panel.querySelectorAll('button[aria-pressed="true"]').length,
+            graph:shown(panel.querySelector('img[src="trigonometria-assets/grafica.svg"]'))
+          }));
+        })()`);
+        if (result.panels.length !== 9 || result.panels.some(p=>p.answers || p.selected || p.graph)) failures++;
+      }
       result.pdfBytes = await print(name);
       const navigationHidden = await evalJS(`getComputedStyle(document.querySelector('.breadcrumbs')).display === 'none'`);
       if (result.background !== 'rgb(255, 255, 255)' || result.badMath || result.pdfBytes < 1000 || !navigationHidden || result.answers) failures++;
       console.log(JSON.stringify({mode:'print', page:name, ...result}));
+      if (name === 'trigonometria') {
+        const selected = await evalJS(`(() => {
+          const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+          return [...document.querySelectorAll('.consulta-trigonometria')].map(panel => {
+            const button = panel.querySelector('.consulta-selector button');
+            const choice = panel.querySelector(':scope > details');
+            if (button) button.click(); else choice.open = true;
+            return {answer:shown(choice.querySelector(':scope > p')), steps:choice.querySelector(':scope > details').open,
+              graph:shown(choice.querySelector('img[src="trigonometria-assets/grafica.svg"]'))};
+          });
+        })()`);
+        const pdfBytes = await print('trigonometria-selecciones');
+        if (selected.length !== 9 || selected.some(p=>!p.answer || p.steps || p.graph) || pdfBytes < 1000) failures++;
+        console.log(JSON.stringify({mode:'print-selected', page:name, panels:selected, pdfBytes}));
+      }
       if (name === 'geometria') {
         const selected = await evalJS(`(() => {
           const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
