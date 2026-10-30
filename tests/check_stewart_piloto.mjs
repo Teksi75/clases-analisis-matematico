@@ -379,6 +379,85 @@ try {
       console.log(JSON.stringify({page:'geometria', width, scriptEnabled:enabled, tasks:18, mouse:true, keyboard:enabled ? 'Tab/Space/Enter' : 'Enter', independent:true}));
     }
   }
+  // Funciones: seis selectores y una resolución única nativa.
+  for (const enabled of [true, false]) {
+    await call('Emulation.setScriptExecutionDisabled', {value:!enabled});
+    for (const width of [1280, 390]) {
+      await call('Emulation.setDeviceMetricsOverride', {width, height:900, deviceScaleFactor:1, mobile:false});
+      const loaded = once('Page.loadEventFired');
+      await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/funciones.html')).href});
+      await loaded; await call('Page.bringToFront');
+      const doc = (await call('DOM.getDocument')).root.nodeId;
+      const panels = (await call('DOM.querySelectorAll', {nodeId:doc, selector:'.consulta-funciones'})).nodeIds;
+      assert.equal(panels.length, 7);
+      const stateOf = () => evaluate(`(() => {
+        const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+        return {width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth,
+          panels:[...document.querySelectorAll('.consulta-funciones')].map(p => ({
+            buttons:[...p.querySelectorAll('button')].map(b=>({pressed:b.getAttribute('aria-pressed'), controls:b.getAttribute('aria-controls')})),
+            choices:[...p.querySelectorAll(':scope > details')].map(d=>({id:d.id, open:d.open, hidden:d.hidden,
+              brief:shown(d.querySelector(':scope > p')), inner:d.querySelector(':scope > details').open,
+              steps:[...d.querySelector(':scope > details').children].some(e=>e.tagName!=='SUMMARY' && shown(e))}))}))};
+      })()`);
+      let state = await stateOf();
+      assert.ok(state.scroll <= state.width);
+      assert.deepEqual(state.panels.map(p=>p.choices.length), [5,1,3,3,8,2,3]);
+      assert.ok(state.panels.every(p=>p.choices.every(c=>!c.open && !c.brief && !c.inner && !c.steps)));
+      if (enabled) {
+        const colors = await evaluate(`(() => { const p=document.querySelector('.consulta-funciones');
+          const b=p.querySelector('button'); const idle=getComputedStyle(b).backgroundColor;
+          b.setAttribute('aria-pressed','true'); const selected=getComputedStyle(b).backgroundColor;
+          const color=getComputedStyle(b).color; b.setAttribute('aria-pressed','false'); return {idle, selected, color}; })()`);
+        assert.match(colors.idle, /^rgba\(195, 167, 236, /);
+        assert.equal(colors.selected, 'rgb(195, 167, 236)');
+        assert.equal(colors.color, 'rgb(36, 32, 27)');
+      }
+      for (let p=0; p<panels.length; p++) {
+        const single = p===1;
+        const count = [5,1,3,3,8,2,3][p];
+        for (let i=0; i<count; i++) {
+          const before = await stateOf();
+          const target = await query(panels[p], enabled && !single
+            ? `.consulta-selector button:nth-child(${i+1})`
+            : `:scope > details:nth-of-type(${i+1}) > summary`);
+          if (i===0 && p%2===0) await mouseClick(target);
+          else if (enabled && !single && i===1) {
+            const first = await query(panels[p], '.consulta-selector button:first-child');
+            await call('DOM.focus', {nodeId:first}); await press('Tab', 'Tab', 9);
+            assert.equal(await evaluate(`document.activeElement.getAttribute('aria-controls')`), before.panels[p].choices[i].id);
+            await press(' ', 'Space', 32, ' ');
+          } else { await call('DOM.focus', {nodeId:target}); await enter(); }
+          state = await stateOf();
+          before.panels.forEach((v,j)=>{if (j!==p) assert.deepEqual(state.panels[j],v);});
+          assert.ok(state.panels[p].choices[i].open && state.panels[p].choices[i].brief);
+          assert.equal(state.panels[p].choices[i].inner, false);
+          if (enabled && !single) {
+            assert.equal(state.panels[p].buttons.filter(b=>b.pressed==='true').length,1);
+            assert.equal(state.panels[p].buttons[i].controls,state.panels[p].choices[i].id);
+            assert.ok(state.panels[p].choices.every((c,j)=>(j===i || (!c.open && !c.brief)) && !c.inner && !c.steps));
+          }
+          const inner = await query(panels[p], `:scope > details:nth-of-type(${i+1}) > details > summary`);
+          await call('DOM.focus', {nodeId:inner}); await enter();
+          state = await stateOf();
+          assert.ok(state.panels[p].choices[i].inner && state.panels[p].choices[i].steps);
+          assert.ok(state.scroll <= state.width);
+          if (!enabled || single) {
+            await enter(); await call('DOM.focus', {nodeId:target}); await enter();
+          }
+        }
+        if (enabled && !single) {
+          const first = await query(panels[p], '.consulta-selector button:first-child');
+          await call('DOM.focus', {nodeId:first}); await enter();
+          state = await stateOf();
+          assert.ok(state.panels[p].choices.every(c=>!c.inner && !c.steps));
+        }
+      }
+      await evaluate(`document.querySelector('.consulta-funciones').scrollIntoView({block:'start'})`);
+      await screenshot(`funciones-${width}-${enabled ? 'js' : 'sin-js'}`);
+      console.log(JSON.stringify({page:'funciones', width, scriptEnabled:enabled, tasks:25, mouse:true, keyboard:'Tab/Space/Enter', independent:true}));
+    }
+  }
+
   // Trigonometría: cuatro selectores y cinco controles nativos independientes.
   for (const enabled of [true, false]) {
     await call('Emulation.setScriptExecutionDisabled', {value:!enabled});

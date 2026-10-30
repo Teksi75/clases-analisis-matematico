@@ -1,11 +1,11 @@
 # Extender las explicaciones de Stewart
 
-El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó a los diez ejercicios de Álgebra, los cinco de Geometría analítica y los nueve de Trigonometría. Esta guía sirve para mantener esas adaptaciones y extenderlas a Funciones. Ver [el piloto y su mantenimiento](README.md#piloto-de-explicaciones-aprobado-y-cerrado) y [la evidencia de Álgebra 2–10](../../odd/pilotos/stewart-algebra-2-10-entrada.md).
+El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó a los diez ejercicios de Álgebra, los cinco de Geometría analítica y los nueve de Trigonometría y los siete de Funciones. Esta guía sirve para mantener esas adaptaciones. Ver [el piloto y su mantenimiento](README.md#piloto-de-explicaciones-aprobado-y-cerrado) y [la evidencia de Álgebra 2–10](../../odd/pilotos/stewart-algebra-2-10-entrada.md).
 
 ## Experiencia aprobada
 
 - Escribí para quien termina la secundaria, no para un curso universitario. Presentá primero una idea breve y clara; explicitá las condiciones matemáticas necesarias. Reservá el paso a paso para quien lo solicite.
-- La revisión humana aprobó la presentación visual, pero encontró insuficiente el detalle de las resoluciones. En el paso a paso, mostrá las operaciones intermedias y explicá por qué se aplica cada regla y bajo qué condiciones, sin dar saltos que impidan seguir el razonamiento. Este mismo estándar rige para Funciones cuando se implemente; no cambia el diseño de los controles.
+- La revisión humana aprobó la presentación visual, pero encontró insuficiente el detalle de las resoluciones. En el paso a paso, mostrá las operaciones intermedias y explicá por qué se aplica cada regla y bajo qué condiciones, sin dar saltos que impidan seguir el razonamiento. Este mismo estándar rige para Funciones; no cambia el diseño de los controles.
 - Conservá todas las consignas originales de un ejercicio agrupadas antes de su panel, sin respuestas visibles ni el rótulo «Desarrollo docente». No adelantes resultados en las etiquetas.
 - Un panel por ejercicio: al cargar, ningún inciso está seleccionado. Los botones con letras muestran solo la explicación breve elegida. El detalle empieza cerrado y se cierra de nuevo al cambiar de selección. Si el ejercicio no tiene incisos, los dos niveles son controles nativos anidados, sin selector de letras.
 - Mantené espacio generoso entre «Consultá una resolución» y los botones, y entre los propios botones, como en el diseño aprobado. Los controles deben poder usarse con teclado.
@@ -55,20 +55,20 @@ Desarrollo detallado.
 
 ## Color por examen
 
-La interacción y el verde azulado de Álgebra están aprobados y aplicados en el piloto. El azul de Geometría y el ámbar de Trigonometría están aplicados; el violeta es referencia para Funciones:
+La interacción y el verde azulado de Álgebra están aprobados y aplicados en el piloto. El azul de Geometría, el ámbar de Trigonometría y el violeta de Funciones también están aplicados:
 
 | Examen | Color de acento | Contorno | Estado |
 | --- | --- | --- | --- |
 | Álgebra | verde azulado `#85c9c0` | `#618b85` | Aplicado a los ejercicios 1–10 |
 | Geometría analítica | azul `#90bdf2` | `#5c80a9` | Aplicado a los ejercicios 1–5 |
-| Funciones | violeta `#c3a7ec` | `#8c73ad` | Referencia futura |
+| Funciones | violeta `#c3a7ec` | `#8c73ad` | Aplicado a los ejercicios 1–7 |
 | Trigonometría | ámbar `#e4bd79` | `#a18455` | Aplicado a los ejercicios 1–9 |
 
 Al adaptar cada examen, verificá contraste, foco y legibilidad en pantalla e impresión. El color es una identificación suplementaria, nunca la única: conservá nombres, letras y estados accesibles.
 
 ## Verificar cada extensión
 
-Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas incluyen Álgebra, Geometría y Trigonometría; no demuestran las futuras extensiones. Ejecutalas y revisá sus capturas antes de publicar.
+Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas incluyen Álgebra, Geometría, Funciones y Trigonometría; no demuestran futuras extensiones. Ejecutalas y revisá sus capturas antes de publicar.
 
 Desde la raíz, con Python 3, Pandoc 3.11 y las dependencias de navegador indicadas en el [README](README.md#mantenimiento):
 
