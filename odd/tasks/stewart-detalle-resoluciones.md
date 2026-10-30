@@ -16,8 +16,8 @@ Entrega: `auto-chain`, `chain_strategy=feature-branch-chain` (elección del usua
 - T4 [S1, S2] Integrar HTML generado, documentar estándar futuro de Funciones y comprobar contenido e interfaz; ruta: delegado por límite de contexto; estado: completada; commit: `fa0ac0d`.
 - T5 [S2, S3] Desarrollar Funciones con el estándar de detalle y la presentación de los otros exámenes después de T1–T4; ruta: delegado por límite de contexto; estado: completada; commit: `2c0e300`.
 - T6 [S5] Crear issue aprobado y preparar cadena autorizada; ruta: inline; estado: completada; commit: `a6a23c7`.
-- T7 [S5] Integrar la cadena en main; ruta: inline; estado: en curso; commit: pendiente.
-- T8 [S5] Verificar la publicación en GitHub Pages; ruta: inline; estado: pendiente; commit: no aplica.
+- T7 [S5] Integrar la cadena en main; ruta: inline; estado: completada; commit: `b62d263`.
+- T8 [S5] Verificar la publicación en GitHub Pages; ruta: inline; estado: completada; commit: no aplica.
 
 ## Log
 - L1: «una revisión humana ha determinado que el nivel de detalle de las resoluciones en insuficiente. por lo que hay que rectificar lo que hemos hecho hasta ahora, lo positivo es que la parte visual está aprobada, solo hay que reevaluar los contenidos de las respuesta y hacerlas más completas, no saltar pasos en las explicaiones.»
@@ -47,4 +47,6 @@ Entrega: `auto-chain`, `chain_strategy=feature-branch-chain` (elección del usua
 - L25: Issue aprobado #16 creado y leído de nuevo: https://github.com/Teksi75/clases-analisis-matematico/issues/16. El directorio temporal autorizado se eliminó al terminar.
 - L26: Preparada cadena en worktree registrado `odd/worktrees/stewart-detalle-publicacion`: tracker `a6a23c7`, Trigonometría `b581c2c`, Geometría `bddf06e`, Álgebra `7526b8d` y Funciones `0bd52ca`. Los archivos de exámenes y pruebas coinciden exactamente con la entrega verificada `036bd3c`. Las cuatro unidades tienen 536, 774, 971 y 1835 líneas de diff respectivamente; incluyen HTML generado. Funciones incluye 804 líneas no generadas y se conserva íntegra con sus pruebas y guía. En el worktree de integración pasaron generador, 41 pruebas, navegador e impresión.
 - L27: Se publicaron las cinco ramas y se abrieron tracker en borrador #17 y PRs secundarios #18–#21, en el orden de la cadena. Cada PR refiere al issue #16 y tiene una etiqueta `type:feature`; #17 lo cierra al integrarse.
-- L28: Los PRs #18, #19, #20 y #21 se integraron al tracker, cada uno con diff y head esperados, CLEAN y sin checks configurados. Heads de integración: `16ef16d`, `39b5dbc`, `c9f40b8` y `69a8fd4`. Pendiente verificar el árbol integrado y fusionar el tracker.
+- L28: Los PRs #18, #19, #20 y #21 se integraron al tracker, cada uno con diff y head esperados, CLEAN y sin checks configurados. Heads de integración: `16ef16d`, `39b5dbc`, `c9f40b8` y `69a8fd4`. El árbol integrado coincidió con los archivos de la versión verificada; evidencia confirmada en `af06474`.
+- L29: La primera comprobación del PR #17 devolvió UNKNOWN después de salir de borrador y no intentó merge. La lectura posterior informó CLEAN/MERGEABLE sin checks configurados; el PR #17 se fusionó en `b62d2635801fd14891e2b546a41d4d3a270a76eb` e issue #16 quedó cerrado.
+- L30: GitHub Pages informó `built` para `b62d2635801fd14891e2b546a41d4d3a270a76eb`. Las huellas SHA-256 públicas de los cuatro exámenes, `stewart.css` y `consulta-incisos.js` coinciden con el candidato verificado. URL de producción: https://teksi75.github.io/clases-analisis-matematico/evaluaciones/stewart/index.html.
