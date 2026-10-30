@@ -5,6 +5,7 @@ El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó 
 ## Experiencia aprobada
 
 - Escribí para quien termina la secundaria, no para un curso universitario. Presentá primero una idea breve y clara; explicitá las condiciones matemáticas necesarias. Reservá el paso a paso para quien lo solicite.
+- La revisión humana aprobó la presentación visual, pero encontró insuficiente el detalle de las resoluciones. En el paso a paso, mostrá las operaciones intermedias y explicá por qué se aplica cada regla y bajo qué condiciones, sin dar saltos que impidan seguir el razonamiento. Este mismo estándar rige para Funciones cuando se implemente; no cambia el diseño de los controles.
 - Conservá todas las consignas originales de un ejercicio agrupadas antes de su panel, sin respuestas visibles ni el rótulo «Desarrollo docente». No adelantes resultados en las etiquetas.
 - Un panel por ejercicio: al cargar, ningún inciso está seleccionado. Los botones con letras muestran solo la explicación breve elegida. El detalle empieza cerrado y se cierra de nuevo al cambiar de selección. Si el ejercicio no tiene incisos, los dos niveles son controles nativos anidados, sin selector de letras.
 - Mantené espacio generoso entre «Consultá una resolución» y los botones, y entre los propios botones, como en el diseño aprobado. Los controles deben poder usarse con teclado.
