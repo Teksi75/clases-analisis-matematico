@@ -1,6 +1,6 @@
 # Extender las explicaciones de Stewart
 
-El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó a los diez ejercicios de Álgebra y los cinco de Geometría analítica. Esta guía sirve para mantener esas adaptaciones y extenderlas a Funciones y Trigonometría. Ver [el piloto y su mantenimiento](README.md#piloto-de-explicaciones-aprobado-y-cerrado) y [la evidencia de Álgebra 2–10](../../odd/pilotos/stewart-algebra-2-10-entrada.md).
+El piloto está aprobado y cerrado como patrón de interacción y ya se aplicó a los diez ejercicios de Álgebra, los cinco de Geometría analítica y los nueve de Trigonometría. Esta guía sirve para mantener esas adaptaciones y extenderlas a Funciones. Ver [el piloto y su mantenimiento](README.md#piloto-de-explicaciones-aprobado-y-cerrado) y [la evidencia de Álgebra 2–10](../../odd/pilotos/stewart-algebra-2-10-entrada.md).
 
 ## Experiencia aprobada
 
@@ -54,20 +54,20 @@ Desarrollo detallado.
 
 ## Color por examen
 
-La interacción y el verde azulado de Álgebra están aprobados y aplicados en el piloto. El azul de Geometría está aplicado; los pares restantes son referencias para adaptaciones futuras:
+La interacción y el verde azulado de Álgebra están aprobados y aplicados en el piloto. El azul de Geometría y el ámbar de Trigonometría están aplicados; el violeta es referencia para Funciones:
 
 | Examen | Color de acento | Contorno | Estado |
 | --- | --- | --- | --- |
 | Álgebra | verde azulado `#85c9c0` | `#618b85` | Aplicado a los ejercicios 1–10 |
 | Geometría analítica | azul `#90bdf2` | `#5c80a9` | Aplicado a los ejercicios 1–5 |
 | Funciones | violeta `#c3a7ec` | `#8c73ad` | Referencia futura |
-| Trigonometría | ámbar `#e4bd79` | `#a18455` | Referencia futura |
+| Trigonometría | ámbar `#e4bd79` | `#a18455` | Aplicado a los ejercicios 1–9 |
 
 Al adaptar cada examen, verificá contraste, foco y legibilidad en pantalla e impresión. El color es una identificación suplementaria, nunca la única: conservá nombres, letras y estados accesibles.
 
 ## Verificar cada extensión
 
-Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas actuales cubren Álgebra y Geometría; no demuestran las futuras extensiones.
+Extendé `tests/test_stewart_piloto.py` y las pruebas del examen correspondiente para consignas, orden, controles cerrados, resultados correctos y ausencia de la clave y las erratas en las páginas de los exámenes. Extendé `tests/check_stewart_piloto.mjs` para cada ejercicio y área incorporados: estado inicial, selección única, reinicio del detalle, mouse y teclado, independencia entre paneles y respaldo sin JavaScript en escritorio y móvil. Extendé `evaluaciones/stewart/check-browser.mjs` cuando corresponda para navegación, presentación e impresión de las áreas adaptadas; revisá también la matemática y las capturas. Las pruebas incluyen Álgebra, Geometría y Trigonometría; no demuestran las futuras extensiones. Ejecutalas y revisá sus capturas antes de publicar.
 
 Desde la raíz, con Python 3, Pandoc 3.11 y las dependencias de navegador indicadas en el [README](README.md#mantenimiento):
 

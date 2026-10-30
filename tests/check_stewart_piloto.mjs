@@ -379,6 +379,86 @@ try {
       console.log(JSON.stringify({page:'geometria', width, scriptEnabled:enabled, tasks:18, mouse:true, keyboard:enabled ? 'Tab/Space/Enter' : 'Enter', independent:true}));
     }
   }
+  // Trigonometría: cuatro selectores y cinco controles nativos independientes.
+  for (const enabled of [true, false]) {
+    await call('Emulation.setScriptExecutionDisabled', {value:!enabled});
+    for (const width of [1280, 390]) {
+      await call('Emulation.setDeviceMetricsOverride', {width, height:900, deviceScaleFactor:1, mobile:false});
+      const loaded = once('Page.loadEventFired');
+      await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/trigonometria.html')).href});
+      await loaded; await call('Page.bringToFront');
+      const doc = (await call('DOM.getDocument')).root.nodeId;
+      const panels = (await call('DOM.querySelectorAll', {nodeId:doc, selector:'.consulta-trigonometria'})).nodeIds;
+      assert.equal(panels.length, 9);
+      const trigSnapshot = () => evaluate(`(() => {
+        const shown = e => !!e && e.checkVisibility({visibilityProperty:true}) && e.getBoundingClientRect().height > 0;
+        return {width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth,
+          graph:shown(document.querySelector('img[src="trigonometria-assets/grafica.svg"]')),
+          panels:[...document.querySelectorAll('.consulta-trigonometria')].map(p => ({
+            buttons:[...p.querySelectorAll('button')].map(b=>({pressed:b.getAttribute('aria-pressed'), controls:b.getAttribute('aria-controls')})),
+            choices:[...p.querySelectorAll(':scope > details')].map(d=>({id:d.id, open:d.open, hidden:d.hidden,
+              brief:shown(d.querySelector(':scope > p')), inner:d.querySelector(':scope > details').open,
+              steps:[...d.querySelector(':scope > details').children].some(e=>e.tagName!=='SUMMARY' && shown(e))}))}))};
+      })()`);
+      let state = await trigSnapshot();
+      assert.ok(state.scroll <= state.width);
+      assert.equal(state.graph, false);
+      assert.deepEqual(state.panels.map(p=>p.choices.length), [2,2,1,3,1,1,2,1,1]);
+      assert.ok(state.panels.every(p=>p.choices.every(c=>!c.open && !c.brief && !c.inner && !c.steps)));
+      if (enabled) {
+        const colors = await evaluate(`(() => { const p=document.querySelector('.consulta-trigonometria');
+          const b=p.querySelector('button'); const idle=getComputedStyle(b).backgroundColor;
+          b.click(); return {idle, selected:getComputedStyle(b).backgroundColor, color:getComputedStyle(b).color}; })()`);
+        assert.match(colors.idle, /^rgba\(228, 189, 121, /);
+        assert.equal(colors.selected, 'rgb(228, 189, 121)');
+        assert.equal(colors.color, 'rgb(36, 32, 27)');
+        const reloaded = once('Page.loadEventFired');
+        await call('Page.navigate', {url:pathToFileURL(join(root, 'evaluaciones/stewart/trigonometria.html')).href});
+        await reloaded;
+      }
+      const freshDoc = (await call('DOM.getDocument')).root.nodeId;
+      const freshPanels = (await call('DOM.querySelectorAll', {nodeId:freshDoc, selector:'.consulta-trigonometria'})).nodeIds;
+      for (let p=0; p<freshPanels.length; p++) {
+        const single = [2,4,5,7,8].includes(p);
+        const count = [2,2,1,3,1,1,2,1,1][p];
+        for (let i=0; i<count; i++) {
+          const before = await trigSnapshot();
+          const target = await query(freshPanels[p], enabled && !single
+            ? `.consulta-selector button:nth-child(${i+1})`
+            : `:scope > details:nth-of-type(${i+1}) > summary`);
+          if (i===0 && p%2===0) await mouseClick(target);
+          else { await call('DOM.focus', {nodeId:target}); await enter(); }
+          state = await trigSnapshot();
+          before.panels.forEach((v,j)=>{if (j!==p) assert.deepEqual(state.panels[j],v);});
+          assert.ok(state.panels[p].choices[i].open && state.panels[p].choices[i].brief);
+          assert.equal(state.panels[p].choices[i].inner, false);
+          if (enabled && !single) {
+            assert.equal(state.panels[p].buttons.filter(b=>b.pressed==='true').length,1);
+            assert.equal(state.panels[p].buttons[i].controls,state.panels[p].choices[i].id);
+            assert.ok(state.panels[p].choices.every((c,j)=>(j===i || (!c.open && !c.brief)) && !c.inner && !c.steps));
+          }
+          const inner = await query(freshPanels[p], `:scope > details:nth-of-type(${i+1}) > details > summary`);
+          await call('DOM.focus', {nodeId:inner}); await enter();
+          state = await trigSnapshot();
+          assert.ok(state.panels[p].choices[i].inner && state.panels[p].choices[i].steps);
+          if (p===8) assert.equal(state.graph,true);
+          assert.ok(state.scroll <= state.width);
+          if (!enabled || single) {
+            await enter(); await call('DOM.focus', {nodeId:target}); await enter();
+          }
+        }
+        if (enabled && !single) {
+          const first = await query(freshPanels[p], '.consulta-selector button:first-child');
+          await call('DOM.focus', {nodeId:first}); await enter();
+          state = await trigSnapshot();
+          assert.ok(state.panels[p].choices.every(c=>!c.inner && !c.steps));
+        }
+      }
+      await evaluate(`document.querySelector('.consulta-trigonometria').scrollIntoView({block:'start'})`);
+      await screenshot(`trigonometria-${width}-${enabled ? 'js' : 'sin-js'}`);
+      console.log(JSON.stringify({page:'trigonometria', width, scriptEnabled:enabled, tasks:14, mouse:true, keyboard:'Enter', independent:true}));
+    }
+  }
 } finally {
   clearTimeout(timer);
   ws?.close();
