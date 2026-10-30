@@ -27,6 +27,10 @@ math[display="inline"]:has(mfrac) { margin-block: .8em; }
 .consulta-incisos { --consulta-accent: #85c9c0; --consulta-outline: #618b85; border: 1px solid var(--rule); border-top: 3px solid var(--consulta-accent); padding: 1.25rem 1.4rem; margin: 2rem 0; }
 .consulta-incisos.consulta-geometria { --consulta-accent: #90bdf2; --consulta-outline: #5c80a9; background: #90bdf212; }
 .consulta-incisos.consulta-geometria .consulta-selector button:not([aria-pressed="true"]) { background: #90bdf226; }
+.consulta-incisos.consulta-trigonometria { --consulta-accent: #e4bd79; --consulta-outline: #a18455; background: #e4bd7912; }
+.consulta-incisos.consulta-trigonometria .consulta-selector button:not([aria-pressed="true"]) { background: #e4bd7926; }
+.consulta-incisos.consulta-trigonometria .consulta-selector button[aria-pressed="true"] { color: #24201b; }
+.consulta-incisos.consulta-trigonometria :is(button, summary):focus-visible { outline-color: #e4bd79; }
 .consulta-incisos h3 { border: 0; padding: 0; margin: 0 0 1.75rem; font-size: 1.25rem; }
 .consulta-incisos .consulta-selector { display: flex; flex-wrap: wrap; gap: .5rem; }
 .consulta-incisos .consulta-selector button { min-width: 44px; min-height: 44px; border: 1px solid var(--consulta-outline); background: #85c9c00a; color: var(--ink); font: 600 .9rem var(--mono); cursor: pointer; }
@@ -40,6 +44,8 @@ math[display="inline"]:has(mfrac) { margin-block: .8em; }
 .consulta-incisos [hidden] { display: none; }
 @media print {
   .consulta-incisos.consulta-geometria { background: transparent; }
+  .consulta-incisos.consulta-trigonometria { background: transparent; }
+  .consulta-incisos.consulta-trigonometria :is(button, summary):focus-visible { outline-color: #765419; }
   .consulta-incisos .consulta-selector button[aria-pressed="true"] { color: #000; border-color: #000; }
 }
 @media (max-width: 700px) {
