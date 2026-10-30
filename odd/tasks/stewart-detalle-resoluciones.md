@@ -6,6 +6,8 @@ Entrega: `auto-chain`, `chain_strategy=feature-branch-chain` (elección del usua
 - S1: «una revisión humana ha determinado que el nivel de detalle de las resoluciones en insuficiente. por lo que hay que rectificar lo que hemos hecho hasta ahora, lo positivo es que la parte visual está aprobada, solo hay que reevaluar los contenidos de las respuesta y hacerlas más completas, no saltar pasos en las explicaiones.»
 - S2: «Si la revsión se refiere a las resoluciones ya adaptadas de Algebra, Geometría y Trigonometría, como funciones todavía no ha sido impelementado a la hora de implementarse debe cumplir con el mismo estandar que los otros exámenes de diagnostico.»
 - S3: «luego de que termines con la correción de los 3 exámenes esistentes desarrolla el faltante de funciones»
+- S4: «ok dame los link para realiazrla verificación»
+- S5: «doy el ok para integrarlas en producción»
 
 ## Tasks
 - T1 [S1, S2] Álgebra: revisar y ampliar resoluciones adaptadas; ruta: delegado, unidad independiente; estado: completada; assess nativo no disponible; commit: `8e1712b`.
@@ -13,6 +15,9 @@ Entrega: `auto-chain`, `chain_strategy=feature-branch-chain` (elección del usua
 - T3 [S1, S2] Trigonometría: revisar y ampliar resoluciones adaptadas; ruta: delegado, unidad independiente; estado: completada; revisión nativa no disponible por incompatibilidad del alcance; commit: `fb58aed`.
 - T4 [S1, S2] Integrar HTML generado, documentar estándar futuro de Funciones y comprobar contenido e interfaz; ruta: delegado por límite de contexto; estado: completada; commit: `fa0ac0d`.
 - T5 [S2, S3] Desarrollar Funciones con el estándar de detalle y la presentación de los otros exámenes después de T1–T4; ruta: delegado por límite de contexto; estado: completada; commit: `2c0e300`.
+- T6 [S5] Crear issue aprobado y preparar cadena autorizada; ruta: inline; estado: completada; commit: `a6a23c7`.
+- T7 [S5] Integrar la cadena en main; ruta: inline; estado: en curso; commit: pendiente.
+- T8 [S5] Verificar la publicación en GitHub Pages; ruta: inline; estado: pendiente; commit: no aplica.
 
 ## Log
 - L1: «una revisión humana ha determinado que el nivel de detalle de las resoluciones en insuficiente. por lo que hay que rectificar lo que hemos hecho hasta ahora, lo positivo es que la parte visual está aprobada, solo hay que reevaluar los contenidos de las respuesta y hacerlas más completas, no saltar pasos en las explicaiones.»
@@ -36,3 +41,10 @@ Entrega: `auto-chain`, `chain_strategy=feature-branch-chain` (elección del usua
 - L19: El desarrollo de Funciones fue entregado para siete ejercicios y 25 tareas. El trabajador observó RED de las nuevas pruebas y GREEN posterior; el coordinador comprobó `generar.py --check`, 41 pruebas Stewart y `git diff --check`, todos aprobados. Ambas pruebas de navegador e impresión pasaron, códigos 0, con evidencia en `.b2/`. Assess nativo no disponible por declaración de archivos no rastreados.
 - L20: Verificador independiente: S2 y S3 cumplidas, sin bloqueadores matemáticos ni estructurales en los siete ejercicios; consignas idénticas al original de la unidad anterior. Contrastó gráfica, PDF y erratas; verificó 4(c), donde la consigna impresa omite f, y la solución distingue la interpretación alternativa. El coordinador inspeccionó capturas de escritorio y móvil, con y sin JavaScript. La prueba adicional propuesta sobre 4(c) no se agregó: la prueba existente ya cubre ambas fórmulas.
 - L21: Funciones confirmada en `2c0e300`; 41 pruebas, generador, navegador e impresión aprobados, con revisión independiente. Revisión nativa no disponible; no se declara aprobada. No se publicó ni se abrió PR. La revisión pedagógica humana antes de publicar sigue siendo recomendable.
+- L22: «ok dame los link para realiazrla verificación»
+- L23: «doy el ok para integrarlas en producción»
+- L24: El usuario autorizó usar la sesión Teksi75 en github.com/Teksi75/clases-analisis-matematico, crear issue con `status:approved`, enlazarlo para cierre al integrar la cadena y publicar. También autorizó crear y eliminar únicamente `/tmp/gentle-ai-issue-stewart-detalle` y sus archivos temporales. El destino confirmado es GitHub Pages desde main; sin PRs abiertos ni issue abierto coincidente, el actor es ADMIN y se admiten issues en blanco.
+- L25: Issue aprobado #16 creado y leído de nuevo: https://github.com/Teksi75/clases-analisis-matematico/issues/16. El directorio temporal autorizado se eliminó al terminar.
+- L26: Preparada cadena en worktree registrado `odd/worktrees/stewart-detalle-publicacion`: tracker `a6a23c7`, Trigonometría `b581c2c`, Geometría `bddf06e`, Álgebra `7526b8d` y Funciones `0bd52ca`. Los archivos de exámenes y pruebas coinciden exactamente con la entrega verificada `036bd3c`. Las cuatro unidades tienen 536, 774, 971 y 1835 líneas de diff respectivamente; incluyen HTML generado. Funciones incluye 804 líneas no generadas y se conserva íntegra con sus pruebas y guía. En el worktree de integración pasaron generador, 41 pruebas, navegador e impresión.
+- L27: Se publicaron las cinco ramas y se abrieron tracker en borrador #17 y PRs secundarios #18–#21, en el orden de la cadena. Cada PR refiere al issue #16 y tiene una etiqueta `type:feature`; #17 lo cierra al integrarse.
+- L28: Los PRs #18, #19, #20 y #21 se integraron al tracker, cada uno con diff y head esperados, CLEAN y sin checks configurados. Heads de integración: `16ef16d`, `39b5dbc`, `c9f40b8` y `69a8fd4`. Pendiente verificar el árbol integrado y fusionar el tracker.
