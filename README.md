@@ -15,6 +15,8 @@ Como material de consulta adicional, los [exámenes de diagnóstico de Stewart e
 
 La [resolución pedagógica de EVA1](evaluaciones/eva1.html) desarrolla los incisos a–d paso a paso, con fórmulas, tablas y gráfica disponibles sin conexión.
 
+La [resolución del TP2 · Límites](evaluaciones/tp2.html) reúne la lectura de los gráficos originales, cálculo de límites, asíntotas, continuidad y el modelo del peaje. Distingue valores exactos de aproximaciones y señala las limitaciones del PDF. Se puede abrir sin conexión; conserva la estética y la navegación del cuaderno de teoría.
+
 ## Estructura
 
 | Carpeta o archivo | Contenido |

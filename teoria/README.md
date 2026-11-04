@@ -30,6 +30,8 @@ Las [fichas de conocimiento](../conocimiento/README.md) ofrecen una vista de pre
 
 ## Edición y mantenimiento
 
+La [resolución del TP2 · Límites](../evaluaciones/tp2.html) es una página complementaria del cuaderno. Se edita en `evaluaciones/tp2.md` y se regenera desde la raíz con `python3 evaluaciones/generar_tp2.py` (`--help` describe los requisitos). Comparte `teoria.css` y `lectura.js`, sin modificarlos. Los recortes de `evaluaciones/tp2-assets/` proceden de las imágenes incrustadas en el PDF, no de capturas de página; el generador documenta sus coordenadas. Para comprobarla: `python3 -m unittest discover -s tests -p 'test_tp2_html.py'` y `node evaluaciones/comprobar_tp2.mjs`. La segunda requiere Chromium y guarda capturas de escritorio y celular en `.browser-check/tp2/`; también comprueba lectura sin JavaScript. La comprobación de impresión queda fuera del alcance por decisión del usuario.
+
 Las fuentes editables siguen siendo [01-funciones.md](01-funciones.md) y [02-limites.md](02-limites.md). Después de modificarlas, regenerá la edición desde la raíz del repositorio:
 
 ```bash

@@ -1,0 +1,18 @@
+/* Only TP2 image containment; typography, layout and colors come from teoria.css. */
+.tp2-page .study-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background: white;
+}
+.tp2-page .study-figure:has(img[src$="desafio-cartel.png"]) img {
+  max-width: 280px;
+  margin-inline: auto;
+}
+.tp2-page .study-figure figcaption { margin-top: 1rem; }
+.tp2-page main { overflow-wrap: break-word; }
+@media print {
+  .tp2-page .study-figure img { max-height: 90mm; width: auto; max-width: 100%; margin-inline: auto; }
+  .tp2-page table math { font-size: 1em; }
+}

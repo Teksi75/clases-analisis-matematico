@@ -4,6 +4,8 @@ Un límite describe el comportamiento de las salidas cuando las entradas se acer
 
 **Recorrido:** aproximación → laterales y gráficos → cálculo y factorización → asíntotas → continuidad. Antes conviene leer [funciones](01-funciones.md); el [índice](README.md) reúne fuentes y navegación.
 
+Para contrastar tus procedimientos después de practicar, consultá la [resolución del TP2 · Límites](../evaluaciones/tp2.html): gráficos originales, laterales, valores puntuales y continuidad, con las limitaciones del PDF señaladas.
+
 ## 1. Acercarse no es llegar
 
 **Ejemplo original de elaboración docente:** consideremos $f(x)=2x+1$ y entradas próximas a 2. Elegimos valores a ambos lados, sin usar todavía el propio 2:

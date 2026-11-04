@@ -8,7 +8,7 @@ El apunte [Límites: acercarse, comparar y decidir continuidad](../teoria/02-lim
 
 ## Fuentes y recorrido
 
-Fuente: [TP2 LIMITES.pdf](../material/pdf/TP2%20LIMITES.pdf).
+Fuente: [TP2 LIMITES.pdf](../material/pdf/TP2%20LIMITES.pdf). Para contrastar los ejercicios, está la [resolución pedagógica del TP2 en HTML](../evaluaciones/tp2.html), con los gráficos originales y sus limitaciones de lectura.
 
 | Página y ejercicio | Trabajo propuesto |
 |---|---|
