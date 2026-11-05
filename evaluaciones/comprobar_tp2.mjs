@@ -106,15 +106,25 @@ try {
           return {rows:table.rows.length, scroll:scroller.scrollWidth, width:scroller.clientWidth};
         })()`);
         assert.equal(table.rows, { roja:3, verde:3, azul:5 }[color]);
-        if (width === 390) assert.ok(table.scroll > table.width, JSON.stringify(table));
-        else assert.ok(table.scroll <= table.width + 1, 'Item column hidden at desktop: ' + JSON.stringify(table));
+        assert.ok(table.scroll <= table.width + 1, 'Reading table overflows at ' + width + ': ' + JSON.stringify(table));
+        const items = await evaluate(`(() => {
+          const table = document.getElementById('items-${color}');
+          const scroller = table.closest('.table-scroll');
+          return {rows:table.rows.length, cells:table.rows[1].cells.length,
+            first:table.rows[1].cells[0].textContent.trim(),
+            hasStatement:!!table.rows[1].cells[1].querySelector('math'),
+            scroll:scroller.scrollWidth, width:scroller.clientWidth};
+        })()`);
+        assert.deepEqual([items.rows, items.cells, items.first, items.hasStatement],
+          [{ roja:9, verde:4, azul:14 }[color], 4, { roja:'1', verde:'5', azul:'6' }[color], true]);
+        assert.ok(items.scroll <= items.width + 1, "Item table overflows at " + width + ": " + JSON.stringify(items));
       }
       if (width === 1440) {
         await evaluate('document.querySelector("#texto-mas").click()');
         assert.equal(await evaluate('document.querySelector("#texto-tamano").textContent'), '110%');
-        await evaluate('document.querySelector("#resumen-items").scrollIntoView({block:"start"})');
+        await evaluate('document.querySelector("#items-azul").scrollIntoView({block:"start"})');
         await ready();
-        await capture('tp2-resumen-items-1440');
+        await capture('tp2-items-azul-1440');
       }
       console.log(JSON.stringify({ check:'desktop-mobile-images-tables-navigation', width, status:'PASS' }));
     }

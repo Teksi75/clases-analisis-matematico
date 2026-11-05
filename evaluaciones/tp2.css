@@ -19,8 +19,19 @@
 }
 .tp2-page :is(#datos-roja, #datos-verde, #datos-azul) { font-size: .8rem; }
 /* Inline limits keep their subscript beside the operator; enlarge so it stays legible. */
-.tp2-page #resumen-items math { font-size: 1.25em; }
+.tp2-page :is(#items-roja, #items-verde, #items-azul) math { font-size: 1.25em; }
+.tp2-page :is(#items-roja, #items-verde, #items-azul) :is(th, td) { min-width: 3.2rem; }
 @media print {
   .tp2-page .study-figure img { max-height: 90mm; width: auto; max-width: 100%; margin-inline: auto; }
   .tp2-page table math { font-size: 1em; }
+}
+/* On narrow screens the item tables must still fit: shrink type instead of scrolling. */
+@media (max-width: 700px) {
+  .tp2-page :is(#items-roja, #items-verde, #items-azul) { font-size: .78rem; }
+  .tp2-page :is(#items-roja, #items-verde, #items-azul) math { font-size: 1em; }
+  .tp2-page :is(#datos-roja, #datos-verde, #datos-azul) { font-size: .7rem; }
+  .tp2-page :is(#datos-roja, #datos-verde, #datos-azul) :is(th, td) {
+    min-width: 2.2rem;
+    padding: .5rem .28rem;
+  }
 }

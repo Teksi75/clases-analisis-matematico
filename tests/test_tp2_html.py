@@ -57,26 +57,39 @@ class TP2HTMLTests(unittest.TestCase):
             self.assertEqual(len(rows), len(points) + 1)
             for point, row in zip(points, rows[1:]):
                 cells = re.findall(r'<td\b[^>]*>(.*?)</td>', row, re.S)
-                self.assertEqual(len(cells), 7)
+                self.assertEqual(len(cells), 6)
                 self.assertEqual(' '.join(Page(cells[0]).words), point)
                 self.assertTrue(all(Page(cell).words for cell in cells))
-                self.assertRegex(' '.join(Page(cells[6]).words), r'^\d+(, \d+)*$')
         red = re.search(r'<table\b[^>]*id="datos-roja"[^>]*>.*?</table>', self.html, re.S)[0]
         self.assertNotIn('>-8<', red, 'A point outside the drawn region cannot be a table row')
         self.assertIn('bajo el eje', ' '.join(self.page.words))
         self.assertIn('aproximaciones', ' '.join(self.page.words))
         self.assertNotIn('h(x)≈-1', self.html)
 
-    def test_item_key_answers_all_twenty_four_requests(self):
-        match = re.search(r'<table\b[^>]*id="resumen-items"[^>]*>(.*?)</table>', self.html, re.S)
-        self.assertIsNotNone(match, 'Missing the answer key in TP item order')
-        rows = re.findall(r'<tr\b[^>]*>(.*?)</tr>', match[1], re.S)
-        self.assertEqual(len(rows), 25)
-        numbers = [' '.join(Page(re.findall(r'<t[dh]\b[^>]*>(.*?)</t[dh]>', row, re.S)[0]).words)
-                   for row in rows[1:]]
-        self.assertEqual(numbers, [str(number) for number in range(1, 25)])
+    def test_every_tp_item_shows_its_statement_and_answer(self):
+        expected = {'roja': [1, 2, 3, 4, 7, 8, 19, 20],
+                    'verde': [5, 9, 21],
+                    'azul': [6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 22, 23, 24]}
+        seen = []
+        for name, numbers in expected.items():
+            match = re.search(r'<table\b[^>]*id="items-' + name + r'"[^>]*>(.*?)</table>', self.html, re.S)
+            self.assertIsNotNone(match, 'Missing the item table for ' + name)
+            rows = re.findall(r'<tr\b[^>]*>(.*?)</tr>', match[1], re.S)
+            self.assertEqual(len(rows), len(numbers) + 1)
+            for number, row in zip(numbers, rows[1:]):
+                cells = re.findall(r'<td\b[^>]*>(.*?)</td>', row, re.S)
+                self.assertEqual(len(cells), 4)
+                self.assertEqual(' '.join(Page(cells[0]).words), str(number))
+                self.assertIn('<math', cells[1], 'Item %d needs its statement' % number)
+                self.assertTrue(Page(cells[2]).words, 'Item %d needs an answer' % number)
+                self.assertTrue(Page(cells[3]).words, 'Item %d needs a reason' % number)
+                seen.append(number)
+        self.assertEqual(sorted(seen), list(range(1, 25)),
+                         'Every TP item must appear exactly once with its statement')
         self.assertNotIn('Ítems del TP:', self.html)
-        self.assertIn('fuera del tramo dibujado', ' '.join(self.page.words))
+        red_items = re.search(r'<table\b[^>]*id="items-roja"[^>]*>.*?</table>', self.html, re.S)[0]
+        row_8 = re.findall(r'<tr\b[^>]*>(.*?)</tr>', red_items, re.S)[6]
+        self.assertIn('tramo dibujado', ' '.join(Page(row_8).words), 'Item 8 must state why it is undeterminable')
 
     def test_reuses_theory_components_and_keeps_offline_math(self):
         self.assertIn('href="../teoria/teoria.css"', self.html)

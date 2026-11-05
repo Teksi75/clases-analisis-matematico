@@ -25,7 +25,9 @@ def main():
         check=True, capture_output=True, text=True).stdout
     rendered = re.sub(r'<h1\b.*?</h1>\s*', '', rendered, count=1, flags=re.S)
     for div_id, table_id in [('tabla-roja', 'datos-roja'), ('tabla-verde', 'datos-verde'),
-                             ('tabla-azul', 'datos-azul'), ('tabla-items', 'resumen-items')]:
+                             ('tabla-azul', 'datos-azul'), ('tabla-items-roja', 'items-roja'),
+                             ('tabla-items-verde', 'items-verde'),
+                             ('tabla-items-azul', 'items-azul')]:
         rendered = re.sub(f'(<div id="{div_id}">\\s*<table)\\b',
                           rf'\1 id="{table_id}"', rendered)
     rendered = re.sub(r'<table\b', '<div class="table-scroll" role="region" '
