@@ -49,7 +49,7 @@ class TP2HTMLTests(unittest.TestCase):
         self.assertNotIn('eva1-page', self.html)
 
     def test_each_graph_point_has_all_five_observables(self):
-        for name, points in [('roja', ['-8', '-5', '0', '2']),
+        for name, points in [('roja', ['0', '2']),
                              ('verde', ['0', '3']), ('azul', ['-3', '0', '1', '4'])]:
             match = re.search(r'<table\b[^>]*id="datos-' + name + r'"[^>]*>(.*?)</table>', self.html, re.S)
             self.assertIsNotNone(match, name)
@@ -57,12 +57,26 @@ class TP2HTMLTests(unittest.TestCase):
             self.assertEqual(len(rows), len(points) + 1)
             for point, row in zip(points, rows[1:]):
                 cells = re.findall(r'<td\b[^>]*>(.*?)</td>', row, re.S)
-                self.assertEqual(len(cells), 6)
+                self.assertEqual(len(cells), 7)
                 self.assertEqual(' '.join(Page(cells[0]).words), point)
                 self.assertTrue(all(Page(cell).words for cell in cells))
+                self.assertRegex(' '.join(Page(cells[6]).words), r'^\d+(, \d+)*$')
+        red = re.search(r'<table\b[^>]*id="datos-roja"[^>]*>.*?</table>', self.html, re.S)[0]
+        self.assertNotIn('>-8<', red, 'A point outside the drawn region cannot be a table row')
         self.assertIn('bajo el eje', ' '.join(self.page.words))
         self.assertIn('aproximaciones', ' '.join(self.page.words))
         self.assertNotIn('h(x)≈-1', self.html)
+
+    def test_item_key_answers_all_twenty_four_requests(self):
+        match = re.search(r'<table\b[^>]*id="resumen-items"[^>]*>(.*?)</table>', self.html, re.S)
+        self.assertIsNotNone(match, 'Missing the answer key in TP item order')
+        rows = re.findall(r'<tr\b[^>]*>(.*?)</tr>', match[1], re.S)
+        self.assertEqual(len(rows), 25)
+        numbers = [' '.join(Page(re.findall(r'<t[dh]\b[^>]*>(.*?)</t[dh]>', row, re.S)[0]).words)
+                   for row in rows[1:]]
+        self.assertEqual(numbers, [str(number) for number in range(1, 25)])
+        self.assertNotIn('Ítems del TP:', self.html)
+        self.assertIn('fuera del tramo dibujado', ' '.join(self.page.words))
 
     def test_reuses_theory_components_and_keeps_offline_math(self):
         self.assertIn('href="../teoria/teoria.css"', self.html)

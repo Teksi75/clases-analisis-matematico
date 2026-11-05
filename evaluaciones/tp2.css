@@ -12,6 +12,14 @@
 }
 .tp2-page .study-figure figcaption { margin-top: 1rem; }
 .tp2-page main { overflow-wrap: break-word; }
+/* Seven columns must be readable without hiding the item numbers behind a scroll. */
+.tp2-page :is(#datos-roja, #datos-verde, #datos-azul) :is(th, td) {
+  min-width: 3.4rem;
+  padding: .6rem .5rem;
+}
+.tp2-page :is(#datos-roja, #datos-verde, #datos-azul) { font-size: .8rem; }
+/* Inline limits keep their subscript beside the operator; enlarge so it stays legible. */
+.tp2-page #resumen-items math { font-size: 1.25em; }
 @media print {
   .tp2-page .study-figure img { max-height: 90mm; width: auto; max-width: 100%; margin-inline: auto; }
   .tp2-page table math { font-size: 1em; }

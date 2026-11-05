@@ -24,9 +24,10 @@ def main():
          '--to=html5', '--mathml', '--wrap=none', '--fail-if-warnings'],
         check=True, capture_output=True, text=True).stdout
     rendered = re.sub(r'<h1\b.*?</h1>\s*', '', rendered, count=1, flags=re.S)
-    for color in ('roja', 'verde', 'azul'):
-        rendered = re.sub(f'(<div id="tabla-{color}">\\s*<table)\\b',
-                          rf'\1 id="datos-{color}"', rendered)
+    for div_id, table_id in [('tabla-roja', 'datos-roja'), ('tabla-verde', 'datos-verde'),
+                             ('tabla-azul', 'datos-azul'), ('tabla-items', 'resumen-items')]:
+        rendered = re.sub(f'(<div id="{div_id}">\\s*<table)\\b',
+                          rf'\1 id="{table_id}"', rendered)
     rendered = re.sub(r'<table\b', '<div class="table-scroll" role="region" '
                       'aria-label="Datos de la resolución" tabindex="0"><table', rendered)
     rendered = rendered.replace('</table>', '</table></div>')

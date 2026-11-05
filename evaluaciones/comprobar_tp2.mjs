@@ -105,12 +105,16 @@ try {
           const scroller = table.closest('.table-scroll');
           return {rows:table.rows.length, scroll:scroller.scrollWidth, width:scroller.clientWidth};
         })()`);
-        assert.equal(table.rows, color === 'verde' ? 3 : 5);
+        assert.equal(table.rows, { roja:3, verde:3, azul:5 }[color]);
         if (width === 390) assert.ok(table.scroll > table.width, JSON.stringify(table));
+        else assert.ok(table.scroll <= table.width + 1, 'Item column hidden at desktop: ' + JSON.stringify(table));
       }
       if (width === 1440) {
         await evaluate('document.querySelector("#texto-mas").click()');
         assert.equal(await evaluate('document.querySelector("#texto-tamano").textContent'), '110%');
+        await evaluate('document.querySelector("#resumen-items").scrollIntoView({block:"start"})');
+        await ready();
+        await capture('tp2-resumen-items-1440');
       }
       console.log(JSON.stringify({ check:'desktop-mobile-images-tables-navigation', width, status:'PASS' }));
     }

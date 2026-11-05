@@ -4,26 +4,22 @@ Resolución docente de [TP2 LIMITES.pdf](../material/pdf/TP2%20LIMITES.pdf), 5.�
 
 ## 1 · Leer límites y valores {#ej1}
 
-**Fuente: TP2, p. 1, ejercicio 1.** En cada punto distinguimos cinco preguntas: límite izquierdo, límite derecho, límite bilateral, valor de la función y continuidad. Los círculos abiertos indican puntos excluidos; los cerrados fijan el valor puntual.
+**Fuente: TP2, p. 1, ejercicio 1.** El ejercicio numera 24 preguntas y cada una se refiere a una entrada concreta de los gráficos. Llamamos **entrada** $a$ al valor de $x$ que se analiza. Para cada entrada se registran el límite por la izquierda, el límite por la derecha, el límite bilateral, el valor de la función y si es continua allí. La última columna de cada tabla indica **qué ítems del TP** preguntan por esa entrada. Los círculos abiertos indican puntos excluidos; los cerrados fijan el valor puntual.
 
 ### Función roja · f(x) {#funcion-roja}
 
 ![Curva roja completa del PDF: pasa por los puntos cerrados (-5,0), (0,4) y (2,0); incluye ambos extremos dibujados y todos sus ejes.](tp2-assets/funcion-roja.png)
 
-En $x=0$ ambas ramas se acercan a $4$ y el punto está incluido: $f(0)=4$. En $x=2$ las ramas se acercan a $0$ y $f(2)=0$. Lo mismo ocurre en la raíz marcada $x=-5$: el límite y el valor son $0$.
+En $x=0$ ambas ramas se acercan a $4$ y el punto está incluido: $f(0)=4$. En $x=2$ las ramas se acercan a $0$ y $f(2)=0$. Los puntos cerrados del gráfico confirman que allí el valor coincide con el límite.
 
 ::: {#tabla-roja}
-| Punto $a$ | Límite izquierdo | Límite derecho | Límite bilateral | $f(a)$ | Continuidad |
-|---|---|---|---|---|---|
-| -8 | Sin datos | Sin datos | No determinable | Sin datos | No determinable |
-| -5 | $0$ | $0$ | $0$ | $0$ | Sí |
-| 0 | $4$ | $4$ | $4$ | $4$ | Sí |
-| 2 | $0$ | $0$ | $0$ | $0$ | Sí |
+| Entrada $a$ | Límite izquierdo | Límite derecho | Límite bilateral | $f(a)$ | Continuidad | Ítems del TP |
+|---|---|---|---|---|---|---|
+| 0 | $4$ | $4$ | $4$ | $4$ | Sí | 1, 20 |
+| 2 | $0$ | $0$ | $0$ | $0$ | Sí | 2, 3, 4, 7, 19 |
 :::
 
-**Ítems del TP:** 1 → $4$; 2, 3, 4 y 7 → $0$; 8 → no determinable; 19 → $0$; 20 → $4$.
-
-El ítem 7 repite al 4. El ítem 8 pregunta por $x\to-8$, fuera de la zona mostrada: no tener información no significa que el límite no exista. No se prolonga la curva por intuición.
+La curva roja está dibujada entre $x\approx-6$ y $x\approx6{,}5$. Por eso el **ítem 8**, que pregunta por $\displaystyle\lim\limits_{x\to-8}f(x)$, cae fuera del tramo dibujado: con este gráfico no se puede responder, y no tener información no significa que el límite no exista. El **ítem 7** vuelve a pedir lo mismo que el 4. El gráfico marca además un cero en $(-5,0)$, pero el TP no pregunta por esa entrada.
 
 ### Función verde · g(x) {#funcion-verde}
 
@@ -32,35 +28,66 @@ El ítem 7 repite al 4. El ítem 8 pregunta por $x\to-8$, fuera de la zona mostr
 La recta representada es $g(x)=x$. Al acercarnos a $0$ las salidas se acercan a $0$; al acercarnos a $3$, a $3$. Ambos puntos están incluidos y no hay huecos ni saltos allí.
 
 ::: {#tabla-verde}
-| Punto $a$ | Límite izquierdo | Límite derecho | Límite bilateral | $g(a)$ | Continuidad |
-|---|---|---|---|---|---|
-| 0 | $0$ | $0$ | $0$ | $0$ | Sí |
-| 3 | $3$ | $3$ | $3$ | $3$ | Sí |
+| Entrada $a$ | Límite izquierdo | Límite derecho | Límite bilateral | $g(a)$ | Continuidad | Ítems del TP |
+|---|---|---|---|---|---|---|
+| 0 | $0$ | $0$ | $0$ | $0$ | Sí | 5 |
+| 3 | $3$ | $3$ | $3$ | $3$ | Sí | 9, 21 |
 :::
 
-**Ítems del TP:** 5 → $0$; 9 → $3$; 21 → $3$.
+Los ítems 5 y 9 piden límites y el 21 pide el valor puntual. En los tres casos el resultado coincide, como muestra la tabla.
 
 ### Función azul · h(x) {#funcion-azul}
 
 ![Curva azul completa del PDF: salto en -3, hueco (1,2), abiertos (4,4) y (4,3), y único punto cerrado en (4,5); se conservan todas sus ramas y ejes.](tp2-assets/funcion-azul.png)
 
-**Lectura precisa:** llamamos $b$ a la altura del círculo abierto inferior en $x=-3$ y $c$ a la altura de la curva en $x=0$. Son aproximaciones gráficas: $b\approx-2$ y $c\approx-0{,}5$. El dibujo no fija esos números exactamente. En particular, en $x=0$ la curva está bajo el eje horizontal, entre $-1$ y $0$, no en $-1$.
+**Valores aproximados:** dos alturas no caen sobre una marca del eje y se leen del dibujo. En $x=-3$ el círculo abierto inferior está en $\approx-2$. En $x=0$ la curva pasa bajo el eje horizontal, entre $-1$ y $0$, en $\approx-0{,}5$: no vale $-1$. El PDF no da la fórmula de esta curva, así que esos dos números son aproximaciones; el resto sí es exacto.
 
 ::: {#tabla-azul}
-| Punto $a$ | Límite izquierdo | Límite derecho | Límite bilateral | $h(a)$ | Continuidad |
-|---|---|---|---|---|---|
-| -3 | $1$ | $b\approx-2$ | No existe | $1$ | No: salto |
-| 0 | $c\approx-0{,}5$ | $c\approx-0{,}5$ | $c\approx-0{,}5$ | $c\approx-0{,}5$ | Sí |
-| 1 | $2$ | $2$ | $2$ | No definida | No: hueco |
-| 4 | $4$ | $3$ | No existe | $5$ | No: salto |
+| Entrada $a$ | Límite izquierdo | Límite derecho | Límite bilateral | $h(a)$ | Continuidad | Ítems del TP |
+|---|---|---|---|---|---|---|
+| -3 | $1$ | $\approx-2$ | No existe | $1$ | No: salto | 10, 11, 12, 22 |
+| 0 | $\approx-0{,}5$ | $\approx-0{,}5$ | $\approx-0{,}5$ | $\approx-0{,}5$ | Sí | 6 |
+| 1 | $2$ | $2$ | $2$ | No definida | No: hueco | 13, 14, 15, 23 |
+| 4 | $4$ | $3$ | No existe | $5$ | No: salto | 16, 17, 18, 24 |
 :::
 
-- **En $-3$:** por la izquierda llegamos a la altura $1$; por la derecha, a $b$, cerca de $-2$. Como no coinciden, no hay límite bilateral. El punto cerrado determina $h(-3)=1$.
-- **En $0$:** la rama no se interrumpe; las dos aproximaciones coinciden con $h(0)=c$, aunque no podamos dar su valor exacto desde el dibujo.
+- **En $-3$:** por la izquierda llegamos a la altura $1$; por la derecha, a una altura cercana a $-2$. Como no coinciden, no hay límite bilateral. El punto cerrado determina $h(-3)=1$.
+- **En $0$:** la rama no se interrumpe; las dos aproximaciones coinciden con $h(0)$, aunque el dibujo no permita darle un valor exacto.
 - **En $1$:** ambas ramas llegan al abierto $(1,2)$. Existe el límite $2$, pero no $h(1)$; es una discontinuidad evitable. Se repararía definiendo $h(1)=2$.
 - **En $4$:** la rama izquierda llega al abierto $(4,4)$ y la derecha al abierto $(4,3)$. El único punto cerrado es $(4,5)$, por lo que $h(4)=5$. Cambiar ese punto no elimina el salto.
 
-**Ítems del TP:** 6 → $c$; 10 → $1$; 11 → $b$; 12 → no existe; 13, 14 y 15 → $2$; 16 → $4$; 17 → $3$; 18 → no existe; 22 → $1$; 23 → no definida; 24 → $5$.
+### Resumen por ítem
+
+Las tablas anteriores explican el razonamiento por entrada; esta permite corregir en el orden en que el TP numera las preguntas.
+
+::: {#tabla-items}
+| Ítem | Pregunta del TP | Respuesta |
+|---|---|---|
+| 1 | $\displaystyle\lim\limits_{x\to0}f(x)$ | $4$ |
+| 2 | $\displaystyle\lim\limits_{x\to2^-}f(x)$ | $0$ |
+| 3 | $\displaystyle\lim\limits_{x\to2^+}f(x)$ | $0$ |
+| 4 | $\displaystyle\lim\limits_{x\to2}f(x)$ | $0$ |
+| 5 | $\displaystyle\lim\limits_{x\to0}g(x)$ | $0$ |
+| 6 | $\displaystyle\lim\limits_{x\to0}h(x)$ | $\approx-0{,}5$ |
+| 7 | $\displaystyle\lim\limits_{x\to2}f(x)$ | $0$, igual que el ítem 4 |
+| 8 | $\displaystyle\lim\limits_{x\to-8}f(x)$ | No determinable: fuera del tramo dibujado |
+| 9 | $\displaystyle\lim\limits_{x\to3}g(x)$ | $3$ |
+| 10 | $\displaystyle\lim\limits_{x\to-3^-}h(x)$ | $1$ |
+| 11 | $\displaystyle\lim\limits_{x\to-3^+}h(x)$ | $\approx-2$ |
+| 12 | $\displaystyle\lim\limits_{x\to-3}h(x)$ | No existe |
+| 13 | $\displaystyle\lim\limits_{x\to1^-}h(x)$ | $2$ |
+| 14 | $\displaystyle\lim\limits_{x\to1^+}h(x)$ | $2$ |
+| 15 | $\displaystyle\lim\limits_{x\to1}h(x)$ | $2$ |
+| 16 | $\displaystyle\lim\limits_{x\to4^-}h(x)$ | $4$ |
+| 17 | $\displaystyle\lim\limits_{x\to4^+}h(x)$ | $3$ |
+| 18 | $\displaystyle\lim\limits_{x\to4}h(x)$ | No existe |
+| 19 | $f(2)$ | $0$ |
+| 20 | $f(0)$ | $4$ |
+| 21 | $g(3)$ | $3$ |
+| 22 | $h(-3)$ | $1$ |
+| 23 | $h(1)$ | No definida |
+| 24 | $h(4)$ | $5$ |
+:::
 
 ### Las dos preguntas conceptuales
 
