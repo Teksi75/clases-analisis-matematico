@@ -265,5 +265,4 @@ Las tablas describen el trazado para realizarlo; no sustituyen una comprobación
 
 - **Conceptos:** [volver al capítulo de límites](../teoria/index.html#limites) o [repasar funciones y dominio](../teoria/index.html#funciones).
 - **Práctica sin respuestas:** [diagnóstico de límites y continuidad](diagnosticos/02-limites-continuidad.html).
-- **Preparación docente:** [mapa de ejercicios de TP2](../conocimiento/02-limites.md).
 - **Otra resolución:** [EVA1: función cuadrática, dominio y gráfico](eva1.html).

@@ -100,6 +100,11 @@ class TP2HTMLTests(unittest.TestCase):
         self.assertIn('annotation encoding="application/x-tex"', self.html)
         self.assertNotRegex(self.html, r'<(?:script|link|img)[^>]+(?:href|src)="https?://')
 
+    def test_student_page_keeps_teacher_material_out_of_sight(self):
+        self.assertNotIn('conocimiento/', self.html,
+                         'Teacher preparation notes must not be offered to students')
+        self.assertNotIn('Preparación docente', self.html)
+
     def test_links_are_valid_and_the_solution_is_discoverable(self):
         ids = [attrs['id'] for _, attrs in self.page.elements if 'id' in attrs]
         self.assertEqual(len(ids), len(set(ids)))
