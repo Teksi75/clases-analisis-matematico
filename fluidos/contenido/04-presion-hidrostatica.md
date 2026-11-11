@@ -90,10 +90,18 @@ El valor $750\ \mathrm{mmHg}$ que figura en el manuscrito es un error aritmétic
 
 ### Instrumentos {#cap-4-instrumentos}
 
-- **Barómetro de mercurio:** mide la presión atmosférica con una columna de mercurio cerrada al vacío. A nivel del mar, la columna mide unos 760 mm.
-- **Manómetro en U:** mide una diferencia de presión con la diferencia de alturas entre dos ramas. Para un líquido manométrico de densidad $\rho_m$,
+::: {.ampliacion}
+Los apuntes no describen instrumentos; se agregan para reconocer las escalas del tema.
+
+- **Barómetro de mercurio:** mide la presión atmosférica con una columna de mercurio cerrada al vacío. A nivel del mar ronda los $760\ \mathrm{mmHg}$.
+- **Manómetro en U:** mide una diferencia de presión por la diferencia de alturas entre dos ramas.
+
+Con un líquido manométrico de densidad $\rho_m$:
+
 $$\Delta p=\rho_m g\,\Delta h.$$
+
 Si una rama está abierta a la atmósfera, lo que se lee es la presión manométrica.
+:::
 
 ### Para practicar {#cap-4-practicar}
 

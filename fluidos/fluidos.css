@@ -29,3 +29,12 @@ figure figcaption { color: #4b4841; font-size: .86rem; line-height: 1.55; }
    la columna del número de ejercicio no debe ocupar media tabla. */
 article table col { width: auto !important; }
 article th, article td { min-width: 0; }
+
+/* Ampliación: contenido que no está en los apuntes de origen. Opcional para el lector. */
+.ampliacion { position: relative; margin: 1.6rem 0; padding: 1.9rem 1rem .8rem; border: 1px dashed var(--rule); border-left: 3px solid #c08a2e; background: rgba(192, 138, 46, .07); }
+.ampliacion::before { content: "Ampliación · no está en el apunte"; position: absolute; top: .5rem; left: 1rem; font: .6rem/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: #d8a750; }
+.ampliacion > :last-child { margin-bottom: 0; }
+@media print {
+  .ampliacion { background: white; border-color: black; }
+  .ampliacion::before { color: black; }
+}

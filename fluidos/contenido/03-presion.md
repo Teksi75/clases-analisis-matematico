@@ -49,6 +49,10 @@ La segunda propiedad es la que permite hablar de «la presión en un punto» sin
 | atmósfera (atm) | $101\,325\ \mathrm{Pa}$ | referencia estándar |
 | milímetro de mercurio (mmHg) | $133{,}322\ \mathrm{Pa}$ | medicina, barómetros |
 
+::: {.ampliacion}
+Los apuntes usan pascal, $\mathrm{kgf/m^2}$, milímetros de mercurio y metros de columna de agua. Las filas de `bar`, `kgf/cm²` y `atm`, y la equivalencia $1\ \mathrm{mmHg}=133{,}322\ \mathrm{Pa}$, se agregan para poder leer instrumentos y enunciados de taller.
+:::
+
 El **kgf/cm²** y el **mmHg** no pertenecen al SI. El primero se usa mucho en talleres y el segundo en instrumentos; por eso aparecen en los apuntes. Convertir siempre a pascal antes de operar evita mezclas.
 
 ::: {.aviso}

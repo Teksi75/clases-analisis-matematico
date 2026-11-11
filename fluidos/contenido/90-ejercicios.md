@@ -37,17 +37,21 @@ Los ejercicios están agrupados por capítulo y en el mismo orden en que convien
 
 a) Por qué un líquido tiene volumen propio pero adopta la forma del recipiente, y un gas no conserva ninguna de las dos cosas.
 
+::: {.ampliacion}
 b) Por qué la frase «las sustancias con baja cohesión fluyen» no sirve como criterio general.
 
 c) Por qué en este cuaderno tratamos a los líquidos como incompresibles y a los gases no.
+:::
 :::
 
 ::: {.resolucion}
 **a)** En un líquido, la cohesión todavía alcanza para mantener a las moléculas juntas: el volumen queda definido. Pero no alcanza para fijarlas en una red, así que las moléculas se deslizan y el líquido toma la forma del recipiente. En un gas, la agitación térmica domina sobre la cohesión: las moléculas se separan y ocupan todo el volumen disponible.
 
+::: {.ampliacion}
 **b)** Porque fluir no es una consecuencia directa de una etiqueta de cohesión, sino de cómo responde el material ante un esfuerzo de corte. La respuesta depende de la sustancia y de sus condiciones: temperatura, presión, presencia de granos o de fibras. La arena fina se comporta como un fluido en algunos ensayos y la miel fluye muy lentamente sin dejar de ser un líquido.
 
 **c)** Un líquido cambia muy poco su volumen cuando aumenta la presión, así que $\rho$ puede considerarse constante. Un gas se comprime con facilidad: su densidad depende de la presión y de la temperatura, y tratarlo como incompresible daría errores grandes.
+:::
 :::
 
 ::: {.ejercicio #ejercicio-02}
@@ -301,7 +305,9 @@ $$\frac{A_2}{A_1}=\left(\frac{1{,}5}{0{,}2}\right)^{2}=56{,}25.$$
 
 El cálculo de la primera fila es $F_1=F_2A_1/A_2=25\,497{,}29/56{,}25=453{,}29\ \mathrm{N}$ y $p=F_2/A_2=25\,497{,}29/1{,}767146=14\,428{,}5\ \mathrm{Pa}$.
 
-**Lo que cuesta la ventaja.** Con $A_1d_1=A_2d_2$, si la carga sube $10\ \mathrm{cm}$ el émbolo menor debe recorrer $5{,}625\ \mathrm{m}$. La fuerza se multiplica por $56{,}25$ y el desplazamiento se divide por el mismo factor: el trabajo no cambia.
+::: {.ampliacion}
+**Lo que cuesta la ventaja.** Los apuntes no lo piden, y el desplazamiento de $10\ \mathrm{cm}$ es un ejemplo. Con $A_1d_1=A_2d_2$, si la carga sube $10\ \mathrm{cm}$ el émbolo menor debe recorrer $5{,}625\ \mathrm{m}$. La fuerza se multiplica por $56{,}25$ y el desplazamiento se divide por el mismo factor: el trabajo no cambia.
+:::
 
 **Sobre el apunte.** No hay base visual suficiente para elegir entre $2600$ y $2800\ \mathrm{kg}$; por eso se presentan las dos. La unidad del apunte es $\mathrm{kg}$, que es masa: la fuerza surge de multiplicar por $g$.
 :::
@@ -439,6 +445,7 @@ b) **(Elaboración docente.)** Una caja de base cuadrada $0{,}6\ \mathrm{m}\time
 ::: {.resolucion}
 **a)** El cuerpo con el centro de gravedad **por debajo** del centro de empuje está en equilibrio **estable**: al inclinarlo, el par peso-empuje lo devuelve. El de centros **coincidentes** está en equilibrio **indiferente**. El de centro de gravedad **por encima** está en equilibrio **inestable**: cualquier inclinación crece.
 
+::: {.ampliacion}
 **b)** La fracción sumergida es $\rho_c/\rho_f=600/1000=0{,}6$, así que el calado es $0{,}6\ \mathrm{m}$ y el volumen desplazado
 
 $$V=0{,}6\times 0{,}6\times 0{,}6=0{,}216\ \mathrm{m^3}.$$
@@ -456,6 +463,7 @@ El centro de empuje está a media altura del calado, $0{,}3\ \mathrm{m}$ de la b
 $$BG=0{,}5-0{,}3=0{,}2\ \mathrm{m}\qquad GM=BM-BG=0{,}05-0{,}2=-0{,}15\ \mathrm{m}.$$
 
 Como $GM<0$, el metacentro está **por debajo** del centro de gravedad: el equilibrio es **inestable**. La caja es demasiado alta para su base; para estabilizarla habría que bajar el centro de gravedad (lastre) o ensanchar la base, que aumenta $I$.
+:::
 :::
 
 ### Ejercicios del apunte que no se pueden resolver {#ejercicios-incompletos}
