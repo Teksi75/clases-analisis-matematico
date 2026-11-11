@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 310">
+  <title>Esquema reconstruido: cuerpos en un fluido</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <g fill="none" stroke="#233b75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M45 55 V250 H285 V55"/>
+    <path d="M45 85 H285"/>
+    <path d="M242 68 L258 68 L250 85 Z M239 94 H260 M243 102 H256"/>
+    <circle cx="105" cy="85" r="32"/>
+    <circle cx="237" cy="153" r="18"/>
+    <circle cx="105" cy="232" r="21"/>
+    <path d="M105 85 V28 M99 38 L105 28 L111 38 M105 88 V156 M99 146 L105 156 L111 146"/>
+    <path d="M237 153 V114 M232 123 L237 114 L242 123 M237 156 V192 M232 183 L237 192 L242 183"/>
+    <path d="M105 232 V193 M100 202 L105 193 L110 202 M105 234 V289 M100 280 L105 289 L110 280"/>
+    <ellipse cx="411" cy="192" rx="42" ry="23"/>
+  </g>
+  <g fill="#233b75" font-family="sans-serif" font-size="20">
+    <text x="64" y="24">E₁</text><text x="141" y="69">1</text>
+    <text x="199" y="118">E₂</text><text x="254" y="141">2</text><text x="251" y="193">P₂</text>
+    <text x="64" y="191">E₃</text><text x="131" y="216">3</text><text x="116" y="292">P₃</text>
+    <text x="334" y="148">ρ₂ = ρLiq</text>
+    <text x="334" y="201">ρ₃ &gt; ρLiq</text>
+  </g>
+  <g fill="#233b75"><circle cx="105" cy="85" r="3"/><circle cx="237" cy="153" r="3"/><circle cx="105" cy="232" r="3"/></g>
+</svg>

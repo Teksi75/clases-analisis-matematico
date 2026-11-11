@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 780">
+  <title>Esquema reconstruido: tres casos de equilibrio</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <g fill="#233b75" font-family="sans-serif" font-size="18">
+    <text x="30" y="30">caso 1:</text>
+    <text x="30" y="290">caso 2:</text>
+    <text x="30" y="550">caso 3</text>
+  </g>
+  <g fill="none" stroke="#233b75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Caso 1 -->
+    <path d="M35 74 H240 M216 60 L229 60 L222 74 Z M213 82 H231 M217 90 H227"/>
+    <ellipse cx="104" cy="175" rx="40" ry="34"/>
+    <ellipse cx="205" cy="178" rx="23" ry="27"/>
+    <path d="M104 176 V124 M99 133 L104 124 L109 133 M104 186 V228 M99 219 L104 228 L109 219"/>
+    <path d="M14 126 H48 M39 121 L48 126 L39 131"/>
+    <path d="M209 177 V129 M204 138 L209 129 L214 138 M195 182 V222 M190 213 L195 222 L200 213"/>
+    <path d="M255 125 Q245 112 211 111 M219 106 L211 111 L219 116"/>
+    <!-- Caso 2 -->
+    <path d="M35 334 H240 M216 320 L229 320 L222 334 Z M213 342 H231 M217 350 H227"/>
+    <ellipse cx="83" cy="435" rx="39" ry="38"/>
+    <ellipse cx="214" cy="444" rx="39" ry="32"/>
+    <path d="M89 441 V399 M84 408 L89 399 L94 408 M74 429 V494 M69 485 L74 494 L79 485"/>
+    <path d="M153 387 H119 M128 382 L119 387 L128 392"/>
+    <path d="M229 453 V422 M224 431 L229 422 L234 431 M194 433 V476 M189 467 L194 476 L199 467"/>
+    <path d="M269 410 Q260 394 227 394 M235 389 L227 394 L235 399"/>
+    <!-- Caso 3 -->
+    <path d="M35 594 H240 M216 580 L229 580 L222 594 Z M213 602 H231 M217 610 H227"/>
+    <ellipse cx="105" cy="700" rx="53" ry="44"/>
+    <path d="M105 700 V642 M100 651 L105 642 L110 651 M105 700 V763 M100 754 L105 763 L110 754"/>
+  </g>
+  <g fill="#233b75" font-family="sans-serif" font-size="17">
+    <text x="14" y="116">F</text><text x="113" y="121">E</text><text x="111" y="232">W</text>
+    <text x="70" y="174">GF</text><text x="107" y="196">GC</text>
+    <text x="182" y="176">GF</text><text x="202" y="194">GC</text><text x="216" y="130">E</text><text x="202" y="225">W</text>
+    <text x="267" y="112">par</text><text x="267" y="133">restaurador</text>
+    <text x="138" y="376">F</text><text x="94" y="422">E</text><text x="44" y="494">W</text>
+    <text x="57" y="433">GC</text><text x="88" y="462">GF</text>
+    <text x="194" y="442">GC</text><text x="226" y="459">GF</text><text x="235" y="431">E</text><text x="184" y="460">W</text>
+    <text x="282" y="394">par</text><text x="282" y="415">desestabilizador</text>
+    <text x="113" y="641">E</text><text x="113" y="767">W</text><text x="65" y="706">GC</text><text x="110" y="706">GF</text>
+    <text x="196" y="695">No hay par</text>
+  </g>
+  <g fill="#233b75">
+    <circle cx="104" cy="167" r="3"/><circle cx="104" cy="190" r="3"/>
+    <circle cx="105" cy="700" r="3"/>
+  </g>
+</svg>

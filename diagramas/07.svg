@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" width="760" height="250">
+  <title>Esquema reconstruido: prensa hidráulica</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <defs><pattern id="rayado" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path d="M6 0 V12" fill="none" stroke="#202b65" stroke-width="1.5"/></pattern></defs>
+  <g stroke="#202b65" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Pared exterior y paredes del rebaje central -->
+    <path fill="url(#rayado)" d="M100 30 H130 V142 H550 V30 H580 V172 H100 Z"/>
+    <path fill="url(#rayado)" d="M230 30 H260 V90 H390 V30 H420 V120 H230 Z"/>
+    <!-- Émbolos y vástagos -->
+    <path fill="white" d="M130 62 H230 V90 H130 Z M166 62 V25 Q180 20 194 25 V62 Z"/>
+    <path fill="white" d="M420 62 H550 V90 H420 Z M467 62 V22 Q482 17 497 22 V62 Z"/>
+    <path fill="none" d="M166 25 Q180 31 194 25 M467 22 Q482 28 497 22"/>
+    <path fill="none" stroke-dasharray="6 7" d="M260 68 H390"/>
+    <!-- Líneas de referencia presentes en el dibujo -->
+    <path fill="none" d="M130 82 L78 106 M83 101 L78 106 L85 108 M550 70 L616 57 M610 54 L616 57 L611 61 M535 125 Q570 160 623 171 M616 167 L623 171 L616 175"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20">
+    <text x="5" y="117" font-size="16">Émbolo</text><text x="630" y="64">Émbolo</text>
+    <text x="630" y="175">Fluido</text><text x="630" y="198">(líquido)</text>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 240">
+  <title>Esquema reconstruido: cubo de hielo en agua</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <g fill="none" stroke="#233b75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M75 38 V200 H288 V38"/>
+    <path d="M75 66 H288"/>
+    <path d="M130 39 H222 V92 H130 Z"/>
+    <path d="M75 39 H130 M75 92 H130" stroke-dasharray="7 6"/>
+    <path d="M105 137 H221 M105 130 V144 M221 130 V144"/>
+  </g>
+  <g fill="#233b75" font-family="sans-serif" font-size="18">
+    <text x="31" y="56">hL</text>
+    <text x="31" y="85">hs</text>
+    <text x="149" y="61">hielo</text>
+    <text x="138" y="134">0,1m</text>
+    <text x="88" y="193">Agua</text>
+  </g>
+</svg>

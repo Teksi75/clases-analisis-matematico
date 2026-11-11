@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#202020">
+  <meta name="description" content="Teoría y ejercicios de mecánica de los fluidos para estudiar sin conexión.">
+  <title>$title — Cuaderno de Física</title>
+  <link rel="stylesheet" href="../teoria/teoria.css">
+  <link rel="stylesheet" href="fluidos.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="masthead theory-masthead" id="inicio">
+    <a class="wordmark" href="#inicio"><span class="square" aria-hidden="true"></span> Cuaderno / Física</a>
+    <a href="#lectura">Fuentes y alcance ↗</a>
+  </header>
+  <section class="hero" aria-labelledby="titulo">
+    <div class="eyebrow">Física · Apuntes para estudiar</div>
+    <h1 id="titulo">Mecánica<span class="hero-divider" aria-hidden="true">/</span><br><span class="outline-word">de los fluidos</span><span class="period">.</span></h1>
+    <div class="hero-bottom"><p>Comprender los conceptos.<br>Aplicarlos a los ejercicios.</p><a class="start-link" href="#contenido">Empezar a leer ↓</a></div>
+    <div class="edition-line"><span>Teoría y aplicación</span><span>Cuaderno de Física</span></div>
+  </section>
+  <div class="reading-layout">
+    <nav class="contents" aria-label="Índice de capítulos y secciones">
+      <p id="tema-actual" class="current-topic" hidden></p>
+      <details class="contents-disclosure"><summary>Índice de lectura</summary>
+        $navigation
+        <a class="context-link" href="#lectura">Fuentes y alcance</a>
+        <a class="back-top" href="#inicio">Volver al inicio ↑</a>
+      </details>
+    </nav>
+    <main id="contenido" tabindex="-1">
+      <div class="reading-controls" hidden role="group" aria-label="Tamaño de lectura">
+        <span>Lectura</span><button type="button" id="texto-menos" aria-label="Reducir tamaño de lectura">A−</button>
+        <output id="texto-tamano" aria-live="polite">100%</output><button type="button" id="texto-mas" aria-label="Aumentar tamaño de lectura">A+</button>
+      </div>
+      $chapters
+      <section class="context" id="lectura"><h2>Fuentes y alcance</h2><p>Material reorganizado para el estudio a partir de los apuntes corregidos, los ejercicios resueltos y la auditoría de errores del proyecto; esos documentos de trabajo no forman parte de esta publicación. El cuaderno no incluye fotografías ni datos personales.</p></section>
+    </main>
+  </div>
+  <footer><span>Cuaderno de Física / Mecánica de los fluidos</span><a href="#lectura">Fuentes y alcance ↑</a></footer>
+  <script src="../teoria/lectura.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 570" width="760" height="570">
+  <title>Esquema reconstruido: teorema fundamental y escalas de presión</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <g fill="none" stroke="#202b65" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M45 40 L45 185 L205 185 L205 40 M45 54 H205"/>
+    <path d="M178 34 L184 48 L190 34 Z M181 53 H190 M181 59 H188"/>
+    <path stroke-dasharray="6 8" d="M45 112 H260 M45 160 H360 M205 54 H360"/>
+    <path d="M255 54 V112 M249 54 H261 M249 112 H261 M350 54 V160 M344 54 L350 48 L356 54 M344 160 H356"/>
+    <circle cx="125" cy="112" r="2.5" fill="#202b65"/><circle cx="125" cy="160" r="2.5" fill="#202b65"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="18">
+    <text x="57" y="83">γ</text><text x="132" y="105">1</text><text x="132" y="154">2</text>
+    <text x="266" y="91">h₁</text><text x="362" y="112">h₂</text>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20">
+    <text x="38" y="265">P. Absoluta</text><text x="345" y="265">P. Relativa</text>
+    <text x="40" y="532">0 Pa</text><text x="20" y="365">Patm</text><text x="151" y="350">⊕</text>
+    <text x="423" y="305">+</text><text x="423" y="362">0</text><text x="423" y="414">−</text>
+    <text x="417" y="530">−101325 Pa</text><text x="499" y="331">Sobrepresiones</text><text x="499" y="459">vacío</text>
+  </g>
+  <g fill="none" stroke="#202b65" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M130 520 V290 M124 300 L130 290 L136 300 M124 520 H136"/>
+    <path d="M405 520 V280 M399 290 L405 280 L411 290 M399 520 H411"/>
+    <path stroke-dasharray="6 9" d="M130 355 H405"/>
+    <path d="M460 288 C480 298 480 305 470 310 C490 316 490 341 460 355 C480 366 480 375 470 380 C490 389 490 407 460 420 C480 434 490 460 470 480"/>
+  </g>
+</svg>

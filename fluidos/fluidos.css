@@ -1,0 +1,31 @@
+/* Supplement to the shared offline reading styles. */
+.hero h1 { overflow-wrap: anywhere; font-size: clamp(3.2rem, 8vw, 7rem); }
+/* Los esquemas reconstruidos usan trazos azul marino: sobre el fondo oscuro no se leen.
+   Van sobre una lamina clara, como figura tecnica, y el pie usa tinta oscura. */
+figure { margin: 2rem 0; border-block: 1px solid var(--rule); padding: 1.25rem 1rem; background: #f2efe6; color: #1c1b19; }
+figure img { display: block; max-width: 100%; height: auto; margin: 0 auto .9rem; }
+figure figcaption { color: #4b4841; font-size: .86rem; line-height: 1.55; }
+.aviso, .definicion, .ejercicio, .resolucion { margin: 1.5rem 0; padding: .5rem 1rem; border: 1px solid var(--rule); border-left: 3px solid var(--accent); }
+.resolucion summary { font-weight: bold; }
+/* La resolución pertenece al ejercicio anterior: se lee como un solo bloque. */
+.ejercicio + .resolucion { margin-top: 0; border-top: 0; }
+.ejercicio + .resolucion[open] { border-top: 1px solid var(--rule); }
+.resolucion summary:focus-visible { outline: 2px solid var(--accent); }
+@media (max-width: 700px) {
+  .hero h1 { font-size: clamp(2.8rem, 11vw, 4.5rem); }
+  .aviso, .definicion, .ejercicio, .resolucion { padding-inline: .75rem; }
+  /* Los esquemas tienen rótulos pequeños: por debajo de 700 px se desplazan en lugar de encogerse. */
+  figure { overflow-x: auto; }
+  figure img { min-width: 30rem; }
+}
+@media print {
+  figure { break-inside: avoid; }
+  .aviso, .definicion, .ejercicio, .resolucion { color: black; background: white; border-color: black; }
+  .resolucion::details-content { content-visibility: visible; display: block; }
+  .resolucion > summary { color: black; }
+}
+
+/* Pandoc reparte las columnas en partes iguales; acá conviene el ancho según el contenido:
+   la columna del número de ejercicio no debe ocupar media tabla. */
+article table col { width: auto !important; }
+article th, article td { min-width: 0; }
