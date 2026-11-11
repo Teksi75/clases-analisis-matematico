@@ -30,7 +30,8 @@ La **ventaja mecánica** ideal es $M=A_2/A_1$: con un émbolo mayor, una fuerza 
 
 ### Lo que no se multiplica: la energía {#cap-5-energia}
 
-Si la fuerza se multiplica por $M$, el desplazamiento se reduce en la misma proporción. En una prensa ideal no hay pérdidas, así que el trabajo se conserva:
+::: {.ampliacion}
+Los apuntes no lo desarrollan, pero completa la idea de la prensa. Si la fuerza se multiplica por $M$, el desplazamiento se reduce en la misma proporción. En una prensa ideal no hay pérdidas, así que el trabajo se conserva:
 
 $$F_1d_1=F_2d_2.$$
 
@@ -38,7 +39,8 @@ Como el líquido es incompresible, el volumen que baja de un lado es el que sube
 
 $$A_1d_1=A_2d_2.$$
 
-De ahí sale la equivalencia: $d_1/d_2=A_2/A_1=M$. Para levantar la carga unos centímetros, el émbolo pequeño recorre varios metros. La prensa **no crea energía**: redistribuye fuerza y desplazamiento.
+De ahí sale $d_1/d_2=A_2/A_1=M$. Para levantar la carga unos centímetros, el émbolo pequeño recorre varios metros. La prensa **no crea energía**: redistribuye fuerza y desplazamiento.
+:::
 
 ::: {.definicion}
 **Para resolver un problema de prensa**

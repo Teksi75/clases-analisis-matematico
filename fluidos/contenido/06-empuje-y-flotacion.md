@@ -4,9 +4,9 @@ Un cuerpo sumergido parece pesar menos que fuera del líquido. La causa no es un
 
 ### El origen del empuje {#cap-6-origen}
 
-La presión hidrostática aumenta con la profundidad. Sobre un cuerpo sumergido, la cara inferior está más profunda que la superior, así que la presión sobre la cara inferior es mayor. El resultado de todas esas fuerzas es una fuerza neta vertical, dirigida **hacia arriba**.
-
-Si el cuerpo está totalmente sumergido y es simétrico, las fuerzas laterales se cancelan por pares y solo sobrevive la diferencia vertical. Esa resultante es el empuje.
+::: {.ampliacion}
+Los apuntes enuncian el empuje, no su causa. La presión hidrostática aumenta con la profundidad: sobre un cuerpo sumergido, la cara inferior está más profunda que la superior, así que la presión sobre ella es mayor y el resultado de todas las fuerzas es una fuerza neta vertical **hacia arriba**. En un cuerpo sumergido y simétrico las fuerzas laterales se cancelan por pares y solo sobrevive la diferencia vertical.
+:::
 
 ### Principio de Arquímedes {#cap-6-arquimedes}
 
@@ -26,11 +26,13 @@ El volumen desplazado es el volumen de la parte del cuerpo que está dentro del 
 
 ### Peso aparente {#cap-6-peso-aparente}
 
-El **peso aparente** es lo que «parece pesar» un cuerpo cuando está sumergido y se lo sostiene con una fuerza vertical hacia arriba:
+::: {.ampliacion}
+El **peso aparente** figuraba en el temario del curso, pero la transcripción no lo desarrolla. Es lo que «parece pesar» un cuerpo sumergido que se sostiene con una fuerza vertical hacia arriba:
 
 $$W_{ap}=W-E.$$
 
-Es la lectura de una balanza o de un dinamómetro que sostiene el cuerpo sumergido. Si $E>W$, el cuerpo asciende: la diferencia $E-W$ es la fuerza neta hacia arriba y el peso aparente resulta negativo, lo que indica que el cuerpo flota en lugar de hundirse.
+Es la lectura de una balanza o de un dinamómetro. Si $E>W$, el cuerpo asciende: la diferencia $E-W$ es la fuerza neta hacia arriba y el peso aparente resulta negativo, lo que indica que flota en lugar de hundirse.
+:::
 
 ### Condiciones de flotación {#cap-6-flotacion}
 

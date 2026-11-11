@@ -29,23 +29,24 @@ Este criterio explica por qué se lastra el fondo de un flotador o de un sumergi
 
 ### Cuerpos que flotan parcialmente {#cap-7-flotantes}
 
-En un cuerpo que flota, al inclinarlo cambia la forma del volumen sumergido y, con ella, la posición de $B$. El criterio de los dos centros ya no alcanza. Se usa el **metacentro ($M$)**:
+::: {.ampliacion}
+Los apuntes no tratan la estabilidad de cuerpos que flotan parcialmente. En ellos, al inclinar el cuerpo cambia la forma del volumen sumergido y, con ella, la posición de $B$: el criterio de los dos centros ya no alcanza. Se usa el **metacentro ($M$)**.
 
 - Si el cuerpo gira un ángulo pequeño, la nueva línea de acción del empuje corta al eje de simetría en $M$.
 - El equilibrio es **estable** si $M$ está por encima de $G$.
-- La distancia $GM$ se llama **altura metacéntrica**. Cuanto mayor es, más difícil es volcar el cuerpo.
+- La distancia $GM$ se llama **altura metacéntrica**: cuanto mayor es, más difícil es volcar el cuerpo.
 
-Para quien quiera ir más allá, en cuerpos con simetría vertical,
+En cuerpos con simetría vertical,
 
 $$GM=BM-BG,\qquad BM=\frac{I}{V},$$
 
-donde $I$ es el momento de inercia del área de la **superficie de flotación** respecto del eje de giro y $V$ es el volumen sumergido. La fórmula muestra lo que la experiencia confirma: una base ancha (gran $I$) estabiliza, y un centro de gravedad alto (gran $BG$) desestabiliza.
+donde $I$ es el momento de inercia del área de la **superficie de flotación** respecto del eje de giro y $V$ es el volumen sumergido. Una base ancha (gran $I$) estabiliza; un centro de gravedad alto (gran $BG$) desestabiliza.
+:::
 
 ::: {.definicion}
-**Regla práctica para clasificar la estabilidad**
-1. Cuerpo **totalmente sumergido**: compará la altura de $G$ con la de $B$.
-2. Cuerpo **que flota**: calculá $BM=I/V$, restá $BG$ y mirá el signo de $GM$.
-3. En un cuerpo que flota, $GM=BM-BG$: **ensanchar la base** aumenta $BM$, porque agranda $I$, y **bajar el centro de gravedad** reduce $BG$, porque acerca $G$ a $B$. Las dos cosas aumentan $GM$, pero por caminos distintos. En uno **totalmente sumergido** solo cuentan las posiciones de $G$ y $B$: la base no cambia el criterio.
+**Regla para un cuerpo totalmente sumergido**
+1. Compará la altura de $G$ con la de $B$: por debajo, equilibrio estable; coincidentes, indiferente; por encima, inestable.
+2. Bajar el centro de gravedad mejora la estabilidad. Ensanchar la base **no** cambia este criterio: solo cuentan las posiciones de $G$ y $B$.
 :::
 
 ### Para practicar {#cap-7-practicar}
