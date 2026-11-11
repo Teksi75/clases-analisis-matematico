@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 530" width="640" height="530">
+  <title>Esquema reconstruido: paradoja hidrostática y ejemplo de tres capas</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <g fill="none" stroke="#202b65" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Recipientes, en el orden de la fotografía -->
+    <ellipse cx="100" cy="55" rx="29" ry="17"/>
+    <path d="M71 55 L71 160 C71 181 129 181 129 160 L129 55 M71 160 C71 141 129 141 129 160"/>
+    <ellipse cx="218" cy="63" rx="13" ry="10"/>
+    <path d="M205 63 L205 160 C205 176 231 176 231 160 L231 63 M205 160 C205 147 231 147 231 160"/>
+    <path d="M305 43 L352 43 L365 49 L365 161 L352 174 L305 174 Z M305 43 L305 160 L352 160 L352 43 M305 160 L318 145 L365 145 M352 160 L352 174"/>
+    <path stroke-dasharray="6 9" d="M45 89 H393 M45 174 H393"/>
+    <path d="M42 89 H34 V174 H42"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="19">
+    <text x="14" y="137">h</text>
+    <text x="80" y="118">γ₁</text><text x="207" y="118">γ₂</text><text x="318" y="118">γ₃</text>
+    <text x="94" y="165">·1</text><text x="210" y="165">·2</text><text x="328" y="165">·3</text>
+    <text x="425" y="88">γ₁ = γ₂ = γ₃</text><text x="425" y="135">P₁ = P₂ = P₃</text>
+  </g>
+  <g fill="none" stroke="#202b65" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Tres capas, luego cotas sucesivas -->
+    <path d="M55 260 H205 V470 H55 Z M55 330 H205 M55 400 H205"/>
+    <path d="M300 260 V330 M295 269 L300 260 L305 269 M295 321 L300 330 L305 321"/>
+    <path d="M300 330 V400 M295 339 L300 330 L305 339 M295 391 L300 400 L305 391"/>
+    <path d="M300 400 V470 M295 409 L300 400 L305 409 M295 461 L300 470 L305 461"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="19">
+    <text x="68" y="302">γ = 300</text><text x="68" y="372">γ = 900</text><text x="68" y="442">γ =</text>
+    <text x="211" y="300">1</text><text x="211" y="370">2</text><text x="211" y="440">3</text>
+    <text x="320" y="300">4000 mm</text><text x="320" y="370">5000 mm</text><text x="320" y="440">4000 mm</text>
+    <text x="470" y="302">P₁ = h · γ</text>
+  </g>
+</svg>

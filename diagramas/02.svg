@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 135" width="520" height="270">
+  <title>Esquema reconstruido: presión: fuerza sobre una superficie</title>
+  <desc>Reconstrucción vectorial del esquema manuscrito. Procedencia y omisiones documentadas en revision/diagramas.md.</desc>
+  <g fill="none" stroke="#202b65" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M35 100 Q85 103 218 106"/>
+    <path d="M35 100 L177 39"/>
+    <path d="M35 39 L35 97 M30 87 L35 97 L40 87"/>
+    <path d="M126 61 Q135 79 132 102"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="19">
+    <text x="43" y="36">F⊥</text><text x="156" y="33">F</text>
+  </g>
+</svg>
