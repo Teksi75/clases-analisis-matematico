@@ -272,6 +272,172 @@ test('playing after stop or explicit selection while paused resumes the native s
   assert.equal(synthesis.spoken.at(-1).text, 'b');
 });
 
+test('direct selection preserves transport state, bounds, and cancellation safety', () => {
+  for (const state of ['playing', 'paused', 'stopped', 'idle', 'finished', 'error']) {
+    const { reader, synthesis } = setup();
+    const blocks = [block('a'), block('b', 'palabra '.repeat(80)), block('c')];
+    reader.setBlocks(blocks);
+    if (state !== 'idle') reader.play();
+    if (state === 'paused') reader.pause();
+    if (state === 'stopped') reader.stop();
+    if (state === 'finished') {
+      while (reader.snapshot.state === 'playing') synthesis.spoken.at(-1).onend();
+    }
+    if (state === 'error') synthesis.spoken.at(-1).onerror({ error: 'test' });
+    const old = synthesis.spoken.at(-1);
+    const before = reader.snapshot;
+    const spoken = synthesis.spoken.length;
+    const cancels = synthesis.cancels;
+    for (const invalid of [-1, 3, 1.5, NaN, '1']) {
+      assert.equal(reader.select(invalid), false);
+      assert.deepEqual(reader.snapshot, before);
+      assert.equal(synthesis.cancels, cancels);
+      assert.equal(synthesis.spoken.length, spoken);
+    }
+    synthesis.cancel = function () {
+      this.cancels++;
+      old?.onend(); old?.onerror({ error: 'synchronous cancellation' });
+    };
+    assert.equal(reader.select(1), true);
+    assert.equal(synthesis.cancels, cancels + 1);
+    assert.equal(reader.snapshot.state, state);
+    assert.equal(reader.snapshot.index, 1);
+    assert.equal(reader.snapshot.chunkIndex, 0);
+    assert.equal(reader.snapshot.chunkCount, segmentText(blocks[1].text).length);
+    assert.equal(reader.snapshot.block, blocks[1]);
+    assert.equal(reader.snapshot.error, before.error);
+    assert.equal(synthesis.spoken.length, spoken + (state === 'playing' ? 1 : 0));
+    if (state === 'playing') assert.equal(synthesis.spoken.at(-1).text, segmentText(blocks[1].text)[0]);
+    const after = reader.snapshot;
+    old?.onend(); old?.onerror({ error: 'late' });
+    assert.deepEqual(reader.snapshot, after);
+    assert.equal(synthesis.spoken.length, spoken + (state === 'playing' ? 1 : 0));
+    if (state === 'paused') {
+      reader.resume();
+      assert.equal(synthesis.spoken.at(-1).text, segmentText(blocks[1].text)[0]);
+      assert.equal(reader.snapshot.state, 'playing');
+    }
+  }
+});
+
+test('queue replacement restores an explicit safe position or pauses at fallback', () => {
+  for (const initial of ['playing', 'paused', 'stopped', 'idle']) {
+    for (const fallback of [false, true]) {
+      const { reader, synthesis } = setup();
+      reader.setBlocks([block('old'), block('other')]);
+      if (initial !== 'idle') reader.play();
+      if (initial === 'paused') reader.pause();
+      if (initial === 'stopped') reader.stop();
+      const old = synthesis.spoken.at(-1);
+      const blocks = [block('heading'), block('safe', 'texto '.repeat(100))];
+      const before = reader.snapshot;
+      const spoken = synthesis.spoken.length;
+      const cancels = synthesis.cancels;
+      for (const options of [{ index: -1 }, { index: 2 }, { index: 1, chunkIndex: -1 },
+        { index: 1, chunkIndex: 999 }, { index: 1, paused: 'yes' }, { index: 0.5 }]) {
+        assert.equal(reader.setBlocks(blocks, options), false);
+        assert.deepEqual(reader.snapshot, before);
+        assert.equal(synthesis.cancels, cancels);
+        assert.equal(synthesis.spoken.length, spoken);
+      }
+      synthesis.cancel = function () {
+        this.cancels++;
+        old?.onend(); old?.onerror({ error: 'synchronous cancellation' });
+      };
+      const index = fallback ? 0 : 1;
+      const chunkIndex = fallback ? 0 : 1;
+      assert.equal(reader.setBlocks(blocks, { index, chunkIndex, paused: fallback }), true);
+      const expectedState = fallback ? 'paused' : initial;
+      assert.equal(reader.snapshot.state, expectedState);
+      assert.equal(reader.snapshot.index, index);
+      assert.equal(reader.snapshot.chunkIndex, chunkIndex);
+      assert.equal(reader.snapshot.chunkCount, segmentText(blocks[index].text).length);
+      assert.equal(reader.snapshot.block, blocks[index]);
+      assert.equal(reader.snapshot.error, null);
+      assert.equal(synthesis.cancels, cancels + 1);
+      const starts = initial === 'playing' && !fallback ? 1 : 0;
+      assert.equal(synthesis.spoken.length, spoken + starts);
+      if (starts) assert.equal(synthesis.spoken.at(-1).text, segmentText(blocks[index].text)[chunkIndex]);
+      const after = reader.snapshot;
+      old?.onend(); old?.onerror({ error: 'late' });
+      assert.deepEqual(reader.snapshot, after);
+      assert.equal(synthesis.spoken.length, spoken + starts);
+      if (expectedState === 'paused') {
+        reader.resume();
+        assert.equal(synthesis.spoken.at(-1).text, segmentText(blocks[index].text)[chunkIndex]);
+        assert.equal(reader.snapshot.state, 'playing');
+      }
+    }
+  }
+});
+
+test('selected playback continues across chapters and keeps voice, rate and chunking', () => {
+  const { reader, synthesis } = setup([ar, mx]);
+  const text = 'contenido '.repeat(55);
+  const blocks = [block('earlier'), { ...block('selected', text), chapterId: 'first' },
+    { ...block('next chapter'), chapterId: 'second' }];
+  reader.setBlocks(blocks);
+  reader.setVoice(mx); reader.setRate(1.2);
+  reader.play(); reader.stop();
+  assert.equal(reader.select(1), true);
+  assert.equal(reader.snapshot.state, 'stopped');
+  assert.equal(synthesis.spoken.length, 1);
+  reader.play();
+  for (const part of segmentText(text)) {
+    const utterance = synthesis.spoken.at(-1);
+    assert.equal(utterance.text, part);
+    assert.equal(utterance.voice, mx);
+    assert.equal(utterance.rate, 1.2);
+    utterance.onend();
+  }
+  assert.equal(reader.snapshot.index, 2);
+  assert.equal(reader.snapshot.block.chapterId, 'second');
+  assert.equal(synthesis.spoken.at(-1).text, 'next chapter');
+  synthesis.spoken.at(-1).onend();
+  assert.equal(reader.snapshot.state, 'finished');
+});
+
+test('explicit replacement rejects invalid queues and supports empty text without speech', () => {
+  const { reader, synthesis } = setup();
+  reader.setBlocks([block('original')]);
+  const before = reader.snapshot;
+  const cancels = synthesis.cancels;
+  for (const [blocks, position] of [[[], { index: 0 }], [null, { index: 0 }],
+    [[block('x')], null], [[block('x')], {}], [[block('x')], { index: 0, chunkIndex: 1.5 }]]) {
+    assert.equal(reader.setBlocks(blocks, position), false);
+    assert.deepEqual(reader.snapshot, before);
+    assert.equal(synthesis.cancels, cancels);
+    assert.equal(synthesis.spoken.length, 0);
+  }
+  assert.equal(reader.setBlocks([block('empty', '')], { index: 0, paused: true }), true);
+  assert.equal(reader.snapshot.state, 'paused');
+  assert.equal(reader.snapshot.index, 0);
+  assert.equal(reader.snapshot.chunkIndex, 0);
+  assert.equal(reader.snapshot.chunkCount, 0);
+  assert.equal(synthesis.spoken.length, 0);
+  reader.destroy();
+  assert.equal(reader.select(0), false);
+  assert.equal(synthesis.spoken.length, 0);
+});
+
+test('existing relative moves and default replacement retain their original states', () => {
+  const { reader, synthesis } = setup();
+  reader.setBlocks([block('a'), block('b')]);
+  reader.play(); reader.stop(); reader.next();
+  assert.equal(reader.snapshot.state, 'idle');
+  assert.equal(reader.snapshot.index, 1);
+  assert.equal(synthesis.spoken.length, 1);
+  reader.play(); reader.pause(); reader.setBlocks([block('new')]);
+  assert.equal(reader.snapshot.state, 'idle');
+  assert.equal(reader.snapshot.index, 0);
+  assert.equal(reader.snapshot.chunkIndex, 0);
+  assert.equal(reader.snapshot.block.id, 'new');
+  assert.equal(synthesis.spoken.length, 2);
+  reader.setBlocks([]);
+  assert.equal(reader.snapshot.index, -1);
+  assert.equal(reader.snapshot.state, 'idle');
+});
+
 test('missing APIs and synchronous speak errors are visible and never crash', () => {
   const reader = new SpeechReader({ synthesis: null, Utterance: null });
   reader.setBlocks([block('a')]);

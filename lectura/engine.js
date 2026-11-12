@@ -111,14 +111,41 @@ export class SpeechReader {
     this.chunks = index >= 0 && index < this.blocks.length ? segmentText(this.blocks[index].text) : [];
   }
 
-  setBlocks(blocks) {
+  setBlocks(blocks, position) {
     if (this.destroyed) return;
+    if (position !== undefined) {
+      if (!Array.isArray(blocks) || !position || typeof position !== 'object') return false;
+      const { index, chunkIndex = 0, paused = false } = position;
+      if (!Number.isInteger(index) || index < 0 || index >= blocks.length ||
+          !Number.isInteger(chunkIndex) || chunkIndex < 0 || typeof paused !== 'boolean') return false;
+      const count = segmentText(blocks[index].text).length;
+      if (chunkIndex >= Math.max(count, 1)) return false;
+      this.#relocate([...blocks], index, chunkIndex, paused);
+      return true;
+    }
     this.cancel();
     this.blocks = Array.isArray(blocks) ? [...blocks] : [];
     this.loadBlock(this.blocks.length ? 0 : -1);
     this.state = 'idle';
     this.error = null;
     this.notify();
+  }
+
+  // Relocation keeps the transport state unless a safe fallback must be paused.
+  #relocate(blocks, index, chunkIndex, paused) {
+    this.cancel();
+    this.blocks = blocks;
+    this.loadBlock(index);
+    this.chunkIndex = chunkIndex;
+    if (paused) { this.state = 'paused'; this.error = null; }
+    if (this.state === 'playing') this.startChunk();
+    else this.notify();
+  }
+
+  select(index) {
+    if (this.destroyed || !Number.isInteger(index) || index < 0 || index >= this.blocks.length) return false;
+    this.#relocate(this.blocks, index, 0, false);
+    return true;
   }
 
   setVoice(voice) {

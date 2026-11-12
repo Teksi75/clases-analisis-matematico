@@ -20,6 +20,18 @@ const lector = mountReader({
 
 `storageKey` debe ser diferente por página. Se guardan voz, velocidad y posición solo en `localStorage`, si está disponible; sin acceso el lector sigue funcionando. Abrir o cerrar una resolución actualiza el recorrido y detiene la reproducción; pulsá Reproducir para continuar. Los ID de bloques sobreviven a cambios de visibilidad, pero pueden cambiar al modificar la estructura HTML.
 
+## Navegación desde el motor
+
+Para integrar `SpeechReader` con controles propios:
+
+```js
+reader.select(index); // Selecciona un bloque existente, desde su primer fragmento.
+reader.setBlocks(blocks, { index, chunkIndex: 0 }); // Sustituye la secuencia en una posición segura.
+reader.setBlocks(blocks, { index: headingIndex, paused: true }); // Alternativa segura sin reproducir.
+```
+
+`select` conserva el estado de transporte: si estaba reproduciendo continúa en el nuevo bloque; si estaba pausado o detenido no inicia audio. También conserva los estados `idle`, `finished` y `error`. La sustitución con posición conserva el estado del mismo modo; `paused: true` fuerza una pausa, incluso durante la reproducción. `chunkIndex` es opcional y vale cero por defecto. El integrador debe comprobar que la identidad del contenido sigue siendo segura antes de conservar una posición; ante una posición inválida, debe elegir el encabezado adecuado y usar la alternativa pausada. Ambas operaciones devuelven `false` sin cambios ni cancelación si la posición es inválida, y `true` si se acepta; índices y fragmentos deben ser enteros dentro de sus respectivos rangos (un bloque sin texto admite el fragmento cero). No se acepta una secuencia vacía con posición explícita. La llamada existente `setBlocks(blocks)` sigue reemplazando la secuencia desde el principio en estado `idle` y admite una secuencia vacía.
+
 ## Arquitectura y exclusiones
 
 `engine.js` controla la síntesis y sus eventos; `extractor.js` recorre el DOM; `math.js` narra MathML; `ui.js` monta los controles; el módulo de página aporta selectores y reglas. El extractor omite tablas completas, navegación, controles y elementos ocultos. Sumá subárboles con `excludeSelector`; consultá [EXTRACCION.md](EXTRACCION.md) para todas las opciones. Las reglas matemáticas son propias de cada página y prevalecen sobre la conversión automática. [MATEMATICAS.md](MATEMATICAS.md) explica cómo agregarlas, modificarlas y eliminarlas sin duplicados.
