@@ -126,8 +126,8 @@ Inherited stage-1 close-scroll decision remains binding: preserve the exact scro
 
 ## Tasks
 
-- T1 | S2,S3,S6,S8 | in_progress | route: gentle-ai-worker (runtime context backstop) | outcome: additive state-preserving engine navigation/queue reconciliation, regression tests and API documentation | commit: pending
-- T2 | S1,S2,S3,S4,S7,S8 | pending | route: gentle-ai-worker (runtime context backstop; depends on T1) | outcome: visible/direct/index selection and chapter progress with tests/docs | commit: pending
+- T1 | S2,S3,S6,S8 | done | route: gentle-ai-worker (runtime context backstop) | outcome: additive state-preserving engine navigation/queue reconciliation, 22/22 engine tests and parent repeat passed; independent feature checks remain T4 | commit: ad52236b0e259c91a2f21045a6a2aa90c9f53384
+- T2 | S1,S2,S3,S4,S7,S8 | in_progress | route: gentle-ai-worker (runtime context backstop; depends on T1) | outcome: visible/direct/index selection and chapter progress with tests/docs | commit: pending
 - T3 | S2,S5,S6,S8 | pending | route: gentle-ai-worker (runtime context backstop; depends on T2) | outcome: sensible following, manual suspension/resume and safe disclosure updates with tests/docs | commit: pending
 - T4 | S1-S8 | pending | route: parent structural/functional spot-check plus independent gentle-ai-verify (Risk item 4) | outcome: isolated verification of all specs, official generation, preserved stage-1 behavior, visual checks, final evidence | commit: pending
 
@@ -161,3 +161,18 @@ sigamos con la etapa 2 del lector
 - Parent/final verifier: `node --test tests/lector-engine.test.mjs`, `node tests/lector-ui.test.mjs`, any new stage-2 browser runner, `node tests/lector-extractor.test.mjs`, `node tests/lector-math.test.mjs`, `python3 -B -m unittest discover -s tests -p 'test_fluidos_*.py' -v`, official `python3 fluidos/generar.py` followed by `python3 fluidos/generar.py --check`, `node fluidos/comprobar_navegador.mjs`, `git diff --check`.
 - Preserve Physics sources, generator/template/generated HTML, table exclusion, `lectura/math.js`, and `teoria/lectura.js` unless an actual in-scope integration need is proven; never modify generated HTML directly. No dependency/install/CI changes or external services.
 - Independent verifier uses a selective isolated copy with known dependencies and scratch capacity, no ambient/full `.worktrees` copy; commands run with bounded timeouts, no unavailable-capability retries. Report audible/mobile-device testing limitations rather than claiming synthetic speech proves real voice output.
+
+### L4 — T1 engine unit completed
+
+- Worker `mwduh5j7-2-r9en` implemented only the three allowed engine/test/API-doc surfaces; 207 authored diff lines, commit `ad52236b0e259c91a2f21045a6a2aa90c9f53384`.
+- RED: engine command exit 1, two new-rule failures and 18 passes before implementation. GREEN: 22/22 passed, exit 0. Parent repeated `node --test tests/lector-engine.test.mjs`, 22/22 exit 0, and `git diff --check`, exit 0. Exact output remains in worker/parent tool transcripts; no separate stdout/stderr labels were emitted by the worker runner.
+- API: `reader.select(index)` preserves transport state; `reader.setBlocks(blocks, {index, chunkIndex: 0})` reconciles a safe queue; `{index: headingIndex, paused: true}` prepares paused fallback without speaking. Default `setBlocks(blocks)` stays idle. UI remains responsible for safe identity and nearest-heading choice. Existing finished replay semantics remain; UI must make a voluntary post-finish selection prepare the chosen location rather than replay from zero.
+- First parallel native assessment invocation rejected without a usable serialized error (parent logger rendered Error as `{}`); fresh direct read-only ASSESS succeeded: native medium, agent escalation item4 high, reviewDue false / under_budget, writerSelfVerification and independentVerifier true. No INSPECT/START, consent, lineage or native review verdict. Independent checks for all completed engine/UI units remain the single T4 feature-verification run; no completion claim before that proof.
+- Delivery slice 1: tracker `c6d6b1c` plus engine `ad52236` = 370 authored diff lines. Keep its boundary at `ad52236`; next navigation unit begins slice 2. No publishing authorized.
+
+### L5 — T2 proof gap and bounded correction
+
+- Worker `mwdundv5-3-7wdq` returned partial: navigation9/9 and engine22/22 pass, diff-check0; stage-1 UI runner was unrun because its four screenshot outputs were outside worker edit surfaces, not because the runner failed. No worker-local exhausted correction limit or unavailable verification capability was reported. No child remains active/uncertain (parent inspected settled task list before continuation).
+- Parent ran the already-authorized UI command in its permitted project context: background job-2, `timeout 180s node tests/lector-ui.test.mjs`, exit0, all five groups including F1–F20/voices/keyboard/details/layout, completion/replay, missing APIs/storage, malformed storage and migration/speed ties. This repairs the missing output-surface prerequisite; no verifier has run or failed setup.
+- Parent structural read confirmed the shared selection/render/persist path and index default-anchor behavior. Coverage still needs actual mouse activation, conventional focus, valid saved-vs-visible precedence and direct/progress/tab-order boundaries. Index initial RED failed on an unrelated focus assertion; it is NOT valid transport RED evidence. Existing finished/scroll cases are preservation, not RED. One bounded T2 correction adds the missing evidence and fixes only defects exposed by it; no new feature scope.
+- Fresh native assessment: medium native / high agent item4, reviewDue false / under_budget, independent feature verification still required. New navigation test was explicitly staged as intended task content before assessment; nothing committed while T2 is partial.

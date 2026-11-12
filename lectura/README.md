@@ -1,6 +1,6 @@
 # Lector educativo de voz
 
-El lector recorre los bloques académicos visibles en orden y usa las voces españolas disponibles en el dispositivo. Pulsá **🎧 Escuchar** y luego **Reproducir**: no empieza automáticamente. Usá Anterior y Siguiente para recorrer fragmentos; en Configuración podés elegir capítulo o voz y detener. El selector de velocidad ofrece 0,8×, 1×, 1,2× y 1,5×; los cambios de voz y velocidad se aplican al próximo fragmento. Minimizar conserva la reproducción; Cerrar lector la cancela y devuelve el foco a Escuchar.
+El lector recorre los bloques académicos visibles en orden y usa las voces españolas disponibles en el dispositivo. Pulsá **🎧 Escuchar** y luego **Reproducir**: no empieza automáticamente. Al abrir, prepara el apartado visible; si no puede identificarlo, usa la posición guardada. Usá Anterior y Siguiente para recorrer fragmentos. En Configuración podés elegir capítulo, encabezado o punto de lectura, elegir voz y detener. El índice lateral también selecciona el destino mientras el lector está abierto: si reproduce, continúa allí; si está pausado o detenido, conserva ese estado. Desplazarse sin activar un enlace no cambia la lectura. El contador «Fragmento … de …» corresponde al capítulo, no a una duración. El selector de velocidad ofrece 0,8×, 1×, 1,2× y 1,5×; los cambios de voz y velocidad se aplican al próximo fragmento. Minimizar conserva la reproducción; Cerrar lector la cancela y devuelve el foco a Escuchar.
 
 ## Agregar a otra página
 
@@ -13,12 +13,13 @@ const lector = mountReader({
   root: document.querySelector('main'),
   contentSelector: ':scope > article', chapterSelector: 'article',
   chapterHeadingSelector: 'h1, h2', sectionHeadingSelector: 'h3, h4, h5, h6',
-  excludeSelector: '.no-leer', mathRules, storageKey: 'lector-mi-pagina',
+  excludeSelector: '.no-leer', indexSelector: '.indice a[href^="#"]',
+  mathRules, storageKey: 'lector-mi-pagina',
 });
 // Al desmontar: lector.destroy();
 ```
 
-`storageKey` debe ser diferente por página. Se guardan voz, velocidad y posición solo en `localStorage`, si está disponible; sin acceso el lector sigue funcionando. Abrir o cerrar una resolución actualiza el recorrido y detiene la reproducción; pulsá Reproducir para continuar. Los ID de bloques sobreviven a cambios de visibilidad, pero pueden cambiar al modificar la estructura HTML.
+`indexSelector` es opcional y señala los enlaces del índice que seleccionan un destino sin impedir la navegación normal. `storageKey` debe ser diferente por página. Se guardan voz, velocidad y posición solo en `localStorage`, si está disponible; sin acceso el lector sigue funcionando. Abrir o cerrar una resolución actualiza el recorrido y detiene la reproducción; pulsá Reproducir para continuar. Los ID de bloques sobreviven a cambios de visibilidad, pero pueden cambiar al modificar la estructura HTML.
 
 ## Navegación desde el motor
 
@@ -43,6 +44,7 @@ La Web Speech API depende del navegador, las voces instaladas y los gestos del u
 Desde la raíz, con Node y Chromium instalados:
 
 ```sh
+node tests/lector-navigation.test.mjs
 node tests/lector-ui.test.mjs
 node --test tests/lector-engine.test.mjs
 node tests/lector-math.test.mjs

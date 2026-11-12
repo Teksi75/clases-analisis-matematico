@@ -13,7 +13,7 @@ function nearestSpeed(value) {
 }
 
 // La posición seleccionada y la presentación son independientes del estado del motor.
-export function mountReader({ root, storageKey, mathRules = [], ...extractOptions }) {
+export function mountReader({ root, storageKey, mathRules = [], indexSelector = '', ...extractOptions }) {
   if (!root) throw new TypeError('Se requiere un elemento raíz');
   const trigger = document.createElement('button');
   trigger.type = 'button';
@@ -26,7 +26,7 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
   panel.setAttribute('aria-label', 'Lector de voz');
   panel.innerHTML = `
     <div class="lector-barra" data-lector-bar hidden>
-      <div class="lector-informacion"><strong data-lector-location></strong><span data-lector-status role="status" aria-live="polite"></span></div>
+      <div class="lector-informacion"><strong data-lector-location></strong><span><span data-lector-status role="status" aria-live="polite"></span> <span data-lector-progress></span></span></div>
       <div class="lector-transporte">
         <button type="button" data-lector-previous aria-label="Fragmento anterior">Anterior</button>
         <button type="button" data-lector-play>Reproducir</button>
@@ -40,6 +40,8 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
       </div>
       <div class="lector-configuracion" id="lector-configuracion" data-lector-settings hidden>
         <label>Capítulo <select data-lector-chapter></select></label>
+        <label>Encabezado <select data-lector-heading></select></label>
+        <label>Punto de lectura <select data-lector-point></select></label>
         <label>Voz <select data-lector-voice></select></label>
         <p data-lector-voices-status></p>
         <p>La voz y la velocidad cambian en el próximo fragmento.</p>
@@ -54,7 +56,7 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     </div>`;
   root.insertBefore(panel, root.querySelector('article'));
   const $ = name => panel.querySelector(`[data-lector-${name}]`);
-  const chapter = $('chapter'), voice = $('voice'), rate = $('rate');
+  const chapter = $('chapter'), heading = $('heading'), point = $('point'), voice = $('voice'), rate = $('rate');
   let saved = {};
   try {
     const parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
@@ -83,6 +85,14 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     chapter.replaceChildren();
     for (const [id, title] of chapters) option(chapter, id, title);
     chapter.value = current?.chapterId || '';
+    const local = blocks.map((block, index) => ({ block, index })).filter(({ block }) => block.chapterId === current?.chapterId);
+    const headings = local.filter(({ block }) => block.element.matches(`${extractOptions.chapterHeadingSelector || 'h1, h2'}, ${extractOptions.sectionHeadingSelector || 'h3, h4, h5, h6'}`));
+    heading.replaceChildren(); point.replaceChildren();
+    for (const item of headings) option(heading, String(item.index), item.block.text);
+    for (const item of local) option(point, String(item.index), item.block.text);
+    heading.value = String(headings.filter(item => item.index <= selected).at(-1)?.index ?? '');
+    point.value = String(selected);
+    $('progress').textContent = current ? `Fragmento ${local.findIndex(item => item.index === selected) + 1} de ${local.length}` : '';
     $('location').textContent = current ? [current.chapterTitle, current.sectionTitle].filter(Boolean).join(' / ') : 'No hay bloques visibles para leer.';
   }
   function render(snapshot) {
@@ -147,10 +157,21 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
   }
   function select(index) {
     if (index < 0 || index >= blocks.length) return;
-    if (reader.snapshot.state !== 'idle') reader.stop();
-    selected = index; message = ''; render(reader.snapshot);
+    if (reader.snapshot.state === 'finished') reader.stop();
+    selected = index; message = '';
+    reader.select(index);
   }
-  trigger.addEventListener('click', () => { show('open'); $('play').focus({ preventScroll: true }); });
+  function visibleIndex() {
+    return blocks.findIndex(({ element }) => {
+      const rect = element.getBoundingClientRect();
+      return rect.bottom > Math.min(96, innerHeight / 4) && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth;
+    });
+  }
+  trigger.addEventListener('click', () => {
+    const index = visibleIndex();
+    if (index >= 0) select(index);
+    show('open'); $('play').focus({ preventScroll: true });
+  });
   const close = () => {
     const x = window.scrollX, y = window.scrollY;
     show('closed'); message = ''; reader.stop(); clearHighlight();
@@ -166,6 +187,20 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     $('settings-toggle').setAttribute('aria-expanded', String(!$('settings').hidden));
   });
   chapter.addEventListener('change', () => select(blocks.findIndex(b => b.chapterId === chapter.value)));
+  heading.addEventListener('change', () => select(Number(heading.value)));
+  point.addEventListener('change', () => select(Number(point.value)));
+  const onIndexClick = event => {
+    if (presentation === 'closed' || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest?.(indexSelector || ':not(*)');
+    if (!link || link.target && link.target !== '_self' || link.hasAttribute('download')) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search || !url.hash) return;
+    let target;
+    try { target = document.getElementById(decodeURIComponent(url.hash.slice(1))); } catch { return; }
+    const index = blocks.findIndex(block => block.element === target || target?.contains(block.element));
+    if (index >= 0) select(index);
+  };
+  document.addEventListener('click', onIndexClick);
   voice.addEventListener('change', () => {
     if (reader.setVoice(voice.value)) { preferred = voice.value; appliedPreference = preferred; persist(); }
   });
@@ -202,5 +237,5 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     render(reader.snapshot);
   };
   root.addEventListener('toggle', onToggle, true);
-  return { destroy() { root.removeEventListener('toggle', onToggle, true); observer.disconnect(); reader.destroy(); clearHighlight(); panel.remove(); trigger.remove(); document.body.style.removeProperty('--lector-space'); } };
+  return { destroy() { document.removeEventListener('click', onIndexClick); root.removeEventListener('toggle', onToggle, true); observer.disconnect(); reader.destroy(); clearHighlight(); panel.remove(); trigger.remove(); document.body.style.removeProperty('--lector-space'); } };
 }
