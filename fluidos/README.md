@@ -2,6 +2,10 @@
 
 Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resultado/apuntes_corregidos.md`, `resultado/ejercicios_resueltos.md` y `revision/errores_detectados.md`. Se excluyen intencionalmente fotografías y datos personales. Los esquemas son los SVG reconstruidos de `diagramas/`, referenciados por ruta relativa: el material no contiene imágenes fotográficas.
 
+## Lector de voz
+
+El reproductor permite elegir capítulo y párrafo, voz española y velocidad. No inicia la lectura al cargar; la posición se guarda localmente cuando es posible. Si se abre o cierra una resolución, pulsá Reproducir para continuar. La disponibilidad de voces y la pausa dependen del navegador y dispositivo. La arquitectura, configuración, reglas matemáticas y pruebas están en [lectura/README.md](../lectura/README.md).
+
 ## Regenerar y comprobar
 
 Desde la raíz del repositorio, con Pandoc 3.11, Python 3, Node 26 y `/usr/bin/chromium`:

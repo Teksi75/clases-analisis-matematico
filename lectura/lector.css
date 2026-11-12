@@ -1,0 +1,14 @@
+/* Reproductor contenido en el flujo: no tapa el cuaderno. */
+.lector { margin: 1.5rem 0 2.5rem; padding: 1.25rem; border: 1px solid var(--rule); border-left: 3px solid var(--accent); background: var(--bg, #202020); }
+.lector h2 { margin: 0 0 .5rem; font-size: 1.3rem; }
+.lector p { margin: .65rem 0; }
+.lector-campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .8rem; }
+.lector label { display: grid; gap: .3rem; min-width: 0; font-weight: 600; }
+.lector select { width: 100%; min-width: 0; }
+.lector select, .lector button { min-height: 2.75rem; padding: .45rem .65rem; color: #f5f2eb; background: #303030; border: 1px solid #aaa; border-radius: .2rem; font: inherit; }
+.lector input[type="range"] { max-width: 100%; min-height: 2.75rem; vertical-align: middle; accent-color: var(--accent); }
+.lector-botones { display: flex; flex-wrap: wrap; gap: .5rem; }
+.lector button { cursor: pointer; }
+.lector :is(button, select, input):focus-visible { outline: 3px solid var(--accent, #eabf59); outline-offset: 3px; }
+.lector-activo { outline: 3px solid var(--accent, #eabf59); outline-offset: 4px; }
+@media print { .lector { display: none; } .lector-activo { outline: none; } }
