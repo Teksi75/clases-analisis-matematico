@@ -31,6 +31,21 @@ function setup(voices = [ar]) {
   return { synthesis, reader, changes };
 }
 
+test('regional numeric and script voice tags preserve the specified priority', () => {
+  const latin = { lang: 'es_Latn_419', voiceURI: 'latin' };
+  const argentina = { lang: 'es-Latn-AR', voiceURI: 'arg' };
+  assert.deepEqual(spanishVoices([es, mx, latin, generic, argentina]), [argentina, latin, mx, es, generic]);
+});
+
+test('natural end is finished and replay starts at the beginning; stop is distinct', () => {
+  const { reader, synthesis } = setup();
+  reader.setBlocks([block('a'), block('b')]);
+  reader.play(); synthesis.spoken.at(-1).onend(); synthesis.spoken.at(-1).onend();
+  assert.equal(reader.snapshot.state, 'finished');
+  reader.play(); assert.equal(synthesis.spoken.at(-1).text, 'a');
+  reader.stop(); assert.equal(reader.snapshot.state, 'stopped');
+});
+
 test('Spanish voices are filtered and ordered by region, with stable ties', () => {
   const other = { name: 'Filipinas', lang: 'es-PH' };
   const co = { name: 'Colombia', lang: 'es-CO' };
@@ -120,7 +135,7 @@ test('pause and resume preserve position; end while paused waits for explicit re
   while (reader.snapshot.index === 0) synthesis.spoken.at(-1).onend();
   assert.equal(reader.snapshot.block.id, 'b');
   synthesis.spoken.at(-1).onend();
-  assert.equal(reader.snapshot.state, 'idle');
+  assert.equal(reader.snapshot.state, 'finished');
 });
 
 test('native pause and resume retain the same active utterance', () => {
@@ -132,7 +147,7 @@ test('native pause and resume retain the same active utterance', () => {
   assert.equal(reader.snapshot.index, 1);
   assert.equal(reader.snapshot.chunkIndex, 0);
   synthesis.spoken[0].onend();
-  assert.equal(reader.snapshot.state, 'idle');
+  assert.equal(reader.snapshot.state, 'finished');
 });
 
 test('stop, skip and replacement invalidate late end and error events', () => {
@@ -158,7 +173,7 @@ test('stop, skip and replacement invalidate late end and error events', () => {
   const stopped = synthesis.spoken.at(-1);
   reader.stop();
   stopped.onend(); stopped.onerror({ error: 'late' });
-  assert.equal(reader.snapshot.state, 'idle');
+  assert.equal(reader.snapshot.state, 'stopped');
   assert.equal(reader.snapshot.index, 0);
   assert.equal(synthesis.spoken.length, 4);
 });

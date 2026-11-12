@@ -12,11 +12,12 @@ function languageParts(voice) {
 function voiceRank(voice) {
   const [language, ...subtags] = languageParts(voice);
   if (language?.toLowerCase() !== 'es') return Infinity;
-  const region = subtags.find(part => /^[a-z]{2}$/i.test(part))?.toUpperCase();
+  const region = subtags.find(part => /^(?:[a-z]{2}|\d{3})$/i.test(part))?.toUpperCase();
   if (region === 'AR') return 0;
-  if (LATIN_AMERICA.has(region)) return 1;
-  if (region === 'ES') return 2;
-  return 3;
+  if (region === '419') return 1;
+  if (LATIN_AMERICA.has(region)) return 2;
+  if (region === 'ES') return 3;
+  return 4;
 }
 
 /** Available Spanish voices, ordered by preferred region; ties retain input order. */
@@ -145,7 +146,7 @@ export class SpeechReader {
     if (index !== undefined && (!Number.isInteger(index) || index < 0 || index >= this.blocks.length)) return;
     this.cancel();
     if (index !== undefined) this.loadBlock(index);
-    else if (this.index < 0 && this.blocks.length) this.loadBlock(0);
+    else if ((this.state === 'finished' || this.index < 0) && this.blocks.length) this.loadBlock(0);
     this.error = null;
     this.state = 'playing';
     if (this.nativePaused) this.resumeNative();
@@ -156,7 +157,7 @@ export class SpeechReader {
     if (this.destroyed || this.state !== 'playing') return;
     while (this.index >= 0 && this.index < this.blocks.length && this.chunkIndex >= this.chunks.length) {
       if (this.index + 1 >= this.blocks.length) {
-        this.state = 'idle';
+        this.state = 'finished';
         this.chunkIndex = 0;
         this.notify();
         return;
@@ -232,7 +233,7 @@ export class SpeechReader {
   stop() {
     if (this.destroyed) return;
     this.cancel();
-    this.state = 'idle';
+    this.state = 'stopped';
     this.error = null;
     if (this.index >= 0) this.loadBlock(this.index);
     this.notify();
