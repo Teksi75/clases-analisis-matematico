@@ -438,8 +438,8 @@ Esta autorización posterior habilita publicar las ramas/PRs e integrar en main 
 - T2 | S2-S5 | Implementación y pruebas de la etapa 1 | ruta: gentle-ai-worker (context backstop medido por runtime), ajuste acotado de pruebas/docs por parent | done | motor f43a8d5fabc2a5da04315efe64a153b270a8628e, UI d044c34cd85cf3cdee3d2ad772d0df4518077a62; suites y F11 actualizado aprobados.
 - T3 | S1-S6 | Verificación independiente y evaluación nativa aplicable | ruta: gentle-ai-verify, Risk: item 4 (eventos asíncronos de síntesis y exclusión de sesiones simultáneas) | done | candidatos f43a8d5 y d044c34 verificados; recheck F11 aprobado; ambas evaluaciones nativas medium/reviewDue false, sin START ni revisión formal.
 - T4 | S5-S6 | Evidencia, matriz de aceptación y cierre local | ruta: parent | done | matriz en d044c34 y cierre técnico en cd79e907bf0bc22119d27dcda7adee762341765a (fluidos/LECTOR-ETAPA1.md); auditoría de alcance/preservación exit 0; cierre local 9dc66c0.
-- T5 | S7, S1 | Preparar y publicar la cadena de PRs | ruta: parent (operaciones remotas explícitamente autorizadas) | in_progress | preflight remoto y commit de autorización pendientes.
-- T6 | S7 | Integrar hijos y tracker en main con sus controles | ruta: parent | pending | requiere T5; sin force ni bypass de controles.
+- T5 | S7, S1 | Preparar y publicar la cadena de PRs | ruta: parent (operaciones remotas explícitamente autorizadas) | done | autorización 5e65970; PRs #32 tracker, #33 motor, #34 interfaz, #35 cierre; ramas publicadas y etiqueta única verificada.
+- T6 | S7 | Integrar hijos y tracker en main con sus controles | ruta: parent | in_progress | PRs CLEAN/MERGEABLE, sin checks configurados; integración ordenada con guard de head, sin force ni bypass.
 - T7 | S7, S2-S5 | Verificar despliegue y funcionamiento público | ruta: parent + gentle-ai-verify, Risk: item 5 (entrega y entorno) | pending | requiere T6 y build de Pages; prueba pública independiente y URL pendientes.
 
 ## Log
@@ -1098,3 +1098,11 @@ Solicitud humana (verbatim): «ok quiero verificar su funcionamiento, puedes hac
 - Pages legacy main:/, estado built antes de publicar. Se esperará el build asociado al nuevo main y después se verificará la URL pública y sus assets.
 - Job-6 ejecuta la unidad motor f43a8d5 en scratch selectivo: sus 17 tests y la UI previa, para verificar autonomía del primer hijo. El resto del código final coincide con el candidato ya verificado; no se rehacen barridas por cambios sólo documentales.
 - Estrategia exacta: tracker inicial 4ac7bf6; motor f43a8d5; interfaz d044c34; cierre documental en la rama de trabajo. No se fuerza ni elimina ninguna rama.
+
+### L14 — PRs publicados y listos para integración
+
+- Job-6 exit 0 en scratch selectivo de f43a8d5: motor17/17, tres grupos UI anterior y generar.py --check aprobados. Se demuestra la autonomía del primer hijo; no se modifica el árbol real.
+- Commit documental 5e6597057e6b43f42c16c529ea8faaa18209c1d6 registra autorización/preflight; código productivo y pruebas idénticos a 9dc66c0.
+- Job-7 exit 0: push atómico de las cuatro refs sin force; tracker https://github.com/Teksi75/clases-analisis-matematico/pull/32 (draft, base main), motor /pull/33 (base tracker), interfaz /pull/34 (base motor), cierre /pull/35 (base interfaz).
+- Los cuatro PRs están CLEAN/MERGEABLE, statusCheckRollup [], y exactamente type:feature. Issue aprobado enlazado con Refs #30, sin cierre automático. Ningún check remoto configurado: no se afirma CI verde ni se desactiva gate alguno.
+- El tracker enlaza todos los hijos. Se integrarán #33, #34 y #35 en ese orden, redirigiendo cada hijo al tracker cuando su padre ya esté integrado; sólo entonces #32 sale de draft y se integra en main. Uso de merge commits para conservar ascendencia; ningún branch se elimina.
