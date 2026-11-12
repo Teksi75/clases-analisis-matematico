@@ -31,6 +31,7 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
         <button type="button" data-lector-previous aria-label="Fragmento anterior">Anterior</button>
         <button type="button" data-lector-play>Reproducir</button>
         <button type="button" data-lector-next aria-label="Fragmento siguiente">Siguiente</button>
+        <button type="button" data-lector-follow hidden>Seguir lectura</button>
       </div>
       <div class="lector-secundarios">
         <label>Velocidad <select data-lector-rate><option value="0.8">0,8×</option><option value="1">1×</option><option value="1.2">1,2×</option><option value="1.5">1,5×</option></select></label>
@@ -51,6 +52,7 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
     <div class="lector-mini" data-lector-mini hidden>
       <span data-lector-mini-status></span>
       <button type="button" data-lector-mini-play>Reproducir</button>
+      <button type="button" data-lector-mini-follow hidden>Seguir lectura</button>
       <button type="button" data-lector-restore>Restaurar lector</button>
       <button type="button" data-lector-mini-close>Cerrar lector</button>
     </div>`;
@@ -65,9 +67,11 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
   let preferred = typeof saved.voiceURI === 'string' ? saved.voiceURI : '';
   let appliedPreference = '';
   let selected = 0, blocks = [], highlighted = null, changingQueue = false;
-  let message = '', reader, presentation = 'closed';
+  let message = '', reader, presentation = 'closed', following = true, queueDirty = false;
   const narrator = createMathNarrator(mathRules);
   const opts = { ...extractOptions, narrateMath: narrator };
+  const extract = () => extractBlocks(root, opts).map(block => ({ ...block,
+    chapterElement: block.element.closest(extractOptions.chapterSelector || 'article') || root }));
   const persist = () => {
     const current = blocks[selected];
     try {
@@ -95,6 +99,22 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
     $('progress').textContent = current ? `Fragmento ${local.findIndex(item => item.index === selected) + 1} de ${local.length}` : '';
     $('location').textContent = current ? [current.chapterTitle, current.sectionTitle].filter(Boolean).join(' / ') : 'No hay bloques visibles para leer.';
   }
+  function followActive() {
+    if (!following || presentation === 'closed' || !highlighted) return;
+    const rect = highlighted.getBoundingClientRect();
+    let top = 12, bottom = innerHeight - 12;
+    for (const element of document.body.querySelectorAll('*')) {
+      const style = getComputedStyle(element);
+      if (!['fixed', 'sticky'].includes(style.position)) continue;
+      const box = element.getBoundingClientRect();
+      if (!box.width || !box.height || box.right <= rect.left || box.left >= rect.right) continue;
+      if (box.top <= 0 && box.bottom > 0) top = Math.max(top, box.bottom + 12);
+      if (box.bottom >= innerHeight && box.top < innerHeight) bottom = Math.min(bottom, box.top - 12);
+    }
+    const delta = rect.top < top ? rect.top - top : rect.bottom > bottom ?
+      (rect.height > bottom - top ? rect.top - top : rect.bottom - bottom) : 0;
+    if (delta) window.scrollBy({ top: delta, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  }
   function render(snapshot) {
     if (changingQueue) return;
     if (['playing', 'paused', 'finished'].includes(snapshot.state) && snapshot.index >= 0) selected = snapshot.index;
@@ -116,8 +136,7 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
       clearHighlight();
       if (active) {
         highlighted = active; active.classList.add('lector-activo');
-        const rect = active.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > innerHeight) active.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+        followActive();
       }
     }
     persist();
@@ -128,7 +147,7 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
     }
   }
   reader = new SpeechReader({ onChange: render });
-  blocks = extractBlocks(root, opts);
+  blocks = extract();
   selected = Math.max(0, blocks.findIndex(b => b.id === saved.blockId && b.chapterId === saved.chapterId));
   if (selected === 0 && !blocks.some(b => b.id === saved.blockId && b.chapterId === saved.chapterId)) {
     const first = blocks.findIndex(b => b.chapterId === saved.chapterId);
@@ -168,12 +187,15 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
     });
   }
   trigger.addEventListener('click', () => {
+    if (queueDirty) reconcile();
+    following = true; updateFollowControls();
     const index = visibleIndex();
     if (index >= 0) select(index);
     show('open'); $('play').focus({ preventScroll: true });
   });
   const close = () => {
     const x = window.scrollX, y = window.scrollY;
+    following = true; updateFollowControls();
     show('closed'); message = ''; reader.stop(); clearHighlight();
     window.scrollTo({ left: x, top: y, behavior: 'instant' });
     trigger.focus({ preventScroll: true });
@@ -223,19 +245,81 @@ export function mountReader({ root, storageKey, mathRules = [], indexSelector = 
   };
   $('previous').addEventListener('click', () => move(-1));
   $('next').addEventListener('click', () => move(1));
+  function updateFollowControls() {
+    $('follow').hidden = $('mini-follow').hidden = following;
+  }
+  function suspendFollow(event) {
+    if (presentation === 'closed' || !following || event.target?.closest?.('input, select, textarea, button, [contenteditable="true"]')) return;
+    following = false; updateFollowControls();
+    window.scrollTo({ left: window.scrollX, top: window.scrollY, behavior: 'instant' });
+  }
+  const onKey = event => {
+    if (!event.altKey && !event.ctrlKey && !event.metaKey && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) suspendFollow(event);
+  };
+  const onPointer = event => {
+    if (event.clientX >= document.documentElement.clientWidth || event.clientY >= document.documentElement.clientHeight) suspendFollow(event);
+  };
+  const resumeFollow = () => { following = true; updateFollowControls(); followActive(); };
+  $('follow').addEventListener('click', resumeFollow);
+  $('mini-follow').addEventListener('click', resumeFollow);
+  window.addEventListener('wheel', suspendFollow, { passive: true });
+  window.addEventListener('touchmove', suspendFollow, { passive: true });
+  window.addEventListener('keydown', onKey);
+  window.addEventListener('pointerdown', onPointer);
+
+  const same = (a, b) => a && b && a.element === b.element && a.text === b.text &&
+    a.chapterElement === b.chapterElement && a.chapterId === b.chapterId &&
+    a.chapterTitle === b.chapterTitle && a.sectionTitle === b.sectionTitle;
+  function reconcile() {
+    queueDirty = false;
+    const old = blocks, current = old[selected], snapshot = reader.snapshot;
+    const next = extract();
+    if (old.length === next.length && old.every((block, i) => same(block, next[i]) && block.id === next[i].id)) return;
+    const matches = next.map((block, i) => same(current, block) ? i : -1).filter(i => i >= 0);
+    let index = matches.length === 1 && old.filter(block => same(current, block)).length === 1 ? matches[0] : -1;
+    const safe = index >= 0;
+    if (!safe && current) {
+      const selector = `${extractOptions.chapterHeadingSelector || 'h1, h2'}, ${extractOptions.sectionHeadingSelector || 'h3, h4, h5, h6'}`;
+      const anchors = next.map((block, i) => ({ block, i })).filter(({ block }) =>
+        block.element === current.element && block.text === current.text && block.chapterId === current.chapterId);
+      if (anchors.length === 1) {
+        const anchor = anchors[0];
+        const headings = next.map((block, i) => ({ block, i })).filter(({ block }) =>
+          block.chapterElement === anchor.block.chapterElement && block.element.matches(selector));
+        headings.sort((a, b) => Math.abs(a.i - anchor.i) - Math.abs(b.i - anchor.i) || a.i - b.i);
+        if (headings.length) index = headings[0].i;
+      }
+      if (index < 0) {
+        const headings = old.map((block, i) => ({ block, i })).filter(({ block }) => block.chapterId === current.chapterId && block.element.matches(selector));
+        headings.sort((a, b) => Math.abs(a.i - selected) - Math.abs(b.i - selected) || a.i - b.i);
+        for (const candidate of headings) {
+          index = next.findIndex(block => same(candidate.block, block));
+          if (index >= 0) break;
+        }
+      }
+    }
+    if (index < 0) index = next.findIndex(block => block.element.matches(`${extractOptions.chapterHeadingSelector || 'h1, h2'}, ${extractOptions.sectionHeadingSelector || 'h3, h4, h5, h6'}`));
+    blocks = index >= 0 ? next : []; selected = Math.max(0, index);
+    changingQueue = true;
+    if (index >= 0) {
+      if (!safe || !reader.reconcileBlocks(blocks, index)) {
+        reader.setBlocks(blocks, safe ? { index, chunkIndex: snapshot.index === old.indexOf(current) ? snapshot.chunkIndex : 0 } : { index, paused: true });
+      }
+    } else reader.setBlocks(blocks);
+    changingQueue = false;
+    message = '';
+    render(reader.snapshot);
+  }
   const onToggle = event => {
     if (event.target.localName !== 'details' || !event.target.closest('article') || !root.contains(event.target)) return;
-    const id = blocks[selected]?.id, chapterId = blocks[selected]?.chapterId;
-    changingQueue = true;
-    reader.stop(); clearHighlight();
-    blocks = extractBlocks(root, opts);
-    selected = blocks.findIndex(b => b.id === id);
-    if (selected < 0) selected = Math.max(0, blocks.findIndex(b => b.chapterId === chapterId));
-    reader.setBlocks(blocks);
-    changingQueue = false;
-    message = 'El contenido visible cambió. Pulsá Reproducir para continuar.';
-    render(reader.snapshot);
+    if (presentation === 'closed') queueDirty = true;
+    else reconcile();
   };
   root.addEventListener('toggle', onToggle, true);
-  return { destroy() { document.removeEventListener('click', onIndexClick); root.removeEventListener('toggle', onToggle, true); observer.disconnect(); reader.destroy(); clearHighlight(); panel.remove(); trigger.remove(); document.body.style.removeProperty('--lector-space'); } };
+  return { destroy() {
+    document.removeEventListener('click', onIndexClick); root.removeEventListener('toggle', onToggle, true);
+    window.removeEventListener('wheel', suspendFollow); window.removeEventListener('touchmove', suspendFollow);
+    window.removeEventListener('keydown', onKey); window.removeEventListener('pointerdown', onPointer);
+    observer.disconnect(); reader.destroy(); clearHighlight(); panel.remove(); trigger.remove(); document.body.style.removeProperty('--lector-space');
+  } };
 }

@@ -1,6 +1,6 @@
 # Lector educativo de voz
 
-El lector recorre los bloques académicos visibles en orden y usa las voces españolas disponibles en el dispositivo. Pulsá **🎧 Escuchar** y luego **Reproducir**: no empieza automáticamente. Al abrir, prepara el apartado visible; si no puede identificarlo, usa la posición guardada. Usá Anterior y Siguiente para recorrer fragmentos. En Configuración podés elegir capítulo, encabezado o punto de lectura, elegir voz y detener. El índice lateral también selecciona el destino mientras el lector está abierto: si reproduce, continúa allí; si está pausado o detenido, conserva ese estado. Desplazarse sin activar un enlace no cambia la lectura. El contador «Fragmento … de …» corresponde al capítulo, no a una duración. El selector de velocidad ofrece 0,8×, 1×, 1,2× y 1,5×; los cambios de voz y velocidad se aplican al próximo fragmento. Minimizar conserva la reproducción; Cerrar lector la cancela y devuelve el foco a Escuchar.
+El lector recorre los bloques académicos visibles en orden y usa las voces españolas disponibles en el dispositivo. Pulsá **🎧 Escuchar** y luego **Reproducir**: no empieza automáticamente. Al abrir, prepara el apartado visible; si no puede identificarlo, usa la posición guardada. Usá Anterior y Siguiente para recorrer fragmentos. En Configuración podés elegir capítulo, encabezado o punto de lectura, elegir voz y detener. El índice lateral también selecciona el destino mientras el lector está abierto: si reproduce, continúa allí; si está pausado o detenido, conserva ese estado. Al desplazarte manualmente, el audio continúa y se suspende el desplazamiento automático; pulsá **Seguir lectura** para retomarlo. El contador «Fragmento … de …» corresponde al capítulo, no a una duración. El selector de velocidad ofrece 0,8×, 1×, 1,2× y 1,5×; los cambios de voz y velocidad se aplican al próximo fragmento. Minimizar conserva la reproducción; Cerrar lector la cancela y devuelve el foco a Escuchar.
 
 ## Agregar a otra página
 
@@ -19,7 +19,7 @@ const lector = mountReader({
 // Al desmontar: lector.destroy();
 ```
 
-`indexSelector` es opcional y señala los enlaces del índice que seleccionan un destino sin impedir la navegación normal. `storageKey` debe ser diferente por página. Se guardan voz, velocidad y posición solo en `localStorage`, si está disponible; sin acceso el lector sigue funcionando. Abrir o cerrar una resolución actualiza el recorrido y detiene la reproducción; pulsá Reproducir para continuar. Los ID de bloques sobreviven a cambios de visibilidad, pero pueden cambiar al modificar la estructura HTML.
+`indexSelector` es opcional y señala los enlaces del índice que seleccionan un destino sin impedir la navegación normal. `storageKey` debe ser diferente por página. Se guardan voz, velocidad y posición solo en `localStorage`, si está disponible; sin acceso el lector sigue funcionando. Abrir o cerrar una resolución actualiza el recorrido y conserva la posición y el transporte si el contenido sigue siendo identificable. Si desaparece, se prepara el encabezado legible más cercano en pausa. Si no se puede conservar la emisión y es necesario sustituirla, no se conoce el instante exacto dentro del fragmento de voz. Los ID de bloques sobreviven a cambios de visibilidad, pero pueden cambiar al modificar la estructura HTML.
 
 ## Navegación desde el motor
 
@@ -29,9 +29,10 @@ Para integrar `SpeechReader` con controles propios:
 reader.select(index); // Selecciona un bloque existente, desde su primer fragmento.
 reader.setBlocks(blocks, { index, chunkIndex: 0 }); // Sustituye la secuencia en una posición segura.
 reader.setBlocks(blocks, { index: headingIndex, paused: true }); // Alternativa segura sin reproducir.
+reader.reconcileBlocks(blocks, index); // Conserva la emisión si la identidad y el contenido coinciden.
 ```
 
-`select` conserva el estado de transporte: si estaba reproduciendo continúa en el nuevo bloque; si estaba pausado o detenido no inicia audio. También conserva los estados `idle`, `finished` y `error`. La sustitución con posición conserva el estado del mismo modo; `paused: true` fuerza una pausa, incluso durante la reproducción. `chunkIndex` es opcional y vale cero por defecto. El integrador debe comprobar que la identidad del contenido sigue siendo segura antes de conservar una posición; ante una posición inválida, debe elegir el encabezado adecuado y usar la alternativa pausada. Ambas operaciones devuelven `false` sin cambios ni cancelación si la posición es inválida, y `true` si se acepta; índices y fragmentos deben ser enteros dentro de sus respectivos rangos (un bloque sin texto admite el fragmento cero). No se acepta una secuencia vacía con posición explícita. La llamada existente `setBlocks(blocks)` sigue reemplazando la secuencia desde el principio en estado `idle` y admite una secuencia vacía.
+`reconcileBlocks` valida que el elemento, texto y contexto de capítulo y sección coincidan con el bloque del motor; si se aporta `chapterElement`, también exige la misma identidad del elemento de capítulo. Rechaza cambios sin efectos. Conserva el fragmento y la emisión actual, y actualiza la cola futura. El integrador debe comprobar además que la identidad no sea ambigua. `select` conserva el estado de transporte: si estaba reproduciendo continúa en el nuevo bloque; si estaba pausado o detenido no inicia audio. También conserva los estados `idle`, `finished` y `error`. La sustitución con posición conserva el estado del mismo modo; `paused: true` fuerza una pausa, incluso durante la reproducción. `chunkIndex` es opcional y vale cero por defecto. El integrador debe comprobar que la identidad del contenido sigue siendo segura antes de conservar una posición; ante una posición inválida, debe elegir el encabezado adecuado y usar la alternativa pausada. Ambas operaciones devuelven `false` sin cambios ni cancelación si la posición es inválida, y `true` si se acepta; índices y fragmentos deben ser enteros dentro de sus respectivos rangos (un bloque sin texto admite el fragmento cero). No se acepta una secuencia vacía con posición explícita. La llamada existente `setBlocks(blocks)` sigue reemplazando la secuencia desde el principio en estado `idle` y admite una secuencia vacía.
 
 ## Arquitectura y exclusiones
 
@@ -44,6 +45,7 @@ La Web Speech API depende del navegador, las voces instaladas y los gestos del u
 Desde la raíz, con Node y Chromium instalados:
 
 ```sh
+node tests/lector-follow.test.mjs
 node tests/lector-navigation.test.mjs
 node tests/lector-ui.test.mjs
 node --test tests/lector-engine.test.mjs

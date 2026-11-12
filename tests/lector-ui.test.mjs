@@ -106,14 +106,15 @@ await withBrowser(async ({ evaluate, call, screenshot }) => {
   assert.equal(await run('return document.querySelector("[data-lector-rate]").value'), '1.2', 'F15: velocidad persistente');
   assert.equal(await run('return !!document.querySelector("article details:not([open])")'), true);
   await click('play');
-  await run(`document.querySelector('article details').open=true`);
+  await run(`window.oldDetail=spoken.at(-1); document.querySelector('article details').open=true`);
   await new Promise(r => setTimeout(r, 100));
-  assert.equal(await run('return document.querySelectorAll(".lector-activo").length'), 0, 'resolución detiene');
-  assert.match(await run('return document.querySelector("[data-lector-status]").textContent'), /reproducir/i);
+  assert.equal(await run('return document.querySelectorAll(".lector-activo").length'), 1, 'resolución conserva el resaltado');
+  assert.match(await run('return document.querySelector("[data-lector-status]").textContent'), /leyendo/i);
   assert.equal(await run('return document.querySelector("article details").open'), true);
-  await run(`window.n=spoken.length; document.querySelector('article details').open=false`);
+  assert.equal(await run('return spoken.at(-1) === oldDetail'), true, 'la emisión sin cambios continúa');
+  await run(`document.querySelector('article details').open=false`);
   await new Promise(r => setTimeout(r, 100));
-  assert.equal(await run('return spoken.length'), await run('return n'));
+  assert.match(await run('return document.querySelector("[data-lector-status]").textContent'), /leyendo/i);
   for (const width of [320, 375, 1280]) {
     await call('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: width < 400 });
     assert.equal(await run('return document.documentElement.scrollWidth <= innerWidth'), true, `F19: sin desborde ${width}`);

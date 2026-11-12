@@ -438,6 +438,50 @@ test('existing relative moves and default replacement retain their original stat
   assert.equal(reader.snapshot.state, 'idle');
 });
 
+test('in-place reconciliation validates identity and preserves active chunks and callbacks', () => {
+  for (const state of ['playing', 'paused', 'stopped']) {
+    const {reader, synthesis} = setup();
+    const element = {};
+    const original = {...block('a', 'palabra '.repeat(80)), element};
+    reader.setBlocks([original, block('old')]); reader.play();
+    if (state !== 'stopped') synthesis.spoken.at(-1).onend();
+    if (state === 'paused') reader.pause();
+    if (state === 'stopped') reader.stop();
+    const before = reader.snapshot, utterance = synthesis.spoken.at(-1);
+    const cancels = synthesis.cancels, count = synthesis.spoken.length;
+    for (const invalid of [null, [], [block('a', original.text)], [{...original, text:'different'}], [{...original, chapterId:'different'}]]) {
+      assert.equal(reader.reconcileBlocks(invalid, 0), false);
+      assert.deepEqual(reader.snapshot, before);
+      assert.equal(synthesis.cancels, cancels); assert.equal(synthesis.spoken.length, count);
+    }
+    const replacement = {...original, id:'new-path'};
+    assert.equal(reader.reconcileBlocks([block('inserted'), replacement, block('future')], 1), true);
+    assert.equal(reader.snapshot.index, 1); assert.equal(reader.snapshot.chunkIndex, before.chunkIndex);
+    assert.equal(reader.snapshot.state, state); assert.equal(reader.snapshot.block, replacement);
+    assert.equal(synthesis.cancels, cancels); assert.equal(synthesis.spoken.length, count);
+    assert.equal(synthesis.spoken.at(-1), utterance);
+    if (state === 'paused') reader.resume();
+    if (state !== 'stopped') {
+      while (reader.snapshot.index === 1) synthesis.spoken.at(-1).onend();
+      assert.equal(reader.snapshot.block.id, 'future');
+      assert.equal(synthesis.spoken.at(-1).text, 'future');
+    }
+  }
+});
+
+test('in-place reconciliation rejects replacement chapter identity without side effects', () => {
+  const {reader, synthesis} = setup();
+  const current = {...block('a'), element:{}, chapterElement:{}};
+  reader.setBlocks([current]); reader.play();
+  const before=reader.snapshot, utterance=synthesis.spoken.at(-1), cancels=synthesis.cancels;
+  assert.equal(reader.reconcileBlocks([{...current, chapterElement:{}}], 0), false);
+  assert.deepEqual(reader.snapshot,before); assert.equal(synthesis.cancels,cancels);
+  assert.equal(synthesis.spoken.length,1); assert.equal(synthesis.spoken[0],utterance);
+  assert.equal(reader.reconcileBlocks([{...current, id:'new-path'}],0),true);
+  assert.equal(synthesis.spoken[0],utterance); assert.equal(synthesis.cancels,cancels);
+  utterance.onend(); assert.equal(reader.snapshot.state,'finished');
+});
+
 test('missing APIs and synchronous speak errors are visible and never crash', () => {
   const reader = new SpeechReader({ synthesis: null, Utterance: null });
   reader.setBlocks([block('a')]);
