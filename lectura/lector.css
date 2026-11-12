@@ -11,7 +11,7 @@ body { padding-bottom: var(--lector-space, 0px); }
 .lector :is(button, select):focus-visible { outline: 3px solid var(--accent, #eabf59); outline-offset: 2px; }
 .lector-configuracion { position: absolute; right: .5rem; bottom: 100%; width: min(24rem, calc(100vw - 1rem)); box-sizing: border-box; max-height: 70vh; overflow: auto; display: grid; gap: .6rem; padding: 1rem; background: #202020; border: 1px solid #aaa; }
 .lector-configuracion label { display: grid; }
-.lector-configuracion select { width: 100%; }
+.lector-configuracion select { width: 100%; min-width: 0; }
 .lector-configuracion p { margin: 0; }
 .lector-mini { left: auto; width: auto; max-width: 100%; flex-wrap: wrap; }
 .lector-activo { outline: 3px solid var(--accent, #eabf59); outline-offset: 4px; }

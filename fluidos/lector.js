@@ -8,6 +8,7 @@ mountReader({
   chapterHeadingSelector: 'h1, h2',
   sectionHeadingSelector: 'h3, h4, h5, h6',
   excludeSelector: '.chapter-label',
+  indexSelector: '.contents a[href^="#"]',
   mathRules,
   storageKey: 'lector-fluidos',
 });
