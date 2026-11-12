@@ -1,14 +1,23 @@
-/* Reproductor contenido en el flujo: no tapa el cuaderno. */
-.lector { margin: 1.5rem 0 2.5rem; padding: 1.25rem; border: 1px solid var(--rule); border-left: 3px solid var(--accent); background: var(--bg, #202020); }
-.lector h2 { margin: 0 0 .5rem; font-size: 1.3rem; }
-.lector p { margin: .65rem 0; }
-.lector-campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .8rem; }
-.lector label { display: grid; gap: .3rem; min-width: 0; font-weight: 600; }
-.lector select { width: 100%; min-width: 0; }
-.lector select, .lector button { min-height: 2.75rem; padding: .45rem .65rem; color: #f5f2eb; background: #303030; border: 1px solid #aaa; border-radius: .2rem; font: inherit; }
-.lector input[type="range"] { max-width: 100%; min-height: 2.75rem; vertical-align: middle; accent-color: var(--accent); }
-.lector-botones { display: flex; flex-wrap: wrap; gap: .5rem; }
+/* La reserva corresponde únicamente a la barra o al control minimizado visible. */
+body { padding-bottom: var(--lector-space, 0px); }
+.lector [hidden] { display: none !important; }
+.lector-barra, .lector-mini { position: fixed; z-index: 20; bottom: 0; left: 0; right: 0; box-sizing: border-box; display: flex; align-items: center; gap: .7rem; padding: .5rem .8rem calc(.5rem + env(safe-area-inset-bottom)); color: #f5f2eb; background: #202020; border-top: 1px solid #777; font: .85rem system-ui, sans-serif; }
+.lector-informacion { flex: 1 1 12rem; min-width: 0; display: grid; gap: .15rem; }
+.lector-informacion strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lector-transporte, .lector-secundarios { display: flex; align-items: center; gap: .35rem; }
+.lector label { display: flex; align-items: center; gap: .3rem; }
+.lector select, .lector button { min-height: 2.75rem; min-width: 2.75rem; padding: .4rem .55rem; color: #f5f2eb; background: #303030; border: 1px solid #aaa; border-radius: .2rem; font: inherit; }
 .lector button { cursor: pointer; }
-.lector :is(button, select, input):focus-visible { outline: 3px solid var(--accent, #eabf59); outline-offset: 3px; }
+.lector :is(button, select):focus-visible { outline: 3px solid var(--accent, #eabf59); outline-offset: 2px; }
+.lector-configuracion { position: absolute; right: .5rem; bottom: 100%; width: min(24rem, calc(100vw - 1rem)); box-sizing: border-box; max-height: 70vh; overflow: auto; display: grid; gap: .6rem; padding: 1rem; background: #202020; border: 1px solid #aaa; }
+.lector-configuracion label { display: grid; }
+.lector-configuracion select { width: 100%; }
+.lector-configuracion p { margin: 0; }
+.lector-mini { left: auto; width: auto; max-width: 100%; flex-wrap: wrap; }
 .lector-activo { outline: 3px solid var(--accent, #eabf59); outline-offset: 4px; }
-@media print { .lector { display: none; } .lector-activo { outline: none; } }
+@media (max-width: 900px) {
+  .lector-barra { flex-wrap: wrap; justify-content: center; }
+  .lector-informacion { flex-basis: 100%; }
+  .lector-secundarios, .lector-transporte { justify-content: center; flex-wrap: wrap; }
+}
+@media print { .lector { display: none; } .lector-activo { outline: none; } body { padding-bottom: 0; } }

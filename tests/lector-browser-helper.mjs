@@ -1,6 +1,6 @@
 // Browser DOM tests without additional packages or files in the worktree.
 import { spawn } from 'node:child_process';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -58,7 +58,14 @@ export async function withBrowser(test, { beforeNavigate } = {}) {
       if (await evaluate('location.href.startsWith("file:") && document.readyState === "complete"')) break;
       await new Promise(resolve => setTimeout(resolve, 50));
     }
-    await test({ evaluate, url, call });
+    const screenshot = async name => {
+      if (!['desktop', 'mobile', 'minimized', 'closed'].includes(name)) throw new Error('Captura no autorizada');
+      const directory = resolve('fluidos/verificacion-visual');
+      await mkdir(directory, { recursive: true });
+      const image = await call('Page.captureScreenshot', { format: 'png' });
+      await writeFile(join(directory, `lector-etapa1-${name}.png`), Buffer.from(image.data, 'base64'));
+    };
+    await test({ evaluate, url, call, screenshot });
   } finally {
     ws?.close();
     browser.kill();
