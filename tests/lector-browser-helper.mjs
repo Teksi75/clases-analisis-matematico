@@ -63,6 +63,8 @@ export async function withBrowser(test, { beforeNavigate } = {}) {
     ws?.close();
     browser.kill();
     await stopped;
-    await rm(profile, { recursive: true, force: true });
+    // Chromium children may finish profile writes just after the parent exits.
+    // Bound cleanup contention; a persistent failure still rejects the test run.
+    await rm(profile, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
   }
 }
