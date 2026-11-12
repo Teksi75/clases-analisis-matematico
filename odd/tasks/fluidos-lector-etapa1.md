@@ -1,6 +1,6 @@
 # Fluidos: lector opcional, etapa 1
 Objetivo: implementar únicamente la etapa 1; rama `feat/fluidos-lector-etapa1`, base remota `35b9015149510950442db63f251a4379962a4a50`.
-Entrega local sin publicación; estrategia `auto-chain`, `chain_strategy=feature-branch-chain` elegida explícitamente; pruebas Node/Chromium/Python/Pandoc.
+Publicación autorizada mediante PRs hacia main; estrategia `auto-chain`, `chain_strategy=feature-branch-chain` elegida explícitamente; pruebas Node/Chromium/Python/Pandoc.
 
 ## Specs
 
@@ -426,12 +426,21 @@ Dejá los cambios preparados para revisión, sin fusionar ni publicar.
 
 Al finalizar, presentá un informe técnico con evidencia verificable de los resultados.
 
+### S7 — Publicación autorizada posteriormente
+
+«ok quiero verificar su funcionamiento, puedes hacer los PRs y push a main»
+
+Esta autorización posterior habilita publicar las ramas/PRs e integrar en main para verificar la web; no amplía la etapa funcional ni cambia las decisiones anteriores sobre F11. Se conserva la cadena elegida y se usa integración por PR, sin push directo, force ni descarte de trabajo.
+
 ## Tasks
 
 - T1 | S1, S6 | Diagnóstico y aislamiento | ruta: parent + explorer (presupuesto de exploración superado) | done | base 35b9015149510950442db63f251a4379962a4a50; documento inicial en 4ac7bf6f4d132ef52d07dd5bd50ef773788a68c7.
 - T2 | S2-S5 | Implementación y pruebas de la etapa 1 | ruta: gentle-ai-worker (context backstop medido por runtime), ajuste acotado de pruebas/docs por parent | done | motor f43a8d5fabc2a5da04315efe64a153b270a8628e, UI d044c34cd85cf3cdee3d2ad772d0df4518077a62; suites y F11 actualizado aprobados.
 - T3 | S1-S6 | Verificación independiente y evaluación nativa aplicable | ruta: gentle-ai-verify, Risk: item 4 (eventos asíncronos de síntesis y exclusión de sesiones simultáneas) | done | candidatos f43a8d5 y d044c34 verificados; recheck F11 aprobado; ambas evaluaciones nativas medium/reviewDue false, sin START ni revisión formal.
-- T4 | S5-S6 | Evidencia, matriz de aceptación y cierre local | ruta: parent | done | matriz en d044c34 y cierre técnico en cd79e907bf0bc22119d27dcda7adee762341765a (fluidos/LECTOR-ETAPA1.md); auditoría de alcance/preservación exit 0; este log cierra la rama.
+- T4 | S5-S6 | Evidencia, matriz de aceptación y cierre local | ruta: parent | done | matriz en d044c34 y cierre técnico en cd79e907bf0bc22119d27dcda7adee762341765a (fluidos/LECTOR-ETAPA1.md); auditoría de alcance/preservación exit 0; cierre local 9dc66c0.
+- T5 | S7, S1 | Preparar y publicar la cadena de PRs | ruta: parent (operaciones remotas explícitamente autorizadas) | in_progress | preflight remoto y commit de autorización pendientes.
+- T6 | S7 | Integrar hijos y tracker en main con sus controles | ruta: parent | pending | requiere T5; sin force ni bypass de controles.
+- T7 | S7, S2-S5 | Verificar despliegue y funcionamiento público | ruta: parent + gentle-ai-verify, Risk: item 5 (entrega y entorno) | pending | requiere T6 y build de Pages; prueba pública independiente y URL pendientes.
 
 ## Log
 
@@ -1070,3 +1079,22 @@ Al finalizar, presentá un informe técnico con evidencia verificable de los res
 - No hubo START ni revisión nativa formal: el evaluador devolvió reviewDue false para ambos candidatos de código; no se atribuye aprobación formal. Verificación independiente de concurrencia sí ejecutada.
 - Issue #30 sigue OPEN/status:approved/type:feature según consulta de esta ejecución; relacionado con el lector previo y sin modificación remota. No se verificó política formal general de etiqueta única, aunque coincide con el antecedente y se conserva como requisito para un futuro PR. Pages main / permanece sin despliegue solicitado.
 - Ningún push, PR, merge, despliegue o modificación destructiva. Las cuatro tareas se cierran con evidencia observada. Siguiente paso externo: revisión humana local; publicar sólo ante autorización nueva.
+
+### L12 — Nueva autorización de publicación
+
+Solicitud humana (verbatim): «ok quiero verificar su funcionamiento, puedes hacer los PRs y push a main»
+
+- Se autoriza ahora la entrega en github.com/Teksi75/clases-analisis-matematico, usando la sesión de GitHub CLI para las operaciones necesarias de ramas, PRs, integración y comprobación de Pages. Se interpreta main como resultado vía PRs, nunca push directo ni bypass de protección.
+- Se mantiene feature-branch-chain: tracker draft/no-merge → motor → interfaz → cierre documental. Los hijos posteriores se retargetearán al tracker cuando su padre ya se haya integrado, conservando la ascendencia y un diff focalizado, sin rebase ni force.
+- Usar Refs #30, sin cierre automático: el issue cubre un lector con etapas futuras no ejecutadas. Una única etiqueta type:* por PR. No cambiar etiquetas protegidas, política ni modo RDD.
+- Reconciliación de continuidad: archivo y observación1363 coinciden después de normalizar sólo el salto final que Engram recorta; la primera comparación estricta falló por ese whitespace, no por divergencia de contenido. No se sobrescribió ninguna versión.
+- T5–T7 agregan únicamente entrega y prueba pública. Código, requisitos de etapa1 y excepción F11 permanecen iguales. Risk: item 5 (publicación/entorno) exige comprobación independiente del resultado desplegado.
+
+### L13 — Preflight de entrega
+
+- Job-5 exit 0: main remoto sigue 35b9015149510950442db63f251a4379962a4a50, default main, merge commits permitidos, permisos push/maintain/admin; sin PRs abiertos ni refs remotos feat/fluidos-lector-etapa1*. Repositorio no archivado. No se inspeccionaron credenciales ni se cambió política.
+- Issue30 OPEN/status:approved/type:feature. Sólo existe type:feature entre etiquetas de tipo; se usará una vez en todos los PRs de esta funcionalidad, incluido su cierre documental, sin crear etiquetas nuevas.
+- main sin protección declarada y rulesets []; no hay CI local configurada bajo .github/. Se consultarán los checks reales de cada PR antes de merge, sin inventar checks verdes ni usar bypass administrativo.
+- Pages legacy main:/, estado built antes de publicar. Se esperará el build asociado al nuevo main y después se verificará la URL pública y sus assets.
+- Job-6 ejecuta la unidad motor f43a8d5 en scratch selectivo: sus 17 tests y la UI previa, para verificar autonomía del primer hijo. El resto del código final coincide con el candidato ya verificado; no se rehacen barridas por cambios sólo documentales.
+- Estrategia exacta: tracker inicial 4ac7bf6; motor f43a8d5; interfaz d044c34; cierre documental en la rama de trabajo. No se fuerza ni elimina ninguna rama.
