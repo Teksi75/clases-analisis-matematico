@@ -1,6 +1,6 @@
 # Lector educativo de voz
 
-El lector recorre los bloques académicos visibles en orden y usa las voces españolas disponibles en el dispositivo. Elegí capítulo y bloque, y pulsá **Reproducir**; no comienza solo al cargar o recuperar la posición. Pausa, reanudación, navegación y selección de voz y velocidad están en el reproductor. Los cambios de voz y velocidad se aplican al próximo fragmento.
+El lector recorre los bloques académicos visibles en orden y usa las voces españolas disponibles en el dispositivo. Pulsá **🎧 Escuchar** y luego **Reproducir**: no empieza automáticamente. Usá Anterior y Siguiente para recorrer fragmentos; en Configuración podés elegir capítulo o voz y detener. El selector de velocidad ofrece 0,8×, 1×, 1,2× y 1,5×; los cambios de voz y velocidad se aplican al próximo fragmento. Minimizar conserva la reproducción; Cerrar lector la cancela y devuelve el foco a Escuchar.
 
 ## Agregar a otra página
 

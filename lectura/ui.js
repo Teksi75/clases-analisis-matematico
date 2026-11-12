@@ -2,35 +2,59 @@ import { SpeechReader } from './engine.js';
 import { extractBlocks } from './extractor.js';
 import { createMathNarrator } from './math.js';
 
-// El estado seleccionado en reposo es independiente del índice interno del motor.
+const speeds = [0.8, 1, 1.2, 1.5];
+function nearestSpeed(value) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return 1;
+  return [...speeds].sort((a, b) => {
+    const difference = Math.abs(a - value) - Math.abs(b - value);
+    if (Math.abs(difference) > 1e-9) return difference;
+    return Math.abs(a - 1) - Math.abs(b - 1) || a - b;
+  })[0];
+}
+
+// La posición seleccionada y la presentación son independientes del estado del motor.
 export function mountReader({ root, storageKey, mathRules = [], ...extractOptions }) {
   if (!root) throw new TypeError('Se requiere un elemento raíz');
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.dataset.lectorOpen = '';
+  trigger.innerHTML = '<span aria-hidden="true">🎧</span> Escuchar';
+  (root.querySelector('.reading-controls') || root).append(trigger);
   const panel = document.createElement('section');
   panel.className = 'lector';
   panel.dataset.lector = '';
   panel.setAttribute('aria-label', 'Lector de voz');
   panel.innerHTML = `
-    <h2>Lector de voz</h2>
-    <p>Elegí un capítulo y un párrafo; después pulsá Reproducir. La voz y la velocidad cambian en el próximo fragmento.</p>
-    <div class="lector-campos">
-      <label>Capítulo <select data-lector-chapter></select></label>
-      <label>Párrafo o bloque <select data-lector-block></select></label>
-      <label>Voz <select data-lector-voice></select></label>
-      <label>Velocidad <span><input data-lector-rate type="range" min="0.75" max="1.5" step="0.05" value="1"> <output data-lector-rate-output>1×</output></span></label>
+    <div class="lector-barra" data-lector-bar hidden>
+      <div class="lector-informacion"><strong data-lector-location></strong><span data-lector-status role="status" aria-live="polite"></span></div>
+      <div class="lector-transporte">
+        <button type="button" data-lector-previous aria-label="Fragmento anterior">Anterior</button>
+        <button type="button" data-lector-play>Reproducir</button>
+        <button type="button" data-lector-next aria-label="Fragmento siguiente">Siguiente</button>
+      </div>
+      <div class="lector-secundarios">
+        <label>Velocidad <select data-lector-rate><option value="0.8">0,8×</option><option value="1">1×</option><option value="1.2">1,2×</option><option value="1.5">1,5×</option></select></label>
+        <button type="button" data-lector-settings-toggle aria-expanded="false" aria-controls="lector-configuracion">Configuración</button>
+        <button type="button" data-lector-minimize>Minimizar</button>
+        <button type="button" data-lector-close>Cerrar lector</button>
+      </div>
+      <div class="lector-configuracion" id="lector-configuracion" data-lector-settings hidden>
+        <label>Capítulo <select data-lector-chapter></select></label>
+        <label>Voz <select data-lector-voice></select></label>
+        <p data-lector-voices-status></p>
+        <p>La voz y la velocidad cambian en el próximo fragmento.</p>
+        <button type="button" data-lector-stop>Detener</button>
+      </div>
     </div>
-    <p data-lector-voices-status></p>
-    <div class="lector-botones">
-      <button type="button" data-lector-play>Reproducir</button>
-      <button type="button" data-lector-pause>Pausar</button>
-      <button type="button" data-lector-resume>Reanudar</button>
-      <button type="button" data-lector-stop>Detener</button>
-      <button type="button" data-lector-previous>Párrafo anterior</button>
-      <button type="button" data-lector-next>Párrafo siguiente</button>
-    </div>
-    <p data-lector-location></p><p data-lector-status role="status" aria-live="polite"></p>`;
+    <div class="lector-mini" data-lector-mini hidden>
+      <span data-lector-mini-status></span>
+      <button type="button" data-lector-mini-play>Reproducir</button>
+      <button type="button" data-lector-restore>Restaurar lector</button>
+      <button type="button" data-lector-mini-close>Cerrar lector</button>
+    </div>`;
   root.insertBefore(panel, root.querySelector('article'));
   const $ = name => panel.querySelector(`[data-lector-${name}]`);
-  const chapter = $('chapter'), block = $('block'), voice = $('voice'), rate = $('rate');
+  const chapter = $('chapter'), voice = $('voice'), rate = $('rate');
   let saved = {};
   try {
     const parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
@@ -39,7 +63,7 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
   let preferred = typeof saved.voiceURI === 'string' ? saved.voiceURI : '';
   let appliedPreference = '';
   let selected = 0, blocks = [], highlighted = null, changingQueue = false;
-  let message = '', reader;
+  let message = '', reader, presentation = 'closed';
   const narrator = createMathNarrator(mathRules);
   const opts = { ...extractOptions, narrateMath: narrator };
   const persist = () => {
@@ -59,16 +83,11 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     chapter.replaceChildren();
     for (const [id, title] of chapters) option(chapter, id, title);
     chapter.value = current?.chapterId || '';
-    block.replaceChildren();
-    blocks.forEach((item, index) => {
-      if (item.chapterId === current?.chapterId) option(block, item.id, `${index + 1}. ${item.text.slice(0, 110)}`);
-    });
-    block.value = current?.id || '';
     $('location').textContent = current ? [current.chapterTitle, current.sectionTitle].filter(Boolean).join(' / ') : 'No hay bloques visibles para leer.';
   }
   function render(snapshot) {
     if (changingQueue) return;
-    if (snapshot.state !== 'idle' && snapshot.index >= 0) selected = snapshot.index;
+    if (['playing', 'paused', 'finished'].includes(snapshot.state) && snapshot.index >= 0) selected = snapshot.index;
     showSelection();
     voice.replaceChildren();
     for (const item of snapshot.voices) option(voice, item.voiceURI, `${item.name} (${item.lang})`);
@@ -76,11 +95,13 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     $('voices-status').textContent = !snapshot.supported ? 'La síntesis de voz no está disponible en este navegador.' :
       !snapshot.voices.length ? 'No hay voces en español disponibles.' :
       !snapshot.hasArgentineVoice ? 'No hay voz argentina (es-AR); se usa otra voz en español.' : '';
-    rate.value = snapshot.rate;
-    $('rate-output').textContent = `${snapshot.rate}×`;
-    $('status').textContent = snapshot.error || message || (!snapshot.supported ? 'La síntesis de voz no está disponible.' :
-      ({ idle: 'Listo para reproducir.', playing: 'Leyendo.', paused: 'En pausa.', error: 'Error de lectura.' }[snapshot.state]));
-    const active = ['playing', 'paused'].includes(snapshot.state) ? snapshot.block?.element : null;
+    rate.value = String(snapshot.rate);
+    const status = snapshot.error || message || (!snapshot.supported ? 'La síntesis de voz no está disponible.' :
+      ({ idle: 'Listo para reproducir.', playing: 'Leyendo.', paused: 'En pausa.', stopped: 'Detenido.', finished: 'Lectura terminada.', error: 'Error de lectura.' }[snapshot.state]));
+    $('status').textContent = status;
+    $('mini-status').textContent = status;
+    $('play').textContent = $('mini-play').textContent = snapshot.state === 'playing' ? 'Pausar' : snapshot.state === 'paused' ? 'Reanudar' : 'Reproducir';
+    const active = presentation !== 'closed' && ['playing', 'paused'].includes(snapshot.state) ? snapshot.block?.element : null;
     if (active !== highlighted) {
       clearHighlight();
       if (active) {
@@ -90,7 +111,7 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
       }
     }
     persist();
-    // La preferencia guardada se aplica solo cuando aparece; no convierte el fallback en elección manual.
+    // Aplicar una preferencia guardada cuando aparezca, sin fijar el fallback automático.
     if (reader && preferred && appliedPreference !== preferred && snapshot.voices.some(v => v.voiceURI === preferred)) {
       appliedPreference = preferred;
       reader.setVoice(preferred);
@@ -105,23 +126,59 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
   }
   changingQueue = true;
   reader.setBlocks(blocks);
+  reader.setRate(nearestSpeed(saved.rate));
   changingQueue = false;
-  if (typeof saved.rate === 'number' && Number.isFinite(saved.rate) && saved.rate >= 0.75 && saved.rate <= 1.5) reader.setRate(saved.rate);
   render(reader.snapshot);
+  const updateSpace = () => {
+    const visible = presentation === 'open' ? $('bar') : presentation === 'minimized' ? $('mini') : null;
+    document.body.style.setProperty('--lector-space', visible ? `${visible.getBoundingClientRect().height}px` : '0px');
+  };
+  const observer = new ResizeObserver(updateSpace);
+  observer.observe($('bar')); observer.observe($('mini'));
+  function show(state) {
+    presentation = state;
+    $('bar').hidden = state !== 'open';
+    $('mini').hidden = state !== 'minimized';
+    if (state !== 'open') {
+      $('settings').hidden = true;
+      $('settings-toggle').setAttribute('aria-expanded', 'false');
+    }
+    updateSpace();
+  }
   function select(index) {
     if (index < 0 || index >= blocks.length) return;
     if (reader.snapshot.state !== 'idle') reader.stop();
     selected = index; message = ''; render(reader.snapshot);
   }
+  trigger.addEventListener('click', () => { show('open'); $('play').focus({ preventScroll: true }); });
+  const close = () => {
+    const x = window.scrollX, y = window.scrollY;
+    show('closed'); message = ''; reader.stop(); clearHighlight();
+    window.scrollTo({ left: x, top: y, behavior: 'instant' });
+    trigger.focus({ preventScroll: true });
+  };
+  $('close').addEventListener('click', close);
+  $('mini-close').addEventListener('click', close);
+  $('minimize').addEventListener('click', () => { show('minimized'); $('mini-play').focus({ preventScroll: true }); });
+  $('restore').addEventListener('click', () => { show('open'); $('minimize').focus({ preventScroll: true }); });
+  $('settings-toggle').addEventListener('click', () => {
+    $('settings').hidden = !$('settings').hidden;
+    $('settings-toggle').setAttribute('aria-expanded', String(!$('settings').hidden));
+  });
   chapter.addEventListener('change', () => select(blocks.findIndex(b => b.chapterId === chapter.value)));
-  block.addEventListener('change', () => select(blocks.findIndex(b => b.id === block.value)));
   voice.addEventListener('change', () => {
     if (reader.setVoice(voice.value)) { preferred = voice.value; appliedPreference = preferred; persist(); }
   });
-  rate.addEventListener('input', () => reader.setRate(Number(rate.value)));
-  $('play').addEventListener('click', () => { message = ''; reader.play(selected); });
-  $('pause').addEventListener('click', () => { message = ''; reader.pause(); });
-  $('resume').addEventListener('click', () => { message = ''; reader.resume(); });
+  rate.addEventListener('change', () => reader.setRate(Number(rate.value)));
+  const togglePlayback = () => {
+    message = '';
+    if (reader.snapshot.state === 'playing') reader.pause();
+    else if (reader.snapshot.state === 'paused') reader.resume();
+    else if (reader.snapshot.state === 'finished') reader.play();
+    else reader.play(selected);
+  };
+  $('play').addEventListener('click', togglePlayback);
+  $('mini-play').addEventListener('click', togglePlayback);
   $('stop').addEventListener('click', () => { message = ''; reader.stop(); });
   const move = delta => {
     message = '';
@@ -145,5 +202,5 @@ export function mountReader({ root, storageKey, mathRules = [], ...extractOption
     render(reader.snapshot);
   };
   root.addEventListener('toggle', onToggle, true);
-  return { destroy() { root.removeEventListener('toggle', onToggle, true); reader.destroy(); clearHighlight(); panel.remove(); } };
+  return { destroy() { root.removeEventListener('toggle', onToggle, true); observer.disconnect(); reader.destroy(); clearHighlight(); panel.remove(); trigger.remove(); document.body.style.removeProperty('--lector-space'); } };
 }
