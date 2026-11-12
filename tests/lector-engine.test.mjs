@@ -59,6 +59,23 @@ test('late voices notify but never start speech; foreign and unavailable manual 
   assert.equal(synthesis.listeners.size, 0);
 });
 
+test('late Argentine voice replaces an automatic choice but preserves a manual choice', () => {
+  const automatic = setup([es]);
+  automatic.reader.setBlocks([block('a')]);
+  automatic.synthesis.changeVoices([es, ar]);
+  assert.equal(automatic.synthesis.spoken.length, 0);
+  automatic.reader.play();
+  assert.equal(automatic.synthesis.spoken[0].voice, ar);
+
+  const manual = setup([es]);
+  assert.equal(manual.reader.setVoice(es), true);
+  manual.reader.setBlocks([block('a')]);
+  manual.synthesis.changeVoices([es, ar]);
+  assert.equal(manual.synthesis.spoken.length, 0);
+  manual.reader.play();
+  assert.equal(manual.synthesis.spoken[0].voice, es);
+});
+
 test('manual voice selection accepts an available Spanish voiceURI only', () => {
   const { reader } = setup([ar, mx, en]);
   assert.equal(reader.setVoice('mx'), true);

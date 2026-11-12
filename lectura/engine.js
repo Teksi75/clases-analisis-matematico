@@ -54,6 +54,7 @@ export class SpeechReader {
     this.blocks = [];
     this.voices = [];
     this.voice = null;
+    this.preferredVoice = null;
     this.rate = 1;
     this.index = -1;
     this.chunkIndex = 0;
@@ -93,7 +94,7 @@ export class SpeechReader {
   refreshVoices() {
     try { this.voices = spanishVoices(this.synthesis?.getVoices?.() || []); }
     catch { this.voices = []; }
-    this.voice = this.voices.find(voice => sameVoice(voice, this.voice)) ?? this.voices[0] ?? null;
+    this.voice = this.voices.find(voice => sameVoice(voice, this.preferredVoice)) ?? this.voices[0] ?? null;
   }
 
   // Invalidate before cancel: some engines synchronously dispatch cancellation events.
@@ -124,6 +125,7 @@ export class SpeechReader {
     const available = this.voices.find(candidate => typeof voice === 'string'
       ? candidate.voiceURI === voice : sameVoice(candidate, voice));
     if (!available || voiceRank(available) === Infinity) return false;
+    this.preferredVoice = available;
     this.voice = available;
     this.notify();
     return true;

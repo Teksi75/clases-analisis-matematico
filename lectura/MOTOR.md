@@ -42,7 +42,7 @@ Voz y velocidad nuevas se aplican al **siguiente** fragmento, sin reiniciar el a
 | `hasArgentineVoice` | Permite advertir claramente cuando no hay voz argentina. |
 | `rate` / `error` / `supported` | Velocidad elegida, mensaje visible o `null`, disponibilidad básica de síntesis y constructor. |
 
-`spanishVoices(voices)` filtra y ordena voces españolas: Argentina, Latinoamérica, España y otras. El orden entre voces de la misma prioridad se conserva. `segmentText(text)` expone la misma segmentación que usa el motor. Ningún cambio de voces inicia reproducción automáticamente; si no hay voz española, el motor muestra un error y nunca solicita una voz implícita extranjera. Se vuelve a comprobar la disponibilidad antes de cada fragmento.
+`spanishVoices(voices)` filtra y ordena voces españolas: Argentina, Latinoamérica, España y otras. El orden entre voces de la misma prioridad se conserva. Si llegan nuevas voces, la selección automática vuelve a aplicar la prioridad; una selección manual se conserva mientras esa voz esté disponible. `segmentText(text)` expone la misma segmentación que usa el motor. Ningún cambio de voces inicia reproducción automáticamente; si no hay voz española, el motor muestra un error y nunca solicita una voz implícita extranjera. Se vuelve a comprobar la disponibilidad antes de cada fragmento.
 
 ## Errores y límites
 
