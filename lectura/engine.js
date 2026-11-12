@@ -131,6 +131,19 @@ export class SpeechReader {
     this.notify();
   }
 
+  // Keep the live utterance only when its owner and complete spoken context match.
+  reconcileBlocks(blocks, index) {
+    if (this.destroyed || !Array.isArray(blocks) || !Number.isInteger(index) || index < 0 || index >= blocks.length) return false;
+    const current = this.blocks[this.index], next = blocks[index];
+    if (!current?.element || !next || current.element !== next.element || current.text !== next.text ||
+        current.chapterElement !== next.chapterElement || current.chapterId !== next.chapterId ||
+        current.chapterTitle !== next.chapterTitle || current.sectionTitle !== next.sectionTitle) return false;
+    this.blocks = [...blocks];
+    this.index = index;
+    this.notify();
+    return true;
+  }
+
   // Relocation keeps the transport state unless a safe fallback must be paused.
   #relocate(blocks, index, chunkIndex, paused) {
     this.cancel();
