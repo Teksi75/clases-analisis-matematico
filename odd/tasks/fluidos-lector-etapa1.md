@@ -1,6 +1,6 @@
 # Fluidos: lector opcional, etapa 1
 Objetivo: implementar únicamente la etapa 1; rama `feat/fluidos-lector-etapa1`, base remota `35b9015149510950442db63f251a4379962a4a50`.
-Entrega local sin publicación; estrategia `auto-chain`, `chain_strategy=feature-branch-chain` elegida explícitamente; pruebas Node/Chromium/Python/Pandoc.
+Publicación autorizada mediante PRs hacia main; estrategia `auto-chain`, `chain_strategy=feature-branch-chain` elegida explícitamente; pruebas Node/Chromium/Python/Pandoc.
 
 ## Specs
 
@@ -426,12 +426,21 @@ Dejá los cambios preparados para revisión, sin fusionar ni publicar.
 
 Al finalizar, presentá un informe técnico con evidencia verificable de los resultados.
 
+### S7 — Publicación autorizada posteriormente
+
+«ok quiero verificar su funcionamiento, puedes hacer los PRs y push a main»
+
+Esta autorización posterior habilita publicar las ramas/PRs e integrar en main para verificar la web; no amplía la etapa funcional ni cambia las decisiones anteriores sobre F11. Se conserva la cadena elegida y se usa integración por PR, sin push directo, force ni descarte de trabajo.
+
 ## Tasks
 
-- T1 | S1, S6 | Diagnóstico y aislamiento | ruta: parent + explorer (presupuesto de exploración superado) | done | base 35b9015149510950442db63f251a4379962a4a50; sin commit propio aún.
-- T2 | S2-S5 | Implementación y pruebas de la etapa 1 | ruta: gentle-ai-worker (context backstop medido por runtime), ajuste acotado de pruebas/docs por parent | in_progress | excepción F11 aceptada; se agrega prueba explícita de frontera sin cambiar motor/UI; RED por regla incompleto queda documentado; sin commit.
-- T3 | S1-S6 | Verificación independiente y revisión nativa si corresponde | ruta: gentle-ai-verify, Risk: item 4 (eventos asíncronos de síntesis y exclusión de sesiones simultáneas) | pending | verificación independiente ejecutada: TTS aprobado en simulación, F11 falla en límite absoluto; revisión nativa aún no iniciada.
-- T4 | S5-S6 | Evidencia, matriz de aceptación y cierre local | ruta: parent | pending | informe y commits pendientes.
+- T1 | S1, S6 | Diagnóstico y aislamiento | ruta: parent + explorer (presupuesto de exploración superado) | done | base 35b9015149510950442db63f251a4379962a4a50; documento inicial en 4ac7bf6f4d132ef52d07dd5bd50ef773788a68c7.
+- T2 | S2-S5 | Implementación y pruebas de la etapa 1 | ruta: gentle-ai-worker (context backstop medido por runtime), ajuste acotado de pruebas/docs por parent | done | motor f43a8d5fabc2a5da04315efe64a153b270a8628e, UI d044c34cd85cf3cdee3d2ad772d0df4518077a62; suites y F11 actualizado aprobados.
+- T3 | S1-S6 | Verificación independiente y evaluación nativa aplicable | ruta: gentle-ai-verify, Risk: item 4 (eventos asíncronos de síntesis y exclusión de sesiones simultáneas) | done | candidatos f43a8d5 y d044c34 verificados; recheck F11 aprobado; ambas evaluaciones nativas medium/reviewDue false, sin START ni revisión formal.
+- T4 | S5-S6 | Evidencia, matriz de aceptación y cierre local | ruta: parent | done | matriz en d044c34 y cierre técnico en cd79e907bf0bc22119d27dcda7adee762341765a (fluidos/LECTOR-ETAPA1.md); auditoría de alcance/preservación exit 0; cierre local 9dc66c0.
+- T5 | S7, S1 | Preparar y publicar la cadena de PRs | ruta: parent (operaciones remotas explícitamente autorizadas) | done | autorización 5e65970; PRs #32 tracker, #33 motor, #34 interfaz, #35 cierre; ramas publicadas y etiqueta única verificada.
+- T6 | S7 | Integrar hijos y tracker en main con sus controles | ruta: parent | in_progress | PRs CLEAN/MERGEABLE, sin checks configurados; integración ordenada con guard de head, sin force ni bypass.
+- T7 | S7, S2-S5 | Verificar despliegue y funcionamiento público | ruta: parent + gentle-ai-verify, Risk: item 5 (entrega y entorno) | pending | requiere T6 y build de Pages; prueba pública independiente y URL pendientes.
 
 ## Log
 
@@ -1032,3 +1041,68 @@ Al finalizar, presentá un informe técnico con evidencia verificable de los res
 - Respuesta: «Aceptar esa excepción de límite — recomendado» (`accept-scroll-clamp-at-new-maximum`).
 - Se califican sólo S2 y F11 de S5 con esa excepción. No cambia ninguna otra exigencia ni autoriza etapas posteriores o publicación. Estado actual de motor/UI ya aplica esa conducta; se agregan pruebas de frontera y documentación, no una nueva implementación. No hay RED significativo nuevo para una especificación que acepta la conducta existente; no se fabrica evidencia retrospectiva.
 - No hay hijos activos ni inciertos tras completarse writer y verifier. Siguiente acción: una corrección acotada de prueba/documentación y relectura/recheck dirigido del verificador, sin otra barrida general.
+
+### L8 — Prueba de frontera y límites locales de revisión
+
+- Parent agregó exclusivamente la prueba F11 en tests/lector-ui.test.mjs y ajustó fluidos/LECTOR-ETAPA1.md. Sin cambios adicionales de código productivo.
+- Job-4 ejecutó node tests/lector-ui.test.mjs y git diff --check: exit 0, cinco grupos PASS, incluidos los tres modos al máximo absoluto y la conservación dentro del rango. Log: /tmp/gpGhnBUy/gentle-jobs-JjV9DU/job-4.log.
+- Commit local de seguimiento 4ac7bf6f4d132ef52d07dd5bd50ef773788a68c7 (1034 líneas, sólo especificación/log; duplicación textual intencional para preservar la solicitud, no código). Rama tracker local feat/fluidos-lector-etapa1-tracker apunta a ese límite.
+- Cadena elegida se aplica en una pasada honesta: tracker documental → unidad motor/pruebas (36 líneas de diff previstas) → unidad UI/pruebas/docs (aprox. 480 líneas, no divisible sin separar la misma conducta). El exceso de la unidad UI se informa, no se elimina cobertura ni se comprime código; no hay política de excepción de tamaño verificada en destino. Sin PR ni publicación.
+
+### L9 — Recheck F11 aprobado y unidad motor
+
+- Recheck mwdrjjjv-5-fx99: F11/S2/S5 cumplidos bajo la excepción aceptada. En los tres modos, dentro del rango 42824→42824; al máximo 42905→42844; reserva 61→0 px, sin controles visibles ni resaltado, coordenada documental del último artículo intacta. S3/S4 anteriores se mantienen sin repetir suites.
+- Primera sonda dirigida exit 1 por animación smooth-follow todavía activa; el mismo probe con prefers-reduced-motion: reduce y medición asentada exit 0, stdout PASS F11: in-range preserved; maximum clamped; closed clean; geometry only reserve, stderr vacío. No fue fallo de preparación ni producto. Diff --check exit 0.
+- Incidente de coordinación: verificador observó cambiar HEAD y la lista de modificados. Se confirma como operación explícita del parent: commit motor f43a8d5fabc2a5da04315efe64a153b270a8628e, 26 adiciones/10 bajas, sólo lectura/engine.js y tests/lector-engine.test.mjs; bytes productivos no cambiaron durante recheck. El envío de confirmación al hijo llegó cuando ya había finalizado (sin reintento); queda explicado aquí. No mutación del verifier ni aislamiento de prueba roto.
+- Rama local feat/fluidos-lector-etapa1-motor apunta a f43a8d5, dependiente de feat/fluidos-lector-etapa1-tracker (4ac7bf6). Sin push/PR.
+- Preparación nativa: inspect inicialmente pidió alcance del informe no seguido. Se excluyó del candidato motor; assess exige igualmente no seguidos declarados, por lo que se añadió sólo fluidos/LECTOR-ETAPA1.md al índice como archivo intencional de futura unidad UI. No se incorporó al commit motor.
+- Assess motor por rango committedOnly desde 4ac7bf6: nativeRisk medium, 2 archivos/36 líneas, reviewDue false (under_budget). Escalado item 4 mantiene riesgo high para verificar, ya cumplido. No START ni nueva verificación para motor; la revisión es adicional y no un ritual por commit.
+- Registro RED por regla incompleto permanece como limitación histórica explícita, no como requisito funcional falsamente probado.
+
+### L10 — Unidad UI y decisión del evaluador nativo
+
+- Commit UI d044c34cd85cf3cdee3d2ad772d0df4518077a62: 7 archivos, 347 adiciones/120 bajas (467 líneas); incluye pruebas, documentación/matriz y excepción F11. No cambios de HTML generado, plantilla ni contenido.
+- Assess de ese rango committedOnly desde f43a8d5 devuelve nativeRisk medium, changedPaths 7, changedLines 467, reviewDue false, reviewDueReason under_budget. Escalado item 4 mantiene high para verificación independiente, ya completada. No se inicia START contra la decisión explícita del evaluador.
+- Motor y UI no tienen revisión nativa formal ni veredicto aprobado; tienen evaluación nativa y pruebas/verificación independiente. No hubo lineages creados, consentimientos pendientes ni autoridad activa que consumir.
+- La unidad UI excede 400 líneas orientativas en 67, tras una sola pasada de división coherente. No se minificó ni omitió cobertura para ajustar la cifra. El umbral efectivo del evaluador nativo no se reemplaza por esa orientación de entrega.
+- Cadena local prevista: tracker (4ac7bf6) → motor (f43a8d5) → interfaz (d044c34). Todas permanecen locales; futuro tracker PR sería draft/no-merge, pero no se creó ninguno.
+- Cierre técnico pendiente únicamente de auditoría de alcance/preservación y archivo del informe; pruebas aplicables ya ejecutadas, sin nuevas barridas ni audio real afirmado.
+
+### L11 — Cierre técnico local
+
+- Auditoría final parent exit 0: git diff --check (rango base→HEAD y árbol de trabajo), comparación sin diferencias de fuentes protegidas/educativas, generación/plantilla/HTML, y verificación de ancestro base. Ningún commit de feat/lector-educativo fue incorporado.
+- El árbol original conserva su rama, cambios y archivos no seguidos. Hash del apunte humano sin cambios (704280bd427c88c0d6ddfa024d01030100930f86); los tres archivos no seguidos comprobados conservan sus hashes. main local sigue 8c3d443049cbe5e559805f26d7e87660e42897c8. No se tocaron design/ ni otros worktrees.
+- Informe final y matriz de 20 criterios en fluidos/LECTOR-ETAPA1.md; evidencias visuales locales ignoradas disponibles en fluidos/verificacion-visual/lector-etapa1-{desktop,mobile,minimized,closed}.png.
+- Commit de evidencia adicional cd79e907bf0bc22119d27dcda7adee762341765a: sólo 8 líneas de documentación, evaluación nativa passive/reviewDue false (passive), relectura estructural realizada. No se lanzaron pruebas extra por esa documentación.
+- Rama local adicional feat/fluidos-lector-etapa1-interfaz apunta a d044c34; motor a f43a8d5; tracker a 4ac7bf6. La rama de trabajo contiene esas unidades más el cierre documental; PRs futuros seguirán la cadena elegida sólo con autorización de publicación.
+- Resultado: etapa 1 completa bajo excepción F11 aceptada. Etapas 2/3 no implementadas. Sin pruebas obligatorias pendientes o fallidas al cierre; fallos históricos y RED incompleto quedan explícitos. Audio real Android/iOS, voces de dispositivos y revisión humana exhaustiva de accesibilidad no verificados, no requisitos afirmados como cumplidos.
+- No hubo START ni revisión nativa formal: el evaluador devolvió reviewDue false para ambos candidatos de código; no se atribuye aprobación formal. Verificación independiente de concurrencia sí ejecutada.
+- Issue #30 sigue OPEN/status:approved/type:feature según consulta de esta ejecución; relacionado con el lector previo y sin modificación remota. No se verificó política formal general de etiqueta única, aunque coincide con el antecedente y se conserva como requisito para un futuro PR. Pages main / permanece sin despliegue solicitado.
+- Ningún push, PR, merge, despliegue o modificación destructiva. Las cuatro tareas se cierran con evidencia observada. Siguiente paso externo: revisión humana local; publicar sólo ante autorización nueva.
+
+### L12 — Nueva autorización de publicación
+
+Solicitud humana (verbatim): «ok quiero verificar su funcionamiento, puedes hacer los PRs y push a main»
+
+- Se autoriza ahora la entrega en github.com/Teksi75/clases-analisis-matematico, usando la sesión de GitHub CLI para las operaciones necesarias de ramas, PRs, integración y comprobación de Pages. Se interpreta main como resultado vía PRs, nunca push directo ni bypass de protección.
+- Se mantiene feature-branch-chain: tracker draft/no-merge → motor → interfaz → cierre documental. Los hijos posteriores se retargetearán al tracker cuando su padre ya se haya integrado, conservando la ascendencia y un diff focalizado, sin rebase ni force.
+- Usar Refs #30, sin cierre automático: el issue cubre un lector con etapas futuras no ejecutadas. Una única etiqueta type:* por PR. No cambiar etiquetas protegidas, política ni modo RDD.
+- Reconciliación de continuidad: archivo y observación1363 coinciden después de normalizar sólo el salto final que Engram recorta; la primera comparación estricta falló por ese whitespace, no por divergencia de contenido. No se sobrescribió ninguna versión.
+- T5–T7 agregan únicamente entrega y prueba pública. Código, requisitos de etapa1 y excepción F11 permanecen iguales. Risk: item 5 (publicación/entorno) exige comprobación independiente del resultado desplegado.
+
+### L13 — Preflight de entrega
+
+- Job-5 exit 0: main remoto sigue 35b9015149510950442db63f251a4379962a4a50, default main, merge commits permitidos, permisos push/maintain/admin; sin PRs abiertos ni refs remotos feat/fluidos-lector-etapa1*. Repositorio no archivado. No se inspeccionaron credenciales ni se cambió política.
+- Issue30 OPEN/status:approved/type:feature. Sólo existe type:feature entre etiquetas de tipo; se usará una vez en todos los PRs de esta funcionalidad, incluido su cierre documental, sin crear etiquetas nuevas.
+- main sin protección declarada y rulesets []; no hay CI local configurada bajo .github/. Se consultarán los checks reales de cada PR antes de merge, sin inventar checks verdes ni usar bypass administrativo.
+- Pages legacy main:/, estado built antes de publicar. Se esperará el build asociado al nuevo main y después se verificará la URL pública y sus assets.
+- Job-6 ejecuta la unidad motor f43a8d5 en scratch selectivo: sus 17 tests y la UI previa, para verificar autonomía del primer hijo. El resto del código final coincide con el candidato ya verificado; no se rehacen barridas por cambios sólo documentales.
+- Estrategia exacta: tracker inicial 4ac7bf6; motor f43a8d5; interfaz d044c34; cierre documental en la rama de trabajo. No se fuerza ni elimina ninguna rama.
+
+### L14 — PRs publicados y listos para integración
+
+- Job-6 exit 0 en scratch selectivo de f43a8d5: motor17/17, tres grupos UI anterior y generar.py --check aprobados. Se demuestra la autonomía del primer hijo; no se modifica el árbol real.
+- Commit documental 5e6597057e6b43f42c16c529ea8faaa18209c1d6 registra autorización/preflight; código productivo y pruebas idénticos a 9dc66c0.
+- Job-7 exit 0: push atómico de las cuatro refs sin force; tracker https://github.com/Teksi75/clases-analisis-matematico/pull/32 (draft, base main), motor /pull/33 (base tracker), interfaz /pull/34 (base motor), cierre /pull/35 (base interfaz).
+- Los cuatro PRs están CLEAN/MERGEABLE, statusCheckRollup [], y exactamente type:feature. Issue aprobado enlazado con Refs #30, sin cierre automático. Ningún check remoto configurado: no se afirma CI verde ni se desactiva gate alguno.
+- El tracker enlaza todos los hijos. Se integrarán #33, #34 y #35 en ese orden, redirigiendo cada hijo al tracker cuando su padre ya esté integrado; sólo entonces #32 sale de draft y se integra en main. Uso de merge commits para conservar ascendencia; ningún branch se elimina.
