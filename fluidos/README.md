@@ -4,7 +4,7 @@ Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resulta
 
 ## Lector de voz
 
-El reproductor permite elegir capítulo y párrafo, voz española y velocidad. No inicia la lectura al cargar; la posición se guarda localmente cuando es posible. Si se abre o cierra una resolución, pulsá Reproducir para continuar. La disponibilidad de voces y la pausa dependen del navegador y dispositivo. La arquitectura, configuración, reglas matemáticas y pruebas están en [lectura/README.md](../lectura/README.md).
+Pulsá **🎧 Escuchar** en los controles de lectura y después **Reproducir**. Usá Anterior y Siguiente para recorrer fragmentos; Configuración permite elegir capítulo y voz, o detener. La velocidad ofrece 0,8×, 1×, 1,2× y 1,5×. Minimizar conserva la reproducción y Cerrar lector la cancela. El lector no se abre ni reproduce al recargar; voz, velocidad y posición se guardan localmente cuando es posible. Si se abre o cierra una resolución, pulsá Reproducir para continuar. La disponibilidad de voces y la pausa dependen del navegador y dispositivo. La arquitectura, configuración, reglas matemáticas y pruebas están en [lectura/README.md](../lectura/README.md).
 
 ## Regenerar y comprobar
 
