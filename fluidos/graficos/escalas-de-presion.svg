@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" width="440" height="440" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Referencias de presión absoluta y manométrica</title>
+  <desc id="descripcion">Dos escalas comparten los mismos niveles de presión: el cero absoluto es el vacío y el cero manométrico es la presión atmosférica local. Entre ambos niveles la presión manométrica es negativa. Un ejemplo por encima de la atmósfera muestra p absoluta igual a p atmosférica más p manométrica.</desc>
+  <g fill="#202b65" font-family="sans-serif" font-size="21" text-anchor="middle">
+    <text x="100" y="32">Absoluta</text><text x="340" y="32">Manométrica</text>
+  </g>
+  <g stroke="#202b65" fill="none" stroke-width="3">
+    <path d="M100 345 V72 M340 345 V72"/>
+    <path d="M94 83 L100 72 L106 83 M334 83 L340 72 L346 83"/>
+    <line id="ejemplo" x1="90" y1="120" x2="350" y2="120" stroke-dasharray="7 6"/>
+    <line id="atmosfera" x1="90" y1="210" x2="350" y2="210" stroke-dasharray="7 6"/>
+    <line id="vacio" x1="90" y1="340" x2="350" y2="340" stroke-dasharray="7 6"/>
+    <line id="rango-negativo" x1="365" y1="210" x2="365" y2="340" stroke-width="6"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="19">
+    <text x="111" y="108">presión de ejemplo</text>
+    <text x="112" y="196">atmosférica local</text>
+    <text x="27" y="216">p_atm</text><text x="345" y="203">0</text>
+    <text x="115" y="328">vacío · cero absoluto</text>
+    <text x="77" y="366">0</text><text x="270" y="366">−p_atm</text>
+    <text x="220" y="263" text-anchor="middle">manométrica</text>
+    <text x="220" y="287" text-anchor="middle">negativa</text>
+    <text x="220" y="415" text-anchor="middle" font-size="22">p_abs = p_atm + p_man</text>
+  </g>
+</svg>
