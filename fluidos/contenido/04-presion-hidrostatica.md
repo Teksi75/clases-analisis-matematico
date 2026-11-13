@@ -39,7 +39,7 @@ De la primera surge el principio de los **vasos comunicantes**: si dos recipient
 
 La presión en el fondo de un recipiente depende de la profundidad, no de la cantidad de líquido ni de la forma del recipiente. Un tubo fino y un recipiente ancho, llenos con el mismo líquido hasta la misma altura, ejercen la misma presión sobre el fondo.
 
-![Arriba, recipientes de distinta forma con la misma profundidad: la presión en el fondo es la misma. Abajo, capas superpuestas: cada capa suma su propio aporte.](../diagramas/05.svg)
+![Arriba, recipientes de distinta forma con el mismo líquido, la misma profundidad y presión superficial: igual presión en el fondo. Abajo, capas de distinto espesor y peso específico: sus aportes se suman.](graficos/vasos-y-capas.svg)
 
 Esto no significa que las **fuerzas** sean iguales: $F=pA$, y las áreas de los fondos son distintas. La paradoja se refiere a la presión.
 
@@ -64,7 +64,7 @@ La misma presión puede expresarse en dos escalas:
 
 $$p_{abs}=p_{man}+p_{atm}.$$
 
-![Presiones absoluta y manométrica respecto de la atmósfera.](../diagramas/06.svg)
+![Escalas de presión absoluta y manométrica: el cero absoluto es el vacío y el cero manométrico es la presión atmosférica local; la presión manométrica negativa aparece entre ambos.](graficos/escalas-de-presion.svg)
 
 Una presión manométrica **negativa** significa que la presión absoluta es menor que la atmosférica; no significa presión absoluta negativa. Una presión absoluta negativa no existe.
 

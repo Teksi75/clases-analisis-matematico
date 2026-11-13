@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 610" width="440" height="610" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Forma del recipiente y capas de líquido</title>
+  <desc id="descripcion">Tres recipientes de diferente forma contienen el mismo líquido, con la misma presión superficial y profundidad. En el fondo tienen la misma presión. Otro recipiente contiene tres capas de espesores y pesos específicos distintos: sus aportes se suman.</desc>
+  <g fill="#202b65" font-family="sans-serif" font-size="20">
+    <text x="220" y="30" text-anchor="middle">Mismo líquido y presión superficial p₀</text>
+    <text x="220" y="57" text-anchor="middle">Misma profundidad h y gravedad g</text>
+  </g>
+  <g fill="#cbdfe2" stroke="none">
+    <path d="M35 100 H125 L115 220 H45 Z"/>
+    <path d="M185 100 H235 V220 H185 Z"/>
+    <path d="M305 100 H385 L405 220 H285 Z"/>
+  </g>
+  <g stroke="#202b65" fill="none" stroke-width="3" stroke-linejoin="round">
+    <path d="M35 87 L45 220 H115 L125 87 M185 87 V220 H235 V87 M305 87 L285 220 H405 L385 87"/>
+    <line id="superficie-1" x1="35" y1="100" x2="125" y2="100"/>
+    <line id="superficie-2" x1="185" y1="100" x2="235" y2="100"/>
+    <line id="superficie-3" x1="305" y1="100" x2="385" y2="100"/>
+    <line id="fondo-1" x1="45" y1="220" x2="115" y2="220"/>
+    <line id="fondo-2" x1="185" y1="220" x2="235" y2="220"/>
+    <line id="fondo-3" x1="285" y1="220" x2="405" y2="220"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20" text-anchor="middle">
+    <text x="220" y="254">Igual presión en el fondo: p₀ + γh</text>
+    <text x="220" y="300">Capas: cada espesor suma su aporte</text>
+  </g>
+  <rect id="capa-1" x="80" y="325" width="145" height="55" fill="#d9e9ea"/>
+  <rect id="capa-2" x="80" y="380" width="145" height="75" fill="#bad6da"/>
+  <rect id="capa-3" x="80" y="455" width="145" height="95" fill="#94bec6"/>
+  <g stroke="#202b65" fill="none" stroke-width="3">
+    <path d="M80 315 V550 H225 V315 M80 380 H225 M80 455 H225"/>
+    <path d="M253 325 H263 M258 325 V380 M253 380 H263 M258 380 V455 M253 455 H263 M258 455 V550 M253 550 H263"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="21">
+    <text x="132" y="359">γ₁</text><text x="132" y="425">γ₂</text><text x="132" y="510">γ₃</text>
+    <text x="275" y="359">h₁</text><text x="275" y="425">h₂</text><text x="275" y="510">h₃</text>
+    <text x="220" y="585" text-anchor="middle">p = p₀ + γ₁h₁ + γ₂h₂ + γ₃h₃</text>
+  </g>
+</svg>

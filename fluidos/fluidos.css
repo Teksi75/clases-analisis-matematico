@@ -17,6 +17,8 @@ figure figcaption { color: #4b4841; font-size: .86rem; line-height: 1.55; }
   /* Los esquemas tienen rótulos pequeños: por debajo de 700 px se desplazan en lugar de encogerse. */
   figure { overflow-x: auto; }
   figure img { min-width: 30rem; }
+  /* Las nuevas figuras tienen rótulos mayores y caben en la pantalla estrecha. */
+  figure img[src^="graficos/"] { min-width: 0; }
 }
 @media print {
   figure { break-inside: avoid; }

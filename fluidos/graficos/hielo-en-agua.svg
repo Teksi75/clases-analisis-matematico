@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" width="440" height="440" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Hielo flotante en agua</title>
+  <desc id="descripcion">Un prisma de sección uniforme flota en agua. La superficie corta el prisma de modo que el 91,7 por ciento de su altura, y por tanto de su volumen, está sumergido. La pequeña parte restante emerge.</desc>
+  <rect x="35" y="128.3" width="370" height="286.7" fill="#cbdfe2"/>
+  <path d="M35 110 V415 H405 V110" fill="none" stroke="#202b65" stroke-width="3"/>
+  <rect id="hielo" x="150" y="103.4" width="140" height="300" fill="#f2efe6"/>
+  <rect id="hielo-sumergido" x="150" y="128.3" width="140" height="275.1" fill="#94bec6"/>
+  <rect x="150" y="103.4" width="140" height="300" fill="none" stroke="#202b65" stroke-width="3"/>
+  <line id="superficie" x1="35" y1="128.3" x2="405" y2="128.3" stroke="#202b65" stroke-width="3"/>
+  <g fill="#202b65" font-family="sans-serif" font-size="19" text-anchor="middle">
+    <text x="220" y="30">Prisma de sección uniforme</text>
+    <text x="220" y="57">Hielo en agua · ρhielo/ρagua = 0,917</text>
+    <text x="220" y="91">parte emergida</text>
+    <text x="350" y="120">superficie</text>
+    <text x="220" y="255">hielo</text>
+    <text x="220" y="282">sumergido</text>
+    <text x="220" y="430">91,7 % del volumen bajo la superficie</text>
+  </g>
+</svg>

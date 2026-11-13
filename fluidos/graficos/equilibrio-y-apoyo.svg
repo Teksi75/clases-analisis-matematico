@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 720" width="440" height="720" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Flotación, suspensión y apoyo</title>
+  <desc id="descripcion">Un cuerpo menos denso flota parcialmente, otro de igual densidad está totalmente sumergido y suspendido, y otro más denso descansa sobre un apoyo puntual no sellante. En los dos primeros el empuje E iguala el peso W; en el tercero el empuje más la reacción N iguala el peso.</desc>
+  <rect x="25" y="145" width="390" height="135" fill="#cbdfe2"/>
+  <path d="M25 110 V280 H415 V110" fill="none" stroke="#202b65" stroke-width="3"/>
+  <line id="nivel" x1="25" y1="145" x2="415" y2="145" stroke="#202b65" stroke-width="3"/>
+  <rect id="flota-cuerpo" x="65" y="125" width="60" height="80" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="neutro-cuerpo" x="190" y="180" width="60" height="40" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="apoyo-cuerpo" x="315" y="228" width="60" height="40" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <circle id="apoyo-punto" cx="345" cy="272" r="4" fill="#202b65"/>
+  <path d="M345 276 V280" stroke="#202b65" stroke-width="3"/>
+  <g fill="#202b65" font-family="sans-serif" font-size="18" text-anchor="middle">
+    <text x="220" y="29">Tres cuerpos en equilibrio</text>
+    <text x="95" y="60">Flota</text><text x="95" y="84">ρc &lt; ρf</text>
+    <text x="220" y="60">Suspendido</text><text x="220" y="84">ρc = ρf</text>
+    <text x="345" y="60">Apoyado</text><text x="345" y="84">ρc &gt; ρf</text>
+    <text x="220" y="115">superficie</text>
+    <text x="220" y="310">Apoyo puntual no sellante</text>
+    <text x="220" y="338">Balances de fuerzas (flechas comparables)</text>
+    <text x="70" y="390">Flota</text><text x="70" y="490">Neutro</text><text x="70" y="590">Apoyo</text>
+    <text x="200" y="362">E</text><text x="270" y="430">W</text><text x="355" y="400">E = W</text>
+    <text x="200" y="462">E</text><text x="270" y="530">W</text><text x="355" y="500">E = W</text>
+    <text x="170" y="565">E</text><text x="225" y="575">N</text><text x="280" y="630">W</text><text x="355" y="600">E + N = W</text>
+    <text x="220" y="680">E: empuje · W: peso · N: reacción</text>
+  </g>
+  <g stroke="#202b65" stroke-width="4" fill="#202b65">
+    <line id="flota-empuje" x1="200" y1="420" x2="200" y2="370"/><polygon id="flota-empuje-punta" points="200,370 193,384 207,384"/>
+    <line id="flota-peso" x1="270" y1="370" x2="270" y2="420"/><polygon id="flota-peso-punta" points="270,420 263,406 277,406"/>
+    <line id="neutro-empuje" x1="200" y1="520" x2="200" y2="470"/><polygon id="neutro-empuje-punta" points="200,470 193,484 207,484"/>
+    <line id="neutro-peso" x1="270" y1="470" x2="270" y2="520"/><polygon id="neutro-peso-punta" points="270,520 263,506 277,506"/>
+    <line id="apoyo-empuje" x1="170" y1="620" x2="170" y2="590"/><polygon id="apoyo-empuje-punta" points="170,590 163,604 177,604"/>
+    <line id="apoyo-normal" x1="225" y1="620" x2="225" y2="600"/><polygon id="apoyo-normal-punta" points="225,600 218,614 232,614"/>
+    <line id="apoyo-peso" x1="280" y1="570" x2="280" y2="620"/><polygon id="apoyo-peso-punta" points="280,620 273,606 287,606"/>
+  </g>
+</svg>

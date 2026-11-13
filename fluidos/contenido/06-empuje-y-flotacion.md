@@ -52,7 +52,7 @@ De esa relación salen los tres casos posibles, con $\rho_c$ la densidad **media
 | $\rho_c=\rho_f$ | Equilibrio neutro sumergido | Permanece donde se lo deje |
 | $\rho_c>\rho_f$ | Se hunde | El empuje no alcanza a sostenerlo |
 
-![Cubo de hielo flotando: la fracción sumergida depende del cociente de densidades.](../diagramas/10.svg)
+![Prisma de hielo flotando: la superficie deja sumergido el 91,7 % del volumen, según el cociente de densidades.](graficos/hielo-en-agua.svg)
 
 Para el hielo en agua, $\rho_c/\rho_f=917/1000=0{,}917$: el 91,7 % del volumen queda bajo la superficie. Por eso solo se ve una pequeña parte del hielo flotante.
 
@@ -62,9 +62,9 @@ Para el hielo en agua, $\rho_c/\rho_f=917/1000=0{,}917$: el 91,7 % del volumen q
 
 ### Tres cuerpos, tres resultados {#cap-6-tres-casos}
 
-![Tres cuerpos sumergidos: uno flota, uno queda en equilibrio neutro y uno se hunde.](../diagramas/12.svg)
+![Un cuerpo flota parcialmente, otro queda sumergido en equilibrio neutro y otro descansa sobre un apoyo puntual no sellante: el empuje y la reacción equilibran su peso.](graficos/equilibrio-y-apoyo.svg)
 
-Los tres cuerpos de la figura se diferencian en su densidad media: el de menor densidad flota, el de densidad igual a la del líquido queda en equilibrio neutro y el de mayor densidad se hunde.
+Los tres cuerpos de la figura se diferencian en su densidad media: el de menor densidad flota, el de densidad igual a la del líquido queda en equilibrio neutro y el de mayor densidad se hunde hasta el apoyo. En los dos primeros, $E=W$; para el cuerpo apoyado, la reacción hacia arriba $N$ completa el equilibrio: $E+N=W$. El apoyo puntual permite que el líquido alcance la parte inferior del cuerpo.
 
 ### Para practicar {#cap-6-practicar}
 
