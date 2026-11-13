@@ -1,2 +1,56 @@
+# Local Pi runtime state
+.atl/
+.pi/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Local generated outputs
+salida/
+
+# Perfiles de Chromium de las comprobaciones de navegador
+.b2/
+.browser-check/
+.trig-*/
+odd/stewart-browser-check-*/
+odd/tmp-*/
+
+# Capturas generadas por las pruebas de navegador
+evaluaciones/stewart/verificacion-visual/
+teoria/reading-preview-*.png
+
+# Worktrees anidados de trabajo en curso
+odd/worktrees/
+
+# Respaldo del README anterior a la sincronización
+README.pre-sincronizacion.md
 # Capturas de la comprobación visual del cuaderno de fluidos
 fluidos/verificacion-visual/
+
+# Material de referencia fotográfico privado: nunca publicar
+imagenes/originales/
+imagenes/procesadas/cotejo-*.png
+imagenes/procesadas/contacto.jpg
+imagenes/procesadas/inspeccion-privada-*.png
+
+# Worktrees anidados fuera de odd/worktrees/
+.worktrees/
+
+# Consolidado original sin corregir: solo local
+resultado/apuntes_originales.md
