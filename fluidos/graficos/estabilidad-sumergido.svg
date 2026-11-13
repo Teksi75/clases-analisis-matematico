@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 825" width="440" height="825" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Estabilidad de orientación totalmente sumergida</title>
+  <desc id="descripcion">Tres cuerpos totalmente sumergidos se inclinan a la izquierda. Con G bajo B, el par de peso y empuje gira hacia la vertical; con G sobre B aumenta la inclinación; con G y B coincidentes no hay par. Se supone empuje igual al peso: la estabilidad representada es de orientación, no de traslación vertical.</desc>
+  <g fill="#202b65" font-family="sans-serif" font-size="20" text-anchor="middle">
+    <text x="220" y="30">Totalmente sumergidos · E = W</text>
+    <text x="220" y="58">Estable: G debajo de B</text>
+    <text x="220" y="270">El par devuelve hacia la vertical ↻</text>
+    <text x="220" y="305">Inestable: G encima de B</text>
+    <text x="220" y="517">El par aumenta la inclinación ↺</text>
+    <text x="220" y="552">Indiferente: G coincide con B</text>
+    <text x="220" y="760">Sin par de orientación</text>
+    <text x="220" y="798" font-size="18">E: empuje · W: peso · equilibrio vertical supuesto</text>
+  </g>
+  <g fill="#cbdfe2" stroke="#202b65" stroke-width="3">
+    <polygon points="130,120 210,88 250,188 170,220"/>
+    <polygon points="130,367 210,335 250,435 170,467"/>
+    <polygon points="130,614 210,582 250,682 170,714"/>
+  </g>
+  <g stroke="#202b65" stroke-width="2" stroke-dasharray="6 5">
+    <line id="estable-eje" x1="180" y1="100" x2="220" y2="200"/>
+    <line id="inestable-eje" x1="180" y1="347" x2="220" y2="447"/>
+    <line id="indiferente-eje" x1="180" y1="594" x2="220" y2="694"/>
+  </g>
+  <g stroke="#202b65" stroke-width="3" fill="#202b65">
+    <line id="estable-empuje" x1="194" y1="135" x2="194" y2="85"/><polygon id="estable-empuje-punta" points="194,85 188,98 200,98"/>
+    <line id="estable-peso" x1="206" y1="165" x2="206" y2="215"/><polygon id="estable-peso-punta" points="206,215 200,202 212,202"/>
+    <line id="inestable-empuje" x1="206" y1="412" x2="206" y2="362"/><polygon id="inestable-empuje-punta" points="206,362 200,375 212,375"/>
+    <line id="inestable-peso" x1="194" y1="382" x2="194" y2="432"/><polygon id="inestable-peso-punta" points="194,432 188,419 200,419"/>
+    <line id="indiferente-empuje" x1="200" y1="644" x2="200" y2="594"/><polygon id="indiferente-empuje-punta" points="200,594 194,607 206,607"/>
+    <line id="indiferente-peso" x1="200" y1="644" x2="200" y2="694"/><polygon id="indiferente-peso-punta" points="200,694 194,681 206,681"/>
+  </g>
+  <g fill="#f2efe6" stroke="#202b65" stroke-width="2">
+    <circle id="estable-b" cx="194" cy="135" r="4"/><circle id="estable-g" cx="206" cy="165" r="4"/>
+    <circle id="inestable-b" cx="206" cy="412" r="4"/><circle id="inestable-g" cx="194" cy="382" r="4"/>
+    <circle id="indiferente-b" cx="200" cy="644" r="5"/><circle id="indiferente-g" cx="200" cy="644" r="3"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="19">
+    <text x="151" y="132">B</text><text x="218" y="170">G</text><text x="205" y="100">E</text><text x="217" y="224">W</text>
+    <text x="218" y="418">B</text><text x="151" y="385">G</text><text x="218" y="375">E</text><text x="210" y="442">W</text>
+    <text x="213" y="650">G = B</text><text x="210" y="610">E</text><text x="210" y="706">W</text>
+  </g>
+</svg>
