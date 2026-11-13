@@ -74,6 +74,37 @@ function scriptedGroup(nodes, start) {
   return null;
 }
 
+function isQuantity(node) {
+  if (!node) return false;
+  if (tag(node) === 'mn') return true;
+  return ['msup', 'msub', 'msubsup'].includes(tag(node)) && tag(node.children[0]) === 'mn';
+}
+
+function isUnitToken(node) {
+  return tag(node) === 'mi' && node.getAttribute('mathvariant') === 'normal' && Boolean(units[text(node.textContent)]);
+}
+
+function isUnitScript(node) {
+  return tag(node) === 'msup' && isUnitToken(node.children[0]) && tag(node.children[1]) === 'mn';
+}
+
+// A unit written as a nested row (for example N/m³) labels the quantity before it;
+// it is not a multiplied group, so it is spoken inline without «por grupo» delimiters.
+function unitRow(node) {
+  if (tag(node) !== 'mrow') return null;
+  const items = children(node).filter(item => !['mspace', 'annotation', 'annotation-xml'].includes(tag(item)));
+  if (!items.length) return null;
+  let isUnit = false;
+  for (const item of items) {
+    if (isUnitToken(item)) { isUnit = true; continue; }
+    if (tag(item) === 'mo' && ['/', '·', '×'].includes(text(item.textContent))) continue;
+    if (tag(item) === 'mi' && text(item.textContent) === '/') { isUnit = true; continue; }
+    if (tag(item) === 'msup' && isUnitToken(item.children[0]) && tag(item.children[1]) === 'mn') { isUnit = true; continue; }
+    return null;
+  }
+  return isUnit ? row(items) : null;
+}
+
 function row(nodes) {
   const parts = [];
   let previous = null;
@@ -114,7 +145,7 @@ function row(nodes) {
         tag(exponent.children[0]) === 'mi' && exponent.children[0].getAttribute('mathvariant') === 'normal') {
       const unit = units[text(node.textContent) + text(exponent.children[0].textContent)];
       if (unit) {
-        if (previous && (isAtom(previous) || isClose(previous))) parts.push('por');
+        if (previous && !isQuantity(previous) && (isAtom(previous) || isClose(previous))) parts.push('por');
         parts.push(`${unit} elevados a ${render(exponent.children[1])}, fin de potencia`);
         previous = exponent; i++; numericSpace = false; continue;
       }
@@ -126,10 +157,12 @@ function row(nodes) {
         raw += text(nodes[end].textContent); end++;
       }
       if (end > i && units[raw]) {
-        if (previous && (isAtom(previous) || isClose(previous))) parts.push('por');
+        if (previous && !isQuantity(previous) && (isAtom(previous) || isClose(previous))) parts.push('por');
         parts.push(units[raw]); previous = nodes[end - 1]; i = end - 1; numericSpace = false; continue;
       }
     }
+    const unit = isQuantity(previous) ? unitRow(node) : null;
+    if (unit) { parts.push(unit); previous = node; numericSpace = false; continue; }
     let spoken = render(node);
     if (!spoken) continue;
     // A nested multi-item row is a single operand, including products and quotients.
@@ -138,7 +171,7 @@ function row(nodes) {
       spoken = `grupo ${spoken}, fin de grupo`;
     }
     if (previous && (isAtom(previous) || isClose(previous)) && (isAtom(node) || isOpen(node)) &&
-        !(numericSpace && tag(node) === 'mn')) parts.push('por');
+        !(numericSpace && tag(node) === 'mn') && !(isQuantity(previous) && (isUnitToken(node) || isUnitScript(node)))) parts.push('por');
     parts.push(spoken);
     previous = node;
     numericSpace = false;
@@ -162,6 +195,7 @@ function render(node) {
     case 'msup': {
       const base = items[0];
       if (base && tag(base) === 'mi' && base.getAttribute('mathvariant') === 'normal' && units[text(base.textContent)]) {
+        if (items[1] && tag(items[1]) === 'mn' && text(items[1].textContent) === '1') return child(0);
         return `${child(0)} elevados a ${child(1)}, fin de potencia`;
       }
       return `base ${child(0)}, elevada a ${child(1)}, fin de potencia`;
