@@ -10,7 +10,7 @@ $$p=\frac{F_\perp}{A}\qquad [p]=\frac{\mathrm{N}}{\mathrm{m^2}}=\mathrm{Pa}.$$
 
 El pascal es la unidad del SI: $1\ \mathrm{Pa}=1\ \mathrm{N/m^2}$.
 
-![Fuerza normal sobre una superficie: la presión es la componente perpendicular por unidad de área.](../diagramas/02.svg)
+![Vista lateral: la flecha representa la fuerza normal total F⊥, perpendicular hacia una superficie de área A; la profundidad no está representada.](graficos/presion-media.svg)
 
 Si la fuerza no es perpendicular, solo cuenta su **componente normal** a la superficie; la componente tangencial produce esfuerzo de corte, no presión. Y si la fuerza está distribuida de manera desigual, el cociente anterior da un valor medio.
 

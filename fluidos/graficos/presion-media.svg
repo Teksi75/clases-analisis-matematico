@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 290" width="440" height="290" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Fuerza normal y superficie de contacto</title>
+  <desc id="descripcion">Vista lateral de una superficie de área A. Una flecha vertical representa la fuerza normal total F perpendicular hacia la superficie horizontal; la profundidad no está representada.</desc>
+  <rect x="40" y="168" width="360" height="34" fill="#d7dce1"/>
+  <line id="superficie" x1="40" y1="168" x2="400" y2="168" stroke="#202b65" stroke-width="5" stroke-linecap="round"/>
+  <line id="fuerza-normal" x1="220" y1="39" x2="220" y2="168" stroke="#202b65" stroke-width="4"/>
+  <polygon id="punta-normal" points="220,168 212,151 228,151" fill="#202b65"/>
+  <g fill="#202b65" font-family="sans-serif">
+    <text x="238" y="78" font-size="25">F⊥</text>
+    <text x="220" y="239" text-anchor="middle" font-size="22">Superficie de área A</text>
+    <text x="220" y="266" text-anchor="middle" font-size="18">vista lateral · profundidad no representada</text>
+  </g>
+</svg>

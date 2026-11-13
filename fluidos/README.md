@@ -1,6 +1,22 @@
 # Mecánica de los fluidos
 
-Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resultado/apuntes_corregidos.md`, `resultado/ejercicios_resueltos.md` y `revision/errores_detectados.md`. Se excluyen intencionalmente fotografías y datos personales. Los esquemas son los SVG reconstruidos de `diagramas/`, referenciados por ruta relativa: el material no contiene imágenes fotográficas.
+Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resultado/apuntes_corregidos.md`, `resultado/ejercicios_resueltos.md` y `revision/errores_detectados.md`. Se excluyen intencionalmente fotografías y datos personales. Los esquemas incluyen SVG reconstruidos de `diagramas/` y derivados didácticos en `fluidos/graficos/`, referenciados por ruta relativa: el material no contiene imágenes fotográficas.
+
+## Procedencia de los gráficos didácticos
+
+`graficos/presion-media.svg` es un derivado didáctico del esquema reconstruido `diagramas/02.svg`, que se conserva sin cambios. Sustituye la línea oblicua y el arco ambiguos por una vista lateral de una superficie de área A y una fuerza normal que apunta hacia ella. La profundidad no se representa; el área A corresponde a toda la superficie de contacto, no a la longitud dibujada. La flecha representa la fuerza normal total usada en la presión media, no una distribución puntual; la componente tangencial y el esfuerzo de corte se explican en el texto, sin representarlos como presión. No incorpora medidas numéricas del manuscrito.
+
+`graficos/vasos-y-capas.svg` deriva de `diagramas/05.svg`: compara recipientes con el mismo líquido, profundidad, gravedad y presión superficial, y expresa simbólicamente los aportes de tres capas. No reproduce los valores incompletos del esquema ni asigna dimensiones del manuscrito. El orden determina la presión en cada interfaz; para el fondo se suman todos los aportes, independientemente de su orden.
+
+`graficos/escalas-de-presion.svg` deriva de `diagramas/06.svg`: separa las referencias de presión del esquema de profundidad. El vacío es el cero absoluto; la atmósfera local es el cero manométrico y el intervalo entre ambos tiene presión manométrica negativa. No fija un valor universal para la atmósfera local.
+
+`graficos/prensa-hidraulica.svg` deriva de `diagramas/07.svg`: identifica la carga aplicada al émbolo pequeño y la fuerza del fluido sobre el émbolo grande. Sus caras están al mismo nivel en el modelo ideal; las dimensiones dibujadas son esquemáticas, no medidas del original. Los tres originales se conservan sin cambios; estos derivados corrigen figuras existentes y no son las figuras de ampliación futuras.
+
+`graficos/hielo-en-agua.svg` deriva de `diagramas/10.svg`: representa un prisma de sección uniforme con 91,7 % de su altura y volumen bajo la superficie, de acuerdo con las densidades del texto. No incorpora dimensiones del manuscrito.
+
+`graficos/equilibrio-y-apoyo.svg` deriva de `diagramas/12.svg`: distingue flotación parcial, suspensión neutra y apoyo de un cuerpo más denso. En el apoyo puntual no sellante el líquido alcanza la cara inferior; el empuje y la reacción suman el peso. Los balances se dibujan separados de los cuerpos para mostrar dirección y magnitud relativa sin superposiciones.
+
+`graficos/estabilidad-sumergido.svg` deriva de `diagramas/11.svg`: usa los centros G y B y muestra el sentido del par para cuerpos totalmente sumergidos inclinados. Supone empuje igual al peso y distingue la estabilidad de orientación del equilibrio vertical; no representa metacentros. Los tres originales se conservan sin cambios y los derivados no son las figuras de ampliación futuras.
 
 ## Lector de voz
 
@@ -25,4 +41,4 @@ El navegador guarda capturas en `fluidos/verificacion-visual/<id>/`. `--check` c
 
 Los archivos `contenido/*.md` se procesan en orden de nombre. Cada `##` inicia un capítulo; `###` inicia una sección. No escribir títulos `#`: el título del documento está en la plantilla. Se conservan los identificadores explícitos de Pandoc, por ejemplo `### Título {#slug}` y `::: {.ejercicio #ejercicio-05}`. Los bloques `.aviso`, `.definicion`, `.ejercicio` y `.resolucion` usan divs cercados; la resolución se transforma en un `<details>` nativo. Cada ejercicio debe tener identificador.
 
-Se admiten matemáticas `$...$` y `$$...$$` (MathML), figuras implícitas `![Descripción](../diagramas/02.svg)`, tablas de barras, listas y enlaces locales. Las rutas son relativas a `fluidos/`, no al Markdown. No usar HTML crudo, scripts, fuentes externas ni URL remotas; todos los recursos locales deben existir.
+Se admiten matemáticas `$...$` y `$$...$$` (MathML), figuras implícitas `![Descripción](graficos/presion-media.svg)`, tablas de barras, listas y enlaces locales. Las rutas son relativas a `fluidos/`, no al Markdown. No usar HTML crudo, scripts, fuentes externas ni URL remotas; todos los recursos locales deben existir.

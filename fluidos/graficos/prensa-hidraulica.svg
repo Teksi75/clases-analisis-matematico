@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" width="440" height="440" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Prensa hidráulica ideal al mismo nivel</title>
+  <desc id="descripcion">Una fuerza aplicada F1 empuja hacia abajo el émbolo pequeño de área A1. El fluido compartido ejerce hacia arriba sobre el émbolo mayor de área A2 la fuerza de salida F2. En el modelo ideal, las caras de los émbolos están al mismo nivel y F1 sobre A1 es igual a F2 sobre A2. Las flechas muestran que F2 es mayor que F1, sin escala numérica.</desc>
+  <g fill="#202b65" font-family="sans-serif" font-size="19" text-anchor="middle">
+    <text x="105" y="28">Entrada: F₁</text><text x="105" y="51">carga aplicada</text>
+    <text x="324" y="28">Salida: F₂</text><text x="324" y="51">fluido sobre émbolo</text>
+  </g>
+  <path d="M65 220 H145 V285 H245 V220 H385 V330 H65 Z" fill="#bad6da"/>
+  <g stroke="#202b65" stroke-width="3" fill="none" stroke-linejoin="round">
+    <path d="M65 175 V330 H385 V175 M145 175 V285 H245 V175"/>
+    <line x1="25" y1="220" x2="415" y2="220" stroke-dasharray="6 6" stroke-width="2"/>
+  </g>
+  <rect id="piston-1" x="65" y="200" width="80" height="20" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="piston-2" x="245" y="200" width="140" height="20" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <g stroke="#202b65" stroke-width="4" fill="#202b65">
+    <line id="fuerza-entrada" x1="105" y1="150" x2="105" y2="200"/>
+    <polygon id="fuerza-entrada-punta" points="105,200 97,184 113,184"/>
+    <line id="fuerza-salida" x1="315" y1="300" x2="315" y2="220"/>
+    <polygon id="fuerza-salida-punta" points="315,220 307,236 323,236"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20" text-anchor="middle">
+    <text x="20" y="164" text-anchor="start">área A₁</text><text x="315" y="164">área A₂</text>
+    <text x="205" y="315">fluido compartido</text>
+    <text x="220" y="365">Caras al mismo nivel · modelo ideal</text>
+    <text x="220" y="405" font-size="24">F₁/A₁ = F₂/A₂</text>
+    <text x="220" y="431" font-size="18">Flechas cualitativas · sin escala numérica</text>
+  </g>
+</svg>
