@@ -19,7 +19,9 @@ Si el cuerpo está completamente sumergido, al inclinarlo el volumen desplazado 
 | $G$ **coincide** con $B$ | Indiferente | No aparece par restaurador ni desestabilizador |
 | $G$ por **encima** de $B$ | Inestable | Aparece un par que aumenta la inclinación |
 
-![Los tres casos de estabilidad de un cuerpo sumergido. En el esquema, GC es el centro de gravedad del cuerpo y GF el centro de empuje (B).](../diagramas/11.svg)
+![Cuerpos totalmente sumergidos e inclinados: estable con G debajo de B, inestable con G encima de B e indiferente si coinciden. El peso actúa en G y el empuje en B.](graficos/estabilidad-sumergido.svg)
+
+La figura supone $E=W$ para aislar la estabilidad de orientación: el cuerpo no tiene fuerza vertical neta. El criterio de orientación, por sí solo, no garantiza el equilibrio frente a una traslación vertical.
 
 Este criterio explica por qué se lastra el fondo de un flotador o de un sumergible: bajar $G$ convierte un equilibrio inestable en estable sin cambiar el empuje.
 
