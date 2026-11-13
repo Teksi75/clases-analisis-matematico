@@ -23,7 +23,11 @@ Por defecto procesa `:scope > article`, trata cada `article` como capítulo, `h1
 | `sectionHeadingSelector` | Selector de títulos de sección. |
 | `narrateMath` | Función que recibe un elemento MathML y devuelve texto. |
 
-Se excluyen tablas completas, navegación, controles, medios decorativos y contenido oculto, incluso por antepasados. Se incluye `summary` de un `details` cerrado, pero no su cuerpo. Tras abrir o cerrar uno, llamá otra vez al extractor; no altera su estado. Los ID de bloques se basan en la ruta de nodos, no en el ordinal visible: cambiar únicamente la visibilidad no desplaza los ID posteriores. Cambiar la estructura del DOM sí puede cambiarlos. El módulo también exporta `isVisible(element, stop?)`, que comprueba visibilidad y disclosures hasta el antepasado opcional `stop` inclusive; no aplica exclusiones por tipo o selector.
+Las tablas se excluyen deliberadamente de la lectura: no generan bloques ni se lee su contenido, incluidos pies, tablas anidadas y MathML.
+
+Una imagen visible con `alt` no vacío genera un bloque con ese texto; no se inventa una descripción. Si un `figcaption` visible y no excluido de la misma figura coincide exactamente con el `alt` normalizado, se lee la leyenda y se omite el bloque de imagen, sin importar su orden. Otras leyendas visibles se conservan.
+
+Se excluyen navegación, controles, otros medios y contenido oculto, incluso por antepasados. Se incluye `summary` de un `details` cerrado, pero no su cuerpo. Tras abrir o cerrar uno, llamá otra vez al extractor; no altera su estado. Los ID de bloques se basan en la ruta de nodos, no en el ordinal visible: cambiar únicamente la visibilidad no desplaza los ID posteriores. Cambiar la estructura del DOM sí puede cambiarlos. El módulo también exporta `isVisible(element, stop?)`, que comprueba visibilidad y disclosures hasta el antepasado opcional `stop` inclusive; no aplica exclusiones por tipo o selector.
 
 La extracción no elimina párrafos repetidos por igualdad de texto: pueden ser contenido legítimo. El elemento asociado a cada bloque es el contenedor del fragmento y permite resaltarlo sin alterar el contenido académico permanentemente. Las listas ordenadas incluyen su número visible estructural (`start`, `value` y `reversed`).
 

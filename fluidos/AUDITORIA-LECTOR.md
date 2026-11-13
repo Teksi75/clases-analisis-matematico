@@ -2,9 +2,13 @@
 
 **Estado: corregidas las 21 expresiones antes señaladas y 15 ocurrencias adicionales de unidades de columna y subíndices de mercurio; exactitud oral general pendiente.** El recorrido automático no encontró narraciones vacías ni operadores o elementos desconocidos entre las expresiones elegibles con todos los detalles abiertos. Esto no es una revisión humana completa ni garantiza que cada narración sea fiel; no se validaron humanamente los 470 MathML.
 
+## Aclaración de etapa 3 — 2026-11-13
+
+Las mediciones documentadas a continuación son históricas. Se revirtió la lectura de tablas: el extractor vuelve a excluirlas junto con su contenido y usa el `alt` existente y significativo de las imágenes. El oráculo comprueba la ausencia de texto originado en tablas en todos los bloques. Los pares matemáticos y los límites de la verificación se registran en [VERIFICACION-ETAPA3.md](../lectura/VERIFICACION-ETAPA3.md); las pruebas no demuestran exactitud oral universal.
+
 ## Reproducir
 
-Ejecutar `node tests/lector-math.test.mjs` y `node tests/lector-extractor.test.mjs` con Chromium instalado. La segunda prueba imprime `AUDIT`: inventario, conteos heurísticos y pares TeX/narración representativos. Trabaja sobre `fluidos/index.html`, abre temporalmente todos los `details` en el DOM de prueba y restaura su estado. Una prueba independiente marca nodos de texto de párrafos y encabezados para verificar orden y unicidad; marca además texto originado en tablas para comprobar su exclusión sin confundir números iguales fuera de ellas.
+Ejecutar `node tests/lector-math.test.mjs` y `node tests/lector-extractor.test.mjs` con Chromium instalado. La segunda prueba imprime `AUDIT`: inventario, conteos heurísticos y pares TeX/narración representativos. Trabaja sobre `fluidos/index.html`, abre temporalmente todos los `details` en el DOM de prueba y restaura su estado. Una prueba independiente marca nodos de texto de párrafos y encabezados para verificar orden y unicidad; también marca texto originado en tablas para comprobar que no aparezca en ningún bloque, sin confundir números iguales fuera de ellas.
 
 | Medición | Detalles originales | Todos abiertos |
 | --- | ---: | ---: |
@@ -12,7 +16,7 @@ Ejecutar `node tests/lector-math.test.mjs` y `node tests/lector-extractor.test.m
 | Nodos de texto de párrafos/encabezados comprobados | 632 | 818 |
 | MathML elegible | 199 | 332 |
 
-La página completa contiene 470 MathML: 138 están dentro de tablas excluidas y 332 son elegibles al abrir todos los detalles. No se narra ninguno de los 138 de tabla. En los 332 elegibles, la inspección automática contabilizó cero narraciones vacías y cero mensajes de operador o elemento desconocido. La prueba verifica también los ocho capítulos, recuadros visibles, IDs únicos y su estabilidad al alternar detalles.
+En la medición histórica la página completa contenía 470 MathML: 138 estaban dentro de tablas entonces excluidas y 332 eran elegibles al abrir todos los detalles. No se narraba ninguno de los 138 de tabla. En los 332 elegibles, la inspección automática contabilizó cero narraciones vacías y cero mensajes de operador o elemento desconocido. La prueba verifica también los ocho capítulos, recuadros visibles, IDs únicos y su estabilidad al alternar detalles.
 
 ## Inventario de presentación elegible
 

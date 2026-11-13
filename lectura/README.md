@@ -36,7 +36,7 @@ reader.reconcileBlocks(blocks, index); // Conserva la emisión si la identidad y
 
 ## Arquitectura y exclusiones
 
-`engine.js` controla la síntesis y sus eventos; `extractor.js` recorre el DOM; `math.js` narra MathML; `ui.js` monta los controles; el módulo de página aporta selectores y reglas. El extractor omite tablas completas, navegación, controles y elementos ocultos. Sumá subárboles con `excludeSelector`; consultá [EXTRACCION.md](EXTRACCION.md) para todas las opciones. Las reglas matemáticas son propias de cada página y prevalecen sobre la conversión automática. [MATEMATICAS.md](MATEMATICAS.md) explica cómo agregarlas, modificarlas y eliminarlas sin duplicados.
+`engine.js` controla la síntesis y sus eventos; `extractor.js` recorre el DOM; `math.js` narra MathML; `ui.js` monta los controles; el módulo de página aporta selectores y reglas. El extractor excluye deliberadamente las tablas y todo su contenido; usa los textos alternativos existentes y significativos de las imágenes para los diagramas, sin inventar descripciones. Omite navegación, controles y elementos ocultos. Sumá subárboles con `excludeSelector`; consultá [EXTRACCION.md](EXTRACCION.md) para todas las opciones. Las reglas matemáticas son propias de cada página y prevalecen sobre la conversión automática. [MATEMATICAS.md](MATEMATICAS.md) explica cómo agregarlas, modificarlas y eliminarlas sin duplicados.
 
 ## Límites y pruebas
 

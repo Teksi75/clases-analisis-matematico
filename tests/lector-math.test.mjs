@@ -26,6 +26,15 @@ const corrected = [
   ['capitulo-08', String.raw`E=\rho_{hielo}V g=917\times(0{,}1)^3\times 9{,}80665=8{,}9927\ \mathrm{N}.`, 'E igual a rho subíndice hielo por V por g igual a 917 por 0 coma 1 al cubo por 9 coma 80665 igual a 8 coma 9927 newtons'],
 ];
 
+// Narrator-only coverage of real notation inside tables: the reader excludes tables.
+const tables = [
+  ['capitulo-08', String.raw`760\times 10^{-6}`, '760 por base 10, elevada a menos 6, fin de potencia'],
+  ['capitulo-08', String.raw`7{,}6\times 10^{-4}\ \mathrm{m^3}`, '7 coma 6 por base 10, elevada a menos 4, fin de potencia metros elevados a 3, fin de potencia'],
+  ['capitulo-08', String.raw`7\,453{,}05\ \mathrm{N/m^3}`, '7 453 coma 05 newtons dividido por metros elevados a 3, fin de potencia'],
+  ['capitulo-08', String.raw`5\,400\,000\ \mathrm{L/h}`, '5 400 000 litros dividido por horas'],
+  ['capitulo-08', String.raw`0{,}1778\ \mathrm{m}`, '0 coma 1778 metros'],
+];
+
 // Complete chapter-scoped source identities, multiplicities and independently specified speech.
 const columns = [
   ['capitulo-03', String.raw`1\ \mathrm{mmHg}=133{,}322\ \mathrm{Pa}`, 1, '1 milímetro de mercurio igual a 133 coma 322 pascales'],
@@ -77,6 +86,11 @@ await withBrowser(async ({ evaluate, url }) => {
       columns: ${JSON.stringify(columns)}.map(([chapter, tex]) => [...document.querySelectorAll('#' + chapter + ' math')]
         .filter(m => !m.closest('table') && m.querySelector('annotation[encoding="application/x-tex"]')?.textContent === tex)
         .map(m => narrateMath(m, mathRules))),
+      tables: ${JSON.stringify(tables)}.map(([chapter, tex]) => {
+        const matches = [...document.querySelectorAll('#' + chapter + ' math')].filter(m => m.querySelector('annotation[encoding="application/x-tex"]')?.textContent === tex);
+        if (!matches.length) throw new Error('Falta fórmula real: ' + chapter + ' ' + tex);
+        return matches.map(m => narrateMath(m, mathRules));
+      }),
       corrected: ${JSON.stringify(corrected)}.map(([chapter, tex]) => {
         const matches = [...document.querySelectorAll('#' + chapter + ' math')].filter(m => m.querySelector('annotation[encoding="application/x-tex"]')?.textContent === tex);
         if (!matches.length) throw new Error('Falta fórmula real: ' + chapter + ' ' + tex);
@@ -114,6 +128,10 @@ await withBrowser(async ({ evaluate, url }) => {
       variables: speak('<mi>m</mi><mi>g</mi><mi>h</mi>'),
       groupedProduct: speak('<mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow><mi>c</mi>'),
       groupedDivision: speak('<mi>x</mi><mo>/</mo><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow>'),
+      unitOperands: [
+        speak('<mrow><mn>5</mn><mo>/</mo><mrow><mi mathvariant="normal">N</mi><mi mathvariant="normal">/</mi><msup><mi mathvariant="normal">m</mi><mn>1</mn></msup></mrow></mrow>'),
+        speak('<mi>x</mi><mrow><mi mathvariant="normal">N</mi><mi mathvariant="normal">/</mi><msup><mi mathvariant="normal">m</mi><mn>1</mn></msup></mrow>'),
+      ],
       pandocPower: speak('<mi>a</mi><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><msup><mo>)</mo><mn>2</mn></msup>'),
       unit: speak('<mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">/</mi><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup></mrow>'),
       compoundUnit: speak('<mi mathvariant="normal">c</mi><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup>'),
@@ -142,6 +160,7 @@ await withBrowser(async ({ evaluate, url }) => {
   }
   assert.equal(corrected.length, 21);
   assert.deepEqual(result.corrected.map(values => [...new Set(values)]), corrected.map(([, , speech]) => [speech]));
+  assert.deepEqual(result.tables.map(values => [...new Set(values)]), tables.map(([, , speech]) => [speech]));
   assert.notEqual(result.scopedOutside, corrected[0][2]);
   assert.equal(result.density, 'La densidad es igual a la masa dividida por el volumen');
   assert.equal(result.pressure, 'La presión es igual a la densidad por la aceleración de la gravedad por la profundidad');
@@ -166,6 +185,10 @@ await withBrowser(async ({ evaluate, url }) => {
   assert.equal(result.variables, 'm por g por h');
   assert.equal(result.groupedProduct, 'grupo a más b, fin de grupo por c');
   assert.equal(result.groupedDivision, 'x dividido por grupo a más b, fin de grupo');
+  assert.deepEqual(result.unitOperands, [
+    '5 dividido por grupo newtons dividido por metros, fin de grupo',
+    'x por grupo newtons dividido por metros, fin de grupo',
+  ]);
   assert.equal(result.pandocPower, 'a por base x más 1, elevada a 2, fin de potencia');
   assert.equal(result.unit, 'kilogramos dividido por metros elevados a 3, fin de potencia');
   assert.equal(result.compoundUnit, 'centímetros elevados a 3, fin de potencia');
@@ -183,5 +206,9 @@ await withBrowser(async ({ evaluate, url }) => {
   assert.equal(result.unknownTag, 'elemento MathML mystery: x, fin de elemento mystery');
   assert.equal(result.annotation, 'x');
   assert.ok(result.pageCount > 400);
+  if (process.env.VERIFICACION_ETAPA3) console.log('VERIFICACION_ETAPA3', JSON.stringify([
+    ...corrected.slice(0, 9).map(([chapter, tex, expected], i) => ({ chapter, tex, expected, obtained: result.corrected[i][0] })),
+    ...tables.map(([chapter, tex, expected], i) => ({ chapter, tex, expected, obtained: result.tables[i][0] })),
+  ]));
   console.log('PASS MathML en Chromium, reglas de página y conflictos');
 });

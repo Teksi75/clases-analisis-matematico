@@ -80,7 +80,20 @@ export function extractBlocks(root, options = {}) {
   const walk = (node, currentOwner) => {
     if (node.nodeType === 3) { add(node.data, node, currentOwner); return; }
     if (node.nodeType !== 1) return;
-    if (node.matches(omitted) || (excludeSelector && node.matches(excludeSelector)) || !isVisible(node)) return;
+    if (excludeSelector && node.matches(excludeSelector)) return;
+    if (!isVisible(node)) return;
+    if (node.localName === 'img') {
+      flush();
+      const alt = clean(node.getAttribute('alt') || '');
+      const captions = node.closest('figure')?.querySelectorAll(':scope > figcaption') || [];
+      const matchingCaption = alt && [...captions].some(caption => isVisible(caption) &&
+        !(excludeSelector && caption.closest(excludeSelector)) && clean(caption.textContent) === alt);
+      if (alt && !matchingCaption) {
+        blocks.push({ id: `lector-${path(node, root)}`, text: alt, element: node, chapterId, chapterTitle, sectionTitle });
+      }
+      return;
+    }
+    if (node.matches(omitted)) return;
     if (node.localName === 'math') { add(narrateMath(node), node, currentOwner, true); return; }
     const boundary = boundaries.has(node.localName);
     if (boundary) flush();
