@@ -1,0 +1,64 @@
+# Dudas de lectura y límites de las fotografías
+
+Índice generado a partir de las transcripciones revisadas. Las referencias incluyen el número de línea de la transcripción; consultar además el contexto y la región allí indicados. Una marca no significa que la región no haya sido examinada. Los bordes fuera de cuadro no pueden recuperarse desde estas fotografías.
+
+- [04:8](../transcripciones/04.md#L8): `La escritura de esta franja es tenue y pequeña; las marcas indican los fragmentos no recuperados con seguridad.`
+- [04:10](../transcripciones/04.md#L10): `- a) 7'' · 39,37 [ILEGIBLE] = [LECTURA INCIERTA: 267,4 / 287,4] m. Unidad después de 39,37 poco clara.`
+- [04:11](../transcripciones/04.md#L11): `- B) \(760\frac{kgF}{m^3}\cdot\frac{9,8N}{1kgF}\cdot\frac{1m^3}{\text{[ILEGIBLE]}}=\) [ILEGIBLE]. Denominador del último factor y resultado junto al borde superior derecho.`
+- [04:12](../transcripciones/04.md#L12): `- c) \(10\frac{kgF}{m^3}\cdot\frac{9,8N}{1kgF}\cdot\frac{1m^3}{\text{[ILEGIBLE]}}=\) [ILEGIBLE]. Denominador del último factor y cifras y unidad del resultado.`
+- [04:13](../transcripciones/04.md#L13): `- d) \(1,5\frac{m^3}{s}\cdot\frac{1000L}{1m^3}\cdot\frac{3600s}{1h}=\) [LECTURA INCIERTA: 5400000 / ILEGIBLE]. Resultado en el extremo derecho; unidad no legible.`
+- [04:14](../transcripciones/04.md#L14): `- e) \(760mL\cdot\) [LECTURA INCIERTA: 0,00001 / 0,000001] \(m^3=0,00076\)`
+- [04:21](../transcripciones/04.md#L21): `cohesión: ~~[ILEGIBLE]~~ decimos asi a la Fuerza intermolecular que mantiene unidas las partículas de cualquier sustancia. Aquellas sustancias con baja cohesión tendrán la capacidad de Fluir.`
+- [01:6](../transcripciones/01.md#L6): `## Encabezado (borde superior)`
+- [01:9](../transcripciones/01.md#L9): `[NOMBRE REDACTADO] [LECTURA INCIERTA: 5°1 / 5°2]`
+- [01:10](../transcripciones/01.md#L10): `[LECTURA INCIERTA: Cuberino / Cubecino]`
+- [01:52](../transcripciones/01.md#L52): `Llamamos asi al peso de una sustancia por cada un[ILEGIBLE] de volumen de la misma.`
+- [01:54](../transcripciones/01.md#L54): `El fragmento ilegible está cortado por el borde derecho.`
+- [02:15](../transcripciones/02.md#L15): `**Dibujo, a la izquierda de la fórmula:** una línea casi horizontal y una línea oblicua se encuentran en un punto; una flecha vertical apunta hacia ese punto y está rotulada «F⊥»; la línea oblicua lleva «F» y junto al ángulo hay una marca [LECTURA INCIERTA: φ / P].`
+- [02:29](../transcripciones/02.md#L29): `P\cdot A=F\perp=101325\,\text{[LECTURA INCIERTA: P / Pa]}\cdot15000=1.519.875.000`
+- [02:38](../transcripciones/02.md#L38): `La última operación está junto al borde inferior de la fotografía; no se aprecia lo que pudiera quedar fuera del encuadre.`
+- [03:6](../transcripciones/03.md#L6): `## Encabezado (borde superior)`
+- [03:8](../transcripciones/03.md#L8): `[LECTURA INCIERTA: 16/3/26 / 26/3/26] — mecanica de los Fluidos`
+- [03:10](../transcripciones/03.md#L10): `[LECTURA INCIERTA: Cuberino / Cubecino]`
+- [09:5](../transcripciones/09.md#L5): `## Borde superior, escritura a lápiz parcialmente cortada`
+- [09:7](../transcripciones/09.md#L7): `\(P = 1000\,\frac{kg}{m^3}\; 64\,[\text{ILEGIBLE}]\)`
+- [09:11](../transcripciones/09.md#L11): `A la derecha hay otros trazos cortados o muy tenues: [ILEGIBLE].`
+- [09:44](../transcripciones/09.md#L44): `800\frac{kgF}{m^3}\cdot 0,785m^3 = [\text{LECTURA INCIERTA: 628 / 620}]\ kg`
+- [09:47](../transcripciones/09.md#L47): `P = \frac{[\text{LECTURA INCIERTA: 628 / 620}]\ kg}{0,78m^2}`
+- [09:48](../transcripciones/09.md#L48): `\qquad P = 805,12\ \frac{kg}{m^{[\text{ILEGIBLE}]}}`
+- [09:61](../transcripciones/09.md#L61): `1000\ \frac{kgF}{m^{[\text{LECTURA INCIERTA: 2 / 3}]}}\\`
+- [09:62](../transcripciones/09.md#L62): `+\ 800\ \frac{kg}{m^{[\text{ILEGIBLE}]}}\\`
+- [09:64](../transcripciones/09.md#L64): `1800\ \frac{kgF}{m^{[\text{ILEGIBLE}]}}`
+- [09:68](../transcripciones/09.md#L68): `La escritura de algunos denominadores y exponentes es tenue. En el resultado central, los dígitos del numerador y del producto se leen como [LECTURA INCIERTA: 628 / 620].`
+- [05:8](../transcripciones/05.md#L8): `16/3/26 — mecanica de los Fluidos — [NOMBRE REDACTADO] [ILEGIBLE] (apellido, encabezado) — [LECTURA INCIERTA: 5°1 / 5°2]`
+- [05:27](../transcripciones/05.md#L27): `- \(\gamma=300\ \mathrm{kgf/m^3}\) [LECTURA INCIERTA: kgf / kg]`
+- [05:28](../transcripciones/05.md#L28): `- \(\gamma=900\ \mathrm{kgf/m^3}\) [LECTURA INCIERTA: kgf / kg]`
+- [05:29](../transcripciones/05.md#L29): `- \(\gamma=2000\ \mathrm{kgf/m^3}\) [LECTURA INCIERTA: 2000 / 3000; kgf / kg]`
+- [05:41](../transcripciones/05.md#L41): `como hemos visto la presion hidroestatica depende de la profundid[ILEGIBLE] (final junto al borde derecho) por lo tanto es posible expresar presiones en alturas de fluidos, precisamente en alturas de mercurio y agua`
+- [05:49](../transcripciones/05.md#L49): `\frac{10330\ \mathrm{kgf/m^2}}{[\text{LECTURA INCIERTA: 1000 / 2000}]\ \mathrm{kgf/m^3}}=hH2O`
+- [05:58](../transcripciones/05.md#L58): `[LECTURA INCIERTA, denominador de la fracción de la columna izquierda: 1000 / 2000.]`
+- [06:8](../transcripciones/06.md#L8): `[LECTURA INCIERTA: 13/4/26 / 13/1/26]`
+- [06:33](../transcripciones/06.md#L33): `**Diagrama:** dos ejes verticales ascendentes, titulados «P. Absoluta» y «P. Relativa». En el primero se marca abajo «0 Pa» y, más arriba, «Patm» con un valor pequeño [ILEGIBLE]; una línea discontinua horizontal enlaza este nivel con el 0 del eje relativo. En la escala relativa aparecen un signo + sobre el 0 y un signo − debajo; una llave superior indica «Sobrepresiones» y una inferior «vacío». En la parte inferior del eje relativo figura −101325 Pa. En la escala absoluta hay un signo + encerrado en un círculo encima del nivel atmosférico.`
+- [06:37](../transcripciones/06.md#L37): `1) a) [ILEGIBLE] (tachadura en la línea) \(P_3=67032\ \mathrm{Pa}\)`
+- [06:49](../transcripciones/06.md#L49): `**Parte inferior izquierda; el inicio del apartado está cortado por el borde de la fotografía:**`
+- [06:51](../transcripciones/06.md#L51): `[ILEGIBLE] (borde cortado) ) \(PABS=Prel+Patm\)`
+- [06:71](../transcripciones/06.md#L71): `**A la derecha de una línea oblicua; extremo derecho recortado:**`
+- [06:74](../transcripciones/06.md#L74): `V=6,2\cdot3\cdot3=55,8\,m^3\quad\text{[última unidad parcialmente cortada]}`
+- [07:8](../transcripciones/07.md#L8): `[LECTURA INCIERTA: 13/4/26 / 23/4/26] — mecanica de los Fluidos — [ILEGIBLE] (apellido, encabezado)`
+- [07:25](../transcripciones/07.md#L25): `c) \(P=[\text{LECTURA INCIERTA: 1645 / 164,5}]\ \mathrm{kg/m^2}+0,5\)`
+- [07:45](../transcripciones/07.md#L45): `[LECTURA INCIERTA en las unidades de presión de los cálculos: kg / kgf.]`
+- [07:62](../transcripciones/07.md#L62): `## Ejemplo, borde inferior`
+- [07:64](../transcripciones/07.md#L64): `Ejemplo: Se busca elevar un peso de [LECTURA INCIERTA: 2600 / 2800] kg con una prensa cuyos diametros son 0,2 m y 1,5 m. Determine la fuerza mínima a ejercer. Calcule las fuerzas mínimas a aplicar y la presión ejercida.`
+- [07:66](../transcripciones/07.md#L66): `[LECTURA INCIERTA, borde inferior: la última línea está parcialmente tapada por el borde de la hoja; «aplicar y la presión ejercida».]`
+- [08:35](../transcripciones/08.md#L35): `El principio de Arquímedes establece que cualquier cuerpo en el seno de un fluido recibe una fuerza que es exactamente igual al peso del volumen de fluido desplazado [últimas letras junto al borde derecho].`
+- [12:12](../transcripciones/12.md#L12): `\rho_1\ \text{[LECTURA INCIERTA: ≤ / <]}\ \rho_{Liq}`
+- [12:21](../transcripciones/12.md#L21): `El primer signo se lee [LECTURA INCIERTA: ≤ / <]; las referencias al líquido aparecen rodeadas por trazos ovalados.`
+- [12:50](../transcripciones/12.md#L50): `Sobre «5cm» aparece «0,05m», con otra anotación tenue [LECTURA INCIERTA: 0,5m / 0,05m]. El inicio de algunos renglones queda parcialmente fuera del borde izquierdo.`
+- [12:52](../transcripciones/12.md#L52): `Operaciones al pie, cortadas por los bordes de la fotografía. En la operación de la izquierda la relación entre el signo parecido a π y el 4 es [LECTURA INCIERTA: fracción / trazos de otra línea]; se reproduce la disposición aproximada:`
+- [12:55](../transcripciones/12.md#L55): `[\text{ILEGIBLE}] = (0,05m)^3\cdot\pi\cdot\frac{[\text{ILEGIBLE}]}{4}\;[\text{fuera de cuadro}]`
+- [12:58](../transcripciones/12.md#L58): `\vec E = (0,05m)^3\cdot 1000\frac{kg}{[\text{fuera de cuadro}]}`
+- [12:61](../transcripciones/12.md#L61): `P = (0,05m)^3\cdot 1000\ kg\;[\text{fuera de cuadro}]`
+- [10:7](../transcripciones/10.md#L7): `El primer renglón está parcialmente cortado por el borde superior de la fotografía:`
+- [10:9](../transcripciones/10.md#L9): `[LECTURA INCIERTA: Ejemplo / ILEGIBLE]: un cubo de hielo con aristas de 10cm se sumerge en agua. Determine`
+- [10:37](../transcripciones/10.md#L37): `h_s = 0,0917\ m^{[\text{LECTURA INCIERTA: 3 / sin exponente}]}`
+- [11:9](../transcripciones/11.md#L9): `**Dibujo:** bajo una línea horizontal de superficie de fluido hay dos cuerpos aproximadamente circulares. El primero muestra GF por encima de GC, una flecha \(\vec E\) hacia arriba, \(\vec W\) hacia abajo y una flecha horizontal \(\vec F\) hacia la derecha. El segundo aparece inclinado, con GF y GC, flechas verticales de empuje y peso, y una flecha curva señalada «par restaurador». Algunas letras pequeñas del segundo cuerpo son tenues.`
