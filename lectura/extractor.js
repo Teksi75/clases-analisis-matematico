@@ -33,63 +33,6 @@ function path(node, root) {
   return parts.reverse().join('.') || 'root';
 }
 
-/** Speak visible cell content; nested tables are limited to two levels. */
-function cellText(cell, options, depth = 0) {
-  const { narrateMath, excludeSelector } = options;
-  if (!isVisible(cell) || (excludeSelector && cell.closest(excludeSelector))) return '';
-  let value = '';
-  const read = node => {
-    if (node.nodeType === 3) { value += node.data; return; }
-    if (node.nodeType !== 1) return;
-    if ((excludeSelector && node.matches(excludeSelector)) || !isVisible(node)) return;
-    if (node.localName === 'table') {
-      if (depth < 2) value += ` ${tableBlocks(node, options, depth + 1).map(block => block.text).join(' ')} `;
-      return;
-    }
-    if (node.matches(omitted)) return;
-    if (node.localName === 'math') { value += ` ${narrateMath(node)} `; return; }
-    const boundary = boundaries.has(node.localName);
-    if (boundary) value += ' ';
-    for (const child of node.childNodes) read(child);
-    if (boundary) value += ' ';
-  };
-  for (const child of cell.childNodes) read(child);
-  return clean(value);
-}
-
-function tableName(table, options, depth) {
-  const caption = [...table.children].find(child => child.localName === 'caption');
-  const own = caption ? cellText(caption, options, depth) : '';
-  if (own) return own;
-  const labelled = table.getAttribute('aria-label') || table.closest('[aria-label]')?.getAttribute('aria-label');
-  return clean(labelled || '') || 'Tabla';
-}
-
-/** Describe a table by headers and cells, preserving row-column relationships. */
-function tableBlocks(table, options, depth = 0) {
-  const headerRow = table.tHead?.rows[0] || [...table.rows].find(row => row.cells.length && [...row.cells].every(cell => cell.localName === 'th'));
-  const headers = headerRow ? [...headerRow.cells].map(cell => cellText(cell, options, depth)) : [];
-  const rows = (table.tBodies.length ? [...table.tBodies].flatMap(body => [...body.rows]).concat(table.tFoot ? [...table.tFoot.rows] : []) : [...table.rows])
-    .filter(row => row !== headerRow && isVisible(row) && !(options.excludeSelector && row.closest(options.excludeSelector)));
-  const described = rows.map(row => {
-    const parts = [];
-    [...row.cells].forEach((cell, column) => {
-      const value = cellText(cell, options, depth);
-      if (!value) return;
-      const header = cell.localName === 'th' ? '' : headers[column];
-      parts.push(header ? `${header}: ${value}` : value);
-    });
-    return { row, parts };
-  }).filter(item => item.parts.length);
-  const head = headers.filter(Boolean).join('; ');
-  if (!head && !described.length) return [];
-  const intro = `${tableName(table, options, depth)}.${head ? ` Encabezados: ${head}.` : ''} Filas: ${described.length}.`;
-  return [{ element: table, text: intro }, ...described.map((item, index) => {
-    const cells = item.parts.join('; ');
-    return { element: item.row, text: `Fila ${index + 1} de ${described.length}. ${cells}${cells.endsWith('.') ? '' : '.'}` };
-  })];
-}
-
 function listNumber(item) {
   const list = item.parentElement;
   if (!list || list.localName !== 'ol') return '';
@@ -139,13 +82,6 @@ export function extractBlocks(root, options = {}) {
     if (node.nodeType !== 1) return;
     if (excludeSelector && node.matches(excludeSelector)) return;
     if (!isVisible(node)) return;
-    if (node.localName === 'table') {
-      flush();
-      for (const block of tableBlocks(node, { narrateMath, excludeSelector })) {
-        blocks.push({ id: `lector-${path(block.element, root)}`, text: block.text, element: block.element, chapterId, chapterTitle, sectionTitle });
-      }
-      return;
-    }
     if (node.localName === 'img') {
       flush();
       const alt = clean(node.getAttribute('alt') || '');

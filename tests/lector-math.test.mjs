@@ -26,7 +26,7 @@ const corrected = [
   ['capitulo-08', String.raw`E=\rho_{hielo}V g=917\times(0{,}1)^3\times 9{,}80665=8{,}9927\ \mathrm{N}.`, 'E igual a rho subíndice hielo por V por g igual a 917 por 0 coma 1 al cubo por 9 coma 80665 igual a 8 coma 9927 newtons'],
 ];
 
-// Real notation inside educational tables, including units and scientific notation.
+// Narrator-only coverage of real notation inside tables: the reader excludes tables.
 const tables = [
   ['capitulo-08', String.raw`760\times 10^{-6}`, '760 por base 10, elevada a menos 6, fin de potencia'],
   ['capitulo-08', String.raw`7{,}6\times 10^{-4}\ \mathrm{m^3}`, '7 coma 6 por base 10, elevada a menos 4, fin de potencia metros elevados a 3, fin de potencia'],

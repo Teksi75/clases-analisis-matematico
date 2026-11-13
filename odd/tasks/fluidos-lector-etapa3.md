@@ -66,7 +66,8 @@ Actualizar las pruebas del extractor para reflejar el nuevo contrato.
 No concatenar indiscriminadamente celdas ni omitir su contenido educativo.
 ```
 
-4. **S4 — Diagrams (verbatim):**
+4. **S5 — Tables excluded (new human decision, supersedes S3):** «las tablas no deben ser contempladas por el lecto (no deben ser ledas)». Tables and their contents, including nested tables and MathML inside them, are not read. Publication to main is authorized once this holds.
+5. **S4 — Diagrams (verbatim):**
 
 ```text
 ## E3. Diagramas
@@ -82,9 +83,9 @@ No inventar explicaciones de imágenes.
 ## Tasks
 
 - T1 | S2 | done | route: parent inline verification, math corrections only on reproduced failures | 21 pre-existing real expressions plus5 real table-notation cases pass;12-case original/expected/obtained record in lectura/VERIFICACION-ETAPA3.md | commit: 1db32787c7f3cdf273ad28afa89ba509a65571aa.
-- T2 | S3–S4,S2 | done | route: parent inline plus worker continuation after independent verification | Tables (headers, rows, tfoot, bounded nesting) and existing alt descriptions with caption deduplication; three verifier defects fixed with regressions and contract docs updated | commit: 1db32787c7f3cdf273ad28afa89ba509a65571aa.
+- T2 | S4,S2,S5 | done | route: parent inline plus worker continuation after independent verification and the S5 reversal | Tables remain excluded again after the human decision; only existing meaningful alt descriptions are read once, and the mathematics improvements stay | commit: pending.
 - T3 | S1–S4 | done | route: parent functional integration plus one independent verifier defect-finding pass | All reader/generator/Python checks green, UI in disposable copy; native assessment: medium,390 changed lines,reviewDue=false (not an approval receipt) | commit: 1db32787c7f3cdf273ad28afa89ba509a65571aa.
-- T4 | S1–S4 | done: published as issue48 and PR49, open and unmerged | route: parent delivery under exact human authorization | Issue has status:approved and type:feature; PR targets main with Refs #48, one type:feature label, exact head/body readback, no merge, Pages update or deployment | commit: ba21baae7918c716af039d1a23299f33c6f37073.
+- T4 | S1–S5 | in_progress: S5 correction then authorized main publication | route: parent delivery under exact human authorization | PR49 must first stop reading tables, then merge to main with Pages verification; issue48 closure remains a separate decision | commit: pending.
 
 ## Log
 
@@ -98,3 +99,4 @@ No inventar explicaciones de imágenes.
 - L8 — Final parent run on2026-11-13: math PASS (26 real cases; silent unless `VERIFICACION_ETAPA3=1`), extractor PASS (406 closed /520 open blocks), navigation13, follow17, engine24, UI5 PASS in a disposable /tmp copy (no screenshots written to the worktree), generator freshness PASS, Fluidos44 and full Python118 PASS, `git diff --check` clean. Physical audio, Android, paginated print and student comprehension remain untested; nested tables deeper than two levels and multilevel/merged headers are documented limitations.
 - L9 — Exact human decision requested: «¿Autorizás crear en github.com/Teksi75/clases-analisis-matematico una issue nueva para la etapa 3 del lector —con status:approved y type:feature— y abrir un PR desde feat/fluidos-lector-etapa3 hacia main, sin fusionar ni desplegar?» Human selected: «1. Crear issue aprobada y PR de etapa 3, sin fusionar». Option consequence: create the issue with those labels and one PR, no merge or deployment. Issue #30 was checked and rejected as the linked issue because its approved scope explicitly requires excluding tables, the contract this stage deliberately replaces. No merge, Pages update, deployment or automatic closure is authorized.
 - L10 — Published under the L9 authorization: issue48 (https://github.com/Teksi75/clases-analisis-matematico/issues/48) with status:approved and type:feature; PR49 (https://github.com/Teksi75/clases-analisis-matematico/pull/49) from feat/fluidos-lector-etapa3 to main with Refs #48 and exactly one type:feature label. Non-force push and remote readback confirmed head ba21baae7918c716af039d1a23299f33c6f37073, matching body, open and unmerged. Two earlier publication attempts were rejected by my own guards before any remote mutation (one assertion inverted, one placeholder including the hash); the issue had already been created once and was reused, never duplicated. Native assessment for the source unit was medium,390 lines,reviewDue=false, which is not an approval. Merge, deployment, Pages verification and issue closure remain unauthorized and undone.
+- L11 — New human requirement, verbatim: «las tablas no deben ser contempladas por el lecto (no deben ser ledas) si esto es así puedes publicar en main producción». This supersedes stage3 E2: the previous candidate did read tables, so the stated condition did not hold and nothing was merged. S5 added. Table narration, footer/cell/nested-table helpers and their tests were removed; table text is excluded from blocks and from surrounding prose. Mathematics improvements and existing-`alt` diagram descriptions are preserved. The verification record now lists only body expressions the reader narrates and states explicitly that tables are excluded, while table-contained MathML remains narrator-only test coverage.

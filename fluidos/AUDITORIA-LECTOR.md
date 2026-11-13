@@ -4,11 +4,11 @@
 
 ## Aclaración de etapa 3 — 2026-11-13
 
-Las mediciones y la exclusión de tablas documentadas a continuación son históricas. El extractor ahora lee tablas visibles por encabezados y filas y usa el `alt` existente de las imágenes. El oráculo de etapa 3 comprueba cobertura del texto elegible de tablas y ausencia de fugas a bloques de prosa. Las dos tablas y los pares matemáticos contrastados se registran en [VERIFICACION-ETAPA3.md](../lectura/VERIFICACION-ETAPA3.md); las pruebas no demuestran exactitud oral universal.
+Las mediciones documentadas a continuación son históricas. Se revirtió la lectura de tablas: el extractor vuelve a excluirlas junto con su contenido y usa el `alt` existente y significativo de las imágenes. El oráculo comprueba la ausencia de texto originado en tablas en todos los bloques. Los pares matemáticos y los límites de la verificación se registran en [VERIFICACION-ETAPA3.md](../lectura/VERIFICACION-ETAPA3.md); las pruebas no demuestran exactitud oral universal.
 
 ## Reproducir
 
-Ejecutar `node tests/lector-math.test.mjs` y `node tests/lector-extractor.test.mjs` con Chromium instalado. La segunda prueba imprime `AUDIT`: inventario, conteos heurísticos y pares TeX/narración representativos. Trabaja sobre `fluidos/index.html`, abre temporalmente todos los `details` en el DOM de prueba y restaura su estado. Una prueba independiente marca nodos de texto de párrafos y encabezados para verificar orden y unicidad; también marca texto originado en tablas para comprobar su cobertura y que no aparezca en bloques de prosa, sin confundir números iguales fuera de ellas.
+Ejecutar `node tests/lector-math.test.mjs` y `node tests/lector-extractor.test.mjs` con Chromium instalado. La segunda prueba imprime `AUDIT`: inventario, conteos heurísticos y pares TeX/narración representativos. Trabaja sobre `fluidos/index.html`, abre temporalmente todos los `details` en el DOM de prueba y restaura su estado. Una prueba independiente marca nodos de texto de párrafos y encabezados para verificar orden y unicidad; también marca texto originado en tablas para comprobar que no aparezca en ningún bloque, sin confundir números iguales fuera de ellas.
 
 | Medición | Detalles originales | Todos abiertos |
 | --- | ---: | ---: |

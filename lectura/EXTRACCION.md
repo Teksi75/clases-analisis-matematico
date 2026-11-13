@@ -23,7 +23,7 @@ Por defecto procesa `:scope > article`, trata cada `article` como capítulo, `h1
 | `sectionHeadingSelector` | Selector de títulos de sección. |
 | `narrateMath` | Función que recibe un elemento MathML y devuelve texto. |
 
-Las tablas visibles producen una introducción (`Nombre. Encabezados: A; B. Filas: 2.`) y un bloque por fila con contenido (`Fila 1 de 2. A: valor; B: valor.`). El nombre proviene del `caption` visible, o de `aria-label` de la tabla o un antepasado, o es «Tabla». Sin encabezado se omite la etiqueta de columna; MathML usa `narrateMath`. Se incluyen las filas visibles del pie después de las del cuerpo y se separan los elementos de bloque dentro de cada celda. Se omiten celdas, filas y descendientes ocultos o excluidos. Las tablas anidadas se narran dentro de su celda con el mismo formato, hasta dos niveles de anidamiento; las más profundas se omiten. No se interpretan encabezados multinivel ni celdas combinadas.
+Las tablas se excluyen deliberadamente de la lectura: no generan bloques ni se lee su contenido, incluidos pies, tablas anidadas y MathML.
 
 Una imagen visible con `alt` no vacío genera un bloque con ese texto; no se inventa una descripción. Si un `figcaption` visible y no excluido de la misma figura coincide exactamente con el `alt` normalizado, se lee la leyenda y se omite el bloque de imagen, sin importar su orden. Otras leyendas visibles se conservan.
 
