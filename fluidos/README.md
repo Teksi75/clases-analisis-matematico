@@ -1,6 +1,10 @@
 # Mecánica de los fluidos
 
-Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resultado/apuntes_corregidos.md`, `resultado/ejercicios_resueltos.md` y `revision/errores_detectados.md`. Se excluyen intencionalmente fotografías y datos personales. Los esquemas son los SVG reconstruidos de `diagramas/`, referenciados por ruta relativa: el material no contiene imágenes fotográficas.
+Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resultado/apuntes_corregidos.md`, `resultado/ejercicios_resueltos.md` y `revision/errores_detectados.md`. Se excluyen intencionalmente fotografías y datos personales. Los esquemas incluyen SVG reconstruidos de `diagramas/` y derivados didácticos en `fluidos/graficos/`, referenciados por ruta relativa: el material no contiene imágenes fotográficas.
+
+## Procedencia de los gráficos didácticos
+
+`graficos/presion-media.svg` es un derivado didáctico del esquema reconstruido `diagramas/02.svg`, que se conserva sin cambios. Sustituye la línea oblicua y el arco ambiguos por una vista lateral de una superficie de área A y una fuerza normal que apunta hacia ella. La profundidad no se representa; el área A corresponde a toda la superficie de contacto, no a la longitud dibujada. La flecha representa la fuerza normal total usada en la presión media, no una distribución puntual; la componente tangencial y el esfuerzo de corte se explican en el texto, sin representarlos como presión. No incorpora medidas numéricas del manuscrito.
 
 ## Lector de voz
 
@@ -25,4 +29,4 @@ El navegador guarda capturas en `fluidos/verificacion-visual/<id>/`. `--check` c
 
 Los archivos `contenido/*.md` se procesan en orden de nombre. Cada `##` inicia un capítulo; `###` inicia una sección. No escribir títulos `#`: el título del documento está en la plantilla. Se conservan los identificadores explícitos de Pandoc, por ejemplo `### Título {#slug}` y `::: {.ejercicio #ejercicio-05}`. Los bloques `.aviso`, `.definicion`, `.ejercicio` y `.resolucion` usan divs cercados; la resolución se transforma en un `<details>` nativo. Cada ejercicio debe tener identificador.
 
-Se admiten matemáticas `$...$` y `$$...$$` (MathML), figuras implícitas `![Descripción](../diagramas/02.svg)`, tablas de barras, listas y enlaces locales. Las rutas son relativas a `fluidos/`, no al Markdown. No usar HTML crudo, scripts, fuentes externas ni URL remotas; todos los recursos locales deben existir.
+Se admiten matemáticas `$...$` y `$$...$$` (MathML), figuras implícitas `![Descripción](graficos/presion-media.svg)`, tablas de barras, listas y enlaces locales. Las rutas son relativas a `fluidos/`, no al Markdown. No usar HTML crudo, scripts, fuentes externas ni URL remotas; todos los recursos locales deben existir.
