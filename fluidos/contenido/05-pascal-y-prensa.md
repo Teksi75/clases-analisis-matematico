@@ -26,7 +26,7 @@ $$F_2=F_1\left(\frac{d_2}{d_1}\right)^{2}.$$
 
 La **ventaja mecánica** ideal es $M=A_2/A_1$: con un émbolo mayor, una fuerza pequeña sostiene una carga grande.
 
-![Prensa hidráulica ideal: la presión se transmite y la fuerza se multiplica según las áreas.](../diagramas/07.svg)
+![Prensa hidráulica ideal al mismo nivel: la fuerza aplicada F1 empuja el émbolo de área A1; el fluido ejerce la fuerza de salida F2 hacia arriba sobre el émbolo de área A2 mayor.](graficos/prensa-hidraulica.svg)
 
 ### Lo que no se multiplica: la energía {#cap-5-energia}
 
