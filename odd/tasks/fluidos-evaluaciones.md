@@ -20,6 +20,8 @@ S7. Verificación: `python3 fluidos/generar.py`, `python3 fluidos/generar.py --c
 
 S8. Documentación: `fluidos/README.md`, el README raíz y la sección «Fuentes y alcance» de la plantilla mencionan el capítulo de evaluaciones y su procedencia.
 
+S9. Esquemas: cada ejercicio que en el original tiene figura recibe su propio SVG en `fluidos/graficos/`, con la geometría, las alturas, los puntos y los datos necesarios para interpretar el problema aun sin leer la resolución. Se dibujan, no se copian de las fotografías; siguen la paleta y el formato de las figuras de `main`, y llevan `<title>` y `<desc>` con los datos.
+
 ## Tasks
 
 | ID | Tarea | Specs | Ruta | Commit |
@@ -30,6 +32,7 @@ S8. Documentación: `fluidos/README.md`, el README raíz y la sección «Fuentes
 | T4 | Recuperación de Saberes: fluido múltiple, balsa y prensa con resoluciones | S2, S4-S6 | inline | b300451 |
 | T5 | Regenerar el HTML y correr generador, pruebas y navegador | S7 | inline | b300451 |
 | T6 | Actualizar READMEs y «Fuentes y alcance» | S8 | inline | 146b58c |
+| T9 | Dibujar los cuatro esquemas de las pruebas como SVG y publicarlos en el capítulo | S4, S9 | delegado | — |
 
 ## Log
 
@@ -47,4 +50,6 @@ L6. Defecto reportado por el usuario: la página regenerada mostraba las figuras
 
 L7. Decisión del usuario: «prefiero publicar en main solo lo importante, dejando de lado cosas como la que comentas del commit 29c7b13. Que te parece si solo publicamos los exámenes y dejamos de lado el trabajo práctico ya que está incompleto (falta la segunda hoja)». Alcance ajustado: el capítulo publica solo el Examen del Tema 1 y la Recuperación de Saberes; el Trabajo Práctico n.º 1 se retira del capítulo hasta contar con la hoja faltante, y la introducción del capítulo, `fluidos/README.md` y el README raíz dejan de anunciarlo. Entrega: rama nueva `feat/fluidos-evaluaciones` creada desde `origin/main` con estos archivos, sin arrastrar el commit de documentos de trabajo `29e7b13`.
 
-L8. Estrategia de entrega. La unidad viaja como un solo commit de 755 líneas sobre `main`: 431 son el Markdown del capítulo y 324 la página regenerada más los documentos. No se parte en dos porque el capítulo es un archivo nuevo con una introducción que nombra las dos pruebas: un estado intermedio con una sola prueba sería incoherente, y el HTML generado tendría que rehacerse dos veces. El tramo revisable es el archivo `fluidos/contenido/95-evaluaciones.md` completo; `fluidos/index.html` es derivado y se comprueba con `--check`. Rama de entrega: `feat/fluidos-evaluaciones`, creada desde `origin/main` para no arrastrar el commit de documentos de trabajo `29e7b13`.
+L8. Estrategia de entrega. La unidad viaja como un solo commit de 755 líneas sobre `main`: 431 son el Markdown del capítulo y 324 la página regenerada más los documentos. No se parte en dos porque el capítulo es un archivo nuevo con una introducción que nombra las dos pruebas: un estado intermedio con una sola prueba sería incoherente, y el HTML generado tendría que rehacerse dos veces. El tramo revisable es el archivo `fluidos/contenido/95-evaluaciones.md` completo; `fluidos/index.html` es derivado y se comprueba con `--check`. Rama de entrega: `feat/fluidos-evaluaciones`, creada desde `origin/main` para no arrastrar el commit de documentos de trabajo `29e7b13`. La segunda unidad son los cuatro SVG de S9 (138 líneas, commit aparte): el tramo revisable ahí es el dibujo, no el texto.
+
+L9. Pedido del usuario: «Un detalle, faltan los esquemas y son impotantes para la interpretación de los problemas muestro como se ven en la imagenes originales [...] deberías generar estos esquemas e introducirlos». Se dibujan cuatro SVG en `fluidos/graficos/`: tanque cerrado del Tema 1 ejercicio 1, tanque abierto del ejercicio 6, recipiente con manómetro de la Recuperación ejercicio 1 y balsa de la Recuperación ejercicio 2. No se usan las fotografías: la geometría sale de las medidas leídas en las figuras.

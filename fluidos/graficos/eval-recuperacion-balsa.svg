@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 360" width="440" height="360" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Balsa hueca flotante</title>
+  <desc id="descripcion">Balsa rectangular hueca flotando en agua: largo 2 m, ancho 1 m y altura 0,5 m. La altura sumergida h se mide entre la superficie del agua y el fondo de la balsa. Su masa vacía es 150 kg y la carga es 200 kg.</desc>
+  <path id="agua" d="M15 220 H425 V335 H15 Z" fill="#d9e9ea"/>
+  <path id="casco-frente" d="M55 155 H285 V265 H55 Z" fill="#cbdfe2"/>
+  <path id="casco-lateral" d="M285 155 L365 115 V225 L285 265 Z" fill="#bad6da"/>
+  <path id="frente-sumergido" d="M55 220 H285 V265 H55 Z" fill="#d9e9ea"/>
+  <path id="lateral-sumergido" d="M285 220 H365 V225 L285 265 Z" fill="#d9e9ea"/>
+  <g fill="none" stroke="#202b65" stroke-width="3" stroke-linejoin="round">
+    <path id="contorno-casco" d="M55 155 H285 L365 115 V225 L285 265 H55 Z M285 155 V265"/>
+    <path id="borde-superior" d="M55 155 L135 115 H365 L285 155 Z M82 147 L143 124 H337 L278 147 Z" fill="#d9e9ea"/>
+    <path id="superficie-agua" d="M15 220 H425"/>
+    <path id="medida-h" d="M29 220 H43 M36 220 V265 M29 265 H43 M55 220 H43 M55 265 H43"/>
+    <path id="medida-largo" d="M55 265 V303 M55 298 H285 M285 265 V303"/>
+    <path id="medida-ancho" d="M55 155 L40 130 M135 115 L120 90 M40 130 L120 90 M35 125 L45 135 M115 85 L125 95"/>
+    <path id="medida-altura" d="M365 115 H379 M379 115 H391 M385 115 V225 M379 225 H391 M365 225 H379"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20">
+    <text x="16" y="251">h</text><text x="170" y="326" text-anchor="middle">2 m</text>
+    <text x="80" y="80" text-anchor="middle">1 m</text><text x="385" y="100" text-anchor="middle">0,5 m</text>
+  </g>
+</svg>

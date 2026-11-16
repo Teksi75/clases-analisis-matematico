@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 480" width="440" height="480" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tanque cilíndrico cerrado</title>
+  <desc id="descripcion">Tanque cilíndrico cerrado de radio 1 m, visto de frente. Aire a presión relativa −4900 Pa sobre aceite de densidad relativa 0,55 y espesor 0,55 m; debajo, agua de espesor 0,70 m. Punto 1 en la interfaz aire–aceite, punto 2 en la interfaz aceite–agua y punto 3 en el fondo, que recibe la fuerza.</desc>
+  <rect id="capa-aceite" x="85" y="175" width="220" height="110" fill="#d9e9ea"/>
+  <rect id="capa-agua" x="85" y="285" width="220" height="140" fill="#bad6da"/>
+  <g stroke="#202b65" fill="none" stroke-width="3">
+    <path id="paredes-y-tapa" d="M85 55 H305 V425 H85 Z"/>
+    <path id="superficie-aceite" d="M85 175 H305"/>
+    <path id="interfaz-aceite-agua" d="M85 285 H305"/>
+    <path id="medida-aceite" d="M325 175 H339 M332 175 V285 M325 285 H339"/>
+    <path id="medida-agua" d="M325 285 H339 M332 285 V425 M325 425 H339"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20">
+    <text x="195" y="92" text-anchor="middle">Aire</text>
+    <text x="195" y="121" text-anchor="middle">−4900 Pa relativa</text>
+    <text x="195" y="221" text-anchor="middle">Aceite</text>
+    <text x="195" y="248" text-anchor="middle">densidad relativa 0,55</text>
+    <text x="195" y="360" text-anchor="middle">Agua</text>
+    <text x="348" y="237">0,55 m</text><text x="348" y="361">0,70 m</text>
+    <text x="195" y="462" text-anchor="middle">Fondo · radio 1 m</text>
+    <circle id="punto-1" cx="105" cy="175" r="5"/><text x="48" y="182">1</text>
+    <circle id="punto-2" cx="105" cy="285" r="5"/><text x="48" y="292">2</text>
+    <circle id="punto-3" cx="105" cy="425" r="5"/><text x="48" y="432">3</text>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 510" width="440" height="510" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tanque prismático abierto</title>
+  <desc id="descripcion">Tanque abierto en perspectiva: aceite de densidad 0,8 g/cm³ y altura desconocida h sobre agua de 2,5 m de espesor. La presión relativa en el fondo es 80 000 Pa. La línea superior del aceite es la superficie libre.</desc>
+  <path id="capa-aceite" d="M70 133 H250 V330 H70 Z" fill="#d9e9ea"/>
+  <path d="M250 133 L300 103 V300 L250 330 Z" fill="#cbdfe2"/>
+  <path id="capa-agua" d="M70 330 H250 V425 H70 Z" fill="#bad6da"/>
+  <path d="M250 330 L300 300 V395 L250 425 Z" fill="#94bec6"/>
+  <path id="superficie-libre" d="M70 133 L120 103 H300 L250 133 Z" fill="#d9e9ea" stroke="#202b65" stroke-width="3"/>
+  <g stroke="#202b65" fill="none" stroke-width="3" stroke-linejoin="round">
+    <path id="paredes" d="M70 105 V425 H250 L300 395 V75 M250 105 V425 M70 105 L120 75 H300 L250 105"/>
+    <path id="interfaz" d="M70 330 H250 L300 300"/>
+    <path id="medida-aceite" d="M320 133 H334 M327 133 V330 M320 330 H334"/>
+    <path id="medida-agua" d="M320 330 H334 M327 330 V425 M320 425 H334"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="20">
+    <text x="160" y="215" text-anchor="middle">Aceite</text>
+    <text x="160" y="243" text-anchor="middle">0,8 g/cm³</text>
+    <text x="160" y="383" text-anchor="middle">Agua</text>
+    <text x="345" y="235">h = ?</text><text x="345" y="383">2,5 m</text>
+    <text x="220" y="477" text-anchor="middle">Presión relativa del fondo: 80 000 Pa</text>
+  </g>
+</svg>

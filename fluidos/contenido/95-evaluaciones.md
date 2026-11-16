@@ -20,7 +20,7 @@ Este capítulo reúne dos pruebas de Mecánica de los Fluidos del curso: el exam
 
 Prueba de Mecánica de los Fluidos, Tema 1, del curso 5.º 1.ª. Contiene seis ejercicios: un tanque cerrado con aire, aceite y agua; cuatro preguntas de teoría (paradoja hidrostática, densidad y peso específico, propiedades de la presión hidrostática, presión); y un tanque abierto con dos líquidos.
 
-**Figuras del original.** El primer esquema es un tanque cilíndrico cerrado visto de frente, con tres capas: **aire** en la parte superior (a presión dada), **aceite** de $0{,}55\ \mathrm{m}$ de espesor y **agua** de $0{,}70\ \mathrm{m}$. El punto 1 está en la interfaz aire–aceite, el punto 2 en la interfaz aceite–agua y el punto 3 en el fondo. El segundo esquema es un tanque prismático abierto, con **aceite** arriba y **agua** abajo, de $2{,}5\ \mathrm{m}$ de espesor.
+**Figuras del original.** Los esquemas distinguen el tanque cerrado del primero y el tanque abierto del sexto ejercicio.
 
 ::: {.ejercicio #eval-tema-1-ej-1}
 **Ejercicio 1 — Tanque cerrado con aire, aceite y agua** · [Capítulo 4](#cap-4)
@@ -40,6 +40,8 @@ El tanque cilíndrico de la imagen contiene y aceite (densidad relativa de 0,55)
 **e)** Peso contenido de aceite y del agua si el radio del tanque es de 1 metro. (10p)
 
 **f)** Fuerza que actúa sobre el fondo del tanque (considerando presión relativa) y grafique cómo actúa sobre el mismo. (10p)
+
+![Tanque cilíndrico cerrado, de radio 1 m: aire a −4900 Pa de presión relativa, aceite de densidad relativa 0,55 y espesor 0,55 m, y agua de espesor 0,70 m. Punto 1 en la interfaz aire–aceite, 2 en la interfaz aceite–agua y 3 en el fondo que recibe la fuerza.](graficos/eval-tema-1-tanque-cerrado.svg)
 :::
 
 ::: {.resolucion}
@@ -213,7 +215,9 @@ Su unidad en el SI es el **pascal**: $1\ \mathrm{Pa}=1\ \mathrm{N/m^2}$, una uni
 
 **Enunciado original.** El tanque de la imagen, contiene agua y aceite en su interior el cual tiene una densidad de $0{,}8\ \mathrm{g/cm^3}$. Determine: altura h del aceite si la presión relativa del fondo del tanque es de 80000 Pa. (10p)
 
-**Figura del original.** Tanque prismático abierto en la parte superior, con una capa de **aceite** de altura $h$ (la incógnita, medida desde la superficie libre) sobre una capa de **agua** de $2{,}5\ \mathrm{m}$ de espesor hasta el fondo.
+![Tanque prismático abierto: aceite de densidad 0,8 g/cm³ y altura desconocida h desde la superficie libre hasta el agua; debajo, agua de 2,5 m de espesor. La presión relativa en el fondo es 80 000 Pa.](graficos/eval-tema-1-tanque-abierto.svg)
+
+**Figura del original.** El esquema destaca la superficie libre y la altura incógnita del aceite.
 :::
 
 ::: {.resolucion}
@@ -240,7 +244,7 @@ La altura del aceite es $h\approx 7{,}07\ \mathrm{m}$: la capa de aceite es casi
 
 Instancia de recuperación de saberes de Mecánica de los Fluidos, curso 5.º 1.ª. Cuatro ejercicios que recorren el programa: un recipiente con fluidos múltiples conectado a un manómetro, una balsa hueca, una prensa hidráulica y una pregunta de teoría sobre la presión hidrostática.
 
-**Figuras del original.** El primer esquema muestra un recipiente de cuello angosto, con un símbolo de superficie libre en el cuello, dividido en tres regiones acotadas a la izquierda: **gas** ($80\ \mathrm{cm}$), **agua** ($35\ \mathrm{cm}$) y **glicerina** de densidad relativa $1{,}26$ ($18\ \mathrm{cm}$). Por la base, el recipiente se conecta con un tubo vertical abierto en su extremo superior, lleno de glicerina, cuya columna se eleva **$135\ \mathrm{cm}$** por encima del nivel de la conexión. El segundo esquema es la balsa en perspectiva, con $2\ \mathrm{m}$ de largo, $0{,}5\ \mathrm{m}$ de alto y la altura sumergida $h$ marcada sobre el costado.
+**Figuras del original.** Los esquemas destacan la conexión del manómetro con el fondo y la parte sumergida de la balsa.
 
 ::: {.ejercicio #eval-recuperacion-ej-1}
 **Ejercicio 1 — Recipiente con fluidos múltiples y manómetro** · [Capítulo 4](#cap-4)
@@ -256,6 +260,8 @@ Instancia de recuperación de saberes de Mecánica de los Fluidos, curso 5.º 1.
 **d)** Fuerza que actúa sobre el fondo del tanque considerando que el mismo tiene un radio de 50 cm. (5p)
 
 **e)** ¿Qué establece el teorema fundamental de la hidrostática? Explique detalladamente. (10p)
+
+![Recipiente de cuello angosto con símbolo de superficie libre: gas de 80 cm, agua de 35 cm y glicerina de densidad relativa 1,26 y espesor 18 cm. Punto 1 en la interfaz gas–agua, 2 en la interfaz agua–glicerina y 3 en el fondo. A se ubica en la conexión al nivel del fondo; la columna de glicerina del tubo abierto sube 135 cm sobre esa conexión.](graficos/eval-recuperacion-manometro.svg)
 
 ::: {.aviso}
 **Lectura del esquema.** El enunciado no marca el punto $A$ en el dibujo. La resolución lo ubica en la **conexión del tubo con el recipiente**, al nivel del fondo, que es donde el manómetro lee la presión del recipiente. Adopta además que el gas está encerrado a presión y que el tubo está abierto en su extremo superior: con esas dos condiciones la columna de $135\ \mathrm{cm}$ es la que sostiene la presión del fondo. Si el cuello del recipiente estuviera abierto a la atmósfera, el gas estaría a presión atmosférica y el nivel del manómetro no podría quedar $135\ \mathrm{cm}$ más alto: son datos incompatibles con el dibujo, y conviene decirlo al resolver.
@@ -328,6 +334,8 @@ Dicho de otro modo: en un líquido en reposo la presión en un punto es la de la
 **d)** ¿Qué principio permite calcular todo lo anterior? Explique detalladamente. (10p)
 
 **e)** ¿Qué es el equilibrio inestable? Qué sucede con un cuerpo cuando sufre este fenómeno. (10p)
+
+![Balsa rectangular hueca flotando en agua, de 2 m de largo, 1 m de ancho y 0,5 m de alto. La altura sumergida h va desde la superficie del agua hasta el fondo. Masa vacía 150 kg; carga 200 kg.](graficos/eval-recuperacion-balsa.svg)
 :::
 
 ::: {.resolucion}
