@@ -10,7 +10,7 @@ Base de conocimiento y planificación inicial para preparar clases a partir de m
 2. Recorrer la [secuencia de clases propuesta](planificacion/secuencia.md).
 3. Abrir los [diagnósticos en HTML](evaluaciones/diagnosticos/index.html) para leerlos e imprimirlos en el navegador. Las [fuentes editables en Markdown](evaluaciones/diagnosticos/README.md) se conservan. Las pruebas son exclusivamente de Matemática y permiten ajustar el punto de partida.
 4. Usar la [primera clase: funciones y modelos](clases/analisis/clase-01.md) según los resultados del diagnóstico.
-5. Abrir el [cuaderno de Mecánica de los Fluidos](fluidos/index.html): siete capítulos de hidrostática con fórmulas, esquemas y diecisiete ejercicios resueltos, más un capítulo de evaluaciones con el examen del Tema 1, transcripto y resuelto. Es material de Física, independiente de la secuencia de Análisis Matemático. Se conservan las [fuentes editables](fluidos/README.md).
+5. Abrir el [cuaderno de Mecánica de los Fluidos](fluidos/index.html): siete capítulos de hidrostática con fórmulas, esquemas y diecisiete ejercicios resueltos, más un capítulo de evaluaciones con el examen del Tema 1 y la Recuperación de Saberes, transcriptos y resueltos. Es material de Física, independiente de la secuencia de Análisis Matemático. Se conservan las [fuentes editables](fluidos/README.md).
 
 Como material de consulta adicional, los [exámenes de diagnóstico de Stewart en HTML](evaluaciones/stewart/index.html) reúnen álgebra, geometría analítica, funciones y trigonometría, con desarrollos y respuestas. También está disponible el [extracto original en PDF](material/pdf/stewart-examenes-diagnostico.pdf). Son las páginas 22 a 26 del [libro completo](material/pdf/JAMES_STEWART_Sexta_edicion_Sexta_edicio.pdf); en el libro están numeradas xx a xxiv.
 
@@ -27,7 +27,7 @@ La [resolución del TP2 · Límites](evaluaciones/tp2.html) reúne la lectura de
 | [material/texto/](material/texto/) | Texto extraído por página; EVA2 tiene una transcripción manual separada. |
 | [material/vistas/](material/vistas/) | Imágenes de las dos páginas de EVA2 para cotejar el manuscrito. |
 | [teoria/](teoria/README.md) | Apuntes desarrollados de funciones y límites para estudiantes de secundario; elaboración docente con fuentes identificadas. |
-| [fluidos/](fluidos/README.md) | Cuaderno de Mecánica de los Fluidos en HTML, sin conexión: densidad, presión, hidrostática, Pascal, empuje y estabilidad, con ejercicios y sus resoluciones, y un capítulo de evaluaciones con un examen transcripto y resuelto. Se genera desde Markdown con Pandoc. |
+| [fluidos/](fluidos/README.md) | Cuaderno de Mecánica de los Fluidos en HTML, sin conexión: densidad, presión, hidrostática, Pascal, empuje y estabilidad, con ejercicios y sus resoluciones, y un capítulo de evaluaciones con dos exámenes transcriptos y resueltos. Se genera desde Markdown con Pandoc. |
 | [conocimiento/](conocimiento/) | Fichas temáticas, prerrequisitos, alertas y referencias. |
 | [planificacion/](planificacion/) | Secuencia ajustable y plantilla para nuevas clases. |
 | [evaluaciones/diagnosticos/](evaluaciones/diagnosticos/) | Cuatro pruebas matemáticas por tema y guía docente separada; sin computación ni electrónica. |

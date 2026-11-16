@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 350" width="520" height="350" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Balsa hueca flotante</title>
+  <desc id="descripcion">Balsa rectangular hueca de 2 m de largo, 1 m de ancho y 0,5 m de alto, flotando en agua. La línea de flotación cruza el casco y la altura sumergida h se mide desde la superficie del agua hasta el fondo de la balsa. Su masa vacía es 150 kg y la carga que transporta es 200 kg.</desc>
+  <path id="agua" d="M20 205 H468 V330 H20 Z" fill="#d9e9ea"/>
+  <path id="casco-frente" d="M95 140 H325 V250 H95 Z" fill="#cbdfe2"/>
+  <path id="casco-lateral" d="M325 140 L415 100 V210 L325 250 Z" fill="#bad6da"/>
+  <path id="tapa" d="M95 140 L185 100 H415 L325 140 Z" fill="#cbdfe2"/>
+  <path id="hueco" d="M105 132 L195 108 H405 L315 132 Z" fill="#94bec6"/>
+  <path id="frente-sumergido" d="M95 205 H325 V250 H95 Z" fill="#d9e9ea"/>
+  <path id="lateral-sumergido" d="M325 205 L415 165 V210 L325 250 Z" fill="#d9e9ea"/>
+  <g fill="none" stroke="#202b65" stroke-width="3" stroke-linejoin="round">
+    <path id="contorno-casco" d="M95 140 H325 V250 H95 Z M325 140 L415 100 V210 L325 250 M95 140 L185 100 H415"/>
+    <path id="borde-interior" d="M105 132 L195 108 H405 L315 132 Z"/>
+  </g>
+  <path id="superficie-agua" d="M20 205 H468" fill="none" stroke="#202b65" stroke-width="3"/>
+  <g fill="none" stroke="#202b65" stroke-width="2.5" stroke-linejoin="round">
+    <path id="medida-largo" d="M185 100 V70 M415 100 V70 M177 78 L193 66 M407 78 L423 66 M185 70 H415"/>
+    <path id="medida-altura" d="M95 140 H67 M95 250 H67 M67 132 L75 148 M67 242 L75 258 M75 140 V250"/>
+    <path id="medida-h" d="M415 165 H495 M415 210 H495 M477 157 L493 173 M477 202 L493 218 M485 165 V210"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="19">
+    <text x="300" y="58" text-anchor="middle">2 m</text>
+    <text x="57" y="188" text-anchor="end">0,5 m</text>
+    <text x="506" y="196" font-size="21">h</text>
+  </g>
+</svg>
