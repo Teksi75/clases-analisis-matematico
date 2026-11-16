@@ -20,7 +20,7 @@ Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resulta
 
 ## Capítulo de evaluaciones
 
-`contenido/95-evaluaciones.md` publica el examen del Tema 1 de Mecánica de los Fluidos con el texto impreso de cada enunciado transcripto literalmente y una resolución docente plegada. Se transcribe solo el texto impreso: las fotografías de las pruebas no se publican y no se copian el nombre del alumno, la letra manuscrita, las marcas de corrección ni las calificaciones. Los originales quedan fuera del repositorio.
+`contenido/95-evaluaciones.md` publica dos pruebas de Mecánica de los Fluidos del curso —el examen del Tema 1 y la Recuperación de Saberes de agosto— con el texto impreso de cada enunciado transcripto literalmente y una resolución docente plegada. Se transcribe solo el texto impreso: las fotografías de las pruebas no se publican y no se copian el nombre del alumno, la letra manuscrita, las marcas de corrección ni las calificaciones. Los originales quedan fuera del repositorio.
 
 Las resoluciones son elaboración docente y no la corrección oficial del curso. Donde el impreso tiene un error de tipeo, o donde la fotografía no alcanza, el capítulo lo dice en una nota: el examen del Tema 1 imprime «contiene y aceite» y la Recuperación no marca el punto A; El Trabajo Práctico n.º 1 queda fuera de esta publicación: la página disponible no trae las consignas de los ítems 2 y siguientes, y publicarlo a medias dejaría un ejercicio abierto. Se incorpora cuando aparezca la hoja que falta.
 
