@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 560" width="520" height="560" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Pontón de chapa de acero del Trabajo Práctico n.º 1</title>
+  <desc id="descripcion">Pontón con forma de prisma rectangular hueco y cerrado: 4,00 m de largo, 2,00 m de ancho y 1,00 m de alto exteriores, construido con chapas de acero de 5 mm y lleno de aire a presión atmosférica. Flota parcialmente sumergido en agua dulce de 1000 kg/m³; la altura sumergida h se mide desde la superficie del agua hasta el fondo del casco. La vista transversal muestra el interior de 1,99 m por 0,99 m y el espesor de la chapa. Densidad del acero 7850 kg/m³, del aire 1,2 kg/m³ y del agua de mar 1025 kg/m³.</desc>
+  <polygon id="tapa" points="110,190 190,140 430,140 350,190" fill="#e8e4d8" stroke="#202b65" stroke-width="3"/>
+  <polygon id="costado" points="350,190 430,140 430,210 350,260" fill="#ded9c9" stroke="#202b65" stroke-width="3"/>
+  <rect id="casco" x="110" y="190" width="240" height="70" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="parte-sumergida" x="110" y="230" width="240" height="30" fill="#bad6da"/>
+  <line id="superficie-agua" x1="60" y1="230" x2="350" y2="230" stroke="#202b65" stroke-width="2" stroke-dasharray="8 5"/>
+  <path id="ola" d="M40 230 q6 -7 12 0 t12 0" fill="none" stroke="#202b65" stroke-width="2"/>
+  <g stroke="#202b65" stroke-width="2" fill="none">
+    <path id="medida-largo" d="M110 276 H116 M344 276 H350 M110 282 H350"/>
+    <path id="medida-alto" d="M438 190 H444 M438 260 H444 M441 190 V260"/>
+    <path id="medida-interior-ancho" d="M116 486 H264 M116 480 V492 M264 480 V492"/>
+    <path id="medida-exterior-alto" d="M276 400 H282 M276 480 H282 M279 400 V480"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="14">
+    <text x="270" y="166" text-anchor="middle">AIRE (a presión atmosférica)</text>
+    <text x="14" y="222">nivel del agua</text>
+    <text x="230" y="251" text-anchor="middle" font-size="13">parte sumergida · h</text>
+    <text x="230" y="302" text-anchor="middle" font-size="16">4,00 m</text>
+    <text x="230" y="320" text-anchor="middle" font-size="13">largo exterior</text>
+    <text x="458" y="225" text-anchor="middle" transform="rotate(-90 458 225)">1,00 m</text>
+    <text x="330" y="124" text-anchor="middle">2,00 m (ancho)</text>
+    <text x="190" y="388" text-anchor="middle" font-size="13">VISTA TRANSVERSAL (SECCIÓN)</text>
+    <text x="190" y="452" text-anchor="middle" font-size="14">1,99 m</text>
+    <text x="92" y="440" text-anchor="middle" transform="rotate(-90 92 440)" font-size="13">0,99 m</text>
+    <text x="190" y="514" text-anchor="middle" font-size="15">2,00 m</text>
+    <text x="294" y="440" text-anchor="middle" transform="rotate(-90 294 440)" font-size="13">1,00 m</text>
+    <text x="330" y="434" font-size="13">chapa de 5 mm</text>
+    <text x="330" y="452" font-size="12">(espesor exagerado)</text>
+  </g>
+  <line id="guia-chapa" x1="272" y1="434" x2="324" y2="434" stroke="#202b65" stroke-width="1"/>
+  <rect id="seccion-exterior" x="110" y="400" width="160" height="80" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="seccion-interior" x="116" y="406" width="148" height="68" fill="#ffffff" stroke="#202b65" stroke-width="2"/>
+</svg>
