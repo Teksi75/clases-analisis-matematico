@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 470" width="520" height="470" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Prensa hidráulica del Trabajo Práctico n.º 1</title>
+  <desc id="descripcion">Prensa de dos émbolos cilíndricos macizos de acero conectados por aceite incompresible. Émbolo 1, de accionamiento: diámetro 40 mm, longitud 100 mm y carrera máxima 150 mm limitada por un tope mecánico, con una fuerza vertical de 300 N. Émbolo 2, de elevación: diámetro 200 mm y longitud 120 mm. El aceite tiene 900 kg/m³ y se considera que las caras de los dos émbolos parten del mismo nivel.</desc>
+  <path id="vaso" d="M150 150 V400 H460 V150 H300 V376 H182 V150 Z" fill="none" stroke="#202b65" stroke-width="3"/>
+  <path id="aceite" d="M150 248 V400 H460 V248 H300 V376 H182 V248 Z" fill="#bad6da"/>
+  <rect id="embolo-1" x="150" y="168" width="32" height="80" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="embolo-2" x="300" y="152" width="160" height="96" fill="#f2efe6" stroke="#202b65" stroke-width="3"/>
+  <rect id="embolo-1-descendido" x="150" y="288" width="32" height="80" fill="none" stroke="#202b65" stroke-width="2" stroke-dasharray="6 5"/>
+  <rect id="tope" x="150" y="368" width="32" height="8" fill="#202b65"/>
+  <g stroke="#202b65" stroke-width="4" fill="#202b65">
+    <line id="fuerza-entrada" x1="166" y1="110" x2="166" y2="164"/>
+    <polygon id="fuerza-entrada-punta" points="166,166 158,150 174,150"/>
+    <line id="carrera" x1="166" y1="252" x2="166" y2="284"/>
+    <polygon id="carrera-punta" points="166,288 159,276 173,276"/>
+  </g>
+  <g stroke="#202b65" stroke-width="2" fill="none">
+    <path id="medida-embolo-1" d="M138 168 H144 M138 248 H144 M141 168 V248"/>
+    <path id="medida-embolo-2" d="M466 152 H472 M466 248 H472 M469 152 V248"/>
+    <path id="medida-diametro-1" d="M150 416 H182 M150 410 V422 M182 410 V422"/>
+    <path id="medida-diametro-2" d="M300 416 H460 M300 410 V422 M460 410 V422"/>
+  </g>
+  <g fill="#202b65" font-family="sans-serif" font-size="15">
+    <text x="166" y="40" text-anchor="middle">Émbolo 1 (accionamiento)</text>
+    <text x="380" y="40" text-anchor="middle">Émbolo 2 (elevación)</text>
+    <text x="166" y="98" text-anchor="middle" font-size="18">F = 300 N</text>
+    <text x="126" y="200" text-anchor="middle" transform="rotate(-90 126 200)">longitud 100 mm</text>
+    <text x="486" y="200" text-anchor="middle" transform="rotate(-90 486 200)">longitud 120 mm</text>
+    <text x="140" y="272" text-anchor="end" font-size="14">carrera 150 mm</text>
+    <text x="196" y="372" font-size="14">tope</text>
+    <text x="380" y="392" font-size="14">aceite ρ = 900 kg/m³</text>
+    <text x="166" y="442" text-anchor="middle">Ø 40 mm</text>
+    <text x="380" y="442" text-anchor="middle">Ø 200 mm</text>
+    <text x="260" y="464" text-anchor="middle" font-size="13">Caras al mismo nivel · modelo ideal</text>
+  </g>
+</svg>

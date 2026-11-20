@@ -23,6 +23,8 @@ Los enunciados son la transcripción literal del texto impreso de las dos hojas.
 
 La hoja encabeza «Temas a desarrollar: Prensa hidráulica / Empuje» y abre la lista de ejercicios con una prensa de dos émbolos macizos de acero. El ejercicio pide el peso de cada émbolo, la presión transmitida, la fuerza y la carga útil, el recorrido y, con el émbolo 1 contra el tope, la presión hidrostática que aparece por la diferencia de nivel.
 
+**Figuras del original.** La hoja dibuja la prensa de perfil: los dos cilindros unidos por el conducto del aceite, el émbolo 1 a la izquierda con la fuerza que baja, el émbolo 2 a la derecha, los diámetros, las longitudes y el tope que limita la carrera.
+
 ::: {.ejercicio #tp-1-ej-1}
 **Ejercicio 1 — Prensa hidráulica de dos émbolos macizos** · [Capítulo 5](#cap-5) · [Capítulo 4](#cap-4)
 
@@ -47,6 +49,8 @@ Sobre el émbolo 1, un operario aplica una fuerza vertical de 300 N para acciona
 **F)** Al llegar el émbolo 1 a su tope mecánico, éste descendió 150 mm mientras que el émbolo 2 ascendió la distancia calculada anteriormente.
 
 Considerando que el fluido hidráulico tiene una densidad de 900 kg/m³, calcular la presión hidrostática asociada a la diferencia de nivel entre ambos émbolos.
+
+![Prensa de perfil: émbolo 1 de 40 mm de diámetro y 100 mm de longitud, con carrera máxima de 150 mm limitada por un tope y una fuerza de 300 N hacia abajo; émbolo 2 de 200 mm de diámetro y 120 mm de longitud; aceite de 900 kg/m³ entre los dos. El émbolo 1 se dibuja también en su posición de tope, 150 mm más abajo.](graficos/tp-1-prensa.svg)
 :::
 
 ::: {.resolucion}
@@ -125,6 +129,8 @@ Es pequeña comparada con los $246\ \mathrm{kPa}$ de trabajo, pero no es cero: l
 
 El segundo tema del práctico: un pontón metálico hueco y cerrado flota en una laguna de agua dulce. El enunciado está en la primera hoja y sus veinte consignas, de la A a la T, en la segunda.
 
+**Figuras del original.** La hoja trae una vista en perspectiva del pontón, con el aire adentro y la línea del agua, y dos secciones —transversal y longitudinal— que dan las dimensiones interiores y el espesor de la chapa.
+
 ::: {.ejercicio #tp-1-ej-2}
 **Ejercicio 2 — Pontón de chapa de acero sobre una laguna** · [Capítulo 6](#cap-6) · [Capítulo 2](#cap-2)
 
@@ -192,6 +198,8 @@ Determine:
 **S)** Calcular la distancia entre la superficie del agua y el borde superior del pontón luego de cargar los 3000 kg de arena.
 
 **T)** Si el pontón se trasladara a una zona de agua de mar, determinar si se hundiría más o menos que en agua dulce y justificar la respuesta mediante el Principio de Arquímedes.
+
+![Pontón de 4,00 m de largo, 2,00 m de ancho y 1,00 m de alto exterior, con chapa de acero de 5 mm y el interior lleno de aire, flotando parcialmente sumergido: la altura sumergida h va de la superficie del agua al fondo. La sección transversal muestra el interior de 1,99 m por 0,99 m.](graficos/tp-1-ponton.svg)
 :::
 
 ::: {.resolucion}
