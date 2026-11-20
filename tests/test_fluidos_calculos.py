@@ -115,6 +115,80 @@ class FisicaTests(unittest.TestCase):
         # Conservacion del volumen: 10 cm de la carga equivalen a 5,625 m del embolo menor.
         self.assertAlmostEqual(0.10 * a2 / a1, 5.625, places=9)
 
+    def test_prensa_del_trabajo_practico(self):
+        a1 = math.pi * 0.040 ** 2 / 4
+        a2 = math.pi * 0.200 ** 2 / 4
+        w1 = 7850 * a1 * 0.100 * G
+        w2 = 7850 * a2 * 0.120 * G
+        p = (300 + w1) / a1
+        f2 = p * a2
+        f_util = f2 - w2
+        s2 = 150 * a1 / a2  # mm
+        diferencia_altura = (150 + s2) / 1000  # m
+
+        self.assertAlmostEqual(a1, 1.256637e-3, delta=1e-9)
+        self.assertAlmostEqual(a2, 3.141593e-2, delta=1e-8)
+        self.assertAlmostEqual(w1, 9.6739, places=4)
+        self.assertAlmostEqual(w2, 290.216, places=3)
+        self.assertAlmostEqual(p, 246430.8, delta=0.2)
+        self.assertAlmostEqual(f2, 7741.85, places=2)
+        self.assertAlmostEqual(f_util, 7451.63, places=2)
+        self.assertAlmostEqual(f_util / G, 759.85, places=2)
+        self.assertAlmostEqual(s2, 6, places=9)
+        self.assertAlmostEqual(diferencia_altura, 0.156, places=9)
+        self.assertAlmostEqual(900 * G * diferencia_altura, 1376.85, places=2)
+        # Pascal y conservación del volumen.
+        self.assertAlmostEqual(a2 / a1, 25, places=9)
+        self.assertAlmostEqual(f2 / a2, p, places=9)
+        self.assertAlmostEqual(a1 * 150, a2 * s2, places=9)
+        self.assertAlmostEqual(f2, 25 * (300 + w1), places=9)
+
+    def test_ponton_del_trabajo_practico(self):
+        base = 4.00 * 2.00
+        v_exterior = base * 1.00
+        v_interior = (4.00 - 2 * 0.005) * (2.00 - 2 * 0.005) * (1.00 - 2 * 0.005)
+        v_acero = v_exterior - v_interior
+        m_acero = 7850 * v_acero
+        m_aire = 1.2 * v_interior
+        m_total = m_acero + m_aire
+        peso = m_total * G
+        v_desplazado = peso / (AGUA * G)
+        h_sumergida = v_desplazado / base
+        empuje_maximo = AGUA * G * v_exterior
+        peso_util = empuje_maximo - peso
+        m_con_arena = m_total + 3000
+        peso_con_arena = m_con_arena * G
+        v_con_arena = peso_con_arena / (AGUA * G)
+        h_con_arena = v_con_arena / base
+        v_mar = peso_con_arena / (1025 * G)
+        h_mar = v_mar / base
+
+        self.assertAlmostEqual(v_interior, 7.860699, places=6)
+        self.assertAlmostEqual(v_acero, 0.139301, places=6)
+        self.assertAlmostEqual(m_acero, 1093.51, places=2)
+        self.assertAlmostEqual(m_aire, 9.4328, places=4)
+        # Los valores de referencia acumulan redondeos intermedios.
+        self.assertAlmostEqual(m_total, 1102.94, delta=0.01)
+        self.assertAlmostEqual(peso, 10816.15, delta=0.1)
+        self.assertAlmostEqual(v_desplazado, 1.10293, delta=0.00002)
+        self.assertAlmostEqual(h_sumergida, 0.137866, delta=0.000003)
+        self.assertAlmostEqual(100 * h_sumergida / 1.00, 13.79, places=2)
+        self.assertAlmostEqual(empuje_maximo, 78453.2, places=1)
+        self.assertAlmostEqual(peso_util, 67637.05, delta=0.1)
+        self.assertAlmostEqual(peso_util / G, 6897.05, delta=0.01)
+        self.assertAlmostEqual(m_con_arena, 4102.94, delta=0.01)
+        self.assertAlmostEqual(peso_con_arena, 40236.2, delta=0.1)
+        self.assertAlmostEqual(v_con_arena, 4.10294, delta=0.00001)
+        self.assertAlmostEqual(h_con_arena, 0.512868, places=6)
+        self.assertAlmostEqual(1.00 - h_con_arena, 0.487132, places=6)
+        self.assertAlmostEqual(v_mar, 4.00287, places=5)
+        self.assertAlmostEqual(h_mar, 0.500359, places=6)
+        # En equilibrio el empuje iguala al peso; el agua más densa reduce el calado.
+        self.assertAlmostEqual(AGUA * G * v_desplazado, peso, places=9)
+        self.assertAlmostEqual(AGUA * G * v_con_arena, peso_con_arena, places=9)
+        self.assertAlmostEqual(1025 * G * v_mar, peso_con_arena, places=9)
+        self.assertLess(h_mar, h_con_arena)
+
     def test_recipiente_comunicado(self):
         a = math.pi * 1.5 ** 2
         p = 500 * KGF / a
@@ -194,6 +268,12 @@ class PublicacionTests(unittest.TestCase):
         '2944,47', '338,48', '2605,99',                 # cobre
         '1,22583',                                      # cubo neutro
         '0,0108', '0,05', '-0,15',                      # estabilidad
+        # Trabajo Práctico n.º 1: prensa hidráulica.
+        '246430', '7742', '7452', '1376,8', '9,67', '290,2',
+        # Trabajo Práctico n.º 1: empuje sobre el pontón.
+        '7,861', '0,139', '1093,5', '1102,9', '10816', '1,103',
+        '0,138', '13,8', '78453', '67637', '6897', '4102,9', '40236',
+        '0,513', '0,487', '4,003', '0,500',
     ]
 
     def test_valores_publicados(self):

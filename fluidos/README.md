@@ -22,7 +22,13 @@ Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resulta
 
 `contenido/95-evaluaciones.md` publica dos pruebas de Mecánica de los Fluidos del curso —el examen del Tema 1 y la Recuperación de Saberes de agosto— con el texto impreso de cada enunciado transcripto literalmente y una resolución docente plegada. Se transcribe solo el texto impreso: las fotografías de las pruebas no se publican y no se copian el nombre del alumno, la letra manuscrita, las marcas de corrección ni las calificaciones. Los originales quedan fuera del repositorio.
 
-Las resoluciones son elaboración docente y no la corrección oficial del curso. Donde el impreso tiene un error de tipeo, o donde la fotografía no alcanza, el capítulo lo dice en una nota: el examen del Tema 1 imprime «contiene y aceite» y la Recuperación no marca el punto A; El Trabajo Práctico n.º 1 queda fuera de esta publicación: la página disponible no trae las consignas de los ítems 2 y siguientes, y publicarlo a medias dejaría un ejercicio abierto. Se incorpora cuando aparezca la hoja que falta.
+Las resoluciones son elaboración docente y no la corrección oficial del curso. Donde el impreso tiene un error de tipeo, o donde la fotografía no alcanza, el capítulo lo dice en una nota: el examen del Tema 1 imprime «contiene y aceite» y la Recuperación no marca el punto A.
+
+## Capítulo del Trabajo Práctico n.º 1
+
+`contenido/96-trabajo-practico.md` publica el Trabajo Práctico n.º 1 completo, con sus dos hojas y sus dos ejercicios: prensa hidráulica y empuje de un pontón. El texto impreso se transcribe literalmente y las resoluciones docentes aparecen plegadas. No se publican fotografías ni el nombre del alumno, la letra manuscrita, las marcas de corrección ni la calificación.
+
+Los esquemas `graficos/tp-1-prensa.svg` y `graficos/tp-1-ponton.svg` se dibujan a partir de las medidas impresas, no de las fotografías. Una nota editorial documenta tres marcas del impreso: el «2.» suelto entre los ítems D y E; el ítem F, que afirma sin preguntar y deja la consigna en el párrafo sin numerar; y el encabezado, que no declara curso.
 
 ## Lector de voz
 
