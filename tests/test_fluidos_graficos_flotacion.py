@@ -106,11 +106,61 @@ class FlotacionGraficosTests(unittest.TestCase):
         for text in ('Estable', 'Inestable', 'Indiferente', 'E = W', 'orientación'):
             self.assertIn(text, labels)
 
+    def test_recipiente_carga_niveles_y_publicacion(self):
+        root, e = self.figura('ejercicio-12', 'recipiente-comunicado-con-carga.svg',
+                              ('pistón', '500 kgf', 'superficie libre', 'atmósfera', 'desnivel', 'sin escala'))
+        self.assertEqual(root.get('role'), 'img')
+        self.assertIsNotNone(root.find(NS + 'title'))
+        self.assertIsNotNone(root.find(NS + 'desc'))
+        piston, surface = e['piston'], e['superficie-libre']
+        left = float(piston.get('x'))
+        right = left + float(piston.get('width'))
+        face = float(piston.get('y')) + float(piston.get('height'))
+        level = float(surface.get('y1'))
+        self.assertEqual(level, float(surface.get('y2')))
+        self.assertLess(level, face)
+        points = [tuple(map(float, point.split(','))) for point in e['liquido'].get('points').split()]
+        inner, outer = float(surface.get('x1')), float(surface.get('x2'))
+        self.assertEqual(points[0:2], [(left, face), (right, face)])
+        self.assertEqual(points[2][0], right)
+        self.assertEqual(points[2][1], points[3][1])
+        self.assertEqual(points[3][0], inner)
+        self.assertEqual(points[4:6], [(inner, level), (outer, level)])
+        self.assertEqual(points[6][0], outer)
+        self.assertEqual(points[6][1], points[7][1])
+        self.assertEqual(points[7][0], left)
+        self.assertGreater(points[6][1], points[2][1])
+        self.assertNotIn(e['liquido'].get('fill'), ('none', None))
+        self.force(e, 'carga', False)
+        arrow = e['carga']
+        self.assertLess(left, float(arrow.get('x2')))
+        self.assertLess(float(arrow.get('x2')), right)
+        self.assertEqual(float(arrow.get('y2')), float(piston.get('y')))
+        dimension = e['desnivel']
+        self.assertEqual(dimension.get('x1'), dimension.get('x2'))
+        self.assertEqual((float(dimension.get('y1')), float(dimension.get('y2'))), (level, face))
+        for name, y in (('guia-superficie', level), ('guia-piston', face)):
+            guide = e[name]
+            self.assertEqual(float(guide.get('y1')), y)
+            self.assertEqual(float(guide.get('y2')), y)
+            self.assertTrue(guide.get('stroke-dasharray'))
+            self.assertIn(float(dimension.get('x1')), (float(guide.get('x1')), float(guide.get('x2'))))
+        labels = ' '.join(''.join(n.itertext()) for n in root.iter(NS + 'text'))
+        for term in ('500 kgf', 'atmósfera', 'Δh', 'sin escala'):
+            self.assertIn(term, labels)
+        html = (FLUIDOS / 'index.html').read_text(encoding='utf-8')
+        block = html.split('id="ejercicio-12"', 1)[1].split('</div>', 1)[0]
+        self.assertNotIn('../diagramas/08.svg', block)
+        self.assertNotIn('La geometría del dibujo no permite confirmar los niveles', block)
+        self.assertNotIn('El esquema rotula la carga', block)
+        for assumption in ('radio del pistón circular', 'abierta a la atmósfera', 'no hay pérdidas'):
+            self.assertIn(assumption, block)
+
     def test_preserva_ecuaciones_recursos_y_lector(self):
         html = (FLUIDOS / 'index.html').read_text(encoding='utf-8')
         for fragment in ('graficos/presion-media.svg', 'graficos/vasos-y-capas.svg',
                          'graficos/escalas-de-presion.svg', 'graficos/prensa-hidraulica.svg',
-                         '../diagramas/08.svg', 'E=\\rho_{f}\\,g\\,V_{desplazado}=\\gamma_{f}\\,V_{desplazado}',
+                         'graficos/recipiente-comunicado-con-carga.svg', 'E=\\rho_{f}\\,g\\,V_{desplazado}=\\gamma_{f}\\,V_{desplazado}',
                          '\\frac{V_{sumergido}}{V_{total}}=\\frac{\\rho_{c}}{\\rho_{f}}',
                          'GM=BM-BG', 'class="reading-controls"', 'src="lector.js"',
                          'id="cap-3-presion-no-es-fuerza"'):

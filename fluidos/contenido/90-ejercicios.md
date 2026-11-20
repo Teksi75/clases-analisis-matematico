@@ -319,9 +319,9 @@ El cálculo de la primera fila es $F_1=F_2A_1/A_2=25\,497{,}29/56{,}25=453{,}29\
 
 **Consigna.** Calcular la presión que transmite el pistón y la diferencia de niveles entre las dos ramas.
 
-**Hipótesis.** $r$ es el radio del pistón circular, la otra rama está abierta a la atmósfera y no hay pérdidas. La geometría del dibujo no permite confirmar los niveles. El esquema rotula la carga como $500\ \mathrm{kg}$: tomada como masa, su peso es $500\ \mathrm{kgf}$, que es el dato que se usa.
+**Hipótesis.** $r$ es el radio del pistón circular, la otra rama está abierta a la atmósfera y no hay pérdidas.
 
-![Esquema del recipiente comunicado con la carga sobre el pistón.](../diagramas/08.svg)
+![Una carga de 500 kgf empuja el pistón en contacto con el líquido comunicado; la superficie libre de la rama abierta a la atmósfera está más alta que la cara inferior del pistón. El desnivel Δh se mide entre ambas alturas. Esquema sin escala.](graficos/recipiente-comunicado-con-carga.svg)
 :::
 
 ::: {.resolucion}

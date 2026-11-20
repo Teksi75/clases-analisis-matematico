@@ -12,6 +12,8 @@ Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resulta
 
 `graficos/prensa-hidraulica.svg` deriva de `diagramas/07.svg`: identifica la carga aplicada al émbolo pequeño y la fuerza del fluido sobre el émbolo grande. Sus caras están al mismo nivel en el modelo ideal; las dimensiones dibujadas son esquemáticas, no medidas del original. Los tres originales se conservan sin cambios; estos derivados corrigen figuras existentes y no son las figuras de ampliación futuras.
 
+`graficos/recipiente-comunicado-con-carga.svg` deriva de `diagramas/08.svg`, que se conserva sin cambios. Representa la carga de 500 kgf sobre el pistón y el desnivel simbólico entre su cara inferior y la superficie libre de la rama abierta a la atmósfera. El esquema es didáctico y no está a escala.
+
 `graficos/hielo-en-agua.svg` deriva de `diagramas/10.svg`: representa un prisma de sección uniforme con 91,7 % de su altura y volumen bajo la superficie, de acuerdo con las densidades del texto. No incorpora dimensiones del manuscrito.
 
 `graficos/equilibrio-y-apoyo.svg` deriva de `diagramas/12.svg`: distingue flotación parcial, suspensión neutra y apoyo de un cuerpo más denso. En el apoyo puntual no sellante el líquido alcanza la cara inferior; el empuje y la reacción suman el peso. Los balances se dibujan separados de los cuerpos para mostrar dirección y magnitud relativa sin superposiciones.
