@@ -46,3 +46,9 @@ fluidos/verificacion-visual/
 
 # Worktrees anidados en la raíz del repo (los de odd/ ya están cubiertos arriba)
 .worktrees/
+
+# Material local de trabajo sobre los apuntes manuscritos: fotografías fuente y
+# la impresión de las direcciones publicadas. La transcripción y el banco de
+# referencias visuales sí se versionan.
+imagenes/
+pendientes-clases-computacion-*.pdf
