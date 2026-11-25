@@ -1,17 +1,17 @@
 ## Evaluaciones {#evaluaciones}
 
-Este capítulo reúne dos pruebas de Mecánica de los Fluidos del curso: el examen del Tema 1 y la Recuperación de Saberes de agosto. Los enunciados son la transcripción literal del texto impreso de cada prueba; las resoluciones son elaboración docente y aparecen plegadas para que puedas intentar primero.
+Este capítulo reúne dos pruebas de Mecánica de los Fluidos del curso: el examen del Tema 1 y la Recuperación de Saberes de agosto. Los enunciados reproducen el texto impreso de cada prueba, con las correcciones mínimas declaradas en las aclaraciones; las resoluciones son elaboración docente y aparecen plegadas para que puedas intentar primero.
 
 ::: {.aviso}
-**Cómo leer las pruebas.** Cada apartado empieza con el **enunciado original**, transcripto tal como está impreso, incluidos los puntajes y los errores de tipeo. Las **resoluciones** no están en el original: siguen las convenciones de todo el cuaderno ($g=9{,}80665\ \mathrm{m/s^2}$, presiones manométricas salvo indicación) y son una propuesta de respuesta completa, no la corrección oficial del docente.
+**Cómo leer las pruebas.** Cada apartado empieza con el **enunciado**, transcripto tal como está impreso, incluidos los puntajes. Cuando el impreso tiene una omisión o un error de tipeo, el enunciado publicado aplica la corrección mínima y la declara en las **aclaraciones sobre el texto impreso** que siguen. Las **resoluciones** no están en el original: siguen las convenciones de todo el cuaderno ($g=9{,}80665\ \mathrm{m/s^2}$, presiones manométricas salvo indicación) y son una propuesta de respuesta completa, no la corrección oficial del docente.
 
 **Qué no se publica.** No se incluyen las fotografías de las pruebas ni los datos personales que aparecen en ellas: nombre del alumno, letra manuscrita, marcas de corrección y calificaciones. El cuaderno conserva así su alcance: material de estudio, sin fotografías ni datos personales.
 :::
 
 ::: {.aviso}
-**Aclaraciones sobre el texto impreso.** Dos detalles del original conviene tener presentes antes de resolver:
+**Aclaraciones sobre el texto impreso.** Dos correcciones al original conviene tener presentes antes de resolver:
 
-1. En el examen del Tema 1, el enunciado imprime «contiene y aceite»: falta la palabra «agua». El esquema de la figura muestra las tres capas —aire, aceite y agua— y la resolución sigue esa lectura.
+1. En el examen del Tema 1, el impreso dice «contiene y aceite»: omitió la palabra «agua». El apartado e) pide el peso del aceite y del agua, y el esquema de la figura muestra las tres sustancias, de arriba abajo: aire, aceite y agua. El enunciado publicado restituye «agua» —se lee «contiene agua y aceite»— y esta nota deja constancia de la omisión del impreso; la resolución sigue la lectura de la figura.
 2. En la Recuperación de Saberes, el punto $A$ se menciona en el enunciado pero no está marcado en el dibujo. La resolución adopta $A$ en la conexión del tubo con el recipiente, al nivel del fondo, y lo justifica.
 
 :::
@@ -27,7 +27,7 @@ Prueba de Mecánica de los Fluidos, Tema 1, del curso 5.º 1.ª. Contiene seis e
 
 **Enunciado original.**
 
-El tanque cilíndrico de la imagen contiene y aceite (densidad relativa de 0,55), este se encuentra cerrado en su parte superior, allí hay aire con una presión de −4900 Pa. Determine:
+El tanque cilíndrico de la imagen contiene agua y aceite (densidad relativa de 0,55), este se encuentra cerrado en su parte superior, allí hay aire con una presión de −4900 Pa. Determine:
 
 **a)** La presión relativa en los puntos marcados en el gráfico. (10p)
 
