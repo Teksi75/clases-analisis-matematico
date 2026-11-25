@@ -2,9 +2,6 @@
 
 Este cuaderno estudia la **hidrostática**: el comportamiento de los fluidos en reposo. Antes de calcular presiones y empujes conviene acordar qué es un fluido, por qué un líquido y un gas se comportan distinto y qué hipótesis vamos a usar en todo el material. Las fórmulas de los capítulos siguientes solo valen dentro de esas hipótesis.
 
-::: {.aviso}
-**Cómo leer este cuaderno.** El texto sigue los apuntes de origen. Los recuadros marcados **Ampliación** agregan contexto que **no** está en las imágenes: son opcionales y podés saltearlos sin perder el hilo. Las convenciones de cálculo (valor de $g$, kilogramo-fuerza, redondeo) están en el recuadro de hipótesis de trabajo.
-:::
 
 ### Qué es un fluido {#cap-1-que-es-un-fluido}
 

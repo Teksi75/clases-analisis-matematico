@@ -22,15 +22,15 @@ Recurso de teoría y ejercicios para estudiar sin conexión. Se basa en `resulta
 
 ## Capítulo de evaluaciones
 
-`contenido/95-evaluaciones.md` publica dos pruebas de Mecánica de los Fluidos del curso —el examen del Tema 1 y la Recuperación de Saberes de agosto— con el texto impreso de cada enunciado, sus correcciones mínimas declaradas en notas y una resolución docente plegada. Se transcribe solo el texto impreso: las fotografías de las pruebas no se publican y no se copian el nombre del alumno, la letra manuscrita, las marcas de corrección ni las calificaciones. Los originales quedan fuera del repositorio.
+`contenido/95-evaluaciones.md` publica dos pruebas de Mecánica de los Fluidos del curso —el examen del Tema 1 y la Recuperación de Saberes de agosto— con el texto de cada enunciado y una resolución docente plegada. La página no lleva notas editoriales: qué se transcribe, qué no se publica y qué marcas tiene el impreso se documenta acá. Las fotografías de las pruebas no se publican y no se copian el nombre del alumno, la letra manuscrita, las marcas de corrección ni las calificaciones. Los originales quedan fuera del repositorio.
 
-Las resoluciones son elaboración docente y no la corrección oficial del curso. Donde el impreso tiene una omisión o un error de tipeo, o donde la fotografía no alcanza, el capítulo corrige el texto y lo declara en una nota: el examen del Tema 1 imprime «contiene y aceite», sin «agua», y el enunciado publicado la restituye; la Recuperación no marca el punto A.
+Las resoluciones son elaboración docente y no la corrección oficial del curso. Donde el impreso tiene una omisión o un error de tipeo, o donde la fotografía no alcanza, el capítulo corrige el texto en el enunciado y lo registra acá: el examen del Tema 1 imprime «contiene y aceite», sin «agua», y el enunciado publicado la restituye; la Recuperación no marca el punto A y la resolución lo ubica en la conexión del tubo con el fondo.
 
 ## Capítulo del Trabajo Práctico n.º 1
 
-`contenido/96-trabajo-practico.md` publica el Trabajo Práctico n.º 1 completo, con sus dos hojas y sus dos ejercicios: prensa hidráulica y empuje de un pontón. El texto impreso se transcribe literalmente y las resoluciones docentes aparecen plegadas. No se publican fotografías ni el nombre del alumno, la letra manuscrita, las marcas de corrección ni la calificación.
+`contenido/96-trabajo-practico.md` publica el Trabajo Práctico n.º 1 completo, con sus dos hojas y sus dos ejercicios: prensa hidráulica y empuje de un pontón. El texto impreso se conserva en los enunciados y las resoluciones docentes aparecen plegadas. No se publican fotografías ni el nombre del alumno, la letra manuscrita, las marcas de corrección ni la calificación.
 
-Los esquemas `graficos/tp-1-prensa.svg` y `graficos/tp-1-ponton.svg` se dibujan a partir de las medidas impresas, no de las fotografías. Una nota editorial documenta tres marcas del impreso: el «2.» suelto entre los ítems D y E; el ítem F, que afirma sin preguntar y deja la consigna en el párrafo sin numerar; y el encabezado, que no declara curso.
+Los esquemas `graficos/tp-1-prensa.svg` y `graficos/tp-1-ponton.svg` se dibujan a partir de las medidas impresas, no de las fotografías. Se registran acá tres marcas del impreso, que la página ya no comenta: el «2.» suelto entre los ítems D y E; el ítem F, que afirma sin preguntar y deja la consigna en el párrafo sin numerar; y el encabezado, que no declara curso.
 
 ## Lector de voz
 

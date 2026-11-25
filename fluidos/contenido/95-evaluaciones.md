@@ -1,31 +1,13 @@
 ## Evaluaciones {#evaluaciones}
 
-Este capítulo reúne dos pruebas de Mecánica de los Fluidos del curso: el examen del Tema 1 y la Recuperación de Saberes de agosto. Los enunciados reproducen el texto impreso de cada prueba, con las correcciones mínimas declaradas en las aclaraciones; las resoluciones son elaboración docente y aparecen plegadas para que puedas intentar primero.
-
-::: {.aviso}
-**Cómo leer las pruebas.** Cada apartado empieza con el **enunciado**, transcripto tal como está impreso, incluidos los puntajes. Cuando el impreso tiene una omisión o un error de tipeo, el enunciado publicado aplica la corrección mínima y la declara en las **aclaraciones sobre el texto impreso** que siguen. Las **resoluciones** no están en el original: siguen las convenciones de todo el cuaderno ($g=9{,}80665\ \mathrm{m/s^2}$, presiones manométricas salvo indicación) y son una propuesta de respuesta completa, no la corrección oficial del docente.
-
-**Qué no se publica.** No se incluyen las fotografías de las pruebas ni los datos personales que aparecen en ellas: nombre del alumno, letra manuscrita, marcas de corrección y calificaciones. El cuaderno conserva así su alcance: material de estudio, sin fotografías ni datos personales.
-:::
-
-::: {.aviso}
-**Aclaraciones sobre el texto impreso.** Dos correcciones al original conviene tener presentes antes de resolver:
-
-1. En el examen del Tema 1, el impreso dice «contiene y aceite»: omitió la palabra «agua». El apartado e) pide el peso del aceite y del agua, y el esquema de la figura muestra las tres sustancias, de arriba abajo: aire, aceite y agua. El enunciado publicado restituye «agua» —se lee «contiene agua y aceite»— y esta nota deja constancia de la omisión del impreso; la resolución sigue la lectura de la figura.
-2. En la Recuperación de Saberes, el punto $A$ se menciona en el enunciado pero no está marcado en el dibujo. La resolución adopta $A$ en la conexión del tubo con el recipiente, al nivel del fondo, y lo justifica.
-
-:::
+Este capítulo reúne dos pruebas de Mecánica de los Fluidos del curso: el examen del Tema 1 y la Recuperación de Saberes de agosto. Cada apartado trae el enunciado y, plegada, una resolución docente para que puedas intentar primero.
 
 ### Examen — Tema 1 {#eval-tema-1}
 
 Prueba de Mecánica de los Fluidos, Tema 1, del curso 5.º 1.ª. Contiene seis ejercicios: un tanque cerrado con aire, aceite y agua; cuatro preguntas de teoría (paradoja hidrostática, densidad y peso específico, propiedades de la presión hidrostática, presión); y un tanque abierto con dos líquidos.
 
-**Figuras del original.** Los esquemas distinguen el tanque cerrado del primero y el tanque abierto del sexto ejercicio.
-
 ::: {.ejercicio #eval-tema-1-ej-1}
 **Ejercicio 1 — Tanque cerrado con aire, aceite y agua** · [Capítulo 4](#cap-4)
-
-**Enunciado original.**
 
 El tanque cilíndrico de la imagen contiene agua y aceite (densidad relativa de 0,55), este se encuentra cerrado en su parte superior, allí hay aire con una presión de −4900 Pa. Determine:
 
@@ -139,7 +121,7 @@ La fuerza es perpendicular al fondo y apunta **hacia abajo**: el líquido empuja
 ::: {.ejercicio #eval-tema-1-ej-2}
 **Ejercicio 2 — La paradoja de la hidrostática** · [Capítulo 4](#cap-4)
 
-**Enunciado original.** ¿Qué la paradoja de la hidrostática? Explique de forma completa fundamentando su respuesta. (10p)
+¿Qué la paradoja de la hidrostática? Explique de forma completa fundamentando su respuesta. (10p)
 :::
 
 ::: {.resolucion}
@@ -155,7 +137,7 @@ Pascal lo formuló como consecuencia del principio que lleva su nombre: la presi
 ::: {.ejercicio #eval-tema-1-ej-3}
 **Ejercicio 3 — Densidad y peso específico** · [Capítulo 2](#cap-2)
 
-**Enunciado original.** ¿Qué entendemos por densidad? Explique, de unidades de medida y expresión. Además responda, ¿cuál es la diferencia que presenta con el peso específico? (10p)
+¿Qué entendemos por densidad? Explique, de unidades de medida y expresión. Además responda, ¿cuál es la diferencia que presenta con el peso específico? (10p)
 :::
 
 ::: {.resolucion}
@@ -177,7 +159,7 @@ Un ejemplo numérico con el aceite del ejercicio anterior: $\rho=550\ \mathrm{kg
 ::: {.ejercicio #eval-tema-1-ej-4}
 **Ejercicio 4 — Propiedades de la presión hidrostática** · [Capítulo 4](#cap-4)
 
-**Enunciado original.** Mencione y explique detalladamente dos (2) propiedades de la presión hidrostática. (10p)
+Mencione y explique detalladamente dos (2) propiedades de la presión hidrostática. (10p)
 :::
 
 ::: {.resolucion}
@@ -193,7 +175,7 @@ La presión hidrostática tiene cuatro propiedades clásicas; alcanza con dos, y
 ::: {.ejercicio #eval-tema-1-ej-5}
 **Ejercicio 5 — Presión** · [Capítulo 3](#cap-3)
 
-**Enunciado original.** ¿Qué entendemos por presión? Explique detalladamente y grafique de ser necesario. (10p)
+¿Qué entendemos por presión? Explique detalladamente y grafique de ser necesario. (10p)
 :::
 
 ::: {.resolucion}
@@ -213,11 +195,10 @@ Su unidad en el SI es el **pascal**: $1\ \mathrm{Pa}=1\ \mathrm{N/m^2}$, una uni
 ::: {.ejercicio #eval-tema-1-ej-6}
 **Ejercicio 6 — Tanque abierto con aceite y agua** · [Capítulo 4](#cap-4)
 
-**Enunciado original.** El tanque de la imagen, contiene agua y aceite en su interior el cual tiene una densidad de $0{,}8\ \mathrm{g/cm^3}$. Determine: altura h del aceite si la presión relativa del fondo del tanque es de 80000 Pa. (10p)
+El tanque de la imagen, contiene agua y aceite en su interior el cual tiene una densidad de $0{,}8\ \mathrm{g/cm^3}$. Determine: altura h del aceite si la presión relativa del fondo del tanque es de 80000 Pa. (10p)
 
 ![Tanque prismático abierto: aceite de densidad 0,8 g/cm³ y altura desconocida h desde la superficie libre hasta el agua; debajo, agua de 2,5 m de espesor. La presión relativa en el fondo es 80 000 Pa.](graficos/eval-tema-1-tanque-abierto.svg)
 
-**Figura del original.** El esquema destaca la superficie libre y la altura incógnita del aceite.
 :::
 
 ::: {.resolucion}
@@ -244,12 +225,10 @@ La altura del aceite es $h\approx 7{,}07\ \mathrm{m}$: la capa de aceite es casi
 
 Instancia de recuperación de saberes de Mecánica de los Fluidos, curso 5.º 1.ª. Cuatro ejercicios que recorren el programa: un recipiente con fluidos múltiples conectado a un manómetro, una balsa hueca, una prensa hidráulica y una pregunta de teoría sobre la presión hidrostática.
 
-**Figuras del original.** Los esquemas destacan la conexión del manómetro con el fondo y la parte sumergida de la balsa.
-
 ::: {.ejercicio #eval-recuperacion-ej-1}
 **Ejercicio 1 — Recipiente con fluidos múltiples y manómetro** · [Capítulo 4](#cap-4)
 
-**Enunciado original.** Un recipiente con fluidos múltiples está conectado a un tubo para medir la presión. Para la densidad relativa y las alturas dadas, determine la presión manométrica en A (el tubo contiene glicerina). Además determine la ρ en A.
+Un recipiente con fluidos múltiples está conectado a un tubo para medir la presión. Para la densidad relativa y las alturas dadas, determine la presión manométrica en A (el tubo contiene glicerina). Además determine la ρ en A.
 
 **a)** La presión del gas contenido en el interior del tanque. (5p)
 
@@ -323,7 +302,7 @@ Dicho de otro modo: en un líquido en reposo la presión en un punto es la de la
 ::: {.ejercicio #eval-recuperacion-ej-2}
 **Ejercicio 2 — Balsa hueca** · [Capítulo 6](#cap-6)
 
-**Enunciado original.** Una balsa hueca con un largo de 2 m, un ancho de 1 m y una altura de 0,5 m. Posee una masa de 150 kg y suele cargarse para trasladar materiales a través del agua. Determine:
+Una balsa hueca con un largo de 2 m, un ancho de 1 m y una altura de 0,5 m. Posee una masa de 150 kg y suele cargarse para trasladar materiales a través del agua. Determine:
 
 **a)** La altura de la balsa que permanece sumergida cuando se encuentra vacía. (5p)
 
@@ -381,7 +360,7 @@ En un cuerpo que sufre este fenómeno una escora pequeña no se corrige: el peso
 ::: {.ejercicio #eval-recuperacion-ej-3}
 **Ejercicio 3 — Prensa hidráulica de émbolos macizos** · [Capítulo 5](#cap-5)
 
-**Enunciado original.** Una prensa hidráulica está formada por dos émbolos cilíndricos macizos de acero. El émbolo 1 posee un diámetro de 20 mm y una altura de 60 mm con una carrera máxima de 100 mm. Mientras que el émbolo 2 un diámetro de 120 mm con una altura de 100 mm. Considerando que la densidad del acero es de 7850 kg/m³ y se aplica una fuerza en el émbolo 1 de 400 N. Determine la carga máxima que puede levantar la prensa. (20p)
+Una prensa hidráulica está formada por dos émbolos cilíndricos macizos de acero. El émbolo 1 posee un diámetro de 20 mm y una altura de 60 mm con una carrera máxima de 100 mm. Mientras que el émbolo 2 un diámetro de 120 mm con una altura de 100 mm. Considerando que la densidad del acero es de 7850 kg/m³ y se aplica una fuerza en el émbolo 1 de 400 N. Determine la carga máxima que puede levantar la prensa. (20p)
 :::
 
 ::: {.resolucion}
@@ -423,7 +402,7 @@ La prensa levanta unos **$14{,}4\ \mathrm{kN}$**, cerca de $1{,}5$ toneladas con
 ::: {.ejercicio #eval-recuperacion-ej-4}
 **Ejercicio 4 — Presión hidrostática y sus propiedades** · [Capítulo 4](#cap-4)
 
-**Enunciado original.** ¿Qué es la presión hidrostática? Defina 2 características o propiedades de la misma. (10p)
+¿Qué es la presión hidrostática? Defina 2 características o propiedades de la misma. (10p)
 :::
 
 ::: {.resolucion}

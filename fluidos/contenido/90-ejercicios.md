@@ -4,7 +4,6 @@ Los ejercicios están agrupados por capítulo y en el mismo orden en que convien
 
 **Convenciones.** Salvo indicación expresa: $g=9{,}80665\ \mathrm{m/s^2}$, $1\ \mathrm{kgf}=9{,}80665\ \mathrm{N}$, densidad del agua $1000\ \mathrm{kg/m^3}$ y presiones **manométricas** respecto de la superficie del líquido. Los resultados se redondean al presentarlos; el cálculo se hace sin redondear los pasos intermedios.
 
-**Origen de los datos.** Los ejercicios 2 a 16 provienen de los apuntes y de sus desarrollos auditados: los datos son los del manuscrito y las hipótesis necesarias están explicitadas. El ejercicio 1, el apartado b del ejercicio 17 y las preguntas de cierre son de elaboración docente. Cuando un dato del apunte no alcanza para resolver el problema, se indica en el enunciado y se explica qué se supone.
 
 ### Índice de ejercicios {#ejercicios-indice}
 

@@ -2,33 +2,14 @@
 
 Este capítulo publica el Trabajo Práctico N.º 1 de Mecánica de los Fluidos, la tercera prueba escrita del curso, que se suma por separado al capítulo de evaluaciones. El práctico propone dos ejercicios sobre los temas centrales de la hidrostática: una prensa hidráulica con el peso propio de los émbolos, la carrera y el tope; y el empuje sobre un pontón de chapa de acero que transporta materiales por una laguna.
 
-Los enunciados son la transcripción literal del texto impreso de las dos hojas. Las resoluciones son elaboración docente y aparecen plegadas, para que puedas intentar cada ítem antes de abrirlas.
-
-::: {.aviso}
-**Cómo leer esta prueba.** Las resoluciones siguen las convenciones de todo el cuaderno: $g=9{,}80665\ \mathrm{m/s^2}$, densidades en kg/m³ y presiones manométricas salvo indicación. No son la corrección oficial del curso, sino una propuesta de respuesta completa. El práctico no reparte puntajes, así que el capítulo no los agrega.
-
-**Qué no se publica.** No se incluyen las fotografías del original ni los datos personales que lleva impresos: nombre del alumno, letra manuscrita, marcas de corrección y calificación. Se transcribe solo el texto impreso.
-:::
-
-::: {.aviso}
-**Aclaraciones sobre el texto impreso.** Tres marcas del original conviene tener presentes antes de resolver:
-
-1. Entre los ítems D y E del ejercicio 1 quedó impreso un «2.» suelto, resto de una renumeración del listado. No es un ítem: la serie sigue con E y F.
-2. El ítem F no formula una pregunta, sino que describe lo que ocurre cuando el émbolo 1 llega a su tope. La consigna real está en el párrafo siguiente, sin numerar, y es la que pide la presión hidrostática del aceite. Los dos se transcriben como están impresos.
-3. El encabezado de la hoja no indica curso, a diferencia de los dos exámenes del capítulo de evaluaciones. El capítulo no lo completa por suposición.
-
-:::
+Cada ejercicio trae el enunciado y, plegada, una resolución docente para que puedas intentar cada ítem antes de abrirla.
 
 ### Ejercicio 1 — Prensa hidráulica {#tp-1-prensa}
 
 La hoja encabeza «Temas a desarrollar: Prensa hidráulica / Empuje» y abre la lista de ejercicios con una prensa de dos émbolos macizos de acero. El ejercicio pide el peso de cada émbolo, la presión transmitida, la fuerza y la carga útil, el recorrido y, con el émbolo 1 contra el tope, la presión hidrostática que aparece por la diferencia de nivel.
 
-**Figuras del original.** La hoja dibuja la prensa de perfil: los dos cilindros unidos por el conducto del aceite, el émbolo 1 a la izquierda con la fuerza que baja, el émbolo 2 a la derecha, los diámetros, las longitudes y el tope que limita la carrera.
-
 ::: {.ejercicio #tp-1-ej-1}
 **Ejercicio 1 — Prensa hidráulica de dos émbolos macizos** · [Capítulo 5](#cap-5) · [Capítulo 4](#cap-4)
-
-**Enunciado original.**
 
 Una prensa hidráulica está compuesta por dos émbolos cilíndricos macizos fabricados en acero y conectados mediante un fluido incompresible.
 
@@ -129,12 +110,8 @@ Es pequeña comparada con los $246\ \mathrm{kPa}$ de trabajo, pero no es cero: l
 
 El segundo tema del práctico: un pontón metálico hueco y cerrado flota en una laguna de agua dulce. El enunciado está en la primera hoja y sus veinte consignas, de la A a la T, en la segunda.
 
-**Figuras del original.** La hoja trae una vista en perspectiva del pontón, con el aire adentro y la línea del agua, y dos secciones —transversal y longitudinal— que dan las dimensiones interiores y el espesor de la chapa.
-
 ::: {.ejercicio #tp-1-ej-2}
 **Ejercicio 2 — Pontón de chapa de acero sobre una laguna** · [Capítulo 6](#cap-6) · [Capítulo 2](#cap-2)
-
-**Enunciado original.**
 
 Una empresa utiliza un pontón metálico (investigue qué es si lo desconoce) para transportar materiales de construcción a través de una laguna. El pontón tiene forma de prisma rectangular hueco y está construido con chapas de acero con un espesor de 5 mm. Su interior se encuentra lleno de aire y completamente cerrado para impedir el ingreso de agua.
 

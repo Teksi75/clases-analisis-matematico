@@ -33,13 +33,17 @@ class EvaluacionesTests(unittest.TestCase):
     def test_el_enunciado_publicado_no_conserva_la_frase_truncada(self):
         self.assertNotIn('contiene y aceite', self.bloque('eval-tema-1-ej-1'))
 
-    def test_la_nota_declara_la_omision_del_impreso(self):
-        aviso = re.search(r'Aclaraciones sobre el texto impreso.*?</div>', self.html, re.S)
-        self.assertIsNotNone(aviso, 'Falta la nota sobre el texto impreso')
-        nota = texto(aviso.group())
-        self.assertIn('«contiene y aceite»', nota)
-        self.assertIn('«agua»', nota)
-        self.assertIn('restituye', nota)
+    def test_la_pagina_no_lleva_notas_editoriales(self):
+        # El alumno lee el enunciado: la política de transcripción vive en fluidos/README.md.
+        for frase in ('Aclaraciones sobre el texto impreso', 'transcripción literal',
+                      'Qué no se publica', 'Enunciado original', 'Figuras del original',
+                      'Origen de los datos'):
+            self.assertNotIn(frase, self.html, f'Quedó meta-prosa de control: {frase}')
+
+    def test_el_readme_registra_la_omision_del_impreso(self):
+        readme = (FLUIDOS / 'README.md').read_text(encoding='utf-8')
+        self.assertIn('«contiene y aceite»', readme)
+        self.assertIn('restituye', readme)
 
     def test_la_fuente_mantiene_la_lectura_de_tres_sustancias(self):
         fuente = FUENTE.read_text(encoding='utf-8')

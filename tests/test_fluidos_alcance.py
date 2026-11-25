@@ -25,10 +25,12 @@ class AlcanceTests(unittest.TestCase):
         self.assertIn('.ampliacion::before', css)
         self.assertIn('no está en el apunte', css)
 
-    def test_el_lector_sabe_que_es_opcional(self):
+    def test_la_marca_de_ampliacion_se_explica_sola(self):
+        # La etiqueta la pone el CSS: la página no necesita una leyenda editorial.
+        self.assertIn('Ampliación · no está en el apunte', CSS.read_text(encoding='utf-8'))
         texto = re.sub(r'<[^>]*>', '', self.html)
-        self.assertIn('Cómo leer este cuaderno', texto)
-        self.assertRegex(texto, r'Ampliaci\S+n\s+agregan contexto')
+        self.assertNotIn('Cómo leer este cuaderno', texto)
+        self.assertNotIn('agregan contexto', texto)
 
     def test_las_ampliaciones_no_sustituyen_al_temario(self):
         # El criterio de estabilidad de un cuerpo sumergido es del apunte y va sin marcar.
